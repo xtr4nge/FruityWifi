@@ -85,6 +85,8 @@ mkdir /var/www/tmp
 chown www-data.www-data /var/www/tmp
 chmod  777 /var/www/tmp
 chmod 755 /raspberry-wifi/squid.inject/poison.pl
+mkdir /raspberry-wifi/logs/kismet
+mkdir /raspberry-wifi/logs/sslstrip
 
 # BIN
 cd /raspberry-wifi/www/bin/
