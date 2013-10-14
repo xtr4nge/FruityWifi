@@ -19,7 +19,7 @@ apt-get update
 
 # DEP HOSTAPD-KARMA
 apt-get -y install libnl1 
-#apt-get -y install libnl-dev 
+apt-get -y install libnl-dev 
 apt-get -y install libssl-dev
 
 # INSTALL HOSTAPD-KARMA
