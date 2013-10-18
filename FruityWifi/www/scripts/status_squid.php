@@ -35,7 +35,7 @@ $page = $_GET['page'];
 
 if($service == "squid") {
     if ($action == "start") {
-        $exec = "/usr/sbin/squid3 -f /raspberry-wifi/conf/squid.conf &";
+        $exec = "/usr/sbin/squid3 -f /FruityWifi/conf/squid.conf &";
         exec("../bin/danger \"" . $exec . "\"" );
         $exec = "/sbin/iptables -t nat -A PREROUTING -i $iface_wifi -p tcp --dport 80 -j REDIRECT --to-port 3128";
         exec("../bin/danger \"" . $exec . "\"" );
@@ -51,12 +51,12 @@ if($service == "squid") {
 
 if($service == "url_rewrite") {
     if ($action == "start") {
-        $exec = "/bin/sed -i 's/^\#url_rewrite_program/url_rewrite_program/g' /raspberry-wifi/conf/squid.conf";
+        $exec = "/bin/sed -i 's/^\#url_rewrite_program/url_rewrite_program/g' /FruityWifi/conf/squid.conf";
         exec("../bin/danger \"" . $exec . "\"" );
         $exec = "/usr/sbin/squid3 -k reconfigure";
         exec("../bin/danger \"" . $exec . "\"" );
     } else if($action == "stop") {
-        $exec = "/bin/sed -i 's/^url_rewrite_program/\#url_rewrite_program/g' /raspberry-wifi/conf/squid.conf";
+        $exec = "/bin/sed -i 's/^url_rewrite_program/\#url_rewrite_program/g' /FruityWifi/conf/squid.conf";
         exec("../bin/danger \"" . $exec . "\"" );
         $exec = "/usr/sbin/squid3 -k reconfigure";
         exec("../bin/danger \"" . $exec . "\"" );
@@ -80,7 +80,7 @@ if($service == "iptables") {
 if($service == "js") {
     $exec = "/bin/sed -i 's/url_rewrite_program=.*/url_rewrite_program=\\\"".$action.".js\\\";/g' ../config/config.php";
     exec("../bin/danger \"" . $exec . "\"" );
-    $exec = "/bin/cp /raspberry-wifi/squid.inject/$action.js /raspberry-wifi/squid.inject/pasarela.js";
+    $exec = "/bin/cp /FruityWifi/squid.inject/$action.js /FruityWifi/squid.inject/pasarela.js";
     exec("../bin/danger \"" . $exec . "\"" );
 }
 

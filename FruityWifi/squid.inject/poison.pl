@@ -15,7 +15,7 @@ while (<>)
 		$url = $1;
 		system("/usr/bin/wget", "-q", "-O", "/var/www/tmp/$pid-$count.js", "$url");
 		system("chmod o+r /var/www/tmp/$pid-$count.js");
-		system("cat /raspberry-wifi/squid.inject/pasarela.js >> /var/www/tmp/$pid-$count.js");
+		system("cat /FruityWifi/squid.inject/pasarela.js >> /var/www/tmp/$pid-$count.js");
 		print "http://10.0.0.1:80/tmp/$pid-$count.js\n";
 	}
 	else

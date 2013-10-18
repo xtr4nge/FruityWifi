@@ -56,7 +56,7 @@ if($service == "supplicant") {
         $exec = "/sbin/ifconfig $iface_supplicant up";
         exec("../bin/danger \"" . $exec . "\"" );
 
-        #$exec = "/sbin/wpa_passphrase '$supplicant_ssid' '$supplicant_key' > /raspberry-wifi/conf/wpa_supplicant.conf";
+        #$exec = "/sbin/wpa_passphrase '$supplicant_ssid' '$supplicant_key' > /FruityWifi/conf/wpa_supplicant.conf";
         #exec("../bin/danger \"" . $exec . "\"" );
 
         $exec = "/bin/sed -i 's/ssid=.*/ssid=\\\"".$supplicant_ssid."\\\";/g' ../config/config.php";
@@ -64,8 +64,8 @@ if($service == "supplicant") {
         $exec = "/bin/sed -i 's/psk=.*/psk=\\\"".$supplicant_psk."\\\";/g' ../config/config.php";
 
 
-        $exec = "/sbin/wpa_supplicant -B -D nl80211 -i $iface_supplicant -c /raspberry-wifi/conf/wpa_supplicant.conf";
-        #$exec = "/sbin/wpa_supplicant -B -D nl80211,wext -i $iface_supplicant -c /raspberry-wifi/conf/wpa_supplicant.conf";
+        $exec = "/sbin/wpa_supplicant -B -D nl80211 -i $iface_supplicant -c /FruityWifi/conf/wpa_supplicant.conf";
+        #$exec = "/sbin/wpa_supplicant -B -D nl80211,wext -i $iface_supplicant -c /FruityWifi/conf/wpa_supplicant.conf";
         exec("../bin/danger \"" . $exec . "\"" );
 
         #WEP

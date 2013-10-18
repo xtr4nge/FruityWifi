@@ -200,7 +200,7 @@ if ($_GET['reveal_public_ip'] == 1) {
 <div class="rounded-top" align="center"> DHCP </div>
 <div class="rounded-bottom">
     <?
-    $filename = "/raspberry-wifi/logs/dhcp.leases";
+    $filename = "/FruityWifi/logs/dhcp.leases";
     $fh = fopen($filename, "r") or die("Could not open file.");
     $data = fread($fh, filesize($filename)) or die("Could not read file.");
     fclose($fh);

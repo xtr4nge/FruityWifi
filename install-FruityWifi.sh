@@ -9,8 +9,8 @@
 # dnsspoof
 # urlsnarf
 
-find raspberry-wifi -type d -exec chmod 755 {} \;
-find raspberry-wifi -type f -exec chmod 644 {} \;
+find FruityWifi -type d -exec chmod 755 {} \;
+find FruityWifi -type f -exec chmod 644 {} \;
 
 mkdir tmp-install
 cd tmp-install
@@ -78,23 +78,23 @@ cd ../
 
 # APACHE2 SETUP
 cd ../
-cp -a raspberry-wifi /
-ln -s /raspberry-wifi/www /var/www/raspberry-wifi
-ln -s /raspberry-wifi/logs /var/www/raspberry-wifi/logs
+cp -a FruityWifi /
+ln -s /FruityWifi/www /var/www/FruityWifi
+ln -s /FruityWifi/logs /var/www/FruityWifi/logs
 mkdir /var/www/tmp
 chown www-data.www-data /var/www/tmp
 chmod  777 /var/www/tmp
-chmod 755 /raspberry-wifi/squid.inject/poison.pl
-cp -a /raspberry-wifi/www.site /var/www/site
+chmod 755 /FruityWifi/squid.inject/poison.pl
+cp -a /FruityWifi/www.site /var/www/site
 chown -R www-data.www-data /var/www/site
 chmod 777 /var/www/site/data.txt
 chmod 777 /var/www/site/inject/data.txt
 
-#mkdir /raspberry-wifi/logs/kismet
-#mkdir /raspberry-wifi/logs/sslstrip
+#mkdir /FruityWifi/logs/kismet
+#mkdir /FruityWifi/logs/sslstrip
 
 # BIN
-cd /raspberry-wifi/www/bin/
+cd /FruityWifi/www/bin/
 gcc danger.c -o danger
 chmod 4755 danger
 

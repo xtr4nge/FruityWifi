@@ -35,7 +35,7 @@ if($service == "dnsspoof") {
     if ($action == "start") {
         $exec = "echo '' > ../logs/dnsspoof.log";
         exec("../bin/danger \"" . $exec . "\"" );
-        $exec = "/usr/sbin/dnsspoof -i $iface_wifi -f /raspberry-wifi/conf/spoofhost.conf > /dev/null 2> /raspberry-wifi/logs/dnsspoof.log &";
+        $exec = "/usr/sbin/dnsspoof -i $iface_wifi -f /FruityWifi/conf/spoofhost.conf > /dev/null 2> /FruityWifi/logs/dnsspoof.log &";
         exec("../bin/danger \"" . $exec . "\"" );
     } else if($action == "stop") {
         $exec = "killall dnsspoof";

@@ -35,7 +35,7 @@ if ($regex == 1) {
 $service = $_GET['service'];
 $action = $_GET['action'];
 
-#sed -i 's/interface=.*/interface=wlan0/g' /raspberry-wifi/conf/dnsmasq.conf
+#sed -i 's/interface=.*/interface=wlan0/g' /FruityWifi/conf/dnsmasq.conf
 
 if($service == "wireless") {
     if ($action == "start") {
@@ -57,14 +57,14 @@ if($service == "wireless") {
         exec("../bin/danger \"" . $exec . "\"" );
 
         //$exec = "/etc/init.d/dnsmasq restart";
-        $exec = "/usr/sbin/dnsmasq -C /raspberry-wifi/conf/dnsmasq.conf";
+        $exec = "/usr/sbin/dnsmasq -C /FruityWifi/conf/dnsmasq.conf";
         exec("../bin/danger \"" . $exec . "\"" );
         
         if ($hostapd_secure == 1) {
-            $exec = "/usr/sbin/karma-hostapd -P /var/run/hostapd-phy0 -B /raspberry-wifi/conf/hostapd-secure.conf";
+            $exec = "/usr/sbin/karma-hostapd -P /var/run/hostapd-phy0 -B /FruityWifi/conf/hostapd-secure.conf";
             #$exec = "/usr/sbin/karma-hostapd -P /var/run/hostapd-phy0 -B /etc/hostapd/wifi-secure.conf -f /var/log/karma-hostapd.log -d";
         } else {
-            $exec = "/usr/sbin/karma-hostapd -P /var/run/hostapd-phy0 -B /raspberry-wifi/conf/hostapd.conf";
+            $exec = "/usr/sbin/karma-hostapd -P /var/run/hostapd-phy0 -B /FruityWifi/conf/hostapd.conf";
             #$exec = "/usr/sbin/karma-hostapd -P /var/run/hostapd-phy0 -B /etc/hostapd/pineapple.conf -f /var/log/karma-hostapd.log -d";
         }
         exec("../bin/danger \"" . $exec . "\"" );

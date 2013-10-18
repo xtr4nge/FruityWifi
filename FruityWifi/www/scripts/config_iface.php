@@ -40,12 +40,12 @@ if(isset($_POST["iface"]) and $_POST["iface"] == "wifi"){
     exec("../bin/danger \"" . $exec . "\"" );
  
     // replace interface in hostapd.conf and hostapd-secure.conf
-    $exec = "/bin/sed -i 's/^interface=.*/interface=".$_POST["iface_wifi"]."/g' /raspberry-wifi/conf/hostapd.conf";
+    $exec = "/bin/sed -i 's/^interface=.*/interface=".$_POST["iface_wifi"]."/g' /FruityWifi/conf/hostapd.conf";
     exec("../bin/danger \"" . $exec . "\"" );
-    $exec = "/bin/sed -i 's/^interface=.*/interface=".$_POST["iface_wifi"]."/g' /raspberry-wifi/conf/hostapd-secure.conf";
+    $exec = "/bin/sed -i 's/^interface=.*/interface=".$_POST["iface_wifi"]."/g' /FruityWifi/conf/hostapd-secure.conf";
     exec("../bin/danger \"" . $exec . "\"" );
     
-    $exec = "/bin/sed -i 's/interface=.*/interface=".$_POST["iface_wifi"]."/g' /raspberry-wifi/conf/dnsmasq.conf";
+    $exec = "/bin/sed -i 's/interface=.*/interface=".$_POST["iface_wifi"]."/g' /FruityWifi/conf/dnsmasq.conf";
     exec("../bin/danger \"" . $exec . "\"" );
     
     //EXTRACT MACADDRESS
@@ -54,9 +54,9 @@ if(isset($_POST["iface"]) and $_POST["iface"] == "wifi"){
     $output = preg_replace('/\s+/', ' ',$output);
     $output = explode(" ",$output);
     
-    $exec = "/bin/sed -i 's/^bssid=.*/bssid=".$output[4]."/g' /raspberry-wifi/conf/hostapd.conf";
+    $exec = "/bin/sed -i 's/^bssid=.*/bssid=".$output[4]."/g' /FruityWifi/conf/hostapd.conf";
     exec("../bin/danger \"" . $exec . "\"" );
-    $exec = "/bin/sed -i 's/^bssid=.*/bssid=".$output[4]."/g' /raspberry-wifi/conf/hostapd-secure.conf";
+    $exec = "/bin/sed -i 's/^bssid=.*/bssid=".$output[4]."/g' /FruityWifi/conf/hostapd-secure.conf";
     exec("../bin/danger \"" . $exec . "\"" );
 
 }

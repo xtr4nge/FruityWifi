@@ -34,9 +34,9 @@
     ?>
     <?
 
-    //$exec = "/bin/grep '^url_rewrite_program' /raspberry-wifi/conf/squid.conf";
+    //$exec = "/bin/grep '^url_rewrite_program' /FruityWifi/conf/squid.conf";
 
-    $isurlrewriteup = exec("/bin/grep '^url_rewrite_program' /raspberry-wifi/conf/squid.conf");
+    $isurlrewriteup = exec("/bin/grep '^url_rewrite_program' /FruityWifi/conf/squid.conf");
     if ($isurlrewriteup != "") {    
         echo "&nbsp;&nbsp;&nbsp;Inject  <font color=\"lime\"><b>enabled</b></font>.&nbsp; | <a href=\"scripts/status_squid.php?service=url_rewrite&action=stop\"><b>stop</b></a><br />";
     } else { 
@@ -46,7 +46,7 @@
     ?>
     <?
 
-    //$exec = "/bin/grep '^url_rewrite_program' /raspberry-wifi/conf/squid.conf";
+    //$exec = "/bin/grep '^url_rewrite_program' /FruityWifi/conf/squid.conf";
 
     $exec = "/sbin/iptables -nvL -t nat |grep -E 'REDIRECT.+3128'";
     $isiptablesup = exec("bin/danger \"" . $exec . "\"" );
@@ -66,13 +66,13 @@
 <?
 //echo realpath(dirname(__FILE__));
 
-$files = glob('/raspberry-wifi/squid.inject/*.js');
+$files = glob('/FruityWifi/squid.inject/*.js');
 print_r($a);
 
 //$netxml = system("/bin/ls -l ../kismet/*.netxml |awk '{print $9}'");
 
 for ($i = 0; $i < count($files); $i++) {
-    $filename = str_replace(".js","",str_replace("/raspberry-wifi/squid.inject/","",$files[$i]));
+    $filename = str_replace(".js","",str_replace("/FruityWifi/squid.inject/","",$files[$i]));
     //echo "<a href='scripts/sslstrip_output.php?file=".str_replace(".log","",str_replace("logs/sslstrip/","",$files[$i]))."&action=delete'>x</a> ";
     //echo $filename . " | ";
     if ($filename != "pasarela") {

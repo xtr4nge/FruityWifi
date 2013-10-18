@@ -99,9 +99,9 @@ if(isset($_POST[newSSID])){
     //system("./bin/danger \"" . $exec . "\"" );
     
     // replace interface in hostapd.conf and hostapd-secure.conf
-    $exec = "/bin/sed -i 's/^ssid=.*/ssid=".$_POST["newSSID"]."/g' /raspberry-wifi/conf/hostapd.conf";
+    $exec = "/bin/sed -i 's/^ssid=.*/ssid=".$_POST["newSSID"]."/g' /FruityWifi/conf/hostapd.conf";
     exec("./bin/danger \"" . $exec . "\"" );
-    $exec = "/bin/sed -i 's/^ssid=.*/ssid=".$_POST["newSSID"]."/g' /raspberry-wifi/conf/hostapd-secure.conf";
+    $exec = "/bin/sed -i 's/^ssid=.*/ssid=".$_POST["newSSID"]."/g' /FruityWifi/conf/hostapd-secure.conf";
     exec("./bin/danger \"" . $exec . "\"" );
 
 }
@@ -278,15 +278,15 @@ if ($newdata != "") { $newdata = ereg_replace(13,  "", $newdata);
     $fw = fopen($filename, 'w') or die('Could not open file.');
     $fb = fwrite($fw,stripslashes($newdata)) or die('Could not write to file');
     fclose($fw);
-    $fileMessage = $strings["config-updated"]." " . "/raspberry-wifi/conf/" . $filename . "<br /><br />";
+    $fileMessage = $strings["config-updated"]." " . "/FruityWifi/conf/" . $filename . "<br /><br />";
 } 
 */
 if ($newdata != "") { $newdata = ereg_replace(13,  "", $newdata);
-    $exec = "/bin/echo '$newdata' > /raspberry-wifi/conf/spoofhost.conf";
+    $exec = "/bin/echo '$newdata' > /FruityWifi/conf/spoofhost.conf";
 	exec("./bin/danger \"" . $exec . "\"", $output);
 }
 
-$filename = "/raspberry-wifi/conf/spoofhost.conf";
+$filename = "/FruityWifi/conf/spoofhost.conf";
 
 $fh = fopen($filename, "r") or die("Could not open file.");
 $data = fread($fh, filesize($filename)) or die("Could not read file.");
