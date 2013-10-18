@@ -11,7 +11,7 @@
 
 # ------ Raspberry-Pi -------
 apt-get update
-apt-get upgrade
+apt-get -y upgrade
 
 update-rc.d ssh defaults
 update-rc.d apache2 defaults
