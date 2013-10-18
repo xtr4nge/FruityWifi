@@ -41,6 +41,8 @@ if($service == "sslstrip") {
         $exec = "/usr/bin/sslstrip -a -s -l 10000 -w ../logs/sslstrip/sslstrip-".gmdate("Ymd-H-i-s").".log > /dev/null 2 &";
         exec("../bin/danger \"" . $exec . "\"" );
     } else if($action == "stop") {
+    	$exec = "/sbin/iptables -t nat -D PREROUTING -p tcp --destination-port 80 -j REDIRECT --to-port 10000";
+        exec("../bin/danger \"" . $exec . "\"" );
         $exec = "/usr/bin/killall sslstrip";
         exec("../bin/danger \"" . $exec . "\"" );
     }
