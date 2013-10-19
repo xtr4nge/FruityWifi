@@ -134,6 +134,8 @@ make
 make install
 cd ../
 
+cp /usr/local/bin/giskismet /usr/bin/
+
 
 # APACHE2 SETUP
 cd ../
