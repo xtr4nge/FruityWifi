@@ -27,6 +27,7 @@ apt-get -y install hostapd
 apt-get -y install squid3
 apt-get -y install dsniff
 apt-get -y install sslstrip
+apt-get -y install subversion
 # --------------------------
 
 
@@ -115,9 +116,24 @@ cd kismet-2013-03-R1b
 make dep
 make
 make install
+cd ../
 
 cp /usr/local/bin/kismet /usr/bin/
 cp /usr/local/bin/kismet_server /usr/bin/
+
+
+# GISKismet
+apt-get -y install libxml-libxml-perl 
+apt-get -y install libdbi-perl 
+apt-get -y install libdbd-sqlite3-perl
+
+svn co https://my-svn.assembla.com/svn/giskismet/trunk giskismet
+cd giskismet
+perl Makefile.PL
+make
+make install
+cd ../
+
 
 # APACHE2 SETUP
 cd ../
