@@ -28,6 +28,7 @@ apt-get -y install squid3
 apt-get -y install dsniff
 apt-get -y install sslstrip
 apt-get -y install subversion
+apt-get -y install macchanger
 # --------------------------
 
 
