@@ -24,6 +24,8 @@ update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.7 40 --slave /usr/
 apt-get -y install php5
 apt-get -y install network-manager
 apt-get -y install hostapd
+apt-get -y install squid3
+apt-get -y install dsniff
 # --------------------------
 
 
