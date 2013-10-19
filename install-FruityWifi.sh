@@ -34,7 +34,7 @@ cp hostapd /usr/sbin/karma-hostapd
 cp hostapd_cli /usr/sbin/karma-hostapd_cli
 cd ../../
 
-# INSTALL DNSMASQ
+# INSTALL SQUID3
 apt-get -y install squid3
 
 # INSTALL DNSMASQ
@@ -50,6 +50,8 @@ apt-get -y install wireless-tools
 apt-get -y install libiw-dev
 apt-get -y install libpackagekit-glib2-12
 apt-get -y install libdbus-glib-1-dev
+apt-get -y install libpackagekit-glib2-14
+apt-get -y install libpackagekit-glib2-dev
 apt-get -y install libgudev-1.0-dev
 #apt-get -y install libnl-dev
 apt-get -y install uuid-dev
@@ -67,13 +69,18 @@ apt-get -y install libnl-genl-3-dev
 
 
 # INSTALL NTWORK-MANAGER 0.9.8.4
-wget http://ftp.gnome.org/pub/GNOME/sources/NetworkManager/0.9/NetworkManager-0.9.8.4.tar.xz
-tar xvf NetworkManager-0.9.8.4.tar.xz
-cd NetworkManager-0.9.8.4
+#wget http://ftp.gnome.org/pub/GNOME/sources/NetworkManager/0.9/NetworkManager-0.9.8.4.tar.xz
+#tar xvf NetworkManager-0.9.8.4.tar.xz
+#cd NetworkManager-0.9.8.4
+
+wget http://ftp.gnome.org/pub/GNOME/sources/NetworkManager/0.9/NetworkManager-0.9.8.8.tar.xz
+tar xvf NetworkManager-0.9.8.8.tar.xz
+cd NetworkManager-0.9.8.8
+
 ./configure
 make
 make install
-cp cli/src/nmcli /usr/bin/nmcli
+#cp cli/src/nmcli /usr/bin/nmcli
 cd ../
 
 # APACHE2 SETUP
