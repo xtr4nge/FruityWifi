@@ -116,6 +116,9 @@ make dep
 make
 make install
 
+cp /usr/local/bin/kismet /usr/bin/
+cp /usr/local/bin/kismet_server /usr/bin/
+
 # APACHE2 SETUP
 cd ../
 cp -a FruityWifi /
