@@ -26,6 +26,7 @@ apt-get -y install network-manager
 apt-get -y install hostapd
 apt-get -y install squid3
 apt-get -y install dsniff
+apt-get -y install sslstrip
 # --------------------------
 
 
@@ -102,6 +103,18 @@ make
 make install
 #cp cli/src/nmcli /usr/bin/nmcli
 cd ../
+
+
+# KISMET 
+apt-get -y install libncurses5-dev
+apt-get -y install libpcap-dev
+
+wget http://www.kismetwireless.net/code/kismet-2013-03-R1b.tar.xz
+cd kismet-2013-03-R1b
+./configure
+make dep
+make
+make install
 
 # APACHE2 SETUP
 cd ../
