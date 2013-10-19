@@ -1,4 +1,4 @@
 FruityWifi
 ==============
 
-This project is a wireless network auditing tool based in the wifi Pineapple. The base system is Kali Linux for Raspberry Pi, but the setup, scripts and config runs in any Kali Linux with a few extra packages. 
+FruityWifi is a wireless network auditing tool based in the wifi Pineapple. The application can be installed in any Debian based system adding the extra packages. Tested in Debian, Kali Linux, Kali Linux ARM (Raspberry Pi), Raspbian (Raspberry Pi).
