@@ -162,6 +162,9 @@ chmod 4755 danger
 
 /etc/init.d/apache2 start
 
+update-rc.d -f squid3 remove
+apt-get -y remove ifplugd
+
 echo "ENJOY!"
 echo ""
 
