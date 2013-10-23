@@ -89,3 +89,34 @@ if ($issslstripup != "") {
 ?>
 </div>
 
+<br>
+
+<?
+// ------------- External Modules --------------
+exec("find ./modules -name '_info_.php'",$output);
+//print count($output);
+if (count($output) > 0) {
+?>
+<div class="rounded-top" align="center"> Modules </div>
+<div class="rounded-bottom">
+    <table border=0 width='100%' cellspacing=0 cellpadding=0>
+    <?
+    //exec("find ./modules -name '_info_.php'",$output);
+    //print_r($output[0]);
+
+    for ($i=0; $i < count($output); $i++) {
+        include $output[$i];
+        $module_path = str_replace("_info_.php","",$output[$i]);
+
+        echo "<tr>";
+            echo "<td align='right' style='padding-right:5px; padding-left:5px; width:0px'>$name</td>";
+            echo "<td align='right' style='padding-right:5px; padding-left:5px; width:0px'>$version</td>";
+            echo "<td align='left' style='padding-right:5px; padding-left:5px;'><a href='$module_path'>View</a><br></td>";
+            //echo "<td align='right'><a href='$module_path'>$name.$version</a><br></td>";
+            //echo "<td>View</td>";
+        echo "</tr>";
+    }
+    ?>
+    </table>
+<div>
+<? } ?>
