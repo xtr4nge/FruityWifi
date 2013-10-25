@@ -97,13 +97,71 @@ exec("find ./modules -name '_info_.php'",$output);
 //print count($output);
 if (count($output) > 0) {
 ?>
-<div class="rounded-top" align="center"> Modules </div>
+<div class="rounded-top" align="center"> Installed Modules </div>
 <div class="rounded-bottom">
     <table border=0 width='100%' cellspacing=0 cellpadding=0>
     <?
     //exec("find ./modules -name '_info_.php'",$output);
     //print_r($output[0]);
 
+    for ($i=0; $i < count($output); $i++) {
+        include $output[$i];
+        $module_path = str_replace("_info_.php","",$output[$i]);
+
+        echo "<tr>";
+            echo "<td align='right' style='padding-right:5px; padding-left:5px; padding-bottom:5px; width:10px'>$mod_name</td>";
+            echo "<td align='right' style='padding-right:5px; padding-left:5px; width:10px'>$mod_version</td>";
+            echo "<td align='left' style='padding-right:5px; padding-left:5px; width:10px'><a href='$module_path'>View</a><br></td>";
+            echo "<td align='left' style='padding-right:5px; padding-left:5px;'><a href='scripts/modules_action.php?action=remove&module=$mod_name'>Remove</a></td>";
+            //echo "<td align='right'><a href='$module_path'>$name.$version</a><br></td>";
+            //echo "<td>View</td>";
+        echo "</tr>";
+        $mod_installed[$i] = $mod_name;
+    }
+    ?>
+    </table>
+</div>
+
+<? } ?>
+
+<br>
+
+<div class="rounded-top" align="center"> Available Modules </div>
+<div class="rounded-bottom">
+
+    <table border=0 width='100%' cellspacing=0 cellpadding=0>
+    
+    <?
+    //$url = "http://localhost/test_install/modules.xml";
+    $url = "https://raw.github.com/xtr4nge/FruityWifi/master/modules-FruityWifi.xml";
+    $xml = simplexml_load_file($url);
+
+    for ($i=0;$i < count($xml); $i++) {
+        echo "<tr>";
+            //echo $xml->module[$i]->name . "|";
+            echo "<td align='right' style='padding-right:5px; padding-left:5px; padding-bottom:5px; width:10px'>".$xml->module[$i]->name."</td>";
+            //echo $xml->module[$i]->version . "|";
+            echo "<td align='center' style='padding-right:5px; padding-left:5px; width:10px'>".$xml->module[$i]->version."</td>";
+            //echo $xml->module[$i]->author . "|";
+            echo "<td align='right' style='padding-right:5px; padding-left:5px; width:10px'>".$xml->module[$i]->author."</td>";
+            //echo $xml->module[$i]->description . "<br>";
+            echo "<td align='right' style='padding-right:5px; padding-left:5px; width:150px'>".$xml->module[$i]->description."</td>";
+            if (in_array($xml->module[$i]->name,$mod_installed)) {
+                echo "<td align='right' style='padding-right:5px; padding-left:5px; width:10px' nowrap> | installed</td>";
+            } else {
+                echo "<td align='right' style='padding-right:5px; padding-left:5px; width:10px' nowrap> | <a href='scripts/modules_action.php?action=install&module=".$xml->module[$i]->name."'>install</a></td>";
+            }
+        echo "</tr>";
+    }
+
+    ?>
+
+
+
+    <?
+    //exec("find ./modules -name '_info_.php'",$output);
+    //print_r($output[0]);
+/*
     for ($i=0; $i < count($output); $i++) {
         include $output[$i];
         $module_path = str_replace("_info_.php","",$output[$i]);
@@ -116,7 +174,7 @@ if (count($output) > 0) {
             //echo "<td>View</td>";
         echo "</tr>";
     }
+*/
     ?>
     </table>
-<div>
-<? } ?>
+</div>
