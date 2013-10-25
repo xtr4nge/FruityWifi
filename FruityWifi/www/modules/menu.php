@@ -17,8 +17,10 @@
 */ 
 ?>
 <?
-include "login_check.php";
+
 include_once "/FruityWifi/www/config/config.php";
+
+//include "login_check.php";
 
 //Set no caching
 header("Expires: Mon, 1 Jan 1900 00:00:00 GMT");
@@ -30,18 +32,18 @@ header("Pragma: no-cache");
 <link href="style.css" rel="stylesheet" type="text/css">
 
 <div class="menu">
-<img src="img/logo.png">
+<img src="../../img/logo.png">
 </div>
 <div class="menu">
-    <a href="page_status.php" class="menu">status</a> | 
-    <a href="page_config.php">config</a> | 
+    <a href="../../page_status.php" class="menu">status</a> | 
+    <a href="../../page_config.php">config</a> | 
     <!--
-    <a href="page_kismet.php">kismet</a> | 
-    <a href="page_squid.php">squid</a> | 
-    <a href="page_sslstrip.php">sslstrip</a> | 
+    <a href="../../page_kismet.php">kismet</a> | 
+    <a href="../../page_squid.php">squid</a> | 
+    <a href="../../page_sslstrip.php">sslstrip</a> | 
     --!>
-    <a href="page_modules.php">modules</a> | 
-    <a href="page_logs.php">logs</a> | 
-    <a href="logout.php">logout</a> | <?=$version?>
+    <a href="../../page_modules.php">modules</a> | 
+    <a href="../../page_logs.php">logs</a> | 
+    <a href="../../logout.php">logout</a> | <?=$version?>
 </div>
 <br>

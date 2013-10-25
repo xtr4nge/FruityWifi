@@ -24,6 +24,8 @@ $filename = "logs/urlsnarf.log";
 $fh = fopen($filename, "r") or die("Could not open file.");
 $data = fread($fh, filesize($filename)) or die("Could not read file.");
 fclose($fh);
+$data_array = explode("\n", $data);
+$data = implode("\n",array_reverse($data_array));
 ?>
 
 <br>
@@ -39,6 +41,8 @@ $filename = "logs/dnsspoof.log";
 $fh = fopen($filename, "r") or die("Could not open file.");
 $data = fread($fh, filesize($filename)) or die("Could not read file.");
 fclose($fh);
+$data_array = explode("\n", $data);
+$data = implode("\n",array_reverse($data_array));
 ?>
 
 <br>
@@ -53,10 +57,28 @@ $filename = "logs/dnsmasq.log";
 $fh = fopen($filename, "r") or die("Could not open file.");
 $data = fread($fh, filesize($filename)) or die("Could not read file.");
 fclose($fh);
+$data_array = explode("\n", $data);
+$data = implode("\n",array_reverse($data_array));
 ?>
 
 <br>
 DNSmasq Log
+<br>
+<textarea name='newdata' class="input" rows='10' cols='100'><?=$data?></textarea>
+<br>
+
+<?php
+$filename = "logs/sslstrip.log";
+
+$fh = fopen($filename, "r"); //or die("Could not open file.");
+$data = fread($fh, filesize($filename)); //or die("Could not read file.");
+fclose($fh);
+$data_array = explode("\n", $data);
+$data = implode("\n",array_reverse($data_array));
+?>
+
+<br>
+sslstrip Log
 <br>
 <textarea name='newdata' class="input" rows='10' cols='100'><?=$data?></textarea>
 <br>

@@ -80,11 +80,11 @@ $issslstripup = exec("ps auxww | grep sslstrip | grep -v -e grep");
 if ($issslstripup != "") {
     #echo "&nbsp;Wireless  <font color=\"lime\"><b>enabled</b></font>.&nbsp; | <a href=\"page_status.php?service=wireless&action=stop\"><b>stop</b></a><br />";
     echo "&nbsp;&nbsp;sslstrip  <font color=\"lime\"><b>enabled</b></font>.&nbsp; | <a href=\"scripts/status_sslstrip.php?service=sslstrip&action=stop&page=module\"><b>stop</b></a>";
-    echo "&nbsp; | <a href=\"page_sslstrip.php\"><b>view</b></a><br/>"; 
+    //echo "&nbsp; | <a href=\"page_sslstrip.php\"><b>view</b></a><br/>"; 
 } else { 
     #echo "&nbsp;Wireless  <font color=\"red\"><b>disabled</b></font>. | <a href=\"page_status.php?service=wireless&action=start\"><b>start</b></a><br />"; 
     echo "&nbsp;&nbsp;sslstrip  <font color=\"red\"><b>disabled</b></font>. | <a href=\"scripts/status_sslstrip.php?service=sslstrip&action=start&page=module\"><b>start</b></a>"; 
-    echo " | <a href=\"page_sslstrip.php\"><b>edit</b></a><br/>"; 
+    //echo " | <a href=\"page_sslstrip.php\"><b>edit</b></a><br/>"; 
 }
 ?>
 </div>
@@ -109,8 +109,8 @@ if (count($output) > 0) {
         $module_path = str_replace("_info_.php","",$output[$i]);
 
         echo "<tr>";
-            echo "<td align='right' style='padding-right:5px; padding-left:5px; width:0px'>$name</td>";
-            echo "<td align='right' style='padding-right:5px; padding-left:5px; width:0px'>$version</td>";
+            echo "<td align='right' style='padding-right:5px; padding-left:5px; width:10px'>$mod_name</td>";
+            echo "<td align='right' style='padding-right:5px; padding-left:5px; width:10px'>$mod_version</td>";
             echo "<td align='left' style='padding-right:5px; padding-left:5px;'><a href='$module_path'>View</a><br></td>";
             //echo "<td align='right'><a href='$module_path'>$name.$version</a><br></td>";
             //echo "<td>View</td>";

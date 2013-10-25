@@ -152,7 +152,7 @@ if ($issslstripup != "") {
 } else { 
     #echo "&nbsp;Wireless  <font color=\"red\"><b>disabled</b></font>. | <a href=\"page_status.php?service=wireless&action=start\"><b>start</b></a><br />"; 
     echo "&nbsp;&nbsp;sslstrip  <font color=\"red\"><b>disabled</b></font>. | <a href=\"scripts/status_sslstrip.php?service=sslstrip&action=start\"><b>start</b></a>"; 
-    echo " | <a href=\"page_sslstrip.php\"><b>edit</b></a><br/>";
+    //echo " | <a href=\"page_sslstrip.php\"><b>edit</b></a><br/>";
 }
 ?>
 </div>
@@ -201,8 +201,8 @@ if ($_GET['reveal_public_ip'] == 1) {
 <div class="rounded-bottom">
     <?
     $filename = "/FruityWifi/logs/dhcp.leases";
-    $fh = fopen($filename, "r") or die("Could not open file.");
-    $data = fread($fh, filesize($filename)) or die("Could not read file.");
+    $fh = fopen($filename, "r"); //or die("Could not open file.");
+    $data = fread($fh, filesize($filename)); //or die("Could not read file.");
     fclose($fh);
     $data = explode("\n",$data);
     
