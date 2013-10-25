@@ -146,10 +146,11 @@ if (count($output) > 0) {
             echo "<td align='right' style='padding-right:5px; padding-left:5px; width:10px'>".$xml->module[$i]->author."</td>";
             //echo $xml->module[$i]->description . "<br>";
             echo "<td align='right' style='padding-right:5px; padding-left:5px; width:150px'>".$xml->module[$i]->description."</td>";
+            echo "<td align='right' style='padding-right:5px; padding-left:5px; width:2px'> | </td>";
             if (in_array($xml->module[$i]->name,$mod_installed)) {
-                echo "<td align='right' style='padding-right:5px; padding-left:5px; width:10px' nowrap> | installed</td>";
+                echo "<td align='right' style='padding-right:5px; padding-left:5px; width:10px'>installed</td>";
             } else {
-                echo "<td align='right' style='padding-right:5px; padding-left:5px; width:10px' nowrap> | <a href='scripts/modules_action.php?action=install&module=".$xml->module[$i]->name."'>install</a></td>";
+                echo "<td align='right' style='padding-right:5px; padding-left:5px; width:10px'><a href='scripts/modules_action.php?action=install&module=".$xml->module[$i]->name."'>install</a></td>";
             }
         echo "</tr>";
     }
