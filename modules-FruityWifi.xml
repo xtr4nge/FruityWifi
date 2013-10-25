@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<FruityWifi>
+    <module>
+        <name>nmap</name>
+        <version>1.0</version>
+	<author>xtr4nge</author>
+	<description>nmap interface</description>
+	<url>module_nmap</url>
+    </module>
+    <module>
+        <name>sslstrip</name>
+        <version>1.0</version>
+	<author>xtr4nge</author>
+	<description>sslstrip interface</description>
+	<url>module_sslstrip</url>
+    </module>
+    <module>
+        <name>dnsspoof</name>
+        <version>1.0</version>
+	<author>xtr4nge</author>
+	<description>dnsspoof interface</description>
+	<url>module_dnsspoof</url>
+    </module>
+</FruityWifi>
