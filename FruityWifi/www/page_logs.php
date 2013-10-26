@@ -21,8 +21,8 @@
 <?php
 $filename = "logs/urlsnarf.log";
 
-$fh = fopen($filename, "r") or die("Could not open file.");
-$data = fread($fh, filesize($filename)) or die("Could not read file.");
+$fh = fopen($filename, "r"); //or die("Could not open file.");
+$data = fread($fh, filesize($filename)); //or die("Could not read file.");
 fclose($fh);
 $data_array = explode("\n", $data);
 $data = implode("\n",array_reverse($data_array));
@@ -38,8 +38,8 @@ URLSnarf Log
 <?php
 $filename = "logs/dnsspoof.log";
 
-$fh = fopen($filename, "r") or die("Could not open file.");
-$data = fread($fh, filesize($filename)) or die("Could not read file.");
+$fh = fopen($filename, "r"); // or die("Could not open file.");
+$data = fread($fh, filesize($filename)); // or die("Could not read file.");
 fclose($fh);
 $data_array = explode("\n", $data);
 $data = implode("\n",array_reverse($data_array));
@@ -54,8 +54,8 @@ DNS Spoof Log
 <?php
 $filename = "logs/dnsmasq.log";
 
-$fh = fopen($filename, "r") or die("Could not open file.");
-$data = fread($fh, filesize($filename)) or die("Could not read file.");
+$fh = fopen($filename, "r"); // or die("Could not open file.");
+$data = fread($fh, filesize($filename)); // or die("Could not read file.");
 fclose($fh);
 $data_array = explode("\n", $data);
 $data = implode("\n",array_reverse($data_array));
