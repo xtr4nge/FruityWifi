@@ -21,4 +21,11 @@
 	<description>dnsspoof interface</description>
 	<url>module_dnsspoof</url>
     </module>
+    <module>
+        <name>urlsnarf</name>
+        <version>1.0</version>
+	<author>xtr4nge</author>
+	<description>urlsnarf interface</description>
+	<url>module_urlsnarf</url>
+    </module>
 </FruityWifi>
