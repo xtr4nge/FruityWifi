@@ -137,7 +137,6 @@ if (count($output) > 0) {
     <table border=0 width='100%' cellspacing=0 cellpadding=0>
     
     <?
-    //$url = "http://localhost/test_install/modules.xml";
     $url = "https://raw.github.com/xtr4nge/FruityWifi/master/modules-FruityWifi.xml";
     $xml = simplexml_load_file($url);
 
@@ -168,25 +167,5 @@ if (count($output) > 0) {
 
     ?>
 
-
-
-    <?
-    //exec("find ./modules -name '_info_.php'",$output);
-    //print_r($output[0]);
-/*
-    for ($i=0; $i < count($output); $i++) {
-        include $output[$i];
-        $module_path = str_replace("_info_.php","",$output[$i]);
-
-        echo "<tr>";
-            echo "<td align='right' style='padding-right:5px; padding-left:5px; width:10px'>$mod_name</td>";
-            echo "<td align='right' style='padding-right:5px; padding-left:5px; width:10px'>$mod_version</td>";
-            echo "<td align='left' style='padding-right:5px; padding-left:5px;'><a href='$module_path'>View</a><br></td>";
-            //echo "<td align='right'><a href='$module_path'>$name.$version</a><br></td>";
-            //echo "<td>View</td>";
-        echo "</tr>";
-    }
-*/
-    ?>
     </table>
 </div>
