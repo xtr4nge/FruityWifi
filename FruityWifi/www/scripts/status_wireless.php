@@ -48,12 +48,12 @@ if($service == "wireless") {
         $exec = "/bin/rm /var/run/hostapd-phy0/$iface_wifi";
         exec("../bin/danger \"" . $exec . "\"" );
 
+        $exec = "/usr/bin/killall dnsmasq";
+        exec("../bin/danger \"" . $exec . "\"" );
+
         $exec = "/sbin/ifconfig $iface_wifi up";
         exec("../bin/danger \"" . $exec . "\"" );
         $exec = "/sbin/ifconfig $iface_wifi up 10.0.0.1 netmask 255.255.255.0";
-        exec("../bin/danger \"" . $exec . "\"" );
-
-        $exec = "/usr/bin/killall dnsmasq";
         exec("../bin/danger \"" . $exec . "\"" );
 
         //$exec = "/etc/init.d/dnsmasq restart";
@@ -97,6 +97,9 @@ if($service == "wireless") {
         $exec = "/usr/bin/killall dnsmasq";
         exec("../bin/danger \"" . $exec . "\"" );
 
+        $exec = "ip addr flush dev $iface_wifi";
+        exec("../bin/danger \"" . $exec . "\"" );
+        
         $exec = "/sbin/ifconfig $iface_wifi down";
         exec("../bin/danger \"" . $exec . "\"" );
 
