@@ -1,4 +1,4 @@
-body {
+body, table, tr, td {
     background-color:#000000;
     color: #FFFFFF;
     font-family: monospace, courier;
@@ -72,4 +72,27 @@ a {color: white;}
 .box-msg {
     padding:5px; 
     width:390px; 
+}
+
+.module {
+    font-size: 90%;
+    b-ackground-color:#FFF;
+    background-color:#090909
+    b-order:1px solid;
+    b-order-color: #CCC;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    border:1px solid;
+    border-color:#E01B46;
+}
+
+.module-content {
+    font-size: 100%;
+    background-color:#000;
+    height:200px;
+    width:100%;
+    border:1px dashed;
+    border-color: #FFF;
+    color: #FFF;
+    padding-left: 5px;
 }
