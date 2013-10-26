@@ -25,14 +25,20 @@ include "../functions.php";
 if ($regex == 1) {
     regex_standard($_GET["service"], "../msg.php", $regex_extra);
     regex_standard($_GET["action"], "../msg.php", $regex_extra);
+    regex_standard($_GET["page"], "../msg.php", $regex_extra);
     regex_standard($iface_wifi, "../msg.php", $regex_extra);
 }
 
 $service = $_GET['service'];
 $action = $_GET['action'];
+$page = $_GET['page'];
 
 if($service == "urlsnarf") {
     if ($action == "start") {
+        // COPY LOG
+        $exec = "cp ../logs/urlsnarf.log ../modules/urlsnarf/includes/logs/".gmdate("Ymd-H-i-s").".log";
+        exec("../bin/danger \"" . $exec . "\"", $dump);
+
         $exec = "echo '' > ../logs/urlsnarf.log";
         exec("../bin/danger \"" . $exec . "\"" );
         $exec = "/usr/sbin/urlsnarf -i $iface_wifi >> ../logs/urlsnarf.log &";
@@ -43,6 +49,13 @@ if($service == "urlsnarf") {
     }
 }
 
-header('Location: ../page_status.php');
+if ($page == "list") {
+    header('Location: ../page_modules.php');    
+} else if ($page == "module") {
+    //header('Location: ../modules/dnsspoof/index.php');
+    header('Location: ../modules/action.php?page=urlsnarf');
+} else {
+    header('Location: ../page_status.php');
+}
 
 ?>
