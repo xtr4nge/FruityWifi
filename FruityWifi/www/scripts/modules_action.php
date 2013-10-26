@@ -43,6 +43,10 @@ if ($action == "remove") {
     //echo $exec;
 }
 
-header('Location: ../page_modules.php');
+if (isset($_GET["show"])) {
+    header('Location: ../page_modules.php?show');
+} else {
+    header('Location: ../page_modules.php');
+}
 
 ?>
