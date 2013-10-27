@@ -31,7 +31,7 @@ $data = implode("\n",array_reverse($data_array));
 <br>
 URLSnarf Log
 <br>
-<textarea name='newdata' class="input" rows='10' cols='100'><?=$data?></textarea>
+<textarea name='newdata' class="input" rows='10' cols='100'><?=htmlspecialchars($data)?></textarea>
 <br>
 
 
@@ -48,7 +48,7 @@ $data = implode("\n",array_reverse($data_array));
 <br>
 DNS Spoof Log
 <br>
-<textarea name='newdata' class="input" rows='10' cols='100'><?=$data?></textarea>
+<textarea name='newdata' class="input" rows='10' cols='100'><?=htmlspecialchars($data)?></textarea>
 <br>
 
 <?php
@@ -64,7 +64,7 @@ $data = implode("\n",array_reverse($data_array));
 <br>
 DNSmasq Log
 <br>
-<textarea name='newdata' class="input" rows='10' cols='100'><?=$data?></textarea>
+<textarea name='newdata' class="input" rows='10' cols='100'><?=htmlspecialchars($data)?></textarea>
 <br>
 
 <?php
@@ -80,5 +80,5 @@ $data = implode("\n",array_reverse($data_array));
 <br>
 sslstrip Log
 <br>
-<textarea name='newdata' class="input" rows='10' cols='100'><?=$data?></textarea>
+<textarea name='newdata' class="input" rows='10' cols='100'><?=htmlspecialchars($data)?></textarea>
 <br>
