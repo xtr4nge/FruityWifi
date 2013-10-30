@@ -96,3 +96,8 @@ a {color: white;}
     color: #FFF;
     padding-left: 5px;
 }
+
+.module-font {
+    font-family: courier;
+    font-size: 100%;
+}

@@ -113,9 +113,9 @@ if (count($output) > 0) {
             echo "<td align='right' style='padding-right:5px; padding-left:5px; width:10px'>$mod_version</td>";
             echo "<td align='left' style='padding-right:5px; padding-left:5px; width:10px'><a href='$module_path'>View</a><br></td>";
             if (isset($_GET["show"])) {
-                echo "<td align='left' style='padding-right:5px; padding-left:5px;'><a href='scripts/modules_action.php?action=remove&module=$mod_name&show'>Remove</a></td>";
+                echo "<td align='left' style='padding-right:5px; padding-left:28px;'><a href='scripts/modules_action.php?action=remove&module=$mod_name&show'>Remove</a></td>";
             } else {
-                echo "<td align='left' style='padding-right:5px; padding-left:5px;'><a href='scripts/modules_action.php?action=remove&module=$mod_name'>Remove</a></td>";
+                echo "<td align='left' style='padding-right:5px; padding-left:28px;'><a href='scripts/modules_action.php?action=remove&module=$mod_name'>Remove</a></td>";
             }
             
             //echo "<td align='right'><a href='$module_path'>$name.$version</a><br></td>";
