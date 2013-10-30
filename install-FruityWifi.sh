@@ -45,6 +45,14 @@ apt-get -y install gpsd
 apt-get -y install gpsd-clients
 
 
+# INSTALL SSLStrip @xtr4nge fork
+wget https://github.com/xtr4nge/sslstrip/archive/master.zip -O sslstrip-master.zip
+unzip sslstrip-master.zip
+chmod 755 sslstrip-master/sslstrip.py
+mv sslstrip-master /usr/share/FruityWifi-sslstrip
+ln -s /usr/share/FruityWifi-sslstrip/sslstrip.py /usr/bin/FruityWifi-sslstrip
+
+
 # DEP NETWORK-MANAGER
 apt-get -y install wireless-tools
 apt-get -y install libiw-dev

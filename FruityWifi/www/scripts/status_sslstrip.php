@@ -49,13 +49,13 @@ if($service == "sslstrip") {
         //$exec = "/usr/bin/sslstrip -a -s -l 10000 -w ../logs/sslstrip.log > /dev/null 2 &";
         
         if ($mod_sslstrip_inject == "1" and $mod_sslstrip_tamperer == "0") {
-        	$exec = "/usr/bin/sslstrip-inject -a -s -l 10000 -w ../logs/sslstrip.log -i $mod_path/includes/inject.txt > /dev/null 2 &";
+        	$exec = "/usr/bin/FruityWifi-sslstrip -a -s -l 10000 -w ../logs/sslstrip.log -i $mod_path/includes/inject.txt > /dev/null 2 &";
         } else if ($mod_sslstrip_inject == "0" and $mod_sslstrip_tamperer == "1") {
-        	$exec = "/usr/bin/sslstrip-inject -a -s -l 10000 -w ../logs/sslstrip.log -t $mod_path/includes/app_cache_poison/config.ini > /dev/null 2 &";
+        	$exec = "/usr/bin/FruityWifi-sslstrip -a -s -l 10000 -w ../logs/sslstrip.log -t $mod_path/includes/app_cache_poison/config.ini > /dev/null 2 &";
         } else if ($mod_sslstrip_inject == "1" and $mod_sslstrip_tamperer == "1") {
-        	$exec = "/usr/bin/sslstrip-inject -a -s -l 10000 -w ../logs/sslstrip.log -t $mod_path/includes/app_cache_poison/config.ini -i $mod_path/includes/inject.txt > /dev/null 2 &";
+        	$exec = "/usr/bin/FruityWifi-sslstrip -a -s -l 10000 -w ../logs/sslstrip.log -t $mod_path/includes/app_cache_poison/config.ini -i $mod_path/includes/inject.txt > /dev/null 2 &";
         } else {
-        	$exec = "/usr/bin/sslstrip-inject -a -s -l 10000 -w ../logs/sslstrip.log > /dev/null 2 &";
+        	$exec = "/usr/bin/FruityWifi-sslstrip -a -s -l 10000 -w ../logs/sslstrip.log > /dev/null 2 &";
         }
         //$exec = "/usr/bin/sslstrip-tamper -a -s -l 10000 -w ../logs/sslstrip.log -t /FruityWifi/www/modules/sslstrip/includes/app_cache_poison/config.ini > /dev/null 2 &";
         
@@ -65,7 +65,7 @@ if($service == "sslstrip") {
     	$exec = "/sbin/iptables -t nat -D PREROUTING -p tcp --destination-port 80 -j REDIRECT --to-port 10000";
         exec("../bin/danger \"" . $exec . "\"" );
         //$exec = "/usr/bin/killall sslstrip";
-        $exec = "/usr/bin/killall sslstrip-inject";
+        $exec = "/usr/bin/killall FruityWifi-sslstrip";
         //$exec = "/usr/bin/killall sslstrip-tamper";
         exec("../bin/danger \"" . $exec . "\"" );
     }
