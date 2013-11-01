@@ -18,7 +18,7 @@
 ?>
 <?
 include "login_check.php";
-include_once "/FruityWifi/www/config/config.php";
+include_once "/usr/share/FruityWifi/www/config/config.php";
 
 //Set no caching
 header("Expires: Mon, 1 Jan 1900 00:00:00 GMT");

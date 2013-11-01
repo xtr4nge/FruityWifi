@@ -32,43 +32,43 @@ if ($regex == 1) {
 
 if(isset($_POST["iface"]) and $_POST["iface"] == "internet"){
     $exec = "/bin/sed -i 's/iface_internet=.*/iface_internet=\\\"".$_POST["iface_internet"]."\\\";/g' ../config/config.php";
-    exec("../bin/danger \"" . $exec . "\"" );
+    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
 }
 
 if(isset($_POST["iface"]) and $_POST["iface"] == "wifi"){
     $exec = "/bin/sed -i 's/iface_wifi=.*/iface_wifi=\\\"".$_POST["iface_wifi"]."\\\";/g' ../config/config.php";
-    exec("../bin/danger \"" . $exec . "\"" );
+    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
  
     // replace interface in hostapd.conf and hostapd-secure.conf
-    $exec = "/bin/sed -i 's/^interface=.*/interface=".$_POST["iface_wifi"]."/g' /FruityWifi/conf/hostapd.conf";
-    exec("../bin/danger \"" . $exec . "\"" );
-    $exec = "/bin/sed -i 's/^interface=.*/interface=".$_POST["iface_wifi"]."/g' /FruityWifi/conf/hostapd-secure.conf";
-    exec("../bin/danger \"" . $exec . "\"" );
+    $exec = "/bin/sed -i 's/^interface=.*/interface=".$_POST["iface_wifi"]."/g' /usr/share/FruityWifi/conf/hostapd.conf";
+    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+    $exec = "/bin/sed -i 's/^interface=.*/interface=".$_POST["iface_wifi"]."/g' /usr/share/FruityWifi/conf/hostapd-secure.conf";
+    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
     
-    $exec = "/bin/sed -i 's/interface=.*/interface=".$_POST["iface_wifi"]."/g' /FruityWifi/conf/dnsmasq.conf";
-    exec("../bin/danger \"" . $exec . "\"" );
+    $exec = "/bin/sed -i 's/interface=.*/interface=".$_POST["iface_wifi"]."/g' /usr/share/FruityWifi/conf/dnsmasq.conf";
+    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
     
     //EXTRACT MACADDRESS
     $exec = "/sbin/ifconfig -a ".$_POST["iface_wifi"]." |grep HWaddr";
-    $output = exec("../bin/danger \"" . $exec . "\"" );
+    $output = exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
     $output = preg_replace('/\s+/', ' ',$output);
     $output = explode(" ",$output);
     
-    $exec = "/bin/sed -i 's/^bssid=.*/bssid=".$output[4]."/g' /FruityWifi/conf/hostapd.conf";
-    exec("../bin/danger \"" . $exec . "\"" );
-    $exec = "/bin/sed -i 's/^bssid=.*/bssid=".$output[4]."/g' /FruityWifi/conf/hostapd-secure.conf";
-    exec("../bin/danger \"" . $exec . "\"" );
+    $exec = "/bin/sed -i 's/^bssid=.*/bssid=".$output[4]."/g' /usr/share/FruityWifi/conf/hostapd.conf";
+    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+    $exec = "/bin/sed -i 's/^bssid=.*/bssid=".$output[4]."/g' /usr/share/FruityWifi/conf/hostapd-secure.conf";
+    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
 
 }
 
 if(isset($_POST["iface"]) and $_POST["iface"] == "wifi_extra"){
     $exec = "/bin/sed -i 's/iface_wifi_extra=.*/iface_wifi_extra=\\\"".$_POST["iface_wifi_extra"]."\\\";/g' ../config/config.php";
-    exec("../bin/danger \"" . $exec . "\"" );
+    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
 }
 
 if(isset($_POST["iface"]) and $_POST["iface"] == "wifi_supplicant"){
     $exec = "/bin/sed -i 's/iface_supplicant=.*/iface_supplicant=\\\"".$_POST["iface_supplicant"]."\\\";/g' ../config/config.php";
-    exec("../bin/danger \"" . $exec . "\"" );
+    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
 }
 
 header('Location: ../page_config.php');

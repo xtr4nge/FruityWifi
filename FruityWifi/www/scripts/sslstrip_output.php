@@ -32,7 +32,7 @@ $action = $_GET["action"];
 
 if ($action == "delete") {
     $exec = "rm ../logs/sslstrip/$file.log";
-    exec("../bin/danger \"" . $exec . "\"" );
+    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
 }
 
 header('Location: ../page_sslstrip.php');

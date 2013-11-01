@@ -35,7 +35,7 @@ if ($regex == 1) {
 $service = $_GET['service'];
 $action = $_GET['action'];
 
-#sed -i 's/interface=.*/interface=wlan0/g' /FruityWifi/conf/dnsmasq.conf
+#sed -i 's/interface=.*/interface=wlan0/g' /usr/share/FruityWifi/conf/dnsmasq.conf
 
 if($service == "wireless") {
     if ($action == "start") {
@@ -44,77 +44,77 @@ if($service == "wireless") {
         //$ap_interface="wlan0";
 
         $exec = "/usr/bin/killall karma-hostapd";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
         $exec = "/bin/rm /var/run/hostapd-phy0/$iface_wifi";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
 
         $exec = "/usr/bin/killall dnsmasq";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
 
         $exec = "/sbin/ifconfig $iface_wifi up";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
         $exec = "/sbin/ifconfig $iface_wifi up 10.0.0.1 netmask 255.255.255.0";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
 
         //$exec = "/etc/init.d/dnsmasq restart";
-        $exec = "/usr/sbin/dnsmasq -C /FruityWifi/conf/dnsmasq.conf";
-        exec("../bin/danger \"" . $exec . "\"" );
+        $exec = "/usr/sbin/dnsmasq -C /usr/share/FruityWifi/conf/dnsmasq.conf";
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
         
         if ($hostapd_secure == 1) {
-            $exec = "/usr/sbin/karma-hostapd -P /var/run/hostapd-phy0 -B /FruityWifi/conf/hostapd-secure.conf";
+            $exec = "/usr/sbin/karma-hostapd -P /var/run/hostapd-phy0 -B /usr/share/FruityWifi/conf/hostapd-secure.conf";
             #$exec = "/usr/sbin/karma-hostapd -P /var/run/hostapd-phy0 -B /etc/hostapd/wifi-secure.conf -f /var/log/karma-hostapd.log -d";
         } else {
-            $exec = "/usr/sbin/karma-hostapd -P /var/run/hostapd-phy0 -B /FruityWifi/conf/hostapd.conf";
+            $exec = "/usr/sbin/karma-hostapd -P /var/run/hostapd-phy0 -B /usr/share/FruityWifi/conf/hostapd.conf";
             #$exec = "/usr/sbin/karma-hostapd -P /var/run/hostapd-phy0 -B /etc/hostapd/pineapple.conf -f /var/log/karma-hostapd.log -d";
         }
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
 
         $exec = "/sbin/iptables -F";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
         $exec = "/sbin/iptables -t nat -F";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
         $exec = "/sbin/iptables -t mangle -F";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
         $exec = "/sbin/iptables -X";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
         $exec = "/sbin/iptables -t nat -X";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
         $exec = "/sbin/iptables -t mangle -X";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
 
         $exec = "/bin/echo 1 > /proc/sys/net/ipv4/ip_forward";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
         $exec = "/sbin/iptables -t nat -A POSTROUTING -o $iface_internet -j MASQUERADE";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
 
     } else if($action == "stop") {
 
         $exec = "/usr/bin/killall karma-hostapd";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
         $exec = "/bin/rm /var/run/hostapd-phy0/$iface_wifi";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
 
         $exec = "/usr/bin/killall dnsmasq";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
 
         $exec = "ip addr flush dev $iface_wifi";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
         
         $exec = "/sbin/ifconfig $iface_wifi down";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
 
         $exec = "/sbin/iptables -F";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
         $exec = "/sbin/iptables -t nat -F";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
         $exec = "/sbin/iptables -t mangle -F";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
         $exec = "/sbin/iptables -X";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
         $exec = "/sbin/iptables -t nat -X";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
         $exec = "/sbin/iptables -t mangle -X";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
 
     }
 }

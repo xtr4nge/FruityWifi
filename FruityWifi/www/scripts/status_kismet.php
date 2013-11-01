@@ -36,10 +36,10 @@ $page = $_GET['page'];
 if($service == "kismet") {
     if ($action == "start") {
         $exec = "/usr/bin/kismet_server -p ../logs/kismet/ -s --daemonize -c $iface_wifi_extra > /dev/null &";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
     } else if($action == "stop") {
         $exec = "/usr/bin/killall kismet_server";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
     }
     //header('Location: page_status.php');
     //echo "<script>window.location = './action.php'</script>";
@@ -48,10 +48,10 @@ if($service == "kismet") {
 if($service == "gpsd") {
     if ($action == "start") {
         $exec = "/usr/sbin/gpsd /dev/ttyUSB0 &";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
     } else if($action == "stop") {
         $exec = "/usr/bin/killall gpsd";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
     }
 }
 

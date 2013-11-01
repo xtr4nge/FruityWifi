@@ -33,10 +33,10 @@ $action = $_GET['action'];
 if($service == "karma") {
     if ($action == "start") {
         $exec = "/usr/sbin/karma-hostapd_cli -p /var/run/hostapd-phy0 karma_enable";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
     } else if($action == "stop") {
         $exec = "/usr/sbin/karma-hostapd_cli -p /var/run/hostapd-phy0 karma_disable";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
     }
 }
 

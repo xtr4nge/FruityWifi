@@ -53,7 +53,7 @@ if ($iswlanup != "") {
 /*
 if ($iface_supplicant != "-") {
     $exec = "nmcli -n d |grep '^$iface_supplicant'";
-    $output = exec("./bin/danger \"" . $exec . "\"" );
+    $output = exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
     $output = preg_replace('/\s+/', ' ',$output);
     $output = explode(" ",$output);
     //print_r($output);
@@ -63,7 +63,7 @@ if ($iface_supplicant != "-") {
 }
 */
 $exec = "nmcli -n d |grep '^$iface_supplicant'";
-$output = exec("./bin/danger \"" . $exec . "\"" );
+$output = exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
 $output = preg_replace('/\s+/', ' ',$output);
 $output = explode(" ",$output);
 //print_r($output);
@@ -81,7 +81,7 @@ if ($issupplicantup == "connected") {
 
 <?
 $exec = "/usr/sbin/karma-hostapd_cli -p /var/run/hostapd-phy0 karma_get_state | tail -1";
-$output = exec("./bin/danger \"" . $exec . "\"" );
+$output = exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
 if ( $output == "ENABLED" ){
     $iskarmaup = true;
 }
@@ -200,7 +200,7 @@ if ($_GET['reveal_public_ip'] == 1) {
 <div class="rounded-top" align="center"> DHCP </div>
 <div class="rounded-bottom">
     <?
-    $filename = "/FruityWifi/logs/dhcp.leases";
+    $filename = "/usr/share/FruityWifi/logs/dhcp.leases";
     $fh = fopen($filename, "r"); //or die("Could not open file.");
     $data = fread($fh, filesize($filename)); //or die("Could not read file.");
     fclose($fh);

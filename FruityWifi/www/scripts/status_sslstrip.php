@@ -22,7 +22,7 @@ include "../login_check.php";
 include "../config/config.php";
 include "../functions.php";
 
-$mod_path = "/FruityWifi/www/modules/sslstrip/";
+$mod_path = "/usr/share/FruityWifi/www/modules/sslstrip/";
 if (file_exists("$mod_path/_info_.php")) {
 	include "$mod_path/_info_.php";
 }
@@ -42,10 +42,10 @@ if($service == "sslstrip") {
     if ($action == "start") {
         // COPY LOG
         $exec = "cp ../logs/sslstrip.log ../modules/sslstrip/includes/logs/sslstrip-".gmdate("Ymd-H-i-s").".log";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
         
         $exec = "/sbin/iptables -t nat -A PREROUTING -p tcp --destination-port 80 -j REDIRECT --to-port 10000";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
         //$exec = "/usr/bin/sslstrip -a -s -l 10000 -w ../logs/sslstrip.log > /dev/null 2 &";
         
         if ($mod_sslstrip_inject == "1" and $mod_sslstrip_tamperer == "0") {
@@ -57,17 +57,17 @@ if($service == "sslstrip") {
         } else {
         	$exec = "/usr/bin/FruityWifi-sslstrip -a -s -l 10000 -w ../logs/sslstrip.log > /dev/null 2 &";
         }
-        //$exec = "/usr/bin/sslstrip-tamper -a -s -l 10000 -w ../logs/sslstrip.log -t /FruityWifi/www/modules/sslstrip/includes/app_cache_poison/config.ini > /dev/null 2 &";
+        //$exec = "/usr/bin/sslstrip-tamper -a -s -l 10000 -w ../logs/sslstrip.log -t /usr/share/FruityWifi/www/modules/sslstrip/includes/app_cache_poison/config.ini > /dev/null 2 &";
         
         //$exec = "/usr/bin/sslstrip -a -s -l 10000 -w ../logs/sslstrip/sslstrip-".gmdate("Ymd-H-i-s").".log > /dev/null 2 &";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
     } else if($action == "stop") {
     	$exec = "/sbin/iptables -t nat -D PREROUTING -p tcp --destination-port 80 -j REDIRECT --to-port 10000";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
         //$exec = "/usr/bin/killall sslstrip";
         $exec = "/usr/bin/killall FruityWifi-sslstrip";
         //$exec = "/usr/bin/killall sslstrip-tamper";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
     }
 }
 

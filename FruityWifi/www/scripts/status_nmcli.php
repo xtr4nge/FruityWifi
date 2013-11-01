@@ -45,26 +45,26 @@ $page = $_GET['page'];
 if($service == "supplicant") {
     if ($action == "start") {
         $exec = "/sbin/ifconfig $iface_supplicant up";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
         $exec = "nmcli -n d disconnect iface $iface_supplicant";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
         $exec = "nmcli -n c delete id nmcli_raspberry_wifi";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
         
         $exec = "/sbin/iwlist $iface_supplicant scan";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
 
         $exec = "nmcli -n dev wifi connect '$supplicant_ssid' password '$supplicant_psk' iface $iface_supplicant name nmcli_raspberry_wifi";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
 
         //$exec = "/bin/sed -i 's/ssid=.*/ssid=\\\"".$supplicant_ssid."\\\";/g' ../config/config.php";
         //$exec = "/bin/sed -i 's/psk=.*/psk=\\\"".$supplicant_psk."\\\";/g' ../config/config.php";
 
     } else if($action == "stop") {
         $exec = "nmcli -n d disconnect iface $iface_supplicant";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
         $exec = "nmcli -n c delete id nmcli_raspberry_wifi";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
     }
 }
 

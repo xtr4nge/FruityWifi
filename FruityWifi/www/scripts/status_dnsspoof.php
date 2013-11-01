@@ -37,15 +37,15 @@ if($service == "dnsspoof") {
     if ($action == "start") {
         // COPY LOG
         $exec = "cp ../logs/dnsspoof.log ../modules/dnsspoof/includes/logs/".gmdate("Ymd-H-i-s").".log";
-        exec("../bin/danger \"" . $exec . "\"", $dump);
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"", $dump);
 
         $exec = "echo '' > ../logs/dnsspoof.log";
-        exec("../bin/danger \"" . $exec . "\"" );
-        $exec = "/usr/sbin/dnsspoof -i $iface_wifi -f /FruityWifi/conf/spoofhost.conf > /dev/null 2> /FruityWifi/logs/dnsspoof.log &";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+        $exec = "/usr/sbin/dnsspoof -i $iface_wifi -f /usr/share/FruityWifi/conf/spoofhost.conf > /dev/null 2> /usr/share/FruityWifi/logs/dnsspoof.log &";
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
     } else if($action == "stop") {
         $exec = "killall dnsspoof";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
     }
 }
 

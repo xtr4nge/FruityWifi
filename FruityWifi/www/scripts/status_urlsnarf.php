@@ -37,15 +37,15 @@ if($service == "urlsnarf") {
     if ($action == "start") {
         // COPY LOG
         $exec = "cp ../logs/urlsnarf.log ../modules/urlsnarf/includes/logs/".gmdate("Ymd-H-i-s").".log";
-        exec("../bin/danger \"" . $exec . "\"", $dump);
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"", $dump);
 
         $exec = "echo '' > ../logs/urlsnarf.log";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
         $exec = "/usr/sbin/urlsnarf -i $iface_wifi >> ../logs/urlsnarf.log &";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
     } else if($action == "stop") {
         $exec = "killall urlsnarf";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
     }
 }
 

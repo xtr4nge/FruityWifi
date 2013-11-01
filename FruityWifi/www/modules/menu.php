@@ -18,7 +18,7 @@
 ?>
 <?
 
-include_once "/FruityWifi/www/config/config.php";
+include_once "/usr/share/FruityWifi/www/config/config.php";
 
 //include "login_check.php";
 

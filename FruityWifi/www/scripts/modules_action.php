@@ -32,14 +32,14 @@ $action = $_GET["action"];
 $module = $_GET["module"];
 
 if ($action == "install") {
-    $exec = "git clone https://github.com/xtr4nge/module_$module.git /FruityWifi/www/modules/$module";
-    exec("../bin/danger \"" . $exec . "\"" );
+    $exec = "git clone https://github.com/xtr4nge/module_$module.git /usr/share/FruityWifi/www/modules/$module";
+    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
     //echo $exec;
 }
 
 if ($action == "remove") {
-    $exec = "rm -R /FruityWifi/www/modules/$module";
-    exec("../bin/danger \"" . $exec . "\"" );
+    $exec = "rm -R /usr/share/FruityWifi/www/modules/$module";
+    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
     //echo $exec;
 }
 

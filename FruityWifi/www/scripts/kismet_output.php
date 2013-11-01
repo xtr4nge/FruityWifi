@@ -32,28 +32,28 @@ $action = $_GET["action"];
 
 if ($file == "all") {
     $exec = "/usr/bin/giskismet --database ../logs/kismet/wireless.dbl -x ../logs/kismet/*.netxml";
-    exec("../bin/danger \"" . $exec . "\"" );
+    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
     $exec = "/usr/bin/giskismet --database ../logs/kismet/wireless.dbl -q 'select * from wireless' -o ../logs/kismet/output_all.kml";
-    exec("../bin/danger \"" . $exec . "\"" );
+    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
 } else {
     if ($action == "delete") {
         $exec = "rm ../logs/kismet/$file.netxml";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
         $exec = "rm ../logs/kismet/$file.pcapdump";
-        exec("../bin/danger \"" . $exec . "\"" );        
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );        
         $exec = "rm ../logs/kismet/$file.alert";
-        exec("../bin/danger \"" . $exec . "\"" );        
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );        
         $exec = "rm ../logs/kismet/$file.gpsxml";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
         $exec = "rm ../logs/kismet/$file.nettxt";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
     } else {
         $exec = "/bin/rm ../kismet/wireless.dbl";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
         $exec = "/usr/bin/giskismet --database ../logs/kismet/wireless.dbl -x ../logs/kismet/$file.netxml";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
         $exec = "/usr/bin/giskismet --database ../logs/kismet/wireless.dbl -q 'select * from wireless' -o ../logs/kismet/output_$file.kml";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
     }
 }
 

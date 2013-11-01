@@ -45,28 +45,28 @@ $page = $_GET['page'];
 if($service == "supplicant") {
     if ($action == "start") {
         $exec = "/usr/bin/killall dhclient";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
         $exec = "/usr/bin/killall wpa_supplicant";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
 
         $exec = "/sbin/ifconfig $iface_supplicant down";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
         $exec = "/usr/bin/macchanger -A $iface_supplicant";
-        system("../bin/danger \"" . $exec . "\"" );
+        system("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
         $exec = "/sbin/ifconfig $iface_supplicant up";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
 
-        #$exec = "/sbin/wpa_passphrase '$supplicant_ssid' '$supplicant_key' > /FruityWifi/conf/wpa_supplicant.conf";
-        #exec("../bin/danger \"" . $exec . "\"" );
+        #$exec = "/sbin/wpa_passphrase '$supplicant_ssid' '$supplicant_key' > /usr/share/FruityWifi/conf/wpa_supplicant.conf";
+        #exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
 
         $exec = "/bin/sed -i 's/ssid=.*/ssid=\\\"".$supplicant_ssid."\\\";/g' ../config/config.php";
 
         $exec = "/bin/sed -i 's/psk=.*/psk=\\\"".$supplicant_psk."\\\";/g' ../config/config.php";
 
 
-        $exec = "/sbin/wpa_supplicant -B -D nl80211 -i $iface_supplicant -c /FruityWifi/conf/wpa_supplicant.conf";
-        #$exec = "/sbin/wpa_supplicant -B -D nl80211,wext -i $iface_supplicant -c /FruityWifi/conf/wpa_supplicant.conf";
-        exec("../bin/danger \"" . $exec . "\"" );
+        $exec = "/sbin/wpa_supplicant -B -D nl80211 -i $iface_supplicant -c /usr/share/FruityWifi/conf/wpa_supplicant.conf";
+        #$exec = "/sbin/wpa_supplicant -B -D nl80211,wext -i $iface_supplicant -c /usr/share/FruityWifi/conf/wpa_supplicant.conf";
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
 
         #WEP
         #iwconfig wlan1 mode managed key your_key_here
@@ -76,17 +76,17 @@ if($service == "supplicant") {
         #iwconfig wlan1 essid "your access point name here"
 
         $exec = "/bin/sleep 6";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
 
         $exec = "/sbin/dhclient -r $iface_supplicant";
-        #exec("../bin/danger \"" . $exec . "\"" );
+        #exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
         $exec = "/sbin/dhclient $iface_supplicant";
-        #exec("../bin/danger \"" . $exec . "\"" );
+        #exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
     } else if($action == "stop") {
         $exec = "/usr/bin/killall dhclient";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
         $exec = "/usr/bin/killall wpa_supplicant";
-        exec("../bin/danger \"" . $exec . "\"" );
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
     }
 }
 
