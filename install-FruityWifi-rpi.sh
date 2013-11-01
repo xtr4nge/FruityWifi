@@ -155,10 +155,10 @@ mkdir /var/www/tmp
 chown www-data.www-data /var/www/tmp
 chmod  777 /var/www/tmp
 chmod 755 /usr/share/FruityWifi/squid.inject/poison.pl
-cp -a /usr/share/FruityWifi/www.site /var/www/site
-chown -R www-data.www-data /var/www/site
-chmod 777 /var/www/site/data.txt
-chmod 777 /var/www/site/inject/data.txt
+ln -s /usr/share/FruityWifi/www.site /var/www/site
+chown -R www-data.www-data /usr/share/FruityWifi/www.site
+chmod 777 /usr/share/FruityWifi/www.site/data.txt
+chmod 777 /usr/share/FruityWifi/www.site/inject/data.txt
 
 #mkdir /FruityWifi/logs/kismet
 #mkdir /FruityWifi/logs/sslstrip
