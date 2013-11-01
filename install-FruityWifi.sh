@@ -93,14 +93,14 @@ cd ../
 
 # APACHE2 SETUP
 cd ../
-cp -a FruityWifi /
-ln -s /FruityWifi/www /var/www/FruityWifi
-ln -s /FruityWifi/logs /var/www/FruityWifi/logs
+cp -a FruityWifi /usr/share/FruityWifi
+ln -s /usr/share/FruityWifi/www /var/www/FruityWifi
+ln -s /usr/share/FruityWifi/logs /var/www/FruityWifi/logs
 mkdir /var/www/tmp
 chown www-data.www-data /var/www/tmp
 chmod  777 /var/www/tmp
-chmod 755 /FruityWifi/squid.inject/poison.pl
-cp -a /FruityWifi/www.site /var/www/site
+chmod 755 /usr/share/FruityWifi/squid.inject/poison.pl
+cp -a /usr/share/FruityWifi/www.site /var/www/site
 chown -R www-data.www-data /var/www/site
 chmod 777 /var/www/site/data.txt
 chmod 777 /var/www/site/inject/data.txt
@@ -109,7 +109,7 @@ chmod 777 /var/www/site/inject/data.txt
 #mkdir /FruityWifi/logs/sslstrip
 
 # BIN
-cd /FruityWifi/www/bin/
+cd /usr/share/FruityWifi/www/bin/
 gcc danger.c -o danger
 chmod 4755 danger
 
