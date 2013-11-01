@@ -109,7 +109,7 @@ chmod 777 /usr/share/FruityWifi/www.site/inject/data.txt
 #mkdir /FruityWifi/logs/sslstrip
 
 # BIN
-cd /usr/share/FruityWifi/www/bin/
+cd /usr/share/FruityWifi/bin/
 gcc danger.c -o danger
 chmod 4755 danger
 
