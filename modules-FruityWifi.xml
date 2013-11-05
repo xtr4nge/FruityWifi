@@ -28,4 +28,11 @@
 	<description>urlsnarf interface</description>
 	<url>module_urlsnarf</url>
     </module>
+    <module>
+        <name>mdk3</name>
+        <version>1.0</version>
+	<author>xtr4nge</author>
+	<description>mdk3 interface</description>
+	<url>module_mdk3</url>
+    </module>
 </FruityWifi>
