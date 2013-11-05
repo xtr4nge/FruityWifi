@@ -41,6 +41,8 @@ if ($regex == 1) {
     regex_standard($_POST["pass_old"], "msg.php", $regex_extra);
     regex_standard($_POST["pass_new"], "msg.php", $regex_extra);
     regex_standard($_POST["pass_new_repeat"], "msg.php", $regex_extra);
+    regex_standard($_GET["service"], "msg.php", $regex_extra);
+    regex_standard($_GET["action"], "msg.php", $regex_extra);
 }
 ?>
 <?
@@ -83,6 +85,16 @@ if(isset($_POST["iface"]) and $_POST["iface"] == "wifi_supplicant"){
     //$exec = "sed -i 's/iface_wifi_extra=.*/iface_wifi_extra=\\\"".$_POST["iface_wifi_extra"]."\\\";/g' ./config/config.php";
     //echo $exec;    
     //exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+}
+
+if ($_GET["service"] == "mon0") {
+    if ($_GET["action"] == "start") {
+        // START MONITOR MODE (mon0)
+        start_monitor_mode($iface_wifi_extra);
+    } else {
+        // STOP MONITOR MODE (mon0)
+        stop_monitor_mode($iface_wifi_extra);
+    }
 }
 
 // -------------- WIRELESS ------------------
@@ -205,8 +217,9 @@ $ifaces = explode("|", $ifaces);
     </form>
 
     <form action="scripts/config_iface.php" method="post" style="margin:0px">
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Extra 
-    <select class="input" onchange="this.form.submit()" name="iface_wifi_extra">
+    &nbsp;&nbsp;&nbsp;Monitor 
+    <? $iface_mon0 = exec("/sbin/ifconfig |grep mon0"); ?>
+    <select class="input" onchange="this.form.submit()" name="iface_wifi_extra" <? if ($iface_mon0 != "") echo "disabled" ?> >
         <option>-</option>
         <?
         for ($i = 0; $i < count($ifaces); $i++) {
@@ -217,8 +230,15 @@ $ifaces = explode("|", $ifaces);
         }
         ?>
     </select> 
-    <img src="img/help-browser.png" title="Use this interface for extra features like Kismet" width=14>
-    (kismet)
+    <img src="img/help-browser.png" title="Use this interface for extra features like Kismet, MDK3, etc..." width=14>
+    <?
+        if ($iface_mon0 == "") {
+            echo "<b><a href='page_config.php?service=mon0&action=start'>start</a></b> [<font color='red'>mon0</font>]";
+        } else {
+            echo "<b><a href='page_config.php?service=mon0&action=stop'>stop</a></b>&nbsp; [<font color='lime'>mon0</font>]";
+        }
+        //echo "(kismet, mdk3, etc)";
+    ?>
     <input type="hidden" name="iface" value="wifi_extra">
     </form>
     
