@@ -40,4 +40,12 @@
 	<url>module_mdk3</url>
 	<required>1.5</required>
     </module>
+    <module>
+        <name>ngrep</name>
+        <version>1.0</version>
+	<author>xtr4nge</author>
+	<description>ngrep interface</description>
+	<url>module_ngrep</url>
+	<required>1.5</required>
+    </module>
 </FruityWifi>
