@@ -6,6 +6,7 @@
 	<author>xtr4nge</author>
 	<description>nmap interface</description>
 	<url>module_nmap</url>
+	<required>1.5</required>
     </module>
     <module>
         <name>sslstrip</name>
@@ -13,6 +14,7 @@
 	<author>xtr4nge</author>
 	<description>sslstrip interface</description>
 	<url>module_sslstrip</url>
+	<required>1.5</required>
     </module>
     <module>
         <name>dnsspoof</name>
@@ -20,6 +22,7 @@
 	<author>xtr4nge</author>
 	<description>dnsspoof interface</description>
 	<url>module_dnsspoof</url>
+	<required>1.5</required>
     </module>
     <module>
         <name>urlsnarf</name>
@@ -27,6 +30,7 @@
 	<author>xtr4nge</author>
 	<description>urlsnarf interface</description>
 	<url>module_urlsnarf</url>
+	<required>1.5</required>
     </module>
     <module>
         <name>mdk3</name>
@@ -34,5 +38,6 @@
 	<author>xtr4nge</author>
 	<description>mdk3 interface</description>
 	<url>module_mdk3</url>
+	<required>1.5</required>
     </module>
 </FruityWifi>
