@@ -1,5 +1,5 @@
 <?
-$version="v1.4";
+$version="v1.5";
 $regex=1; // 1 (on) | 0 (off) >> web interface input validation.
 $regex_extra=" _-.[]*"; // extra characters allowed (input validation).
 $iface_internet="eth0";
