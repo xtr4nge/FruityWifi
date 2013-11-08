@@ -6,7 +6,7 @@
 	<author>xtr4nge</author>
 	<description>nmap interface</description>
 	<url>module_nmap</url>
-	<required>1.4</required>
+	<required>1.5</required>
     </module>
     <module>
         <name>sslstrip</name>
