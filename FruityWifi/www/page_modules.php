@@ -155,7 +155,11 @@ if (count($output) > 0) {
                 if (in_array($xml->module[$i]->name,$mod_installed)) {
                     echo "<td align='right' style='padding-right:5px; padding-left:5px; width:10px'>installed</td>";
                 } else {
-                    echo "<td align='right' style='padding-right:5px; padding-left:5px; width:10px'><a href='scripts/modules_action.php?action=install&module=".$xml->module[$i]->name."&show'>install</a></td>";
+                    if (str_replace("v","",$version) < $xml->module[$i]->required ) {
+                        echo "<td align='right' style='padding-right:5px; padding-left:5px; width:10px'><a href='#' onclick='alert(\"FruityWifi v".$xml->module[$i]->required." is required\")'>install</a></td>";
+                    } else {
+                        echo "<td align='right' style='padding-right:5px; padding-left:5px; width:10px'><a href='scripts/modules_action.php?action=install&module=".$xml->module[$i]->name."&show'>install</a></td>";
+                    }
                 }
             echo "</tr>";
         }

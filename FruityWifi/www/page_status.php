@@ -202,7 +202,9 @@ if ($_GET['reveal_public_ip'] == 1) {
     <?
     $filename = "/usr/share/FruityWifi/logs/dhcp.leases";
     $fh = fopen($filename, "r"); //or die("Could not open file.");
-    $data = fread($fh, filesize($filename)); //or die("Could not read file.");
+    if ( 0 < filesize( $filename ) ) {
+        $data = fread($fh, filesize($filename)); //or die("Could not read file.");
+    }
     fclose($fh);
     $data = explode("\n",$data);
     

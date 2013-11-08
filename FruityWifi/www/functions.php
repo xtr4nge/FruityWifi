@@ -67,4 +67,17 @@ function stop_monitor_mode($iface) {
 
 }
 
+function open_file($filename) {
+
+    if ( file_exists($filename) ) {
+        if ( 0 < filesize( $filename ) ) {
+            $fh = fopen($filename, "r"); // or die("Could not open file.");
+            $data = fread($fh, filesize($filename)); // or die("Could not read file.");
+            fclose($fh);
+            return $data;
+        }
+    }
+
+}
+
 ?>
