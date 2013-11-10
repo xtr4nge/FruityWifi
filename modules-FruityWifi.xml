@@ -48,4 +48,12 @@
 	<url>module_ngrep</url>
 	<required>1.5</required>
     </module>
+    <module>
+        <name>captive</name>
+        <version>1.0</version>
+	<author>xtr4nge</author>
+	<description>captive portal</description>
+	<url>module_captive</url>
+	<required>1.5</required>
+    </module>
 </FruityWifi>
