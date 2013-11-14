@@ -129,7 +129,7 @@ if (isset($_POST['hostapd_secure'])) {
 if (isset($_POST['hostapd_wpa_passphrase'])) {
     $exec = "sed -i 's/hostapd_wpa_passphrase=.*/hostapd_wpa_passphrase=\\\"".$_POST["hostapd_wpa_passphrase"]."\\\";/g' ./config/config.php";
     exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
-    $exec = "sed -i 's/wpa_passphrase=.*/wpa_passphrase=".$_POST["hostapd_wpa_passphrase"]."/g' ./config/hostapd-secure.conf";
+    $exec = "sed -i 's/wpa_passphrase=.*/wpa_passphrase=".$_POST["hostapd_wpa_passphrase"]."/g' ../conf/hostapd-secure.conf";
     exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
 
     $hostapd_wpa_passphrase = $_POST["hostapd_wpa_passphrase"];
