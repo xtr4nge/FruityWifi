@@ -138,7 +138,12 @@ if (count($output) > 0) {
     
     <?
     $url = "https://raw.github.com/xtr4nge/FruityWifi/master/modules-FruityWifi.xml";
-    $xml = simplexml_load_file($url);
+
+    // VERIFY INTERNET CONNECTION
+    $external_ip = exec("curl ident.me");
+    if ($external_ip != "" and isset($_GET["show"])) {
+        $xml = simplexml_load_file($url);
+    }
 
     if (count($xml) > 0 and $xml != "" and isset($_GET["show"])) {
         for ($i=0;$i < count($xml); $i++) {
