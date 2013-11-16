@@ -120,6 +120,7 @@ apt-get -y install libncurses5-dev
 apt-get -y install libpcap-dev
 
 wget http://www.kismetwireless.net/code/kismet-2013-03-R1b.tar.xz
+tar xvf kismet-2013-03-R1b.tar.xz
 cd kismet-2013-03-R1b
 ./configure
 make dep
