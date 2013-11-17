@@ -12,3 +12,13 @@ v1.6
 - minor fix
 
 
+v1.3
+----------------
+- Directory structure has been changed
+- minor fix
+
+
+
+v1.0
+----------------
+- init
