@@ -8,7 +8,7 @@ FruityWifi is a wireless network auditing tool based in the wifi Pineapple. The 
 
 v1.6
 ----------------
-- Modules installation script has been added
+- Dependencies can be installed from module windows.
 - minor fix
 
 
