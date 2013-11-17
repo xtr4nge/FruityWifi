@@ -12,6 +12,13 @@ v1.6
 - minor fix
 
 
+v1.5
+----------------
+- New functions has been added
+- Source code has been changed (open file function)
+- minor fix
+
+
 v1.3
 ----------------
 - Directory structure has been changed
