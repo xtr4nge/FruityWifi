@@ -31,6 +31,11 @@ v1.3
 - minor fix
 
 
+v1.1
+----------------
+- External modules can be installed from modules page
+- minor fix
+
 
 v1.0
 ----------------
