@@ -31,6 +31,13 @@ v1.3
 - minor fix
 
 
+v1.2
+----------------
+- Installation script has been updated
+- SSLstrip fork (@xtr4nge) has been added (Inject + Tamperer options)
+- minor fix
+
+
 v1.1
 ----------------
 - External modules can be installed from modules page
