@@ -56,4 +56,12 @@
 	<url>module_captive</url>
 	<required>1.5</required>
     </module>
+    <module>
+        <name>squid3</name>
+        <version>1.0</version>
+	<author>xtr4nge</author>
+	<description>squid3 interface</description>
+	<url>module_squid3</url>
+	<required>1.6</required>
+    </module>
 </FruityWifi>
