@@ -8,6 +8,7 @@
 # sslstrip
 # dnsspoof
 # urlsnarf
+# aircrack-ng
 
 # ------ Raspberry-Pi -------
 apt-get update
@@ -74,6 +75,14 @@ unzip sslstrip-master.zip
 chmod 755 sslstrip-master/sslstrip.py
 mv sslstrip-master /usr/share/FruityWifi-sslstrip
 ln -s /usr/share/FruityWifi-sslstrip/sslstrip.py /usr/bin/FruityWifi-sslstrip
+
+# INSTALL AIRCRACK-NG
+apt-get -y install libssl-dev
+wget http://download.aircrack-ng.org/aircrack-ng-1.2-beta1.tar.gz
+tar -zxvf aircrack-ng-1.2-beta1.tar.gz
+cd aircrack-ng-1.2-beta1
+make
+cd ../
 
 
 # DEP NETWORK-MANAGER
