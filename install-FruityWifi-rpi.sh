@@ -42,9 +42,8 @@ cd tmp-install
 apt-get update
 
 # DEP HOSTAPD-KARMA
-apt-get -y install libnl1 
-apt-get -y install libnl-dev 
-apt-get -y install libssl-dev
+apt-get -y install libnl1  libnl-dev libssl-dev
+
 
 # INSTALL HOSTAPD-KARMA
 #wget http://www.digininja.org/files/hostapd-1.0-karma.patch.bz2
