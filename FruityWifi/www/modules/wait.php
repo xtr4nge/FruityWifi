@@ -6,6 +6,8 @@
 <pre>
 <?
 echo "Loading fruit...<br>";
+include "../wait_fruit.php";
+exit;
 ?>
 <font style="color:green">
        .~~.   .~~.

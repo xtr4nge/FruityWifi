@@ -301,7 +301,8 @@ if ($newdata != "") { $newdata = ereg_replace(13,  "", $newdata);
     $fileMessage = $strings["config-updated"]." " . "/usr/share/FruityWifi/conf/" . $filename . "<br /><br />";
 } 
 */
-if ($newdata != "") { $newdata = ereg_replace(13,  "", $newdata);
+if ($newdata != "") { 
+    //$newdata = ereg_replace(13,  "", $newdata);
     $exec = "/bin/echo '$newdata' > /usr/share/FruityWifi/conf/spoofhost.conf";
 	exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"", $output);
 }

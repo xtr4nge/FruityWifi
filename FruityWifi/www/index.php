@@ -23,6 +23,7 @@
 ?>
 
 <link href="style.css" rel="stylesheet" type="text/css">
+<link rel="icon" type="image/x-icon" href="img/favicon.ico"/>
 
 <img src="img/logo.png">
 

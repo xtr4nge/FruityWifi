@@ -24,46 +24,34 @@ include "../functions.php";
 // Checking POST & GET variables...
 if ($regex == 1) {
     regex_standard($_GET["service"], "../msg.php", $regex_extra);
-    regex_standard($_GET["file"], "../msg.php", $regex_extra);
     regex_standard($_GET["action"], "../msg.php", $regex_extra);
-    regex_standard($iface_wifi_extra, "../msg.php", $regex_extra);
+    regex_standard($_GET["page"], "../msg.php", $regex_extra);
+    regex_standard($iface_wifi, "../msg.php", $regex_extra);
 }
 
 $service = $_GET['service'];
 $action = $_GET['action'];
 $page = $_GET['page'];
 
-if($service == "kismet") {
+if($service == "phishing") {
     if ($action == "start") {
         
-        // START MONITOR MODE (mon0)
-        start_monitor_mode($iface_wifi_extra);
+        $exec = "sed -i 1i'<? include \"site\/index.php\"; \/\* FruityWifi-Phishing \*\/ ?>' /var/www/index.php";
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
         
-        //$exec = "/usr/bin/kismet_server -p ../logs/kismet/ -s --daemonize -c $iface_wifi_extra > /dev/null &";
-        $exec = "/usr/bin/kismet_server -p ../logs/kismet/ -s --daemonize -c mon0 > /dev/null &";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
     } else if($action == "stop") {
-        $exec = "/usr/bin/killall kismet_server";
+        $exec = "sed -i '/FruityWifi-Phishing/d' /var/www/index.php";
         exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
-    }
-    //header('Location: page_status.php');
-    //echo "<script>window.location = './action.php'</script>";
-}
-
-if($service == "gpsd") {
-    if ($action == "start") {
-        $exec = "/usr/sbin/gpsd /dev/ttyUSB0 &";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
-    } else if($action == "stop") {
-        $exec = "/usr/bin/killall gpsd";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+        
     }
 }
 
-if ($page == "module") {
-    header('Location: ../page_kismet.php');
+if ($page == "list") {
+    header('Location: ../page_modules.php');    
+} else if ($page == "module") {
+    header('Location: ../modules/action.php?page=phishing');
 } else {
-    header('Location: ../action.php');
+    header('Location: ../page_status.php');
 }
 
 ?>

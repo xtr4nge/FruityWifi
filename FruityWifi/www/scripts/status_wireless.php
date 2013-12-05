@@ -86,6 +86,10 @@ if($service == "wireless") {
         exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
         $exec = "/sbin/iptables -t nat -A POSTROUTING -o $iface_internet -j MASQUERADE";
         exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+        
+        // CLEAN DHCP log
+        $exec = "echo '' > /usr/share/FruityWifi/logs/dhcp.leases";
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
 
     } else if($action == "stop") {
 
