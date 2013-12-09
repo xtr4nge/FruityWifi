@@ -36,7 +36,7 @@ $page = $_GET['page'];
 if($service == "phishing") {
     if ($action == "start") {
         
-        $exec = "sed -i 1i'<? include \"site\/index.php\"; \/\* FruityWifi-Phishing \*\/ ?>' /var/www/index.php";
+        $exec = "sed -i 1i'<? include \\\"site\/index.php\\\"; \/\* FruityWifi-Phishing \*\/ ?>' /var/www/index.php";
         exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
         
     } else if($action == "stop") {
