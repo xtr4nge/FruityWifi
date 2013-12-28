@@ -102,6 +102,9 @@ make install
 cd ../
 
 # APACHE2 SETUP
+apt-get -y install apache2
+apt-get -y install libapache2-mod-php5
+
 cd ../
 cp -a FruityWifi /usr/share/FruityWifi
 ln -s /usr/share/FruityWifi/www /var/www/FruityWifi
