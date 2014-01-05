@@ -80,4 +80,12 @@
 	<url>module_responder</url>
 	<required>1.7</required>
     </module>
+    <module>
+        <name>autostart</name>
+        <version>1.0</version>
+	<author>xtr4nge</author>
+	<description>Autostart interface</description>
+	<url>module_autostart</url>
+	<required>1.7</required>
+    </module>
 </FruityWifi>
