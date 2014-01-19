@@ -13,7 +13,7 @@ update-rc.d ssh defaults
 update-rc.d apache2 defaults
 update-rc.d ntp defaults
 
-apt-get -y install gettext make intltool build-essential automake autoconf uuid uuid-dev php5-curl
+apt-get -y install gettext make intltool build-essential automake autoconf uuid uuid-dev php5-curl php5-cli
 
 cmd=`gcc --version|grep "4.7"`
 if [[ $cmd == "" ]]
