@@ -18,7 +18,7 @@
     </module>
     <module>
         <name>dnsspoof</name>
-        <version>1.3</version>
+        <version>1.4</version>
 	<author>xtr4nge</author>
 	<description>dnsspoof interface</description>
 	<url>module_dnsspoof</url>
