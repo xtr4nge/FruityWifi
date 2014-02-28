@@ -19,77 +19,6 @@
 <? include "menu.php" ?>
 
 <br>
-<div class="rounded-top" align="center"> Control </div>
-<div class="rounded-bottom">
-
-<?
-$isurlsnarfup = exec("ps auxww | grep urlsnarf | grep -v -e grep");
-if ($isurlsnarfup != "") {
-    #echo "URL Snarf  <font color=\"lime\"><b>enabled</b></font>.&nbsp; | <a href=\"page_status.php?service=urlsnarf&action=stop\"><b>stop</b></a><br />";
-    echo "&nbsp;URL Snarf  <font color=\"lime\"><b>enabled</b></font>.&nbsp; | <a href=\"scripts/status_urlsnarf.php?service=urlsnarf&action=stop&page=module\"><b>stop</b></a><br />";
-} else { 
-    #echo "URL Snarf  <font color=\"red\"><b>disabled</b></font>. | <a href=\"page_status.php?service=urlsnarf&action=start\"><b>start</b></a><br />"; 
-    echo "&nbsp;URL Snarf  <font color=\"red\"><b>disabled</b></font>. | <a href=\"scripts/status_urlsnarf.php?service=urlsnarf&action=start&page=module\"><b>start</b></a><br />"; 
-}
-?>
-
-<?
-$isdnsspoofup = exec("ps auxww | grep dnsspoof | grep -v -e grep");
-if ($isdnsspoofup != "") {
-    #echo "DNS Spoof  <font color=\"lime\"><b>enabled</b></font>.&nbsp; | <a href=\"page_status.php?service=dnsspoof&action=stop\"><b>stop</b></a><br />";
-    echo "&nbsp;DNS Spoof  <font color=\"lime\"><b>enabled</b></font>.&nbsp; | <a href=\"scripts/status_dnsspoof.php?service=dnsspoof&action=stop&page=module\"><b>stop</b></a>";
-    echo "&nbsp; | <a href=\"page_config.php?config#dnsspoof\"><b>view</b></a><br/>"; 
-} else { 
-    #echo "DNS Spoof  <font color=\"red\"><b>disabled</b></font>. | <a href=\"page_status.php?service=dnsspoof&action=start\"><b>start</b></a> | <a href=\"page_config.php?config#dnsspoof\"><b>edit</b></a><br/>"; 
-    echo "&nbsp;DNS Spoof  <font color=\"red\"><b>disabled</b></font>. | <a href=\"scripts/status_dnsspoof.php?service=dnsspoof&action=start&page=module\"><b>start</b></a>";
-    echo " | <a href=\"page_config.php?config#dnsspoof\"><b>edit</b></a><br/>"; 
-}
-
-?>
-
-<?
-$iskismetup = exec("ps auxww | grep kismet_server | grep -v -e grep");
-if ($iskismetup != "") {
-    //echo "&nbsp;&nbsp;&nbsp;Kismet  <font color=\"lime\"><b>enabled</b></font>.&nbsp; | <a href=\"page_status.php?service=kismet&action=stop\"><b>stop</b></a><br />";
-    //echo "&nbsp;&nbsp;&nbsp;Kismet  <font color=\"lime\"><b>enabled</b></font>.&nbsp; | <a href=\"action.php?service=kismet&action=stop\"><b>stop</b></a><br />";
-    echo "&nbsp;&nbsp;&nbsp;&nbsp;Kismet  <font color=\"lime\"><b>enabled</b></font>.&nbsp; | <a href=\"scripts/status_kismet.php?service=kismet&action=stop&page=module\"><b>stop</b></a>";
-    echo "&nbsp; | <a href=\"page_kismet.php\"><b>view</b></a><br/>"; 
-} else { 
-    //echo "&nbsp;&nbsp;&nbsp;Kismet  <font color=\"red\"><b>disabled</b></font>. | <a href=\"page_status.php?service=kismet&action=start\"><b>start</b></a><br/>"; 
-    //echo "&nbsp;&nbsp;&nbsp;Kismet  <font color=\"red\"><b>disabled</b></font>. | <a href=\"action.php?service=kismet&action=start\"><b>start</b></a><br/>";
-    echo "&nbsp;&nbsp;&nbsp;&nbsp;Kismet  <font color=\"red\"><b>disabled</b></font>. | <a href=\"scripts/status_kismet.php?service=kismet&action=start&page=module\"><b>start</b></a>";
-    echo " | <a href=\"page_kismet.php\"><b>edit</b></a><br/>"; 
-}
-
-?>
-
-<?
-$issquidup = exec("ps auxww | grep squid3 | grep -v -e grep");
-if ($issquidup != "") {
-    echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Squid  <font color=\"lime\"><b>enabled</b></font>.&nbsp; | <a href=\"scripts/status_squid.php?service=squid&action=stop&page=module\"><b>stop</b></a>";
-    echo "&nbsp; | <a href=\"page_squid.php\"><b>view</b></a><br/>"; 
-} else { 
-    echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Squid  <font color=\"red\"><b>disabled</b></font>. | <a href=\"scripts/status_squid.php?service=squid&action=start&page=module\"><b>start</b></a>";
-    echo " | <a href=\"page_squid.php\"><b>edit</b></a><br/>"; 
-}
-
-?>
-
-<?
-$issslstripup = exec("ps auxww | grep sslstrip | grep -v -e grep");
-if ($issslstripup != "") {
-    #echo "&nbsp;Wireless  <font color=\"lime\"><b>enabled</b></font>.&nbsp; | <a href=\"page_status.php?service=wireless&action=stop\"><b>stop</b></a><br />";
-    echo "&nbsp;&nbsp;sslstrip  <font color=\"lime\"><b>enabled</b></font>.&nbsp; | <a href=\"scripts/status_sslstrip.php?service=sslstrip&action=stop&page=module\"><b>stop</b></a>";
-    //echo "&nbsp; | <a href=\"page_sslstrip.php\"><b>view</b></a><br/>"; 
-} else { 
-    #echo "&nbsp;Wireless  <font color=\"red\"><b>disabled</b></font>. | <a href=\"page_status.php?service=wireless&action=start\"><b>start</b></a><br />"; 
-    echo "&nbsp;&nbsp;sslstrip  <font color=\"red\"><b>disabled</b></font>. | <a href=\"scripts/status_sslstrip.php?service=sslstrip&action=start&page=module\"><b>start</b></a>"; 
-    //echo " | <a href=\"page_sslstrip.php\"><b>edit</b></a><br/>"; 
-}
-?>
-</div>
-
-<br>
 
 <?
 // ------------- External Modules --------------
@@ -126,10 +55,9 @@ if (count($output) > 0) {
     ?>
     </table>
 </div>
+<br>
 
 <? } ?>
-
-<br>
 
 <div class="rounded-top" align="center"> Available Modules </div>
 <div class="rounded-bottom">
@@ -157,6 +85,9 @@ if (count($output) > 0) {
                 //echo $xml->module[$i]->description . "<br>";
                 echo "<td align='right' style='padding-right:5px; padding-left:5px; width:150px'>".$xml->module[$i]->description."</td>";
                 echo "<td align='right' style='padding-right:5px; padding-left:5px; width:2px'> | </td>";
+				
+				if (count($mod_installed) == 0) $mod_installed[0] = ""; 
+				
                 if (in_array($xml->module[$i]->name,$mod_installed)) {
                     echo "<td align='right' style='padding-right:5px; padding-left:5px; width:10px'>installed</td>";
                 } else {

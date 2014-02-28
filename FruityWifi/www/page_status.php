@@ -114,10 +114,13 @@ if ($isphishingup  != "") {
 // ------------- External Modules --------------
 exec("find ./modules -name '_info_.php'",$output);
 //print count($output);
-if (count($output) > 0) {
+//if (count($output) > 0) {
 ?>
 <div class="rounded-top" align="center"> Modules </div>
 <div class="rounded-bottom">
+<?
+if (count($output) > 0) {
+?>
     <table border=0 width='100%' cellspacing=0 cellpadding=0>
     <?
     //exec("find ./modules -name '_info_.php'",$output);
@@ -157,9 +160,14 @@ if (count($output) > 0) {
     }
     ?>
     </table>
-</div>
 
-<? } ?>
+<? 
+} else {
+echo "<div>No modules have been installed.<br>Install them from the <a href='page_modules.php'><b>Available Modules</b></a> list.</div>";
+}
+?>
+
+</div>
 
 <br>
 
