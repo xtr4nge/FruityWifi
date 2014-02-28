@@ -95,28 +95,6 @@ if ($iskarmaup != "") {
 ?>
 
 <?
-$isurlsnarfup = exec("ps auxww | grep urlsnarf | grep -v -e grep");
-if ($isurlsnarfup != "") {
-    #echo "URL Snarf  <font color=\"lime\"><b>enabled</b></font>.&nbsp; | <a href=\"page_status.php?service=urlsnarf&action=stop\"><b>stop</b></a><br />";
-    echo "&nbsp;URL Snarf  <font color=\"lime\"><b>enabled</b></font>.&nbsp; | <a href=\"scripts/status_urlsnarf.php?service=urlsnarf&action=stop\"><b>stop</b></a><br />";
-} else { 
-    #echo "URL Snarf  <font color=\"red\"><b>disabled</b></font>. | <a href=\"page_status.php?service=urlsnarf&action=start\"><b>start</b></a><br />"; 
-    echo "&nbsp;URL Snarf  <font color=\"red\"><b>disabled</b></font>. | <a href=\"scripts/status_urlsnarf.php?service=urlsnarf&action=start\"><b>start</b></a><br />"; 
-}
-?>
-
-<?
-$isdnsspoofup = exec("ps auxww | grep dnsspoof | grep -v -e grep");
-if ($isdnsspoofup != "") {
-    #echo "DNS Spoof  <font color=\"lime\"><b>enabled</b></font>.&nbsp; | <a href=\"page_status.php?service=dnsspoof&action=stop\"><b>stop</b></a><br />";
-    echo "&nbsp;DNS Spoof  <font color=\"lime\"><b>enabled</b></font>.&nbsp; | <a href=\"scripts/status_dnsspoof.php?service=dnsspoof&action=stop\"><b>stop</b></a><br />";
-} else { 
-    #echo "DNS Spoof  <font color=\"red\"><b>disabled</b></font>. | <a href=\"page_status.php?service=dnsspoof&action=start\"><b>start</b></a> | <a href=\"page_config.php?config#dnsspoof\"><b>edit</b></a><br/>"; 
-    echo "&nbsp;DNS Spoof  <font color=\"red\"><b>disabled</b></font>. | <a href=\"scripts/status_dnsspoof.php?service=dnsspoof&action=start\"><b>start</b></a> | <a href=\"page_config.php?config#dnsspoof\"><b>edit</b></a><br/>"; 
-}
-?>
-
-<?
 $exec = "grep 'FruityWifi-Phishing' /var/www/index.php";
 $isphishingup = exec($exec);
 if ($isphishingup  != "") {
