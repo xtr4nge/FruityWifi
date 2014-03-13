@@ -174,6 +174,7 @@ fi
 cmd=`date +"%Y-%m-%d-%k-%M-%S"`
 cd ../
 mv /usr/share/FruityWifi FruityWifi.BAK.$cmd
+rm /var/www/FruityWifi
 cp -a FruityWifi /usr/share/FruityWifi
 ln -s /usr/share/FruityWifi/www /var/www/FruityWifi
 ln -s /usr/share/FruityWifi/logs /var/www/FruityWifi/logs
