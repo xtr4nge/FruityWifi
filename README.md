@@ -5,6 +5,13 @@ FruityWifi is a wireless network auditing tool based in the wifi Pineapple. The 
 
 [![githalytics.com alpha](https://cruel-carlota.pagodabox.com/080d09d574c44ef246b87e11ed2468fc "githalytics.com")](http://githalytics.com/xtr4nge/FruityWifi)
 
+v1.8
+----------------
+- WSDL has been added
+- new status page has been added
+- logs can follow in realtime using the new status page (wsdl)
+
+
 v1.6
 ----------------
 - Dependencies can be installed from module windows
