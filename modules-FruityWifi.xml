@@ -89,7 +89,7 @@
 	<required>1.7</required>
     </module>
     <module>
-        <name>RPItwit</name>
+        <name>rpitwit</name>
         <version>1.0</version>
 	<author>xtr4nge</author>
 	<description>RPItwit interface</description>
