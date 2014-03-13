@@ -19,7 +19,7 @@
 <? include "login_check.php"; ?>
 <? include "config/config.php" ?>
 <? include "menu.php" ?>
-
+<meta name="viewport" content="initial-scale=0.50, width=device-width" />
 <br>
 <div class="rounded-top" align="center"> Services </div>
 <div class="rounded-bottom">

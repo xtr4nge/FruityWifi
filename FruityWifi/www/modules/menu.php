@@ -37,6 +37,7 @@ header("Pragma: no-cache");
 </div>
 <div class="menu">
     <a href="../../page_status.php" class="menu">status</a> | 
+    <a href="../../page_status_wsdl.php" class="menu">wsdl</a> | 
     <a href="../../page_config.php">config</a> | 
     <!--
     <a href="../../page_kismet.php">kismet</a> | 
