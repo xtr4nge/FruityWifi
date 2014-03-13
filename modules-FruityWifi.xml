@@ -88,4 +88,12 @@
 	<url>module_autostart</url>
 	<required>1.7</required>
     </module>
+    <module>
+        <name>RPItwit</name>
+        <version>1.0</version>
+	<author>xtr4nge</author>
+	<description>RPItwit interface</description>
+	<url>module_autostart</url>
+	<required>1.8</required>
+    </module>
 </FruityWifi>
