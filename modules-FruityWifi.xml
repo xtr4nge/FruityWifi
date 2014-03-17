@@ -93,7 +93,15 @@
         <version>1.0</version>
 	<author>xtr4nge</author>
 	<description>RPItwit interface</description>
-	<url>module_autostart</url>
+	<url>module_rpitwit</url>
+	<required>1.8</required>
+    </module>
+    <module>
+        <name>whatsapp</name>
+        <version>1.0</version>
+	<author>xtr4nge</author>
+	<description>Whatsapp interface</description>
+	<url>module_whatsapp</url>
 	<required>1.8</required>
     </module>
 </FruityWifi>
