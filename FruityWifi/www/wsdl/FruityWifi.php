@@ -216,6 +216,11 @@ function moduleAction($module, $action) {
 		execCurl($url);
         return join(",", array("RPITWIT:$action"));
 	
+	} else if ($module == "mod_whatsapp") {
+		$url = "$global_webserver/modules/whatsapp/includes/module_action.php?service=whatsapp&action=$action&page=status";
+		execCurl($url);
+        return join(",", array("WHATSAPP:$action"));
+	
     } else {
         return "No modules listed under that name";
     }
@@ -464,6 +469,13 @@ function getStatus($v_service) {
 			return "Y";
 		else
 			return "N";
+	} else if ($v_service == "mod_whatsapp") {
+		include "../modules/whatsapp/_info_.php";
+		$status = exec($mod_isup);
+		if ($status != "")
+			return "Y";
+		else
+			return "N";
 	} else {
 		return "No modules listed under that name";
 	}
@@ -546,6 +558,13 @@ function getModuleStatus($v_module, $v_module2) {
 			return "N";
 	} else if ($v_module == "mod_rpitwit") {
 		include "../modules/rpitwit/_info_.php";
+		$status = exec($mod_isup);
+		if ($status != "")
+			return "Y";
+		else
+			return "N";
+	} else if ($v_module == "mod_whatsapp") {
+		include "../modules/whatsapp/_info_.php";
 		$status = exec($mod_isup);
 		if ($status != "")
 			return "Y";

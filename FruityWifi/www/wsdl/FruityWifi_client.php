@@ -215,6 +215,10 @@ else if ($operation == "serviceAction")
 		//Return results (array)
 		moduleAction($client, $service, $action);
 		echo json_encode($dump);
+	} else if ($service == "mod_whatsapp") {
+		//Return results (array)
+		moduleAction($client, $service, $action);
+		echo json_encode($dump);
 	}
 
 }
