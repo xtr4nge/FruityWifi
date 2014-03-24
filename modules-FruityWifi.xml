@@ -104,4 +104,12 @@
 	<url>module_whatsapp</url>
 	<required>1.8</required>
     </module>
+    <module>
+        <name>karma</name>
+        <version>1.0</version>
+	<author>xtr4nge</author>
+	<description>Karma interface</description>
+	<url>module_karma</url>
+	<required>1.8</required>
+    </module>
 </FruityWifi>
