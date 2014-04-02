@@ -112,4 +112,12 @@
 	<url>module_karma</url>
 	<required>1.8</required>
     </module>
+    <module>
+        <name>nmcli</name>
+        <version>1.0</version>
+	<author>xtr4nge</author>
+	<description>nmcli interface</description>
+	<url>module_nmcli</url>
+	<required>1.8</required>
+    </module>
 </FruityWifi>
