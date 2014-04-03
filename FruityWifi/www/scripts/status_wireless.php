@@ -74,6 +74,9 @@ if($service == "wireless") {
         $exec = "/sbin/ifconfig $iface_wifi up 10.0.0.1 netmask 255.255.255.0";
         exec("$bin_danger \"" . $exec . "\"" );
 
+        $exec = "echo 'nameserver 10.0.0.1\nnameserver 8.8.8.8' > /etc/resolv.conf ";
+        exec("$bin_danger \"" . $exec . "\"" );
+
         //$exec = "/etc/init.d/dnsmasq restart";
         $exec = "/usr/sbin/dnsmasq -C /usr/share/FruityWifi/conf/dnsmasq.conf";
         exec("$bin_danger \"" . $exec . "\"" );
