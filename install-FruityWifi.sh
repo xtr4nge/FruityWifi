@@ -55,76 +55,23 @@ else
 fi
 
 
-if [ ! -f "/usr/sbin/karma-hostapd" ]
+if [ ! -f "/usr/sbin/hostapd" ]
 then
 
 	echo "--------------------------------"
-    echo "Installing hostapd (karma)"
+    echo "Installing hostapd"
 	echo "--------------------------------"
     #exit;
 
-    # DEP HOSTAPD-KARMA
-	apt-get -y install hostapd
-    apt-get -y install libnl1 libnl-dev libssl-dev
-
-    # INSTALL HOSTAPD-KARMA
-    #wget http://www.digininja.org/files/hostapd-1.0-karma.patch.bz2
-    wget http://www.digininja.org/files/hostapd-1.0-karma.tar.bz2
-
-    bunzip2 hostapd-1.0-karma.tar.bz2
-    tar xvf hostapd-1.0-karma.tar
-    cd hostapd-1.0-karma/hostapd
-    make
-    cp hostapd /usr/sbin/karma-hostapd
-    cp hostapd_cli /usr/sbin/karma-hostapd_cli
-    cd ../../
+    # INSTALL HOSTAPD
+    apt-get -y install hostapd
 
 else
 	echo "--------------------------------"
-    echo "hostapd (karma) already installed"
+    echo "hostapd already installed"
 	echo "--------------------------------"
 	echo
 	echo
-fi
-
-
-cmd=`NetworkManager --version`
-if [[ $cmd != "0.9.8.8" ]]
-then
-	echo "--------------------------------"
-    echo "Installing NetworkManager"
-	echo "--------------------------------"
-    #exit;
-
-    # DEP NETWORK-MANAGER
-	apt-get -y install network-manager
-    apt-get -y install wireless-tools
-	#apt-get -y install libpackagekit-glib2-12
-    apt-get -y install libiw-dev libdbus-glib-1-dev libpackagekit-glib2-14 libpackagekit-glib2-dev libgudev-1.0-dev
-    #apt-get -y install libnl-dev
-    apt-get -y install uuid-dev uuid nss
-    apt-get -y install libnss-db libnss3-dev
-    apt-get -y install ppp-dev intltool
-    apt-get -y install libgudev-1.0-dev libnl-3-dev libnl-route-3-dev libnl-genl-3-dev
-    #apt-get -y install libnl1 libnl-dev
-
-    wget http://ftp.gnome.org/pub/GNOME/sources/NetworkManager/0.9/NetworkManager-0.9.8.8.tar.xz
-    tar xvf NetworkManager-0.9.8.8.tar.xz
-    cd NetworkManager-0.9.8.8
-
-    ./configure
-    make
-    make install
-    #cp cli/src/nmcli /usr/bin/nmcli
-    cd ../
-
-else
-	echo "--------------------------------"
-    echo "NetworkManager already installed"
-	echo "--------------------------------"
-	echo
-	echo
-
 fi
 
 
