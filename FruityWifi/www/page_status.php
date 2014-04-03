@@ -51,47 +51,50 @@ if ($iswlanup != "") {
 
 <?
 /*
-if ($iface_supplicant != "-") {
-    $exec = "nmcli -n d |grep '^$iface_supplicant'";
-    $output = exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
-    $output = preg_replace('/\s+/', ' ',$output);
-    $output = explode(" ",$output);
-    //print_r($output);
-    $issupplicantup = $output[2];
+$exec = "nmcli -version |awk '{print $4}'";
+$output = exec($exec);
+if ($output >= "0.9.8.8") {
+	
+	$exec = "/usr/share/FruityWifi/www/modules/nmcli/includes/nmcli -n d | grep -iEe '^$iface_supplicant.+ connected'";
+	$issupplicantup = exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"", $output);
+	//print_r($issupplicantup);
+
+	//if ($issupplicantup == "connected") {
+	if ($issupplicantup != "") {
+		#echo "&nbsp;Wireless  <font color=\"lime\"><b>enabled</b></font>.&nbsp; | <a href=\"page_status.php?service=wireless&action=stop\"><b>stop</b></a><br />";
+		echo "Supplicant  <font color=\"lime\"><b>enabled</b></font>.&nbsp; | <a href=\"scripts/status_nmcli.php?service=supplicant&action=stop\" class='div-a'><b>stop</b></a><br />";
+	} else { 
+		#echo "&nbsp;Wireless  <font color=\"red\"><b>disabled</b></font>. | <a href=\"page_status.php?service=wireless&action=start\"><b>start</b></a><br />"; 
+		echo "Supplicant  <font color=\"red\"><b>disabled</b></font>. | <a href=\"scripts/status_nmcli.php?service=supplicant&action=start\" class='div-a'><b>start</b></a>"; 
+		echo " | <a href=\"page_config.php\"><b>edit</b></a><br/>";
+	}
 } else {
-    $issupplicantup = "";
+	echo "Supplicant <font color=\"red\">install</font>.<br />"; 
 }
 */
-$exec = "nmcli -n d |grep '^$iface_supplicant'";
-$output = exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
-$output = preg_replace('/\s+/', ' ',$output);
-$output = explode(" ",$output);
-//print_r($output);
-$issupplicantup = $output[2];
-
-if ($issupplicantup == "connected") {
-    #echo "&nbsp;Wireless  <font color=\"lime\"><b>enabled</b></font>.&nbsp; | <a href=\"page_status.php?service=wireless&action=stop\"><b>stop</b></a><br />";
-    echo "Supplicant  <font color=\"lime\"><b>enabled</b></font>.&nbsp; | <a href=\"scripts/status_nmcli.php?service=supplicant&action=stop\" class='div-a'><b>stop</b></a><br />";
-} else { 
-    #echo "&nbsp;Wireless  <font color=\"red\"><b>disabled</b></font>. | <a href=\"page_status.php?service=wireless&action=start\"><b>start</b></a><br />"; 
-    echo "Supplicant  <font color=\"red\"><b>disabled</b></font>. | <a href=\"scripts/status_nmcli.php?service=supplicant&action=start\" class='div-a'><b>start</b></a>"; 
-    echo " | <a href=\"page_config.php\"><b>edit</b></a><br/>";
-}
 ?>
 
 <?
-$exec = "/usr/sbin/karma-hostapd_cli -p /var/run/hostapd-phy0 karma_get_state | tail -1";
-$output = exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
-if ( $output == "ENABLED" ){
-    $iskarmaup = true;
+/*
+//Verifies if karma-hostapd_cli is installed
+//if (file_exists("/usr/sbin/karma-hostapd_cli")) {
+if (file_exists("modules/karma/includes/hostapd_cli")) {
+	$exec = "/usr/sbin/karma-hostapd_cli -p /var/run/hostapd-phy0 karma_get_state | tail -1";
+	$output = exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+	if ( $output == "ENABLED" ){
+		$iskarmaup = true;
+	}
+	if ($iskarmaup != "") {
+		#echo "MK4 Karma  <font color=\"lime\"><b>enabled</b></font>.&nbsp; | <a href=\"page_status.php?service=karma&action=stop\"><b>stop</b></a><br />";
+		echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Karma  <font color=\"lime\"><b>enabled</b></font>.&nbsp; | <a href=\"scripts/status_karma.php?service=karma&action=stop\"><b>stop</b></a><br />";
+	} else { 
+		#echo "MK4 Karma  <font color=\"red\"><b>disabled</b></font>. | <a href=\"page_status.php?service=karma&action=start\"><b>start</b></a> <br />"; 
+		echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Karma  <font color=\"red\"><b>disabled</b></font>. | <a href=\"scripts/status_karma.php?service=karma&action=start\"><b>start</b></a> <br />"; 
+	}
+} else {
+	echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Karma  <a href='page_modules.php'><font color=\"red\">install</font></a>.<br />"; 
 }
-if ($iskarmaup != "") {
-    #echo "MK4 Karma  <font color=\"lime\"><b>enabled</b></font>.&nbsp; | <a href=\"page_status.php?service=karma&action=stop\"><b>stop</b></a><br />";
-    echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Karma  <font color=\"lime\"><b>enabled</b></font>.&nbsp; | <a href=\"scripts/status_karma.php?service=karma&action=stop\"><b>stop</b></a><br />";
-} else { 
-    #echo "MK4 Karma  <font color=\"red\"><b>disabled</b></font>. | <a href=\"page_status.php?service=karma&action=start\"><b>start</b></a> <br />"; 
-    echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Karma  <font color=\"red\"><b>disabled</b></font>. | <a href=\"scripts/status_karma.php?service=karma&action=start\"><b>start</b></a> <br />"; 
-}
+*/
 ?>
 
 <?
@@ -112,7 +115,7 @@ if ($isphishingup  != "") {
 <br>
 <?
 // ------------- External Modules --------------
-exec("find ./modules -name '_info_.php'",$output);
+exec("find ./modules -name '_info_.php' | sort",$output);
 //print count($output);
 //if (count($output) > 0) {
 ?>
@@ -127,37 +130,41 @@ if (count($output) > 0) {
     //print_r($output[0]);
 
     for ($i=0; $i < count($output); $i++) {
-        include $output[$i];
-        $module_path = str_replace("_info_.php","",$output[$i]);
-        
-        if ($mod_panel == "show") {
-        echo "<tr>";
-            echo "<td align='right' style='padding-right:5px; padding-left:5px; padding-bottom:1px; width:10px' nowrap>";
-            if ($mod_alias != "") { 
-                echo $mod_alias;
-            } else {
-                echo $mod_name;
-            }
-            echo "</td>";
-            echo "<td align='left' style='padding-right:5px; padding-left:5px; ' nowrap>";
-            if ($mod_panel == "show") {
-                $isModuleUp = exec($mod_isup);
-                if ($isModuleUp != "") {
-                    echo "<font color=\"lime\"><b>enabled</b></font>.&nbsp; | <a href='modules/$mod_name/includes/module_action.php?service=$mod_name&action=stop&page=status'><b>stop</b></a>";
-                    echo "&nbsp; | <a href='modules/$mod_name/'><b>view</b></a><br/>"; 
-                } else { 
-                    echo "<font color=\"red\"><b>disabled</b></font>. | <a href='modules/$mod_name/includes/module_action.php?service=$mod_name&action=start&page=status'><b>start</b></a>"; 
-                    echo " | <a href='modules/$mod_name/'><b>edit</b></a><br/>"; 
-                }
-            $mod_panel = "";
-            $mod_alias = "";
-            }
-            echo "</td>";
-        echo "</tr>";
-        }
-    
-        $mod_installed[$i] = $mod_name;
-    }
+		if ($output[$i] != "") {
+			include $output[$i];
+			$module_path = str_replace("_info_.php","",$output[$i]);
+			
+			if ($mod_panel == "show") {
+			echo "<tr>";
+				echo "<td align='right' style='padding-right:5px; padding-left:5px; padding-bottom:1px; width:10px' nowrap>";
+				if ($mod_alias != "") { 
+					echo $mod_alias;
+				} else {
+					echo $mod_name;
+				}
+				echo "</td>";
+				echo "<td align='left' style='padding-right:5px; padding-left:5px; ' nowrap>";
+				if ($mod_panel == "show") {
+					//$mod_isup = "/usr/share/FruityWifi/bin/danger \"/usr/share/FruityWifi/www/modules/nmcli/includes/nmcli -n d | grep -iEe '^$iface_supplicant.+ connected'\"";
+					//$issupplicantup = exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"", $output);
+					$isModuleUp = exec($mod_isup);
+					if ($isModuleUp != "") {
+						echo "<font color=\"lime\"><b>enabled</b></font>.&nbsp; | <a href='modules/$mod_name/includes/module_action.php?service=$mod_name&action=stop&page=status'><b>stop</b></a>";
+						echo "&nbsp; | <a href='modules/$mod_name/'><b>view</b></a><br/>"; 
+					} else { 
+						echo "<font color=\"red\"><b>disabled</b></font>. | <a href='modules/$mod_name/includes/module_action.php?service=$mod_name&action=start&page=status'><b>start</b></a>"; 
+						echo " | <a href='modules/$mod_name/'><b>edit</b></a><br/>"; 
+					}
+				$mod_panel = "";
+				$mod_alias = "";
+				}
+				echo "</td>";
+			echo "</tr>";
+			}
+		
+			$mod_installed[$i] = $mod_name;
+		}
+	}
     ?>
     </table>
 

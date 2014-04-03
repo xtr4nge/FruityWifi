@@ -171,6 +171,8 @@ else if ($operation == "serviceAction")
 		echo json_encode($dump);
 	}
 
+	/*
+
 	if ($service == "mod_ngrep") {
 		//Return results (array)
 		moduleAction($client, $service, $action);
@@ -219,6 +221,21 @@ else if ($operation == "serviceAction")
 		//Return results (array)
 		moduleAction($client, $service, $action);
 		echo json_encode($dump);
+	}
+
+	*/
+
+	exec("find ../modules -name '_info_.php'",$output);
+
+	for ($i=0; $i < count($output); $i++) {
+		include $output[$i];
+
+		if ($service == "mod_$mod_name") {
+			//Return results (array)
+			moduleAction($client, $service, $action);
+			echo json_encode($dump);
+		}
+		
 	}
 
 }

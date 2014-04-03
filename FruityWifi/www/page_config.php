@@ -244,7 +244,7 @@ $ifaces = explode("|", $ifaces);
     
     <form action="scripts/config_iface.php" method="post" style="margin:0px">
     Supplicant 
-    <select class="input" onchange="this.form.submit()" name="iface_supplicant">
+    <select class="input" onchange="this.form.submit()" name="iface_supplicant" <? if (!file_exists("modules/nmcli/includes/nmcli")) echo "disabled" ?> >
         <option>-</option>
         <?
         for ($i = 0; $i < count($ifaces); $i++) {
@@ -256,6 +256,23 @@ $ifaces = explode("|", $ifaces);
         ?>
     </select>
     <img src="img/help-browser.png" title="Use this interface to connect internet through wireless" width=14>
+    <?
+		//$network_manager_installed = exec("/usr/sbin/NetworkManager --version");
+		//$network_manager_loaded = exec("/usr/sbin/NetworkManager --version");
+		$exec = "/usr/share/FruityWifi/www/modules/nmcli/includes/nmcli -n d | grep -iEe '^$iface_supplicant.+ connected'";
+        $network_manager_isup = exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+		
+		if (file_exists("modules/nmcli/includes/nmcli")) {
+			if ($network_manager_isup == "") {
+				echo "<b><a href='modules/nmcli/includes/module_action.php?service=nmcli&action=start&page=config'>start</a></b> [<font color='red'>disconnected</font>]";
+			} else {
+				echo "<b><a href='modules/nmcli/includes/module_action.php?service=nmcli&action=stop&page=config'>stop</a></b>&nbsp; [<font color='lime'>connected</font>]";
+			}
+		} else {
+			echo "<font color='white'>*[ <a href='page_modules.php'><font color='red'>install</font></a> <b>nmcli</b> module ]</font>";
+		}
+        //echo "(kismet, mdk3, etc)";
+    ?> 
     <input type="hidden" name="iface" value="wifi_supplicant">
     </form>
 </div>
@@ -294,13 +311,6 @@ $ifaces = explode("|", $ifaces);
 
 <?
 /*
-if ($newdata != "") { $newdata = ereg_replace(13,  "", $newdata);
-    $fw = fopen($filename, 'w') or die('Could not open file.');
-    $fb = fwrite($fw,stripslashes($newdata)) or die('Could not write to file');
-    fclose($fw);
-    $fileMessage = $strings["config-updated"]." " . "/usr/share/FruityWifi/conf/" . $filename . "<br /><br />";
-} 
-*/
 if ($newdata != "") { 
     //$newdata = ereg_replace(13,  "", $newdata);
     $exec = "/bin/echo '$newdata' > /usr/share/FruityWifi/conf/spoofhost.conf";
@@ -312,8 +322,9 @@ $filename = "/usr/share/FruityWifi/conf/spoofhost.conf";
 $fh = fopen($filename, "r") or die("Could not open file.");
 $data = fread($fh, filesize($filename)) or die("Could not read file.");
 fclose($fh);
+*/
 ?>
-
+<!--
 <div class="rounded-top" align="center"> DNS Spoof Config </div>
 <div class="rounded-bottom">
     <form action="<?=$_SERVER[php_self]?> " method="POST" autocomplete="off">
@@ -325,7 +336,7 @@ fclose($fh);
 </div>
 
 <br>
-
+-->
 <div class="rounded-top" align="center"> Password </div>
 <div class="rounded-bottom">
 	<form action="<?=$_SERVER[php_self]?> " method="POST" autocomplete="off">

@@ -1,6 +1,6 @@
 <? 
 /*
-	Copyright (C) 2013  xtr4nge [_AT_] gmail.com
+	Copyright (C) 2013-2014  xtr4nge [_AT_] gmail.com
 
 	This program is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -18,67 +18,37 @@
 ?>
 <? include "menu.php" ?>
 <? include "login_check.php"; ?>
-<?php
-$filename = "logs/urlsnarf.log";
 
-$fh = fopen($filename, "r"); //or die("Could not open file.");
-$data = fread($fh, filesize($filename)); //or die("Could not read file.");
-fclose($fh);
-$data_array = explode("\n", $data);
-$data = implode("\n",array_reverse($data_array));
+<?
+
+function showLog($filename, $path) {
+
+	//$filename = "logs/dnsmasq.log";
+	//$filename = $path;
+
+	$fh = fopen($path, "r"); // or die("Could not open file.");
+	if(filesize($path)) {
+		$data = fread($fh, filesize($path)); // or die("Could not read file.");
+		fclose($fh);
+		$data_array = explode("\n", $data);
+		$data = implode("\n",array_reverse($data_array));
+
+		$data = htmlspecialchars($data);
+	}
+	echo "
+		<br>
+		<div class='rounded-top' align='left'> &nbsp; <b>$filename</b> </div>
+		<textarea name='newdata' rows='10' cols='100' class='module-content' style='font-family: courier; overflow: auto; height:200px;'>$data</textarea>
+		<br>
+	";
+}
+
+$logs_path = "/usr/share/FruityWifi/logs/";
+$logs = glob($logs_path.'*');
+
+for ($i = 0; $i < count($logs); $i++) {
+	$filename = str_replace($logs_path,"",$logs[$i]);
+	//echo "$filename<br>";
+	if ($filename != "install.txt") showLog($filename, $logs[$i]);
+}
 ?>
-
-<br>
-URLSnarf Log
-<br>
-<textarea name='newdata' class="input" rows='10' cols='100'><?=htmlspecialchars($data)?></textarea>
-<br>
-
-
-<?php
-$filename = "logs/dnsspoof.log";
-
-$fh = fopen($filename, "r"); // or die("Could not open file.");
-$data = fread($fh, filesize($filename)); // or die("Could not read file.");
-fclose($fh);
-$data_array = explode("\n", $data);
-$data = implode("\n",array_reverse($data_array));
-?>
-
-<br>
-DNS Spoof Log
-<br>
-<textarea name='newdata' class="input" rows='10' cols='100'><?=htmlspecialchars($data)?></textarea>
-<br>
-
-<?php
-$filename = "logs/dnsmasq.log";
-
-$fh = fopen($filename, "r"); // or die("Could not open file.");
-$data = fread($fh, filesize($filename)); // or die("Could not read file.");
-fclose($fh);
-$data_array = explode("\n", $data);
-$data = implode("\n",array_reverse($data_array));
-?>
-
-<br>
-DNSmasq Log
-<br>
-<textarea name='newdata' class="input" rows='10' cols='100'><?=htmlspecialchars($data)?></textarea>
-<br>
-
-<?php
-$filename = "logs/sslstrip.log";
-
-$fh = fopen($filename, "r"); //or die("Could not open file.");
-$data = fread($fh, filesize($filename)); //or die("Could not read file.");
-fclose($fh);
-$data_array = explode("\n", $data);
-$data = implode("\n",array_reverse($data_array));
-?>
-
-<br>
-sslstrip Log
-<br>
-<textarea name='newdata' class="input" rows='10' cols='100'><?=htmlspecialchars($data)?></textarea>
-<br>

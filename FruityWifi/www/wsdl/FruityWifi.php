@@ -161,6 +161,7 @@ function moduleAction($module, $action) {
 	
 	GLOBAL $global_webserver;
 	
+	/*
 	if ($module == "mod_ngrep") {
 		$url = "$global_webserver/modules/ngrep/includes/module_action.php?service=ngrep&action=$action&page=status";
 		execCurl($url);
@@ -223,7 +224,25 @@ function moduleAction($module, $action) {
 	
     } else {
         return "No modules listed under that name";
-    }
+	}
+
+	*/
+
+	exec("find ../modules -name '_info_.php'",$output);
+
+	for ($i=0; $i < count($output); $i++) {
+		include $output[$i];
+		//$module_path = str_replace("_info_.php","",$output[$i]);
+		//echo "<a href='$module_path'>$mod_name.$mod_version</a><br>";
+		
+		if ($module == "mod_$mod_name") {
+			$url = "$global_webserver/modules/$mod_name/includes/module_action.php?service=$mod_name&action=$action&page=status";
+			execCurl($url);
+			return join(",", array(strtoupper($mod_name).":$action"));
+		}
+		
+	}
+
 }
 
 function getAllInterfaces() {
@@ -366,6 +385,8 @@ function getModules() {
 
 function getStatus($v_service) {
 	
+	include "../config/config.php";
+	
 	if ($v_service == "s_wireless") {
 		$status = exec("ps auxww | grep hostapd | grep -v -e grep");
 		if ($status != "")
@@ -392,7 +413,9 @@ function getStatus($v_service) {
 		else
 			return "N";
 		
-	} else if ($v_service == "mod_ngrep") {
+	}
+	/*
+	else if ($v_service == "mod_ngrep") {
 		include "../modules/ngrep/_info_.php";
 		$status = exec($mod_isup);
 		if ($status != "")
@@ -478,6 +501,26 @@ function getStatus($v_service) {
 			return "N";
 	} else {
 		return "No modules listed under that name";
+	}
+
+	*/
+	
+	exec("find ../modules -name '_info_.php'",$output);
+
+	for ($i=0; $i < count($output); $i++) {
+		include $output[$i];
+		//$module_path = str_replace("_info_.php","",$output[$i]);
+		//echo "<a href='$module_path'>$mod_name.$mod_version</a><br>";
+	
+		if ($v_service == "mod_$mod_name") {
+			include "../modules/$mod_name/_info_.php";
+			$status = exec($mod_isup);
+			if ($status != "")
+			return "Y";
+		else
+			return "N";
+		}
+		
 	}
 
 }

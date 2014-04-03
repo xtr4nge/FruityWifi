@@ -51,8 +51,8 @@ if($service == "supplicant") {
 
         $exec = "/sbin/ifconfig $iface_supplicant down";
         exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
-        $exec = "/usr/bin/macchanger -A $iface_supplicant";
-        system("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+        #$exec = "/usr/bin/macchanger -A $iface_supplicant";
+        #system("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
         $exec = "/sbin/ifconfig $iface_supplicant up";
         exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
 

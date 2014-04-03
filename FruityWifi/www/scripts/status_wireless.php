@@ -35,6 +35,9 @@ if ($regex == 1) {
 $service = $_GET['service'];
 $action = $_GET['action'];
 
+$bin_danger = "/usr/share/FruityWifi/bin/danger";
+$bin_killall = "/usr/bin/killall";
+
 #sed -i 's/interface=.*/interface=wlan0/g' /usr/share/FruityWifi/conf/dnsmasq.conf
 
 if($service == "wireless") {
@@ -43,82 +46,134 @@ if($service == "wireless") {
         //$internet_interface="eth0";
         //$ap_interface="wlan0";
 
-        $exec = "/usr/bin/killall karma-hostapd";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
-        $exec = "/bin/rm /var/run/hostapd-phy0/$iface_wifi";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+		//Verifies if karma-hostapd is installed
+		/*
+		if (file_exists("/usr/sbin/karma-hostapd")) {
+			$exec = "$bin_killall karma-hostapd";
+		} else {
+			$exec = "$bin_killall hostapd";			
+		}
+		*/
+		if (file_exists("/usr/share/FruityWifi/www/modules/karma/includes/hostapd")) {
+			$exec = "$bin_killall hostapd";
+		} else {
+			$exec = "$bin_killall hostapd";			
+		}
+		exec("$bin_danger \"" . $exec . "\"" );
 
-        $exec = "/usr/bin/killall dnsmasq";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+        #$exec = "$bin_killall karma-hostapd";
+        #exec("$bin_danger \"" . $exec . "\"" );
+        $exec = "/bin/rm /var/run/hostapd-phy0/$iface_wifi";
+        exec("$bin_danger \"" . $exec . "\"" );
+
+        $exec = "$bin_killall dnsmasq";
+        exec("$bin_danger \"" . $exec . "\"" );
 
         $exec = "/sbin/ifconfig $iface_wifi up";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+        exec("$bin_danger \"" . $exec . "\"" );
         $exec = "/sbin/ifconfig $iface_wifi up 10.0.0.1 netmask 255.255.255.0";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+        exec("$bin_danger \"" . $exec . "\"" );
 
         //$exec = "/etc/init.d/dnsmasq restart";
         $exec = "/usr/sbin/dnsmasq -C /usr/share/FruityWifi/conf/dnsmasq.conf";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
-        
-        if ($hostapd_secure == 1) {
-            $exec = "/usr/sbin/karma-hostapd -P /var/run/hostapd-phy0 -B /usr/share/FruityWifi/conf/hostapd-secure.conf";
-            #$exec = "/usr/sbin/karma-hostapd -P /var/run/hostapd-phy0 -B /etc/hostapd/wifi-secure.conf -f /var/log/karma-hostapd.log -d";
+        exec("$bin_danger \"" . $exec . "\"" );
+	
+		//Verifies if karma-hostapd is installed
+		if ($hostapd_secure == 1) {
+			/*
+			if (file_exists("/usr/sbin/karma-hostapd")) {
+				$exec = "/usr/sbin/karma-hostapd -P /var/run/hostapd-phy0 -B /usr/share/FruityWifi/conf/hostapd-secure.conf";
+			} else {
+				$exec = "/usr/sbin/hostapd -P /var/run/hostapd-phy0 -B /usr/share/FruityWifi/conf/hostapd-secure.conf";
+			}
+			*/
+			if (file_exists("/usr/share/FruityWifi/www/modules/karma/includes/hostapd")) {
+				$exec = "/usr/share/FruityWifi/www/modules/karma/includes/hostapd -P /var/run/hostapd-phy0 -B /usr/share/FruityWifi/conf/hostapd-secure.conf";
+			} else {
+				$exec = "/usr/sbin/hostapd -P /var/run/hostapd-phy0 -B /usr/share/FruityWifi/conf/hostapd-secure.conf";
+			}
+			
         } else {
-            $exec = "/usr/sbin/karma-hostapd -P /var/run/hostapd-phy0 -B /usr/share/FruityWifi/conf/hostapd.conf";
-            #$exec = "/usr/sbin/karma-hostapd -P /var/run/hostapd-phy0 -B /etc/hostapd/pineapple.conf -f /var/log/karma-hostapd.log -d";
+			/*
+			if (file_exists("/usr/sbin/karma-hostapd")) {
+				$exec = "/usr/sbin/karma-hostapd -P /var/run/hostapd-phy0 -B /usr/share/FruityWifi/conf/hostapd.conf";
+			} else {
+				$exec = "/usr/sbin/hostapd -P /var/run/hostapd-phy0 -B /usr/share/FruityWifi/conf/hostapd.conf";
+			}
+			*/
+			if (file_exists("/usr/share/FruityWifi/www/modules/karma/includes/hostapd")) {
+				$exec = "/usr/share/FruityWifi/www/modules/karma/includes/hostapd -P /var/run/hostapd-phy0 -B /usr/share/FruityWifi/conf/hostapd.conf";
+			} else {
+				$exec = "/usr/sbin/hostapd -P /var/run/hostapd-phy0 -B /usr/share/FruityWifi/conf/hostapd.conf";
+			}
         }
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+        exec("$bin_danger \"" . $exec . "\"" );
 
         $exec = "/sbin/iptables -F";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+        exec("$bin_danger \"" . $exec . "\"" );
         $exec = "/sbin/iptables -t nat -F";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+        exec("$bin_danger \"" . $exec . "\"" );
         $exec = "/sbin/iptables -t mangle -F";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+        exec("$bin_danger \"" . $exec . "\"" );
         $exec = "/sbin/iptables -X";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+        exec("$bin_danger \"" . $exec . "\"" );
         $exec = "/sbin/iptables -t nat -X";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+        exec("$bin_danger \"" . $exec . "\"" );
         $exec = "/sbin/iptables -t mangle -X";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+        exec("$bin_danger \"" . $exec . "\"" );
 
         $exec = "/bin/echo 1 > /proc/sys/net/ipv4/ip_forward";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+        exec("$bin_danger \"" . $exec . "\"" );
         $exec = "/sbin/iptables -t nat -A POSTROUTING -o $iface_internet -j MASQUERADE";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+        exec("$bin_danger \"" . $exec . "\"" );
         
         // CLEAN DHCP log
         $exec = "echo '' > /usr/share/FruityWifi/logs/dhcp.leases";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+        exec("$bin_danger \"" . $exec . "\"" );
 
     } else if($action == "stop") {
 
-        $exec = "/usr/bin/killall karma-hostapd";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
-        $exec = "/bin/rm /var/run/hostapd-phy0/$iface_wifi";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+		//Verifies if karma-hostapd is installed
+		/*
+		if (file_exists("/usr/sbin/karma-hostapd")) {
+			$exec = "$bin_killall karma-hostapd";
+		} else {
+			$exec = "$bin_killall hostapd";			
+		}
+		*/
+		if (file_exists("/usr/share/FruityWifi/www/modules/karma/includes/hostapd")) {
+			$exec = "$bin_killall hostapd";
+		} else {
+			$exec = "$bin_killall hostapd";			
+		}	
+		exec("$bin_danger \"" . $exec . "\"" );
 
-        $exec = "/usr/bin/killall dnsmasq";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+        #$exec = "$bin_killall karma-hostapd";
+        #exec("$bin_danger \"" . $exec . "\"" );
+        $exec = "/bin/rm /var/run/hostapd-phy0/$iface_wifi";
+        exec("$bin_danger \"" . $exec . "\"" );
+
+        $exec = "$bin_killall dnsmasq";
+        exec("$bin_danger \"" . $exec . "\"" );
 
         $exec = "ip addr flush dev $iface_wifi";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+        exec("$bin_danger \"" . $exec . "\"" );
         
         $exec = "/sbin/ifconfig $iface_wifi down";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+        exec("$bin_danger \"" . $exec . "\"" );
 
         $exec = "/sbin/iptables -F";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+        exec("$bin_danger \"" . $exec . "\"" );
         $exec = "/sbin/iptables -t nat -F";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+        exec("$bin_danger \"" . $exec . "\"" );
         $exec = "/sbin/iptables -t mangle -F";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+        exec("$bin_danger \"" . $exec . "\"" );
         $exec = "/sbin/iptables -X";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+        exec("$bin_danger \"" . $exec . "\"" );
         $exec = "/sbin/iptables -t nat -X";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+        exec("$bin_danger \"" . $exec . "\"" );
         $exec = "/sbin/iptables -t mangle -X";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+        exec("$bin_danger \"" . $exec . "\"" );
 
     }
 }

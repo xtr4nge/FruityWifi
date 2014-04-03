@@ -22,7 +22,7 @@
 
 <?
 // ------------- External Modules --------------
-exec("find ./modules -name '_info_.php'",$output);
+exec("find ./modules -name '_info_.php' | sort",$output);
 //print count($output);
 if (count($output) > 0) {
 ?>

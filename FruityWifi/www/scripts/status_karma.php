@@ -32,10 +32,12 @@ $action = $_GET['action'];
 
 if($service == "karma") {
     if ($action == "start") {
-        $exec = "/usr/sbin/karma-hostapd_cli -p /var/run/hostapd-phy0 karma_enable";
+        //$exec = "/usr/sbin/karma-hostapd_cli -p /var/run/hostapd-phy0 karma_enable";
+		$exec = "./karma-hostapd_cli -p /var/run/hostapd-phy0 karma_enable";
         exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
     } else if($action == "stop") {
-        $exec = "/usr/sbin/karma-hostapd_cli -p /var/run/hostapd-phy0 karma_disable";
+        //$exec = "/usr/sbin/karma-hostapd_cli -p /var/run/hostapd-phy0 karma_disable";
+		$exec = "./hostapd_cli -p /var/run/hostapd-phy0 karma_disable";
         exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
     }
 }
