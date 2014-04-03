@@ -17,6 +17,7 @@ v1.9
 - WSDL has been updated
 - Hostapd/Karma has been removed from installer (replaced by Karma module)
 - NetworkManager has been removed from installer (replaced by nmcli module)
+- install-modules.py has been added (install all modules from console)
 
 
 v1.8
