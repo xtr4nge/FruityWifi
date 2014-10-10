@@ -6,7 +6,7 @@
 	<author>xtr4nge</author>
 	<description>nmap interface</description>
 	<url>module_nmap</url>
-	<required>1.7</required>
+	<required>2.0</required>
     </module>
     <module>
         <name>sslstrip</name>
@@ -14,7 +14,7 @@
 	<author>xtr4nge</author>
 	<description>sslstrip interface</description>
 	<url>module_sslstrip</url>
-	<required>1.7</required>
+	<required>2.0</required>
     </module>
     <module>
         <name>dnsspoof</name>
@@ -22,7 +22,7 @@
 	<author>xtr4nge</author>
 	<description>dnsspoof interface</description>
 	<url>module_dnsspoof</url>
-	<required>1.7</required>
+	<required>2.0</required>
     </module>
     <module>
         <name>urlsnarf</name>
@@ -30,7 +30,7 @@
 	<author>xtr4nge</author>
 	<description>urlsnarf interface</description>
 	<url>module_urlsnarf</url>
-	<required>1.7</required>
+	<required>2.0</required>
     </module>
     <module>
         <name>mdk3</name>
@@ -38,7 +38,7 @@
 	<author>xtr4nge</author>
 	<description>mdk3 interface</description>
 	<url>module_mdk3</url>
-	<required>1.7</required>
+	<required>2.0</required>
     </module>
     <module>
         <name>ngrep</name>
@@ -46,7 +46,7 @@
 	<author>xtr4nge</author>
 	<description>ngrep interface</description>
 	<url>module_ngrep</url>
-	<required>1.7</required>
+	<required>2.0</required>
     </module>
     <module>
         <name>captive</name>
@@ -54,7 +54,7 @@
 	<author>xtr4nge</author>
 	<description>captive portal</description>
 	<url>module_captive</url>
-	<required>1.7</required>
+	<required>2.0</required>
     </module>
     <module>
         <name>squid3</name>
@@ -62,7 +62,7 @@
 	<author>xtr4nge</author>
 	<description>squid3 interface</description>
 	<url>module_squid3</url>
-	<required>1.7</required>
+	<required>2.0</required>
     </module>
     <module>
         <name>kismet</name>
@@ -70,7 +70,7 @@
 	<author>xtr4nge</author>
 	<description>kismet interface</description>
 	<url>module_kismet</url>
-	<required>1.7</required>
+	<required>2.0</required>
     </module>
     <module>
         <name>responder</name>
@@ -78,7 +78,7 @@
 	<author>xtr4nge</author>
 	<description>Responder interface</description>
 	<url>module_responder</url>
-	<required>1.7</required>
+	<required>2.0</required>
     </module>
     <module>
         <name>autostart</name>
@@ -86,7 +86,7 @@
 	<author>xtr4nge</author>
 	<description>Autostart interface</description>
 	<url>module_autostart</url>
-	<required>1.7</required>
+	<required>2.0</required>
     </module>
     <module>
         <name>rpitwit</name>
@@ -94,7 +94,7 @@
 	<author>xtr4nge</author>
 	<description>RPItwit interface</description>
 	<url>module_rpitwit</url>
-	<required>1.8</required>
+	<required>2.0</required>
     </module>
     <module>
         <name>whatsapp</name>
@@ -102,7 +102,7 @@
 	<author>xtr4nge</author>
 	<description>Whatsapp interface</description>
 	<url>module_whatsapp</url>
-	<required>1.8</required>
+	<required>2.0</required>
     </module>
     <module>
         <name>karma</name>
@@ -110,7 +110,7 @@
 	<author>xtr4nge</author>
 	<description>Karma interface</description>
 	<url>module_karma</url>
-	<required>1.8</required>
+	<required>2.0</required>
     </module>
     <module>
         <name>nmcli</name>
@@ -118,6 +118,6 @@
 	<author>xtr4nge</author>
 	<description>nmcli interface</description>
 	<url>module_nmcli</url>
-	<required>1.8</required>
+	<required>2.0</required>
     </module>
 </FruityWifi>
