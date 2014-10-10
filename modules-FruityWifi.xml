@@ -144,4 +144,20 @@
 	<url>module_meterpreter</url>
 	<required>2.0</required>
     </module>
+    <module>
+        <name>ettercap</name>
+        <version>1.0</version>
+	<author>xtr4nge</author>
+	<description>ettercap interface</description>
+	<url>module_ettercap</url>
+	<required>2.0</required>
+    </module>
+    <module>
+        <name>tcpdump</name>
+        <version>1.0</version>
+	<author>xtr4nge</author>
+	<description>tcpdump interface</description>
+	<url>module_tcpdump</url>
+	<required>2.0</required>
+    </module>
 </FruityWifi>
