@@ -136,4 +136,12 @@
 	<url>module_supplicant</url>
 	<required>2.0</required>
     </module>
+    <module>
+        <name>meterpreter</name>
+        <version>1.0</version>
+	<author>xtr4nge</author>
+	<description>meterpreter interface</description>
+	<url>module_meterpreter</url>
+	<required>2.0</required>
+    </module>
 </FruityWifi>
