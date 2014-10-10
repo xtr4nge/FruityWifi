@@ -15,6 +15,8 @@ v2.0 (alpha)
 - It is possible to use FruityWifi combining multiple networks and setups.
 - Supplicant mode has been added as a module.
 - 3G/4G Broadband Mobile has been added as a module.
+- FruityWifi HTTP webinterface on port 8000
+- FruityWifi HTTPS webinterface on port 8443
 
 
 v1.9
