@@ -30,6 +30,7 @@ else
     echo
 fi
 
+echo
 
 if [ ! -f "/usr/sbin/dnsmasq" ]
 then
@@ -49,6 +50,7 @@ else
     echo
 fi
 
+echo
 
 if [ ! -f "/usr/sbin/hostapd" ]
 then
@@ -68,6 +70,7 @@ else
     echo
 fi
 
+echo
 
 if [ ! -f "/usr/sbin/airmon-ng" ] &&  [ ! -f "/usr/local/sbin/airmon-ng" ]
 then
@@ -93,6 +96,7 @@ else
     echo
 fi
 
+echo
 
 if [ ! -f "/usr/sbin/nginx" ]
 then
@@ -127,6 +131,7 @@ else
     echo
 fi
 
+echo
 
 #if [ ! -f "/usr/sbin/apache2" ]
 #then
@@ -149,6 +154,7 @@ fi
 echo "--------------------------------"
 echo "Setup: WWW"
 echo "--------------------------------"
+mkdir /var/www
 cmd=`date +"%Y-%m-%d-%k-%M-%S"`
 cd ../
 mv /usr/share/FruityWifi FruityWifi.BAK.$cmd
@@ -171,6 +177,7 @@ cd /usr/share/FruityWifi/bin/
 gcc danger.c -o danger
 chmod 4755 danger
 
+echo
 
 # START/STOP SERVICES
 echo "--------------------------------"
@@ -187,6 +194,8 @@ update-rc.d -f apache2 remove
 
 
 apt-get -y remove ifplugd
+
+echo
 
 echo "ENJOY!"
 echo ""
