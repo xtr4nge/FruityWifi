@@ -114,7 +114,7 @@
     </module>
     <module>
         <name>nmcli</name>
-        <version>1.0</version>
+        <version>1.1</version>
 	<author>xtr4nge</author>
 	<description>nmcli interface</description>
 	<url>module_nmcli</url>
