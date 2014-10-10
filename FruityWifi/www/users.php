@@ -19,5 +19,5 @@
 <?
 //admin:admin (reset value: 21232f297a57a5a743894a0e4a801fc3)
 //$users["admin"] = "e0af4165b46fb55924f5f9d43ac35f7c"; //test.123456
-$users["admin"]="d60eda85e354e3d7004f2759d9aa116f"; //admin (reset: 21232f297a57a5a743894a0e4a801fc3)
+$users["admin"]="21232f297a57a5a743894a0e4a801fc3"; //admin (reset: 21232f297a57a5a743894a0e4a801fc3)
 ?>
