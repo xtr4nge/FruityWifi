@@ -118,6 +118,7 @@ then
     rm /etc/nginx/sites-enabled/default
     cp nginx-setup/FruityWifi /etc/nginx/sites-enabled/
     cp nginx-setup/fpm/*.conf /etc/php5/fpm/pool.d/
+    echo "." >> /var/www/index.php
 
     /etc/init.d/apache2 stop
     /etc/init.d/nginx restart
