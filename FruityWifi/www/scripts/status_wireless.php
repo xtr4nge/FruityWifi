@@ -1,19 +1,19 @@
 <? 
 /*
-	Copyright (C) 2013  xtr4nge [_AT_] gmail.com
+    Copyright (C) 2013-2014  xtr4nge [_AT_] gmail.com
 
-	This program is free software: you can redistribute it and/or modify
-	it under the terms of the GNU General Public License as published by
-	the Free Software Foundation, either version 3 of the License, or
-	(at your option) any later version.
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
 
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
 
-	You should have received a copy of the GNU General Public License
-	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */ 
 ?>
 <?
@@ -25,12 +25,12 @@ include "../functions.php";
 if ($regex == 1) {
     regex_standard($_GET["service"], "../msg.php", $regex_extra);
     regex_standard($_GET["action"], "../msg.php", $regex_extra);
-    regex_standard($iface_wifi, "../msg.php", $regex_extra);
-    regex_standard($iface_internet, "../msg.php", $regex_extra);
+    regex_standard($io_in_iface, "../msg.php", $regex_extra);
+    regex_standard($io_out_iface, "../msg.php", $regex_extra);
 }
 
-#echo $iface_internet;
-#echo $iface_wifi;
+#echo $io_out_iface;
+#echo $io_in_iface;
 
 $service = $_GET['service'];
 $action = $_GET['action'];
@@ -40,7 +40,7 @@ $bin_killall = "/usr/bin/killall";
 
 #sed -i 's/interface=.*/interface=wlan0/g' /usr/share/FruityWifi/conf/dnsmasq.conf
 
-if($service == "wireless") {
+if($service == "wireless"  and $ap_mode == "1") {
     if ($action == "start") {
 
         //$internet_interface="eth0";
@@ -63,18 +63,18 @@ if($service == "wireless") {
 
         #$exec = "$bin_killall karma-hostapd";
         #exec("$bin_danger \"" . $exec . "\"" );
-        $exec = "/bin/rm /var/run/hostapd-phy0/$iface_wifi";
+        $exec = "/bin/rm /var/run/hostapd-phy0/$io_in_iface";
         exec("$bin_danger \"" . $exec . "\"" );
 
         $exec = "$bin_killall dnsmasq";
         exec("$bin_danger \"" . $exec . "\"" );
 
-        $exec = "/sbin/ifconfig $iface_wifi up";
+        $exec = "/sbin/ifconfig $io_in_iface up";
         exec("$bin_danger \"" . $exec . "\"" );
-        $exec = "/sbin/ifconfig $iface_wifi up 10.0.0.1 netmask 255.255.255.0";
+        $exec = "/sbin/ifconfig $io_in_iface up $io_in_ip netmask 255.255.255.0";
         exec("$bin_danger \"" . $exec . "\"" );
 
-        $exec = "echo 'nameserver 10.0.0.1\nnameserver 8.8.8.8' > /etc/resolv.conf ";
+        $exec = "echo 'nameserver $io_in_ip\nnameserver 8.8.8.8' > /etc/resolv.conf ";
         exec("$bin_danger \"" . $exec . "\"" );
 
         //$exec = "/etc/init.d/dnsmasq restart";
@@ -127,7 +127,7 @@ if($service == "wireless") {
 
         $exec = "/bin/echo 1 > /proc/sys/net/ipv4/ip_forward";
         exec("$bin_danger \"" . $exec . "\"" );
-        $exec = "/sbin/iptables -t nat -A POSTROUTING -o $iface_internet -j MASQUERADE";
+        $exec = "/sbin/iptables -t nat -A POSTROUTING -o $io_out_iface -j MASQUERADE";
         exec("$bin_danger \"" . $exec . "\"" );
         
         // CLEAN DHCP log
@@ -153,16 +153,114 @@ if($service == "wireless") {
 
         #$exec = "$bin_killall karma-hostapd";
         #exec("$bin_danger \"" . $exec . "\"" );
-        $exec = "/bin/rm /var/run/hostapd-phy0/$iface_wifi";
+        $exec = "/bin/rm /var/run/hostapd-phy0/$io_in_iface";
         exec("$bin_danger \"" . $exec . "\"" );
 
         $exec = "$bin_killall dnsmasq";
         exec("$bin_danger \"" . $exec . "\"" );
 
-        $exec = "ip addr flush dev $iface_wifi";
+        $exec = "ip addr flush dev $io_in_iface";
         exec("$bin_danger \"" . $exec . "\"" );
         
-        $exec = "/sbin/ifconfig $iface_wifi down";
+        $exec = "/sbin/ifconfig $io_in_iface down";
+        exec("$bin_danger \"" . $exec . "\"" );
+
+        $exec = "/sbin/iptables -F";
+        exec("$bin_danger \"" . $exec . "\"" );
+        $exec = "/sbin/iptables -t nat -F";
+        exec("$bin_danger \"" . $exec . "\"" );
+        $exec = "/sbin/iptables -t mangle -F";
+        exec("$bin_danger \"" . $exec . "\"" );
+        $exec = "/sbin/iptables -X";
+        exec("$bin_danger \"" . $exec . "\"" );
+        $exec = "/sbin/iptables -t nat -X";
+        exec("$bin_danger \"" . $exec . "\"" );
+        $exec = "/sbin/iptables -t mangle -X";
+        exec("$bin_danger \"" . $exec . "\"" );
+
+    }
+}
+
+if($service == "wireless" and $ap_mode == "2") { // AIRCRACK (airbase-ng)
+    if ($action == "start") {
+
+		$exec = "sudo /usr/sbin/airmon-ng stop mon0";
+		exec("$bin_danger \"" . $exec . "\"" );
+
+		$exec = "$bin_killall airbase-ng";
+		exec("$bin_danger \"" . $exec . "\"" );
+
+        $exec = "$bin_killall dnsmasq";
+        exec("$bin_danger \"" . $exec . "\"" );
+
+		/*
+        $exec = "/sbin/ifconfig $io_in_iface up";
+        exec("$bin_danger \"" . $exec . "\"" );
+        $exec = "/sbin/ifconfig $io_in_iface up $io_in_ip netmask 255.255.255.0";
+        exec("$bin_danger \"" . $exec . "\"" );
+		*/
+		
+		$exec = "echo 'nameserver $io_in_ip\nnameserver 8.8.8.8' > /etc/resolv.conf ";
+        exec("$bin_danger \"" . $exec . "\"" );
+		
+		$exec = "sudo /usr/sbin/airmon-ng start $io_in_iface";
+		exec("$bin_danger \"" . $exec . "\"" );
+		
+		//$exec = "/usr/sbin/airbase-ng -e $hostapd_ssid -c 2 mon0 > /dev/null &"; //-P (all)
+		$exec = "/usr/sbin/airbase-ng -e $hostapd_ssid -c 2 mon0 > /tmp/airbase.log &"; //-P (all)
+        exec("$bin_danger \"" . $exec . "\"" );
+
+		//$exec = "/sbin/ifconfig at0 up 10.0.0.1 netmask 255.255.255.0";
+        //exec("$bin_danger \"" . $exec . "\"" );
+
+		$exec = "sleep 1";
+        exec("$bin_danger \"" . $exec . "\"" );
+
+        $exec = "/sbin/ifconfig at0 up";
+        exec("$bin_danger \"" . $exec . "\"" );
+        $exec = "/sbin/ifconfig at0 up $io_in_ip netmask 255.255.255.0";
+        exec("$bin_danger \"" . $exec . "\"" );
+
+        $exec = "/usr/sbin/dnsmasq -C /usr/share/FruityWifi/conf/dnsmasq.conf";
+        exec("$bin_danger \"" . $exec . "\"" );
+
+        $exec = "/sbin/iptables -F";
+        exec("$bin_danger \"" . $exec . "\"" );
+        $exec = "/sbin/iptables -t nat -F";
+        exec("$bin_danger \"" . $exec . "\"" );
+        $exec = "/sbin/iptables -t mangle -F";
+        exec("$bin_danger \"" . $exec . "\"" );
+        $exec = "/sbin/iptables -X";
+        exec("$bin_danger \"" . $exec . "\"" );
+        $exec = "/sbin/iptables -t nat -X";
+        exec("$bin_danger \"" . $exec . "\"" );
+        $exec = "/sbin/iptables -t mangle -X";
+        exec("$bin_danger \"" . $exec . "\"" );
+
+        $exec = "/bin/echo 1 > /proc/sys/net/ipv4/ip_forward";
+        exec("$bin_danger \"" . $exec . "\"" );
+        $exec = "/sbin/iptables -t nat -A POSTROUTING -o $io_out_iface -j MASQUERADE";
+        exec("$bin_danger \"" . $exec . "\"" );
+        
+        // CLEAN DHCP log
+        $exec = "echo '' > /usr/share/FruityWifi/logs/dhcp.leases";
+        exec("$bin_danger \"" . $exec . "\"" );
+
+    } else if($action == "stop") {
+
+		$exec = "$bin_killall airbase-ng";
+		exec("$bin_danger \"" . $exec . "\"" );
+
+        $exec = "$bin_killall dnsmasq";
+        exec("$bin_danger \"" . $exec . "\"" );
+
+		$exec = "sudo /usr/sbin/airmon-ng stop mon0";
+		exec("$bin_danger \"" . $exec . "\"" );
+
+        $exec = "ip addr flush dev at0";
+        exec("$bin_danger \"" . $exec . "\"" );
+        
+        $exec = "/sbin/ifconfig at0 down";
         exec("$bin_danger \"" . $exec . "\"" );
 
         $exec = "/sbin/iptables -F";

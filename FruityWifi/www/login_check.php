@@ -20,6 +20,6 @@
 session_start();
 //echo $_SESSION["user_id"];
 if (!isset($_SESSION["user_id"])) {
-    header('Location: logout.php');
+    header('Location: /logout.php');
 }
 ?>

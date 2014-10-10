@@ -26,7 +26,7 @@ if ($regex == 1) {
     regex_standard($_GET["service"], "../msg.php", $regex_extra);
     regex_standard($_GET["action"], "../msg.php", $regex_extra);
     regex_standard($_GET["page"], "../msg.php", $regex_extra);
-    regex_standard($iface_wifi, "../msg.php", $regex_extra);
+    regex_standard($io_in_iface, "../msg.php", $regex_extra);
 }
 
 $service = $_GET['service'];

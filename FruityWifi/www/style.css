@@ -1,61 +1,106 @@
-body, table, tr, td {
-    background-color:#000000;
-    color: #FFFFFF;
+body {
+    background-color:#FCFCFC; /*#EFEFEF*/
+    color: #000;
+    font-family: monospace, courier;
+    font-size: 12px;
+    margin: 0px 0px;
+}
+
+table, tr, td {
     font-family: monospace, courier;
     font-size: 12px;
 }
 
-a {color: white;}
+/* a {color: white;} /* white */
+a {color: #000;} /* white */
 
 .menu {
     font-family: monospace, courier;
     font-size: 12px;
     f-loat: left;
     display:inline;
+    color: white;
+}
+
+.menu-bc {
+    background-color:#222;
 }
 
 .general {
     font-family: monospace, courier;
     font-size: 12px;
+	color: #000;
 }
 
-.menu a {color:#00FF00;}
+.general input {
+    font-family:courier;
+    font-size:12px;
+}
+
+.general select {
+    font-family:courier;
+    font-size:12px;
+}
+
+.menu a {color:#FFF;} /* #00FF00 */
 .m-enu a:link {color:#FF0000;}      /* unvisited link */
 .m-enu a:visited {color:#00FF00;}  /* visited link */
 .m-enu a:hover {color:#FF00FF;}  /* mouse over link */
 .m-enu a:active {color:#0000FF;}  /* selected link */ 
 
+/* Block Title*/
 .rounded-top {
-    border:1px solid;
-    border-color: #E01B46;
-    width:400px;
-    -moz-border-radius-topright: 10px;
-    border-top-right-radius: 10px;
-    -moz-border-radius-topleft: 10px;
-    border-top-left-radius: 10px;
-    background-color: 	#E01B46;
+    b-ackground-color: 	#F0F0F0; /* #E01B46 */
+    font-weight: bold;
+    color: #111; /*#323C40*/
+    border:0px solid;
+    border-color: #576971; /* 576971 */
+    width:400px; /* 400 */
+    -moz-border-radius-topright: 2px; /* 10 */
+    border-top-right-radius: 2px; /* 10 */
+    -moz-border-radius-topleft: 2px; /* 10 */
+    border-top-left-radius: 2px; /* 10 */
+    b-ackground-color: 	#EEE; /* #E01B46 */
+    margin-left: 10px;
+    text-align: left;
+    padding: 0px;
+    padding-top:2px;
+    padding-bottom:2px;
 }
+/* Block Body*/
 .rounded-bottom {
+    background-color: 	#F8F8F8; /* #E01B46 */
+    color: #111; /*#445257*/
     font-size: 12px;
-    border:1px solid;
-    border-color: #E01B46;
-    padding:5px; 
+    border-top:1px solid;
+    b-order:1px solid;
+    border-color: #BAC1C4; /* E01B46 */
+    padding:5px;
     width:390px; 
-    -moz-border-radius-bottomright: 10px;
-    border-bottom-right-radius: 10px;
-    -moz-border-radius-bottomleft: 10px;
-    border-bottom-left-radius: 10px;
+    -moz-border-radius-bottomright: 5px; /* 10 */
+    border-bottom-right-radius: 5px; /* 10 */
+    -moz-border-radius-bottomleft: 5px; /* 10 */
+    border-bottom-left-radius: 5px; /* 10 */
+    margin-left: 10px;
+}
+
+/* Block Body*/
+.rounded-bottom-body {
+    color: #111;
+    padding-right:5px; 
+    padding-left:5px; 
+    padding-bottom:1px; 
+    width:10px; 
 }
 
 .rounded-bottom a {
-    color:white;
+    color: #222; /* white */
 }
 
 .input {
     font-family:courier;
     font-size:12px;
 }
-
 
 .box-title {
     border-bottom:1px solid;
@@ -77,27 +122,66 @@ a {color: white;}
 .module {
     font-size: 90%;
     b-ackground-color:#FFF;
-    background-color:#090909
+    background-color:#F8F8F8; /* #090909 */
     b-order:1px solid;
     b-order-color: #CCC;
     -moz-border-radius: 4px;
     border-radius: 4px;
     border:1px solid;
-    border-color:#E01B46;
+    border-color:#BAC1C4; /* #E01B46 */
+    margin-left: 10px;
+}
+
+.module-options {
+    background-color:#EEE; 
+    border:1px dashed;
+    border-color:#888; /* #E01B46 */
+    m-argin-left: 10px;
+    border-radius: 0px;
+    color: #000; /* #FFF */
+    width:100%;
+}
+
+.module-options input {
+    font-family:courier;
+    font-size:12px;
+}
+
+.module-options select {
+    font-family:courier;
+    font-size:12px;
 }
 
 .module-content {
     font-size: 100%;
-    background-color:#000;
+    background-color:#EEE; /* #000 */
     height:200px;
     width:100%;
     border:1px dashed;
-    border-color: #FFF;
-    color: #FFF;
+    border-color: #888; /* #FFF */
+    color: #000; /* #FFF */
     padding-left: 5px;
+}
+
+.module-content input {
+    font-family:courier;
+    font-size:12px;
+}
+
+.module-content select {
+    font-family:courier;
+    font-size:12px;
 }
 
 .module-font {
     font-family: courier;
     font-size: 100%;
+}
+
+.history {
+    color: #000; /* white */
+}
+
+.history a {
+    color: #222; /* white */
 }

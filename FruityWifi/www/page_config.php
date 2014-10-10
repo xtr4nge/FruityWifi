@@ -1,21 +1,22 @@
 <? 
 /*
-	Copyright (C) 2013  xtr4nge [_AT_] gmail.com
+    Copyright (C) 2013-2014 xtr4nge [_AT_] gmail.com
 
-	This program is free software: you can redistribute it and/or modify
-	it under the terms of the GNU General Public License as published by
-	the Free Software Foundation, either version 3 of the License, or
-	(at your option) any later version.
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
 
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
 
-	You should have received a copy of the GNU General Public License
-	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */ 
 ?>
+<!DOCTYPE html>
 <link href="style.css" rel="stylesheet" type="text/css">
 <? include "menu.php"; ?>
 <? 
@@ -30,8 +31,8 @@ if ($regex == 1) {
     regex_standard($_POST["filename"], "msg.php", $regex_extra);
     regex_standard($_POST["newdata"], "msg.php", $regex_extra);
     regex_standard($_POST["iface"], "msg.php", $regex_extra);
-    regex_standard($_POST["iface_internet"], "msg.php", $regex_extra);
-    regex_standard($_POST["iface_wifi"], "msg.php", $regex_extra);
+    regex_standard($_POST["io_out_iface"], "msg.php", $regex_extra);
+    regex_standard($_POST["io_in_iface"], "msg.php", $regex_extra);
     regex_standard($_POST["iface_supplicant"], "msg.php", $regex_extra);
     regex_standard($_POST["newSSID"], "msg.php", $regex_extra);
     regex_standard($_POST["hostapd_secure"], "msg.php", $regex_extra);
@@ -63,26 +64,26 @@ if ($newdata != "") { $newdata = ereg_replace(13,  "", $newdata);
 
 // -------------- INTERFACES ------------------
 if(isset($_POST["iface"]) and $_POST["iface"] == "internet"){
-    echo "internet:" . $_POST["iface_internet"];
+    echo "internet:" . $_POST["io_out_iface"];
 }
 
 if(isset($_POST["iface"]) and $_POST["iface"] == "wifi"){
-    echo "wifi:" . $_POST["iface_wifi"];
-    //$exec = "sed -i 's/iface_wifi=.*/iface_wifi=\\\"".$_POST["iface_wifi"]."\\\";/g' ./config/config.php";
+    echo "wifi:" . $_POST["io_in_iface"];
+    //$exec = "sed -i 's/io_in_iface=.*/io_in_iface=\\\"".$_POST["io_in_iface"]."\\\";/g' ./config/config.php";
     //echo $exec;    
     //exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
 }
 
 if(isset($_POST["iface"]) and $_POST["iface"] == "wifi_extra"){
-    echo "wifi extra:" . $_POST["iface_wifi_extra"];
-    //$exec = "sed -i 's/iface_wifi_extra=.*/iface_wifi_extra=\\\"".$_POST["iface_wifi_extra"]."\\\";/g' ./config/config.php";
+    echo "wifi extra:" . $_POST["io_in_iface_extra"];
+    //$exec = "sed -i 's/io_in_iface_extra=.*/io_in_iface_extra=\\\"".$_POST["io_in_iface_extra"]."\\\";/g' ./config/config.php";
     //echo $exec;    
     //exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
 }
 
 if(isset($_POST["iface"]) and $_POST["iface"] == "wifi_supplicant"){
     echo "wifi supplicant:" . $_POST["iface_supplicant"];
-    //$exec = "sed -i 's/iface_wifi_extra=.*/iface_wifi_extra=\\\"".$_POST["iface_wifi_extra"]."\\\";/g' ./config/config.php";
+    //$exec = "sed -i 's/io_in_iface_extra=.*/io_in_iface_extra=\\\"".$_POST["io_in_iface_extra"]."\\\";/g' ./config/config.php";
     //echo $exec;    
     //exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
 }
@@ -90,10 +91,10 @@ if(isset($_POST["iface"]) and $_POST["iface"] == "wifi_supplicant"){
 if ($_GET["service"] == "mon0") {
     if ($_GET["action"] == "start") {
         // START MONITOR MODE (mon0)
-        start_monitor_mode($iface_wifi_extra);
+        start_monitor_mode($io_in_iface_extra);
     } else {
         // STOP MONITOR MODE (mon0)
-        stop_monitor_mode($iface_wifi_extra);
+        stop_monitor_mode($io_in_iface_extra);
     }
 }
 
@@ -144,7 +145,7 @@ if(isset($_POST["supplicant_ssid"]) and isset($_POST["supplicant_psk"])) {
     exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
     $exec = "sed -i 's/supplicant_psk=.*/supplicant_psk=\\\"".$_POST["supplicant_psk"]."\\\";/g' ./config/config.php";
     exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
-    //$exec = "sed -i 's/iface_wifi_extra=.*/iface_wifi_extra=\\\"".$_POST["iface_wifi_extra"]."\\\";/g' ./config/config.php";
+    //$exec = "sed -i 's/io_in_iface_extra=.*/io_in_iface_extra=\\\"".$_POST["io_in_iface_extra"]."\\\";/g' ./config/config.php";
     //echo $exec;    
     //exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
     
@@ -170,8 +171,8 @@ if(isset($_POST["pass_old"]) and isset($_POST["pass_new"])) {
 ?>
 
 <?
-#echo $iface_internet;
-#echo $iface_wifi;
+#echo $io_out_iface;
+#echo $io_in_iface;
 
 $ifaces = exec("/sbin/ifconfig -a | cut -c 1-8 | sort | uniq -u |grep -v lo|sed ':a;N;$!ba;s/\\n/|/g'");
 $ifaces = str_replace(" ","",$ifaces);
@@ -184,12 +185,12 @@ $ifaces = explode("|", $ifaces);
 <div class="rounded-bottom">
     <form action="scripts/config_iface.php" method="post" style="margin:0px">
     &nbsp;&nbsp;Internet 
-    <select class="input" onchange="this.form.submit()" name="iface_internet">
+    <select class="input" onchange="this.form.submit()" name="io_out_iface">
         <option>-</option>
         <?
         for ($i = 0; $i < count($ifaces); $i++) {
         	if (strpos($ifaces[$i], "mon") === false) {
-            	if ($iface_internet == $ifaces[$i]) $flag = "selected" ; else $flag = "";
+            	if ($io_out_iface == $ifaces[$i]) $flag = "selected" ; else $flag = "";
             	echo "<option $flag>$ifaces[$i]</option>";
             }
         }
@@ -201,12 +202,12 @@ $ifaces = explode("|", $ifaces);
 
     <form action="scripts/config_iface.php" method="post" style="margin:0px">
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wifi 
-    <select class="input" onchange="this.form.submit()" name="iface_wifi">
+    <select class="input" onchange="this.form.submit()" name="io_in_iface">
         <option>-</option>
         <?
         for ($i = 0; $i < count($ifaces); $i++) {
         	if (strpos($ifaces[$i], "mon") === false) {
-            	if ($iface_wifi == $ifaces[$i]) $flag = "selected" ; else $flag = "";
+            	if ($io_in_iface == $ifaces[$i]) $flag = "selected" ; else $flag = "";
             	echo "<option $flag>$ifaces[$i]</option>";
             }
         }
@@ -219,12 +220,12 @@ $ifaces = explode("|", $ifaces);
     <form action="scripts/config_iface.php" method="post" style="margin:0px">
     &nbsp;&nbsp;&nbsp;Monitor 
     <? $iface_mon0 = exec("/sbin/ifconfig |grep mon0"); ?>
-    <select class="input" onchange="this.form.submit()" name="iface_wifi_extra" <? if ($iface_mon0 != "") echo "disabled" ?> >
+    <select class="input" onchange="this.form.submit()" name="io_in_iface_extra" <? if ($iface_mon0 != "") echo "disabled" ?> >
         <option>-</option>
         <?
         for ($i = 0; $i < count($ifaces); $i++) {
         	if (strpos($ifaces[$i], "mon") === false) {
-            	if ($iface_wifi_extra == $ifaces[$i]) $flag = "selected" ; else $flag = "";
+            	if ($io_in_iface_extra == $ifaces[$i]) $flag = "selected" ; else $flag = "";
             	echo "<option $flag>$ifaces[$i]</option>";
             }
         }

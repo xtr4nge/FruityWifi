@@ -1,6 +1,28 @@
+<?
+include "../config/config.php";
+include "../functions.php";
+
+// Checking POST & GET variables...
+if ($regex == 1) {
+    regex_standard($_GET["page"], "../msg.php", $regex_extra);
+    regex_standard($_GET["wait"], "../msg.php", $regex_extra);
+}
+
+$page = $_GET["page"];
+$wait = $_GET["wait"];
+
+if ($page == "") {
+	$page = "../msg.php";
+}
+
+if ($wait == "") {
+	$wait = 1;
+}
+
+?>
 <html>
 <head>
-    <meta http-equiv="refresh" content="1; url=./<?=$_GET["page"]?>/">
+    <meta http-equiv="refresh" c-ontent="<?=$wait?>; url=./<?=$page?>/">
 </head>
 <body bgcolor="black" text="white">
 <pre>

@@ -1,6 +1,6 @@
 <? 
 /*
-	Copyright (C) 2013  xtr4nge [_AT_] gmail.com
+	Copyright (C) 2013-2014  xtr4nge [_AT_] gmail.com
 
 	This program is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -38,8 +38,18 @@ if (count($output) > 0) {
         $module_path = str_replace("_info_.php","",$output[$i]);
 
 		echo "<div style='height:20px;'>";
-		echo "<div style='display:inline-block; width:70px; text-align:right;'>$mod_name</div>";
+		echo "<div style='display:inline-block; width:80px; text-align:right;'>$mod_name</div>";
 		echo "<div style='display:inline-block; width:30px; text-align:left; padding-left:10px;'>$mod_version</div>";
+		echo "<div style='display:inline-block; width:10px; text-align:left; padding-left:10px;'> | </div>";
+		if ($mod_panel == "show") $checked = "checked"; else $checked = "";
+		echo "	<div style='display:inline-block; width:30px; text-align:left; padding-left:10px;'>
+					<form action='modules/save.php' style='margin:0px;' method='POST'>
+						<input type='checkbox' onchange='this.form.submit()' $checked>
+						<input type='hidden' name='type' value='save_show'>
+						<input type='hidden' name='mod_name' value='$mod_name'>
+						<input type='hidden' name='action' value='$checked'>
+					</form>
+				</div>";
 		echo "<div style='display:inline-block; width:10px; text-align:left; padding-left:10px;'> | </div>";
 		echo "<div style='display:inline-block; width:30px; text-align:left; padding-left:10px;'><a href='$module_path'>View</a></div>";
 		echo "<div style='display:inline-block; width:10px; text-align:left; padding-left:10px;'> | </div>";
@@ -84,19 +94,24 @@ if (count($output) > 0) {
     $url = "https://raw.github.com/xtr4nge/FruityWifi/master/modules-FruityWifi.xml";
 
     // VERIFY INTERNET CONNECTION
+	if (isset($_GET["show"])) {
     $external_ip = exec("curl ident.me");
     if ($external_ip != "" and isset($_GET["show"])) {
         $xml = simplexml_load_file($url);
     }
+	}
 
     if (count($xml) > 0 and $xml != "" and isset($_GET["show"])) {
         for ($i=0;$i < count($xml); $i++) {
 			
 			echo "<div style='height:22px;'>";
-			echo "<div style='display:inline-block; width:70px; text-align:right;'>".$xml->module[$i]->name."</div>";
-			echo "<div style='display:inline-block; width:20px; text-align:left; padding-left:10px;'>".$xml->module[$i]->version."</div>";
-			echo "<div style='display:inline-block; width:50px; text-align:left; padding-left:10px;'>".$xml->module[$i]->author."</div>";
-			echo "<div style='display:inline-block; width:138px; text-align:right; padding-left:2px;'>".$xml->module[$i]->description."</div>";
+			echo "<div style='display:inline-block; width:80px; text-align:right;'>".$xml->module[$i]->name."</div>";
+			echo "<div style='display:inline-block; width:30px; text-align:left; padding-left:10px;'>".$xml->module[$i]->version."</div>";
+			echo "<div style='display:inline-block; width:10px; text-align:left; padding-left:6px;'> | </div>";
+			//echo "<div style='display:inline-block; width:50px; text-align:left; padding-left:10px;'>".$xml->module[$i]->author."</div>";
+			echo "<div style='display:inline-block; width:50px; text-align:left; padding-left:20px;'>".$xml->module[$i]->author."</div>";
+			//echo "<div style='display:inline-block; width:138px; text-align:right; padding-left:2px;'>".$xml->module[$i]->d_escription."</div>";
+			echo "<div style='display:inline-block; width:48px; text-align:right; padding-left:2px;'></div>";
 			echo "<div style='display:inline-block; width:10px; text-align:left; padding-left:6px;'> | </div>";
 			
 			if (count($mod_installed) == 0) $mod_installed[0] = "";

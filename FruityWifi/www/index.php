@@ -25,9 +25,26 @@
 <link href="style.css" rel="stylesheet" type="text/css">
 <link rel="icon" type="image/x-icon" href="img/favicon.ico"/>
 
-<img src="img/logo.png">
+<div class="menu-bc" s-tyle="background-color: #576971;">
+
+	<table>
+		<tr>
+			<td>
+				<div class="m-enu">
+				<img src="img/logo.png" width=32><img style="padding-left:2px; padding-top:0px;" src="img/logo-fw.png">
+				</div>
+			</td>
+			<td>
+
+			</td>
+		</tr>
+	</table>
+</div>
+
+<i-mg src="img/logo.png">
 
 <br><br>
+
 <div align="center">
 
 <div class="rounded-top" align="center"> Login </div>

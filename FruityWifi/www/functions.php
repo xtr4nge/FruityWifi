@@ -27,16 +27,13 @@ function regex_standard($var, $url, $regex_extra) {
     $regex = "/(?i)(^[a-z0-9 $regex_extra]{1,20})|(^$)/";
     //$regex = "/(?i)(^[a-z0-9]{1,20}$)|(^$)/";
 
-
     //$referer = $_SERVER['HTTP_REFERER'];
-
-
 
     if (preg_match($regex, $var) == 0) {
 
         //header("Location: ".$referer."?error=1");
-        //echo "<script>window.location = '$url?msg=1';</script>";
-        echo "<script>window.location = '$url?msg=1&debug=$var&regex=$regex&extra=$regex_extra';</script>";
+        echo "<script>window.location = '$url?msg=1';</script>";
+        //echo "<script>window.location = '$url?msg=1&debug=$var&regex=$regex&extra=$regex_extra';</script>";
 
         exit;
 
@@ -77,6 +74,33 @@ function open_file($filename) {
             return $data;
         }
     }
+
+}
+
+function start_iface($iface, $ip, $gw) {
+
+    // START MONITOR MODE (mon0)
+    $iface_mon0 = exec("/sbin/ifconfig |grep mon0");
+    //if ($iface_mon0 == "") {
+        $exec = "/usr/bin/sudo /sbin/ifconfig $iface $ip";
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"", $output);
+	//}
+
+	if (trim($gw) != "") {
+		$exec = "/usr/bin/sudo /sbin/route add default gw $gw";
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"", $output);
+	}
+
+}
+
+function stop_iface($iface, $ip, $gw) {
+
+    // START MONITOR MODE (mon0)
+    $iface_mon0 = exec("/sbin/ifconfig |grep mon0");
+    //if ($iface_mon0 != "") {
+        $exec = "/usr/bin/sudo /sbin/ifconfig $iface 0.0.0.0";
+        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"", $output);
+    //}
 
 }
 

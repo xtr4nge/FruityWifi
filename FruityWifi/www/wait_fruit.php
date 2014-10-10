@@ -1,3 +1,20 @@
+<?
+if ($page == "") {
+	$page = "./page_status.php";
+}
+
+if ($wait == "") {
+	$wait = 2;
+}
+
+?>
+<script type="text/javascript">
+<!--
+function delayer(){
+    window.location = "<?=$page?>"
+}
+//-->
+</script>
 <pre><? 
 $fruit_num = rand(1, 6);
 if ($fruit_num == 1) {
@@ -90,4 +107,5 @@ if ($fruit_num == 1) {
 <? } ?>
 
 </pre>
+<script>setTimeout('delayer()', <?=(1000 * $wait)?>)</script>
 </body>

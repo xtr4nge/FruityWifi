@@ -25,10 +25,10 @@
 <?
 $msg = $_GET["msg"];
 
-if ($msg = 1) {
-    echo "check your input...";
+if ($msg == 1) {
+    echo "ERROR: Check your input...";
 } else {
-    echo "general error...";
+    echo "General error...";
 }
 ?>
 </b>

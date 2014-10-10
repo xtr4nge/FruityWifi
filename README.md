@@ -5,6 +5,17 @@ FruityWifi is a wireless network auditing tool. The application can be installed
 
 [![githalytics.com alpha](https://cruel-carlota.pagodabox.com/080d09d574c44ef246b87e11ed2468fc "githalytics.com")](http://githalytics.com/xtr4nge/FruityWifi)
 
+v2.0 (alpha)
+----------------
+- Web-Interface has been changed (new look and feel, new options).
+- Nginx has replaced Apache2 as default webserver.
+- Installation script has been updated.
+- Config panel has been changed.
+- Network interfaces structure has been changed and renamed.
+- It is possible to use FruityWifi combining multiple networks and setups.
+- Supplicant mode has been added as a module.
+- 3G/4G Broadband Mobile has been added as a module.
+
 
 v1.9
 ----------------

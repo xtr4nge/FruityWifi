@@ -49,7 +49,6 @@ $logs = glob($logs_path.'*');
 for ($i = 0; $i < count($logs); $i++) {
 	$filename = str_replace($logs_path,"",$logs[$i]);
 	//echo "$filename<br>";
-	//if ($filename != "install.txt") showLog($filename, $logs[$i]);
-	showLog($filename, $logs[$i]);
+	if ($filename != "install.txt") showLog($filename, $logs[$i]);
 }
 ?>
