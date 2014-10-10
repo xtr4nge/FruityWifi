@@ -120,4 +120,20 @@
 	<url>module_nmcli</url>
 	<required>2.0</required>
     </module>
+    <module>
+        <name>3g_4g</name>
+        <version>1.0</version>
+	<author>xtr4nge</author>
+	<description>3G/4G interface</description>
+	<url>module_3g_4g</url>
+	<required>2.0</required>
+    </module>
+    <module>
+        <name>supplicant</name>
+        <version>1.0</version>
+	<author>xtr4nge</author>
+	<description>supplicant interface</description>
+	<url>module_supplicant</url>
+	<required>2.0</required>
+    </module>
 </FruityWifi>
