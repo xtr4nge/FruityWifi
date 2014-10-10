@@ -8,7 +8,7 @@ cd tmp-install
 
 apt-get update
 
-apt-get -y install gettext make intltool build-essential automake autoconf uuid uuid-dev php5-curl php5-cli dos2unix curl
+apt-get -y install gettext make intltool build-essential automake autoconf uuid uuid-dev php5-curl php5-cli dos2unix curl sudo
 
 cmd=`gcc --version|grep "4.7"`
 if [[ $cmd == "" ]]
