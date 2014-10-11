@@ -34,7 +34,7 @@
     </module>
     <module>
         <name>mdk3</name>
-        <version>1.4</version>
+        <version>1.5</version>
 	<author>xtr4nge</author>
 	<description>mdk3 interface</description>
 	<url>module_mdk3</url>
