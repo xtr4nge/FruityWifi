@@ -58,7 +58,7 @@
     </module>
     <module>
         <name>squid3</name>
-        <version>1.0</version>
+        <version>1.1</version>
 	<author>xtr4nge</author>
 	<description>squid3 interface</description>
 	<url>module_squid3</url>
