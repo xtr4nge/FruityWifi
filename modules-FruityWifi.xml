@@ -168,4 +168,12 @@
 	<url>module_autossh</url>
 	<required>2.0</required>
     </module>
+    <module>
+        <name>vfeed</name>
+        <version>1.0</version>
+	<author>xtr4nge</author>
+	<description>tcpdump interface</description>
+	<url>module_vfeed</url>
+	<required>2.0</required>
+    </module>
 </FruityWifi>
