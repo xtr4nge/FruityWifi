@@ -9,7 +9,7 @@ $data = explode("\n",$data);
 
 for ($i=0; $i < count($data); $i++) {
 	$tmp = explode(" ", $data[$i]);
-	$output[] = $tmp[2] . " " . $tmp[3] . " " . $tmp[4];
+	$output[] = $tmp[2] . " " . $tmp[1] . " " . $tmp[3];
 	//echo $tmp[2] . " " . $tmp[3] . " " . $tmp[4] . "<br>";
 }
 
