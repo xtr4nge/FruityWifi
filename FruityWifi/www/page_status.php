@@ -329,9 +329,8 @@ if (count($output) > 0) {
 <div class="rounded-top" align="center"> Stations </div>
 <div class="rounded-bottom">
     <?
-    //$stations = exec("/sbin/iw dev wlan0 station dump |grep Stat");
-    $stations = exec("/sbin/iw dev $io_in_iface station dump |grep Stat");
-    echo str_replace("Station", "", $stations) . "<br>";
+    exec("/sbin/iw dev $io_in_iface station dump |grep Stat", $stations);
+    for ($i=0; $i < count($stations); $i++) echo str_replace("Station", "", $stations[$i]) . "<br>";
     ?>
 </div>
 
