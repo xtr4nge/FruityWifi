@@ -349,7 +349,7 @@ if (count($output) > 0) {
     
     for ($i=0; $i < count($data); $i++) {
         $tmp = explode(" ", $data[$i]);
-        echo $tmp[2] . " " . $tmp[3] . " " . $tmp[4] . "<br>";
+        echo $tmp[2] . " " . $tmp[1] . " " . $tmp[3] . "<br>";
     }
     ?>
 </div>
