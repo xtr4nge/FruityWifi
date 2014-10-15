@@ -164,7 +164,7 @@
         <name>autossh</name>
         <version>1.0</version>
 	<author>xtr4nge</author>
-	<description>tcpdump interface</description>
+	<description>autossh interface</description>
 	<url>module_autossh</url>
 	<required>2.0</required>
     </module>
@@ -172,8 +172,16 @@
         <name>vfeed</name>
         <version>1.0</version>
 	<author>xtr4nge</author>
-	<description>tcpdump interface</description>
+	<description>vfeed interface</description>
 	<url>module_vfeed</url>
+	<required>2.0</required>
+    </module>
+    <module>
+        <name>nessus</name>
+        <version>1.0</version>
+	<author>xtr4nge</author>
+	<description>nessus interface</description>
+	<url>module_nessus</url>
 	<required>2.0</required>
     </module>
 </FruityWifi>
