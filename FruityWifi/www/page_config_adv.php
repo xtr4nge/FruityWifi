@@ -424,7 +424,7 @@ $ifaces = explode("|", $ifaces);
 
 <!-- Additional INTERFACES -->
 
-<div class="rounded-top" align="center"> Adidtional Interfaces </div>
+<div class="rounded-top" align="center"> Additional Interfaces </div>
 <div class="rounded-bottom">
 
     <form action="scripts/config_iface.php" method="post" style="margin:0px">
