@@ -98,6 +98,9 @@ fi
 
 echo
 
+# BACK TO ROOT-INSTALL FOLDER
+cd ../
+
 if [ ! -f "/usr/sbin/nginx" ]
 then
     echo "--------------------------------"
@@ -106,7 +109,6 @@ then
     #exit;
 
     # NGINX INSTALL
-    cd ../
     apt-get -y install nginx php5-fpm
 
     # SSL
@@ -158,7 +160,7 @@ echo "Setup: WWW"
 echo "--------------------------------"
 mkdir /var/www
 cmd=`date +"%Y-%m-%d-%k-%M-%S"`
-cd ../
+#cd ../
 mv /usr/share/FruityWifi FruityWifi.BAK.$cmd
 rm /var/www/FruityWifi
 cp -a FruityWifi /usr/share/FruityWifi
