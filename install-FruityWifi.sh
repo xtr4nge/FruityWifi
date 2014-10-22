@@ -106,6 +106,7 @@ then
     #exit;
 
     # NGINX INSTALL
+    cd ../
     apt-get -y install nginx php5-fpm
 
     # SSL
