@@ -184,4 +184,12 @@
 	<url>module_nessus</url>
 	<required>2.0</required>
     </module>
+    <module>
+        <name>tor</name>
+        <version>1.0</version>
+	<author>xtr4nge</author>
+	<description>tor interface</description>
+	<url>module_tor</url>
+	<required>2.0</required>
+    </module>
 </FruityWifi>
