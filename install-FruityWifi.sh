@@ -80,7 +80,7 @@ then
     #exit;
 
     # INSTALL AIRCRACK-NG
-    apt-get -y install libssl-dev
+    apt-get -y install libssl-dev wireless-tools iw
     wget http://download.aircrack-ng.org/aircrack-ng-1.2-beta1.tar.gz
     tar -zxvf aircrack-ng-1.2-beta1.tar.gz
     cd aircrack-ng-1.2-beta1
