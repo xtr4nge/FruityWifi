@@ -86,6 +86,8 @@ then
     cd aircrack-ng-1.2-beta1
     make
     make install
+    ln -s /usr/local/sbin/airmon-ng /usr/sbin/airmon-ng
+    ln -s /usr/local/sbin/airbase-ng /usr/sbin/airbase-ng
     cd ../
 
 else
