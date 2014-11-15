@@ -192,4 +192,12 @@
 	<url>module_tor</url>
 	<required>2.0</required>
     </module>
+    <module>
+        <name>phishing</name>
+        <version>1.0</version>
+	<author>xtr4nge</author>
+	<description>phishing interface</description>
+	<url>module_phishing</url>
+	<required>2.0</required>
+    </module>
 </FruityWifi>
