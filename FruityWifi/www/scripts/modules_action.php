@@ -1,6 +1,6 @@
 <? 
 /*
-    Copyright (C) 2013  xtr4nge [_AT_] gmail.com
+    Copyright (C) 2013-2014 xtr4nge [_AT_] gmail.com
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -22,6 +22,8 @@ include "../login_check.php";
 include "../config/config.php";
 include "../functions.php";
 
+$bin_danger = "/usr/share/fruitywifi/bin/danger";
+
 // Checking POST & GET variables...
 if ($regex == 1) {
     regex_standard($_GET["action"], "../msg.php", $regex_extra);
@@ -32,14 +34,14 @@ $action = $_GET["action"];
 $module = $_GET["module"];
 
 if ($action == "install") {
-    $exec = "git clone https://github.com/xtr4nge/module_$module.git /usr/share/FruityWifi/www/modules/$module";
-    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+    $exec = "git clone https://github.com/xtr4nge/module_$module.git /usr/share/fruitywifi/www/modules/$module";
+    exec("$bin_danger \"" . $exec . "\"" );
     //echo $exec;
 }
 
 if ($action == "remove") {
-    $exec = "rm -R /usr/share/FruityWifi/www/modules/$module";
-    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+    $exec = "rm -R /usr/share/fruitywifi/www/modules/$module";
+    exec("$bin_danger \"" . $exec . "\"" );
     //echo $exec;
 }
 

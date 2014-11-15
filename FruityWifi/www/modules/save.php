@@ -22,6 +22,8 @@
 include "../config/config.php";
 include "../functions.php";
 
+$bin_danger = "/usr/share/fruitywifi/bin/danger";
+
 // Checking POST & GET variables...
 if ($regex == 1) {
 	regex_standard($_POST['type'], "../msg.php", $regex_extra);
@@ -41,12 +43,12 @@ if ($type == "save_show" and $mod_name != "") {
 	
 	if ($action != "checked") {
 		$exec = "/bin/sed -i 's/^\\\$mod_panel=.*/\\\$mod_panel=\\\"show\\\";/g' $mod_name/_info_.php";
-		exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"", $output);
+		exec("$bin_danger \"" . $exec . "\"", $output);
 		//echo $exec."<br>";
 		//exit;
 	} else {
 		$exec = "/bin/sed -i 's/^\\\$mod_panel=.*/\\\$mod_panel=\\\"\\\";/g' $mod_name/_info_.php";
-		exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"", $output);
+		exec("$bin_danger \"" . $exec . "\"", $output);
 		//echo $exec."<br>";
 		//exit;
 	}

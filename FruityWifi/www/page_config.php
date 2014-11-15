@@ -26,6 +26,8 @@ include "config/config.php";
 <?
 include "functions.php";
 
+$bin_danger = "/usr/share/fruitywifi/bin/danger";
+
 // Checking POST & GET variables...
 if ($regex == 1) {
     regex_standard($_POST["filename"], "msg.php", $regex_extra);
@@ -69,23 +71,14 @@ if(isset($_POST["iface"]) and $_POST["iface"] == "internet"){
 
 if(isset($_POST["iface"]) and $_POST["iface"] == "wifi"){
     echo "wifi:" . $_POST["io_in_iface"];
-    //$exec = "sed -i 's/io_in_iface=.*/io_in_iface=\\\"".$_POST["io_in_iface"]."\\\";/g' ./config/config.php";
-    //echo $exec;    
-    //exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
 }
 
 if(isset($_POST["iface"]) and $_POST["iface"] == "wifi_extra"){
     echo "wifi extra:" . $_POST["io_in_iface_extra"];
-    //$exec = "sed -i 's/io_in_iface_extra=.*/io_in_iface_extra=\\\"".$_POST["io_in_iface_extra"]."\\\";/g' ./config/config.php";
-    //echo $exec;    
-    //exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
 }
 
 if(isset($_POST["iface"]) and $_POST["iface"] == "wifi_supplicant"){
     echo "wifi supplicant:" . $_POST["iface_supplicant"];
-    //$exec = "sed -i 's/io_in_iface_extra=.*/io_in_iface_extra=\\\"".$_POST["io_in_iface_extra"]."\\\";/g' ./config/config.php";
-    //echo $exec;    
-    //exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
 }
 
 if ($_GET["service"] == "mon0") {
@@ -105,33 +98,32 @@ if(isset($_POST[newSSID])){
     $hostapd_ssid=$_POST[newSSID];
     
     $exec = "sed -i 's/hostapd_ssid=.*/hostapd_ssid=\\\"".$_POST[newSSID]."\\\";/g' ./config/config.php";
-    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+    exec("$bin_danger \"" . $exec . "\"" );
 
     $exec = "/usr/sbin/karma-hostapd_cli -p /var/run/hostapd-phy0 karma_change_ssid $_POST[newSSID]";
-    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
-    //system("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+    exec("$bin_danger \"" . $exec . "\"" );
     
     // replace interface in hostapd.conf and hostapd-secure.conf
-    $exec = "/bin/sed -i 's/^ssid=.*/ssid=".$_POST["newSSID"]."/g' /usr/share/FruityWifi/conf/hostapd.conf";
-    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
-    $exec = "/bin/sed -i 's/^ssid=.*/ssid=".$_POST["newSSID"]."/g' /usr/share/FruityWifi/conf/hostapd-secure.conf";
-    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+    $exec = "/bin/sed -i 's/^ssid=.*/ssid=".$_POST["newSSID"]."/g' /usr/share/fruitywifi/conf/hostapd.conf";
+    exec("$bin_danger \"" . $exec . "\"" );
+    $exec = "/bin/sed -i 's/^ssid=.*/ssid=".$_POST["newSSID"]."/g' /usr/share/fruitywifi/conf/hostapd-secure.conf";
+    exec("$bin_danger \"" . $exec . "\"" );
 
 }
 
 
 if (isset($_POST['hostapd_secure'])) {
     $exec = "sed -i 's/hostapd_secure=.*/hostapd_secure=\\\"".$_POST["hostapd_secure"]."\\\";/g' ./config/config.php";
-    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+    exec("$bin_danger \"" . $exec . "\"" );
 
     $hostapd_secure = $_POST["hostapd_secure"];
 }
 
 if (isset($_POST['hostapd_wpa_passphrase'])) {
     $exec = "sed -i 's/hostapd_wpa_passphrase=.*/hostapd_wpa_passphrase=\\\"".$_POST["hostapd_wpa_passphrase"]."\\\";/g' ./config/config.php";
-    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+    exec("$bin_danger \"" . $exec . "\"" );
     $exec = "sed -i 's/wpa_passphrase=.*/wpa_passphrase=".$_POST["hostapd_wpa_passphrase"]."/g' ../conf/hostapd-secure.conf";
-    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+    exec("$bin_danger \"" . $exec . "\"" );
 
     $hostapd_wpa_passphrase = $_POST["hostapd_wpa_passphrase"];
 }
@@ -142,12 +134,9 @@ if(isset($_POST["supplicant_ssid"]) and isset($_POST["supplicant_psk"])) {
     //echo "<br>";
     //echo "supplicant_psk:" . $_POST["supplicant_psk"];
     $exec = "sed -i 's/supplicant_ssid=.*/supplicant_ssid=\\\"".$_POST["supplicant_ssid"]."\\\";/g' ./config/config.php";
-    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+    exec("$bin_danger \"" . $exec . "\"" );
     $exec = "sed -i 's/supplicant_psk=.*/supplicant_psk=\\\"".$_POST["supplicant_psk"]."\\\";/g' ./config/config.php";
-    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
-    //$exec = "sed -i 's/io_in_iface_extra=.*/io_in_iface_extra=\\\"".$_POST["io_in_iface_extra"]."\\\";/g' ./config/config.php";
-    //echo $exec;    
-    //exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+    exec("$bin_danger \"" . $exec . "\"" );
     
     $supplicant_ssid = $_POST["supplicant_ssid"];
     $supplicant_psk = $_POST["supplicant_psk"];
@@ -156,16 +145,16 @@ if(isset($_POST["supplicant_ssid"]) and isset($_POST["supplicant_psk"])) {
 // -------------- PASSWORD ------------------
 
 if(isset($_POST["pass_old"]) and isset($_POST["pass_new"])) {
-	include "users.php";
-	if ( ($users["admin"] == md5($_POST["pass_old"])) and ($_POST["pass_new"] == $_POST["pass_new_repeat"])) {
-		$exec = "sed -i 's/\\\=\\\"".md5($_POST["pass_old"])."\\\"/\\\=\\\"".md5($_POST["pass_new"])."\\\"/g' ./users.php";
-		//echo $exec;
-		//exit;
-    	exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
-    	$pass_msg = 1;
-	} else {
-		$pass_msg = 2;
-	}
+    include "users.php";
+    if ( ($users["admin"] == md5($_POST["pass_old"])) and ($_POST["pass_new"] == $_POST["pass_new_repeat"])) {
+        $exec = "sed -i 's/\\\=\\\"".md5($_POST["pass_old"])."\\\"/\\\=\\\"".md5($_POST["pass_new"])."\\\"/g' ./users.php";
+        //echo $exec;
+        //exit;
+    exec("$bin_danger \"" . $exec . "\"" );
+    $pass_msg = 1;
+    } else {
+        $pass_msg = 2;
+    }
 }
 
 ?>
@@ -258,20 +247,20 @@ $ifaces = explode("|", $ifaces);
     </select>
     <img src="img/help-browser.png" title="Use this interface to connect internet through wireless" width=14>
     <?
-		//$network_manager_installed = exec("/usr/sbin/NetworkManager --version");
-		//$network_manager_loaded = exec("/usr/sbin/NetworkManager --version");
-		$exec = "/usr/share/FruityWifi/www/modules/nmcli/includes/nmcli -n d | grep -iEe '^$iface_supplicant.+ connected'";
-        $network_manager_isup = exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+        //$network_manager_installed = exec("/usr/sbin/NetworkManager --version");
+        //$network_manager_loaded = exec("/usr/sbin/NetworkManager --version");
+        $exec = "/usr/share/fruitywifi/www/modules/nmcli/includes/nmcli -n d | grep -iEe '^$iface_supplicant.+ connected'";
+        $network_manager_isup = exec("$bin_danger \"" . $exec . "\"" );
 		
-		if (file_exists("modules/nmcli/includes/nmcli")) {
-			if ($network_manager_isup == "") {
-				echo "<b><a href='modules/nmcli/includes/module_action.php?service=nmcli&action=start&page=config'>start</a></b> [<font color='red'>disconnected</font>]";
-			} else {
-				echo "<b><a href='modules/nmcli/includes/module_action.php?service=nmcli&action=stop&page=config'>stop</a></b>&nbsp; [<font color='lime'>connected</font>]";
-			}
-		} else {
-			echo "<font color='white'>*[ <a href='page_modules.php'><font color='red'>install</font></a> <b>nmcli</b> module ]</font>";
-		}
+        if (file_exists("modules/nmcli/includes/nmcli")) {
+            if ($network_manager_isup == "") {
+                echo "<b><a href='modules/nmcli/includes/module_action.php?service=nmcli&action=start&page=config'>start</a></b> [<font color='red'>disconnected</font>]";
+            } else {
+                echo "<b><a href='modules/nmcli/includes/module_action.php?service=nmcli&action=stop&page=config'>stop</a></b>&nbsp; [<font color='lime'>connected</font>]";
+            }
+        } else {
+            echo "<font color='white'>*[ <a href='page_modules.php'><font color='red'>install</font></a> <b>nmcli</b> module ]</font>";
+        }
         //echo "(kismet, mdk3, etc)";
     ?> 
     <input type="hidden" name="iface" value="wifi_supplicant">
@@ -310,47 +299,19 @@ $ifaces = explode("|", $ifaces);
 
 <br>
 
-<?
-/*
-if ($newdata != "") { 
-    //$newdata = ereg_replace(13,  "", $newdata);
-    $exec = "/bin/echo '$newdata' > /usr/share/FruityWifi/conf/spoofhost.conf";
-	exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"", $output);
-}
-
-$filename = "/usr/share/FruityWifi/conf/spoofhost.conf";
-
-$fh = fopen($filename, "r") or die("Could not open file.");
-$data = fread($fh, filesize($filename)) or die("Could not read file.");
-fclose($fh);
-*/
-?>
-<!--
-<div class="rounded-top" align="center"> DNS Spoof Config </div>
-<div class="rounded-bottom">
-    <form action="<?=$_SERVER[php_self]?> " method="POST" autocomplete="off">
-        <textarea class="input" name='newdata' rows='5' cols='52'><?=$data?></textarea>
-        <br>
-        <input type='hidden' name='filename' value='spoofhost.conf'>
-        <input class="input" type="submit" value="Update Spoofhost">
-    </form>
-</div>
-
-<br>
--->
 <div class="rounded-top" align="center"> Password </div>
 <div class="rounded-bottom">
-	<form action="<?=$_SERVER[php_self]?> " method="POST" autocomplete="off">
-		Old Pass: <input type="password" class="input" name="pass_old" value=""><br>
-		New Pass: <input type="password" class="input" name="pass_new" value=""><br>
-		&nbsp;&nbsp;Repeat: <input type="password" class="input" name="pass_new_repeat" value="">
-		<input class="input" type="submit" value="Change">
-		<?
-			if ($pass_msg != "") {
-				echo "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-				if ($pass_msg == 1) echo "<font color='lime'>password changed</font>";
-				if ($pass_msg == 2) echo "<font color='red'>password error</font>";
-			}
-		?>
-	</form>
+    <form action="<?=$_SERVER[php_self]?> " method="POST" autocomplete="off">
+        Old Pass: <input type="password" class="input" name="pass_old" value=""><br>
+        New Pass: <input type="password" class="input" name="pass_new" value=""><br>
+        &nbsp;&nbsp;Repeat: <input type="password" class="input" name="pass_new_repeat" value="">
+        <input class="input" type="submit" value="Change">
+        <?
+            if ($pass_msg != "") {
+                echo "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                if ($pass_msg == 1) echo "<font color='lime'>password changed</font>";
+                if ($pass_msg == 2) echo "<font color='red'>password error</font>";
+            }
+        ?>
+    </form>
 </div>

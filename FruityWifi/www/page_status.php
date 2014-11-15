@@ -246,49 +246,75 @@ if (count($output) > 0) {
     <?
     if (count($output) > 0) {
     ?>
-        <table border=0 width='100%' cellspacing=0 cellpadding=0>
+        <t-able border=0 width='100%' cellspacing=0 cellpadding=0>
         <?
         //exec("find ./modules -name '_info_.php'",$output);
         //print_r($output[0]);
     
-            for ($i=0; $i < count($output); $i++) {
+        for ($i=0; $i < count($output); $i++) {
+	    echo "<div style='text-align:left;'>";
                 $mod_type = "";
                 if ($output[$i] != "") {
                     include $output[$i];
                     $module_path = str_replace("_info_.php","",$output[$i]);
                     
                     if ($mod_panel == "show" and $mod_type != "service") {
-                    echo "<tr>";
-                        echo "<td class='rounded-bottom-body' align='right' s-tyle='padding-right:5px; padding-left:5px; padding-bottom:1px; width:10px; color: #445257;' nowrap>";
+                    //echo "<tr>";
+                        //echo "<td class='rounded-bottom-body' align='right' s-tyle='padding-right:5px; padding-left:5px; padding-bottom:1px; width:10px; color: #445257;' nowrap>";
                         if ($mod_alias != "") { 
-                            echo $mod_alias;
+                        //    echo $mod_alias;
+			    echo "<div style='border:0px solid red; display:inline-block; width:84px; text-align:right;'>$mod_alias</div> ";
                         } else {
-                            echo $mod_name;
+                            //echo $mod_name;
+			    echo "<div style='border:0px solid red; display:inline-block; width:84px; text-align:right;'>$mod_name</div> ";
                         }
-                        echo "</td>";
-                        echo "<td align='left' style='padding-right:5px; padding-left:5px; ' nowrap>";
+                        //echo "</td>";
+                        //echo "<td align='left' style='padding-right:5px; padding-left:5px; ' nowrap>";
                         if ($mod_panel == "show") {
-                            //$mod_isup = "/usr/share/FruityWifi/bin/danger \"/usr/share/FruityWifi/www/modules/nmcli/includes/nmcli -n d | grep -iEe '^$iface_supplicant.+ connected'\"";
-                            //$issupplicantup = exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"", $output);
                             $isModuleUp = exec($mod_isup);
                             if ($isModuleUp != "") {
-                                echo "<font color=\"lime\"><b>enabled</b></font>.&nbsp; | <a href='modules/$mod_name/includes/module_action.php?service=$mod_name&action=stop&page=status'><b>stop</b></a>";
-                                echo "&nbsp; | <a href='modules/$mod_name/'><b>view</b></a><br/>"; 
+                                //echo "<font color=\"lime\"><b>enabled</b></font>.&nbsp; | <a href='modules/$mod_name/includes/module_action.php?service=$mod_name&action=stop&page=status'><b>stop</b></a>";
+                                //echo "&nbsp; | <a href='modules/$mod_name/'><b>view</b></a><br/>";
+				
+				echo "<div style='border:0px solid red; display:inline-block; width:63px; font-weight:bold; color:lime;'>enabled.</div> ";
+				echo "<div style='border:0px solid red; display:inline-block;'>|</div> ";
+				echo "<div style='display:inline-block;font-weight:bold; width:36px; visibility:visible;'>
+					    <a href='modules/$mod_name/includes/module_action.php?service=$mod_name&action=stop&page=status'>stop</a>
+					</div>";
+					
+				echo "<div style='border:0px solid red; display:inline-block;'>|</div>
+					<div style='display:inline-block;font-weight:bold; width:36px;'>
+					    <a href='modules/$mod_name/'>view</a>
+					</div>";
+				
                             } else { 
-                                echo "<font color=\"red\"><b>disabled</b></font>. | <a href='modules/$mod_name/includes/module_action.php?service=$mod_name&action=start&page=status'><b>start</b></a>"; 
-                                echo " | <a href='modules/$mod_name/'><b>edit</b></a><br/>"; 
+                                //echo "<font color=\"red\"><b>disabled</b></font>. | <a href='modules/$mod_name/includes/module_action.php?service=$mod_name&action=start&page=status'><b>start</b></a>"; 
+                                //echo " | <a href='modules/$mod_name/'><b>edit</b></a><br/>";
+				
+				echo "<div style='border:0px solid red; display:inline-block; width:63px; font-weight:bold; color:red;'>disabled.</div> ";
+				echo "<div style='border:0px solid red; display:inline-block;'>|</div> ";
+				echo "<div style='display:inline-block;font-weight:bold; width:36px; visibility:visible;'>
+					    <a href='modules/$mod_name/includes/module_action.php?service=$mod_name&action=start&page=status'>start</a>
+					</div>";
+					
+				echo "<div style='border:0px solid red; display:inline-block;'>|</div>
+					<div style='display:inline-block;font-weight:bold; width:36px;'>
+					    <a href='modules/$mod_name/'>edit</a>
+					</div>";
+				
                             }
                         $mod_panel = "";
                         $mod_alias = "";
                         }
-                        echo "</td>";
-                    echo "</tr>";
+                        //echo "</td>";
+                    //echo "</tr>";
                     }        
                     $mod_installed[$i] = $mod_name;
                 }
+	    echo "</div>";
             }
         ?>
-        </table>
+        </t-able>
     <? 
     } else {
         echo "<div>No modules have been installed.<br>Install them from the <a href='page_modules.php'><b>Available Modules</b></a> list.</div>";
@@ -339,7 +365,7 @@ if (count($output) > 0) {
 <div class="rounded-top" align="center"> DHCP </div>
 <div class="rounded-bottom">
     <?
-    $filename = "/usr/share/FruityWifi/logs/dhcp.leases";
+    $filename = "/usr/share/fruitywifi/logs/dhcp.leases";
     $fh = fopen($filename, "r"); //or die("Could not open file.");
     if ( 0 < filesize( $filename ) ) {
         $data = fread($fh, filesize($filename)); //or die("Could not read file.");

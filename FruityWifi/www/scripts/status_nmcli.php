@@ -1,19 +1,19 @@
 <? 
 /*
-	Copyright (C) 2013  xtr4nge [_AT_] gmail.com
+    Copyright (C) 2013  xtr4nge [_AT_] gmail.com
 
-	This program is free software: you can redistribute it and/or modify
-	it under the terms of the GNU General Public License as published by
-	the Free Software Foundation, either version 3 of the License, or
-	(at your option) any later version.
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
 
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
 
-	You should have received a copy of the GNU General Public License
-	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */ 
 ?>
 <?
@@ -27,6 +27,8 @@
 include "../login_check.php";
 include "../config/config.php";
 include "../functions.php";
+
+$bin_danger = "/usr/share/fruitywifi/bin/danger";
 
 // Checking POST & GET variables...
 if ($regex == 1) {
@@ -45,26 +47,23 @@ $page = $_GET['page'];
 if($service == "supplicant") {
     if ($action == "start") {
         $exec = "/sbin/ifconfig $iface_supplicant up";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+        exec("$bin_danger \"" . $exec . "\"" );
         $exec = "nmcli -n d disconnect iface $iface_supplicant";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+        exec("$bin_danger \"" . $exec . "\"" );
         $exec = "nmcli -n c delete id nmcli_raspberry_wifi";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+        exec("$bin_danger \"" . $exec . "\"" );
         
         $exec = "/sbin/iwlist $iface_supplicant scan";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+        exec("$bin_danger \"" . $exec . "\"" );
 
         $exec = "nmcli -n dev wifi connect '$supplicant_ssid' password '$supplicant_psk' iface $iface_supplicant name nmcli_raspberry_wifi";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
-
-        //$exec = "/bin/sed -i 's/ssid=.*/ssid=\\\"".$supplicant_ssid."\\\";/g' ../config/config.php";
-        //$exec = "/bin/sed -i 's/psk=.*/psk=\\\"".$supplicant_psk."\\\";/g' ../config/config.php";
+        exec("$bin_danger \"" . $exec . "\"" );
 
     } else if($action == "stop") {
         $exec = "nmcli -n d disconnect iface $iface_supplicant";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+        exec("$bin_danger \"" . $exec . "\"" );
         $exec = "nmcli -n c delete id nmcli_raspberry_wifi";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+        exec("$bin_danger \"" . $exec . "\"" );
     }
 }
 

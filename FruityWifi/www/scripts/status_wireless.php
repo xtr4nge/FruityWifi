@@ -1,6 +1,6 @@
 <? 
 /*
-    Copyright (C) 2013-2014  xtr4nge [_AT_] gmail.com
+    Copyright (C) 2013-2014 xtr4nge [_AT_] gmail.com
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -21,6 +21,8 @@ include "../login_check.php";
 include "../config/config.php";
 include "../functions.php";
 
+$bin_danger = "/usr/share/fruitywifi/bin/danger";
+
 // Checking POST & GET variables...
 if ($regex == 1) {
     regex_standard($_GET["service"], "../msg.php", $regex_extra);
@@ -35,10 +37,10 @@ if ($regex == 1) {
 $service = $_GET['service'];
 $action = $_GET['action'];
 
-$bin_danger = "/usr/share/FruityWifi/bin/danger";
+$bin_danger = "/usr/share/fruitywifi/bin/danger";
 $bin_killall = "/usr/bin/killall";
 
-#sed -i 's/interface=.*/interface=wlan0/g' /usr/share/FruityWifi/conf/dnsmasq.conf
+#sed -i 's/interface=.*/interface=wlan0/g' /usr/share/fruitywifi/conf/dnsmasq.conf
 
 if($service == "wireless"  and $ap_mode == "1") {
     if ($action == "start") {
@@ -46,20 +48,20 @@ if($service == "wireless"  and $ap_mode == "1") {
         //$internet_interface="eth0";
         //$ap_interface="wlan0";
 
-		//Verifies if karma-hostapd is installed
-		/*
-		if (file_exists("/usr/sbin/karma-hostapd")) {
-			$exec = "$bin_killall karma-hostapd";
-		} else {
-			$exec = "$bin_killall hostapd";			
-		}
-		*/
-		if (file_exists("/usr/share/FruityWifi/www/modules/karma/includes/hostapd")) {
-			$exec = "$bin_killall hostapd";
-		} else {
-			$exec = "$bin_killall hostapd";			
-		}
-		exec("$bin_danger \"" . $exec . "\"" );
+	//Verifies if karma-hostapd is installed
+	/*
+	if (file_exists("/usr/sbin/karma-hostapd")) {
+		$exec = "$bin_killall karma-hostapd";
+	} else {
+		$exec = "$bin_killall hostapd";			
+	}
+	*/
+	if (file_exists("/usr/share/fruitywifi/www/modules/karma/includes/hostapd")) {
+		$exec = "$bin_killall hostapd";
+	} else {
+		$exec = "$bin_killall hostapd";			
+	}
+	exec("$bin_danger \"" . $exec . "\"" );
 
         #$exec = "$bin_killall karma-hostapd";
         #exec("$bin_danger \"" . $exec . "\"" );
@@ -78,37 +80,37 @@ if($service == "wireless"  and $ap_mode == "1") {
         exec("$bin_danger \"" . $exec . "\"" );
 
         //$exec = "/etc/init.d/dnsmasq restart";
-        $exec = "/usr/sbin/dnsmasq -C /usr/share/FruityWifi/conf/dnsmasq.conf";
+        $exec = "/usr/sbin/dnsmasq -C /usr/share/fruitywifi/conf/dnsmasq.conf";
         exec("$bin_danger \"" . $exec . "\"" );
 	
-		//Verifies if karma-hostapd is installed
-		if ($hostapd_secure == 1) {
-			/*
-			if (file_exists("/usr/sbin/karma-hostapd")) {
-				$exec = "/usr/sbin/karma-hostapd -P /var/run/hostapd-phy0 -B /usr/share/FruityWifi/conf/hostapd-secure.conf";
-			} else {
-				$exec = "/usr/sbin/hostapd -P /var/run/hostapd-phy0 -B /usr/share/FruityWifi/conf/hostapd-secure.conf";
-			}
-			*/
-			if (file_exists("/usr/share/FruityWifi/www/modules/karma/includes/hostapd")) {
-				$exec = "/usr/share/FruityWifi/www/modules/karma/includes/hostapd -P /var/run/hostapd-phy0 -B /usr/share/FruityWifi/conf/hostapd-secure.conf";
-			} else {
-				$exec = "/usr/sbin/hostapd -P /var/run/hostapd-phy0 -B /usr/share/FruityWifi/conf/hostapd-secure.conf";
-			}
-			
+	//Verifies if karma-hostapd is installed
+	if ($hostapd_secure == 1) {
+	    /*
+	    if (file_exists("/usr/sbin/karma-hostapd")) {
+		$exec = "/usr/sbin/karma-hostapd -P /var/run/hostapd-phy0 -B /usr/share/fruitywifi/conf/hostapd-secure.conf";
+	    } else {
+		$exec = "/usr/sbin/hostapd -P /var/run/hostapd-phy0 -B /usr/share/fruitywifi/conf/hostapd-secure.conf";
+	    }
+	    */
+	    if (file_exists("/usr/share/fruitywifi/www/modules/karma/includes/hostapd")) {
+		$exec = "/usr/share/fruitywifi/www/modules/karma/includes/hostapd -P /var/run/hostapd-phy0 -B /usr/share/fruitywifi/conf/hostapd-secure.conf";
+	    } else {
+		$exec = "/usr/sbin/hostapd -P /var/run/hostapd-phy0 -B /usr/share/fruitywifi/conf/hostapd-secure.conf";
+	    }
+		
         } else {
-			/*
-			if (file_exists("/usr/sbin/karma-hostapd")) {
-				$exec = "/usr/sbin/karma-hostapd -P /var/run/hostapd-phy0 -B /usr/share/FruityWifi/conf/hostapd.conf";
-			} else {
-				$exec = "/usr/sbin/hostapd -P /var/run/hostapd-phy0 -B /usr/share/FruityWifi/conf/hostapd.conf";
-			}
-			*/
-			if (file_exists("/usr/share/FruityWifi/www/modules/karma/includes/hostapd")) {
-				$exec = "/usr/share/FruityWifi/www/modules/karma/includes/hostapd -P /var/run/hostapd-phy0 -B /usr/share/FruityWifi/conf/hostapd.conf";
-			} else {
-				$exec = "/usr/sbin/hostapd -P /var/run/hostapd-phy0 -B /usr/share/FruityWifi/conf/hostapd.conf";
-			}
+	    /*
+	    if (file_exists("/usr/sbin/karma-hostapd")) {
+		$exec = "/usr/sbin/karma-hostapd -P /var/run/hostapd-phy0 -B /usr/share/fruitywifi/conf/hostapd.conf";
+	    } else {
+		$exec = "/usr/sbin/hostapd -P /var/run/hostapd-phy0 -B /usr/share/fruitywifi/conf/hostapd.conf";
+	    }
+	    */
+	    if (file_exists("/usr/share/fruitywifi/www/modules/karma/includes/hostapd")) {
+		$exec = "/usr/share/fruitywifi/www/modules/karma/includes/hostapd -P /var/run/hostapd-phy0 -B /usr/share/fruitywifi/conf/hostapd.conf";
+	    } else {
+		$exec = "/usr/sbin/hostapd -P /var/run/hostapd-phy0 -B /usr/share/fruitywifi/conf/hostapd.conf";
+	    }
         }
         exec("$bin_danger \"" . $exec . "\"" );
 
@@ -131,25 +133,25 @@ if($service == "wireless"  and $ap_mode == "1") {
         exec("$bin_danger \"" . $exec . "\"" );
         
         // CLEAN DHCP log
-        $exec = "echo '' > /usr/share/FruityWifi/logs/dhcp.leases";
+        $exec = "echo '' > /usr/share/fruitywifi/logs/dhcp.leases";
         exec("$bin_danger \"" . $exec . "\"" );
 
     } else if($action == "stop") {
 
-		//Verifies if karma-hostapd is installed
-		/*
-		if (file_exists("/usr/sbin/karma-hostapd")) {
-			$exec = "$bin_killall karma-hostapd";
-		} else {
-			$exec = "$bin_killall hostapd";			
-		}
-		*/
-		if (file_exists("/usr/share/FruityWifi/www/modules/karma/includes/hostapd")) {
-			$exec = "$bin_killall hostapd";
-		} else {
-			$exec = "$bin_killall hostapd";			
-		}	
-		exec("$bin_danger \"" . $exec . "\"" );
+	//Verifies if karma-hostapd is installed
+	/*
+	if (file_exists("/usr/sbin/karma-hostapd")) {
+	    $exec = "$bin_killall karma-hostapd";
+	} else {
+	    $exec = "$bin_killall hostapd";			
+	}
+	*/
+	if (file_exists("/usr/share/fruitywifi/www/modules/karma/includes/hostapd")) {
+	    $exec = "$bin_killall hostapd";
+	} else {
+	    $exec = "$bin_killall hostapd";			
+	}	
+	exec("$bin_danger \"" . $exec . "\"" );
 
         #$exec = "$bin_killall karma-hostapd";
         #exec("$bin_danger \"" . $exec . "\"" );
@@ -184,36 +186,36 @@ if($service == "wireless"  and $ap_mode == "1") {
 if($service == "wireless" and $ap_mode == "2") { // AIRCRACK (airbase-ng)
     if ($action == "start") {
 
-		$exec = "sudo /usr/sbin/airmon-ng stop mon0";
-		exec("$bin_danger \"" . $exec . "\"" );
+	$exec = "/usr/bin/sudo /usr/sbin/airmon-ng stop mon0";
+	exec("$bin_danger \"" . $exec . "\"" );
 
-		$exec = "$bin_killall airbase-ng";
-		exec("$bin_danger \"" . $exec . "\"" );
+	$exec = "$bin_killall airbase-ng";
+	exec("$bin_danger \"" . $exec . "\"" );
 
         $exec = "$bin_killall dnsmasq";
         exec("$bin_danger \"" . $exec . "\"" );
 
-		/*
+	/*
         $exec = "/sbin/ifconfig $io_in_iface up";
         exec("$bin_danger \"" . $exec . "\"" );
         $exec = "/sbin/ifconfig $io_in_iface up $io_in_ip netmask 255.255.255.0";
         exec("$bin_danger \"" . $exec . "\"" );
-		*/
+	*/
 		
-		$exec = "echo 'nameserver $io_in_ip\nnameserver 8.8.8.8' > /etc/resolv.conf ";
+	$exec = "echo 'nameserver $io_in_ip\nnameserver 8.8.8.8' > /etc/resolv.conf ";
         exec("$bin_danger \"" . $exec . "\"" );
 		
-		$exec = "sudo /usr/sbin/airmon-ng start $io_in_iface";
-		exec("$bin_danger \"" . $exec . "\"" );
-		
-		//$exec = "/usr/sbin/airbase-ng -e $hostapd_ssid -c 2 mon0 > /dev/null &"; //-P (all)
-		$exec = "/usr/sbin/airbase-ng -e $hostapd_ssid -c 2 mon0 > /tmp/airbase.log &"; //-P (all)
+	$exec = "/usr/bin/sudo /usr/sbin/airmon-ng start $io_in_iface";
+	exec("$bin_danger \"" . $exec . "\"" );
+	
+	//$exec = "/usr/sbin/airbase-ng -e $hostapd_ssid -c 2 mon0 > /dev/null &"; //-P (all)
+	$exec = "/usr/sbin/airbase-ng -e $hostapd_ssid -c 2 mon0 > /tmp/airbase.log &"; //-P (all)
         exec("$bin_danger \"" . $exec . "\"" );
 
-		//$exec = "/sbin/ifconfig at0 up 10.0.0.1 netmask 255.255.255.0";
+	//$exec = "/sbin/ifconfig at0 up 10.0.0.1 netmask 255.255.255.0";
         //exec("$bin_danger \"" . $exec . "\"" );
 
-		$exec = "sleep 1";
+	$exec = "sleep 1";
         exec("$bin_danger \"" . $exec . "\"" );
 
         $exec = "/sbin/ifconfig at0 up";
@@ -221,7 +223,7 @@ if($service == "wireless" and $ap_mode == "2") { // AIRCRACK (airbase-ng)
         $exec = "/sbin/ifconfig at0 up $io_in_ip netmask 255.255.255.0";
         exec("$bin_danger \"" . $exec . "\"" );
 
-        $exec = "/usr/sbin/dnsmasq -C /usr/share/FruityWifi/conf/dnsmasq.conf";
+        $exec = "/usr/sbin/dnsmasq -C /usr/share/fruitywifi/conf/dnsmasq.conf";
         exec("$bin_danger \"" . $exec . "\"" );
 
         $exec = "/sbin/iptables -F";
@@ -243,19 +245,19 @@ if($service == "wireless" and $ap_mode == "2") { // AIRCRACK (airbase-ng)
         exec("$bin_danger \"" . $exec . "\"" );
         
         // CLEAN DHCP log
-        $exec = "echo '' > /usr/share/FruityWifi/logs/dhcp.leases";
+        $exec = "echo '' > /usr/share/fruitywifi/logs/dhcp.leases";
         exec("$bin_danger \"" . $exec . "\"" );
 
     } else if($action == "stop") {
 
-		$exec = "$bin_killall airbase-ng";
-		exec("$bin_danger \"" . $exec . "\"" );
+	$exec = "$bin_killall airbase-ng";
+	exec("$bin_danger \"" . $exec . "\"" );
 
         $exec = "$bin_killall dnsmasq";
         exec("$bin_danger \"" . $exec . "\"" );
 
-		$exec = "sudo /usr/sbin/airmon-ng stop mon0";
-		exec("$bin_danger \"" . $exec . "\"" );
+	$exec = "/usr/bin/sudo /usr/sbin/airmon-ng stop mon0";
+	exec("$bin_danger \"" . $exec . "\"" );
 
         $exec = "ip addr flush dev at0";
         exec("$bin_danger \"" . $exec . "\"" );

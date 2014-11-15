@@ -31,6 +31,8 @@ include "config/config.php";
 <?
 include "functions.php";
 
+$bin_danger = "/usr/share/fruitywifi/bin/danger";
+
 // Checking POST & GET variables...
 if ($regex == 1) {
     regex_standard($_POST["filename"], "msg.php", $regex_extra);
@@ -96,23 +98,14 @@ if(isset($_POST["iface"]) and $_POST["iface"] == "internet"){
 
 if(isset($_POST["iface"]) and $_POST["iface"] == "wifi"){
     echo "wifi:" . $_POST["io_in_iface"];
-    //$exec = "sed -i 's/io_in_iface=.*/io_in_iface=\\\"".$_POST["io_in_iface"]."\\\";/g' ./config/config.php";
-    //echo $exec;    
-    //exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
 }
 
 if(isset($_POST["iface"]) and $_POST["iface"] == "wifi_extra"){
     echo "wifi extra:" . $_POST["io_in_iface_extra"];
-    //$exec = "sed -i 's/io_in_iface_extra=.*/io_in_iface_extra=\\\"".$_POST["io_in_iface_extra"]."\\\";/g' ./config/config.php";
-    //echo $exec;    
-    //exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
 }
 
 if(isset($_POST["iface"]) and $_POST["iface"] == "wifi_supplicant"){
     echo "wifi supplicant:" . $_POST["iface_supplicant"];
-    //$exec = "sed -i 's/io_in_iface_extra=.*/io_in_iface_extra=\\\"".$_POST["io_in_iface_extra"]."\\\";/g' ./config/config.php";
-    //echo $exec;    
-    //exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
 }
 
 if ($_GET["service"] == "mon0") {
@@ -132,49 +125,42 @@ if(isset($_POST[newSSID])){
     $hostapd_ssid=$_POST[newSSID];
     
     $exec = "sed -i 's/hostapd_ssid=.*/hostapd_ssid=\\\"".$_POST[newSSID]."\\\";/g' ./config/config.php";
-    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+    exec("$bin_danger \"" . $exec . "\"" );
 
     $exec = "/usr/sbin/karma-hostapd_cli -p /var/run/hostapd-phy0 karma_change_ssid $_POST[newSSID]";
-    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
-    //system("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+    exec("$bin_danger \"" . $exec . "\"" );
     
     // replace interface in hostapd.conf and hostapd-secure.conf
-    $exec = "/bin/sed -i 's/^ssid=.*/ssid=".$_POST["newSSID"]."/g' /usr/share/FruityWifi/conf/hostapd.conf";
-    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
-    $exec = "/bin/sed -i 's/^ssid=.*/ssid=".$_POST["newSSID"]."/g' /usr/share/FruityWifi/conf/hostapd-secure.conf";
-    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+    $exec = "/bin/sed -i 's/^ssid=.*/ssid=".$_POST["newSSID"]."/g' /usr/share/fruitywifi/conf/hostapd.conf";
+    exec("$bin_danger \"" . $exec . "\"" );
+    $exec = "/bin/sed -i 's/^ssid=.*/ssid=".$_POST["newSSID"]."/g' /usr/share/fruitywifi/conf/hostapd-secure.conf";
+    exec("$bin_danger \"" . $exec . "\"" );
 
 }
 
 
 if (isset($_POST['hostapd_secure'])) {
     $exec = "sed -i 's/hostapd_secure=.*/hostapd_secure=\\\"".$_POST["hostapd_secure"]."\\\";/g' ./config/config.php";
-    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+    exec("$bin_danger \"" . $exec . "\"" );
 
     $hostapd_secure = $_POST["hostapd_secure"];
 }
 
 if (isset($_POST['hostapd_wpa_passphrase'])) {
     $exec = "sed -i 's/hostapd_wpa_passphrase=.*/hostapd_wpa_passphrase=\\\"".$_POST["hostapd_wpa_passphrase"]."\\\";/g' ./config/config.php";
-    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+    exec("$bin_danger \"" . $exec . "\"" );
     $exec = "sed -i 's/wpa_passphrase=.*/wpa_passphrase=".$_POST["hostapd_wpa_passphrase"]."/g' ../conf/hostapd-secure.conf";
-    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+    exec("$bin_danger \"" . $exec . "\"" );
 
     $hostapd_wpa_passphrase = $_POST["hostapd_wpa_passphrase"];
 }
 
 // -------------- SUPPLICANT ------------------
 if(isset($_POST["supplicant_ssid"]) and isset($_POST["supplicant_psk"])) {
-    //echo "supplicant_ssid:" . $_POST["supplicant_ssid"];
-    //echo "<br>";
-    //echo "supplicant_psk:" . $_POST["supplicant_psk"];
     $exec = "sed -i 's/supplicant_ssid=.*/supplicant_ssid=\\\"".$_POST["supplicant_ssid"]."\\\";/g' ./config/config.php";
-    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+    exec("$bin_danger \"" . $exec . "\"" );
     $exec = "sed -i 's/supplicant_psk=.*/supplicant_psk=\\\"".$_POST["supplicant_psk"]."\\\";/g' ./config/config.php";
-    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
-    //$exec = "sed -i 's/io_in_iface_extra=.*/io_in_iface_extra=\\\"".$_POST["io_in_iface_extra"]."\\\";/g' ./config/config.php";
-    //echo $exec;    
-    //exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+    exec("$bin_danger \"" . $exec . "\"" );
     
     $supplicant_ssid = $_POST["supplicant_ssid"];
     $supplicant_psk = $_POST["supplicant_psk"];
@@ -188,7 +174,7 @@ if(isset($_POST["pass_old"]) and isset($_POST["pass_new"])) {
 	$exec = "sed -i 's/\\\=\\\"".md5($_POST["pass_old"])."\\\"/\\\=\\\"".md5($_POST["pass_new"])."\\\"/g' ./users.php";
 	//echo $exec;
 	//exit;
-    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+    exec("$bin_danger \"" . $exec . "\"" );
     $pass_msg = 1;
     } else {
 	    $pass_msg = 2;

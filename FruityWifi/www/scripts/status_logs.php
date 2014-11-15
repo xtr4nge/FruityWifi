@@ -21,7 +21,7 @@ $service = $_POST["service"];
 $path = $_POST["path"];
 
 $exec = "tail -n 5 $path";
-exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"", $output);
+exec("/usr/share/fruitywifi/bin/danger \"" . $exec . "\"", $output);
 
 for ($i=0; $i < count($output); $i++)
 {
