@@ -18,20 +18,20 @@ function delayer(){
 <pre><? 
 $fruit_num = rand(1, 6);
 if ($fruit_num == 1) {
-?><font style="color:green">
+?><font style="color:black">
        .~~.   .~~.
-      '. \ ' ' / .' </font><font style="color:red">
+      '. \ ' ' / .' </font><font style="color:black">
        .~ .~~~..~.
       : .~.'~'.~. :
      ~ (   ) (   ) ~
     ( : '~'.~.'~' : )
      ~ .~ (   ) ~. ~
-      (  : '~' :  ) </font><font style="color:white">Evil Pi</font><font style="color:red">
+      (  : '~' :  ) 
        '~ .~~~. ~'
            '~'
 </font>
 <? } else if ($fruit_num == 2) { ?>
-<font style="color:yellow">
+<font style="color:black">
   _
  //\
  V  \
@@ -62,8 +62,8 @@ if ($fruit_num == 1) {
             (_)
 </font>
 <? } else if ($fruit_num == 3) { ?>
-<font style="color:green">
-         \VW/ </font><font style="color:red">
+<font style="color:black">
+         \VW/ </font><font style="color:black">
        .::::::.
        ::::::::
        '::::::'
@@ -71,10 +71,10 @@ if ($fruit_num == 1) {
           `"`
 </font>
 <? } else if ($fruit_num == 4) { ?>
-<font style="color:green">
+<font style="color:black">
        __.--~~.,-.__
        `~-._.-(`-.__`-.
-               \    `~~` </font><font style="color:red">
+               \    `~~` </font><font style="color:black">
           .--./ \
          /#   \  \.--.
          \    /  /#   \
@@ -82,7 +82,7 @@ if ($fruit_num == 1) {
                   '--'
 </font>
 <? } else if ($fruit_num == 5) { ?>
-</font><font style="color:green">
+</font><font style="color:black">
            ______
        .-'' ____ ''-.
       /.-=""    ""=-.\
@@ -91,7 +91,7 @@ if ($fruit_num == 1) {
        '-..______..-'
 </font>
 <? } else if ($fruit_num == 6) { ?>
-</font><font style="color:orange">
+</font><font style="color:black">
             __ __
          ,-':.x.;`-.
        ,;;;`,:,,: .;`.
