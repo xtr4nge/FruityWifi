@@ -130,32 +130,6 @@ echo "</div>";
 ?>
 
 <?
-$exec = "grep 'FruityWifi-Phishing' /var/www/index.php";
-$isphishingup = exec($exec);
-echo "<div style='text-align:left;'>";
-if ($isphishingup  != "") {
-    //echo "&nbsp;&nbsp;&nbsp; Phishing  <font color='lime'><b>enabled</b></font>.&nbsp; | <a href='scripts/status_phishing.php?service=phishing&action=stop'><b>stop</b></a><br />";
-
-    echo "<div style='border:0px solid red; display:inline-block; width:84px; text-align:right;'>Phishing</div> ";
-    echo "<div style='border:0px solid red; display:inline-block; width:63px; font-weight:bold; color:lime;'>enabled.</div> ";
-    echo "<div style='border:0px solid red; display:inline-block;'>|</div> ";	
-    echo "<div style='display:inline-block;font-weight:bold; width:36px; visibility:visible;'>
-                <a href='scripts/status_phishing.php?service=phishing&action=stop'>stop</a>
-            </div>";
-} else { 
-    //echo "&nbsp;&nbsp;&nbsp; Phishing  <font color='red'><b>disabled</b></font>. | <a href='scripts/status_phishing.php?service=phishing&action=start'><b>start</b></a><br/>"; 
-
-    echo "<div style='border:0px solid red; display:inline-block; width:84px; text-align:right;'>Phishing</div> ";
-    echo "<div style='border:0px solid red; display:inline-block; width:63px; font-weight:bold; color:red;'>disabled.</div> ";
-    echo "<div style='border:0px solid red; display:inline-block;'>|</div> ";
-    echo "<div style='display:inline-block;font-weight:bold; width:36px; visibility:visible;'>
-                <a href='scripts/status_phishing.php?service=phishing&action=start'>start</a>
-            </div>";
-}
-echo "</div>";
-?>
-
-<?
 exec("find ./modules -name '_info_.php' | sort",$output);
 if (count($output) > 0) {
     ?>

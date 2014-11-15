@@ -340,9 +340,6 @@ function addDivs($service, $alias, $edit, $path, $mod_logs_panel)
 
 <? 
 addDivs("s_wireless", "Wireless", "page_config.php", "../logs/dnsmasq.log", "show");
-//addDivs("s_supplicant", "Supplicant", "page_config.php", "");
-//addDivs("s_karma", "Karma", "page_config.php", "");
-addDivs("s_phishing", "Phishing", "page_config.php", "/var/www/site/data.txt", "show");
 ?>
 
 <?
