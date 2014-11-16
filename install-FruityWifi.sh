@@ -27,13 +27,12 @@ then
     apt-get -y install g++-4.7
     update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.7 40 --slave /usr/bin/g++ g++ /usr/bin/g++-4.7
     
-    echo "[gcc setup completed]\n"
+    echo "[gcc setup completed]"
 
 else
     echo "--------------------------------"
     echo "gcc 4.7 already installed"
     echo "--------------------------------"
-    echo
     echo
 fi
 
@@ -48,13 +47,12 @@ then
     # INSTALL DNSMASQ
     apt-get -y install dnsmasq
     
-    echo "[dnsmasq setup completed]\n"
+    echo "[dnsmasq setup completed]"
 
 else
     echo "--------------------------------"
     echo "dnsmasq already installed"
     echo "--------------------------------"
-    echo
     echo
 fi
 
@@ -69,13 +67,12 @@ then
     # INSTALL HOSTAPD
     apt-get -y install hostapd
     
-    echo "[hostapd setup completed]\n"
+    echo "[hostapd setup completed]"
 
 else
     echo "--------------------------------"
     echo "hostapd already installed"
     echo "--------------------------------"
-    echo
     echo
 fi
 
@@ -98,13 +95,12 @@ then
     ln -s /usr/local/sbin/airbase-ng /usr/sbin/airbase-ng
     cd ../
     
-    echo "[aircrack-ng setup completed]\n"
+    echo "[aircrack-ng setup completed]"
 
 else
     echo "--------------------------------"
     echo "aircrack-ng already installed"
     echo "--------------------------------"
-    echo
     echo
 fi
 
@@ -119,7 +115,8 @@ echo "--------------------------------"
 cd $root_path
 cp -a sudo-setup/fruitywifi /etc/sudoers.d/
 
-echo "[sudo setup completed]\n"
+echo "[sudo setup completed]"
+echo
 
 echo "--------------------------------"
 echo "Installing Nginx"
@@ -127,6 +124,7 @@ echo "--------------------------------"
 
 # NGINX INSTALL
 apt-get -y install nginx php5-fpm
+echo
 
 # SSL
 echo "--------------------------------"
@@ -145,14 +143,15 @@ cp nginx-setup/fpm/*.conf /etc/php5/fpm/pool.d/
 /etc/init.d/nginx restart
 /etc/init.d/php5-fpm restart
 
-echo "[nginx setup completed]\n"
+echo "[nginx setup completed]"
+echo
 
 echo "--------------------------------"
 echo "BACKUP"
 echo "--------------------------------"
 cmd=`date +"%Y-%m-%d-%k-%M-%S"`
-mv /usr/share/FruityWifi FruityWifi.BAK.$cmd
 mv /usr/share/fruitywifi fruitywifi.BAK.$cmd
+echo
 
 echo "--------------------------------"
 echo "Setup FruityWifi"
@@ -168,11 +167,11 @@ then
     echo "--------------------------------"
 
     mkdir $fruitywifi_log_path
-    EXEC="s,^\$log_path=*,\$log_path=\""$fruitywifi_log_path"\",g"
+    EXEC="s,^\$log_path=.*,\$log_path=\""$fruitywifi_log_path"\";,g"
     sed -i $EXEC FruityWifi/www/config/config.php
-    EXEC="s,^log-facility=*,log-facility="$fruitywifi_log_path"/dnsmasq.log,g"
+    EXEC="s,^log-facility=.*,log-facility="$fruitywifi_log_path"/dnsmasq.log,g"
     sed -i $EXEC FruityWifi/conf/dnsmasq.conf
-    EXEC="s,^log-facility=*,log-facility="$fruitywifi_log_path"/dhcp.leases,g"
+    EXEC="s,^dhcp-leasefile=.*,dhcp-leasefile="$fruitywifi_log_path"/dhcp.leases,g"
     sed -i $EXEC FruityWifi/conf/dnsmasq.conf
 fi
 
