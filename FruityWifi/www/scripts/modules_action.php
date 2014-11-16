@@ -22,7 +22,7 @@ include "../login_check.php";
 include "../config/config.php";
 include "../functions.php";
 
-$bin_danger = "/usr/share/fruitywifi/bin/danger";
+//$bin_danger = "/usr/share/fruitywifi/bin/danger"; //DEPRECATED
 
 // Checking POST & GET variables...
 if ($regex == 1) {
@@ -35,14 +35,14 @@ $module = $_GET["module"];
 
 if ($action == "install") {
     $exec = "git clone https://github.com/xtr4nge/module_$module.git /usr/share/fruitywifi/www/modules/$module";
-    exec("$bin_danger \"" . $exec . "\"" );
-    //echo $exec;
+    //exec("$bin_danger \"" . $exec . "\"" ); //DEPRECATED
+    exec_fruitywifi($exec);
 }
 
 if ($action == "remove") {
     $exec = "rm -R /usr/share/fruitywifi/www/modules/$module";
-    exec("$bin_danger \"" . $exec . "\"" );
-    //echo $exec;
+    //exec("$bin_danger \"" . $exec . "\"" ); //DEPRECATED
+    exec_fruitywifi($exec);
 }
 
 if (isset($_GET["show"])) {

@@ -31,7 +31,7 @@ include "config/config.php";
 <?
 include "functions.php";
 
-$bin_danger = "/usr/share/fruitywifi/bin/danger";
+//$bin_danger = "/usr/share/fruitywifi/bin/danger"; //DEPRECATED
 
 // Checking POST & GET variables...
 if ($regex == 1) {
@@ -125,42 +125,52 @@ if(isset($_POST[newSSID])){
     $hostapd_ssid=$_POST[newSSID];
     
     $exec = "sed -i 's/hostapd_ssid=.*/hostapd_ssid=\\\"".$_POST[newSSID]."\\\";/g' ./config/config.php";
-    exec("$bin_danger \"" . $exec . "\"" );
+    //exec("$bin_danger \"" . $exec . "\"" ); //DEPRECATED
+    exec_fruitywifi($exec);
 
     $exec = "/usr/sbin/karma-hostapd_cli -p /var/run/hostapd-phy0 karma_change_ssid $_POST[newSSID]";
-    exec("$bin_danger \"" . $exec . "\"" );
+    //exec("$bin_danger \"" . $exec . "\"" ); //DEPRECATED
+    exec_fruitywifi($exec);
     
     // replace interface in hostapd.conf and hostapd-secure.conf
     $exec = "/bin/sed -i 's/^ssid=.*/ssid=".$_POST["newSSID"]."/g' /usr/share/fruitywifi/conf/hostapd.conf";
-    exec("$bin_danger \"" . $exec . "\"" );
+    //exec("$bin_danger \"" . $exec . "\"" ); //DEPRECATED
+    exec_fruitywifi($exec);
     $exec = "/bin/sed -i 's/^ssid=.*/ssid=".$_POST["newSSID"]."/g' /usr/share/fruitywifi/conf/hostapd-secure.conf";
-    exec("$bin_danger \"" . $exec . "\"" );
-
+    //exec("$bin_danger \"" . $exec . "\"" ); //DEPRECATED
+    exec_fruitywifi($exec);
 }
 
 
 if (isset($_POST['hostapd_secure'])) {
     $exec = "sed -i 's/hostapd_secure=.*/hostapd_secure=\\\"".$_POST["hostapd_secure"]."\\\";/g' ./config/config.php";
-    exec("$bin_danger \"" . $exec . "\"" );
+    //exec("$bin_danger \"" . $exec . "\"" ); //DEPRECATED
+    exec_fruitywifi($exec);
 
     $hostapd_secure = $_POST["hostapd_secure"];
 }
 
 if (isset($_POST['hostapd_wpa_passphrase'])) {
     $exec = "sed -i 's/hostapd_wpa_passphrase=.*/hostapd_wpa_passphrase=\\\"".$_POST["hostapd_wpa_passphrase"]."\\\";/g' ./config/config.php";
-    exec("$bin_danger \"" . $exec . "\"" );
+    //exec("$bin_danger \"" . $exec . "\"" ); //DEPRECATED
+    exec_fruitywifi($exec);
+    
     $exec = "sed -i 's/wpa_passphrase=.*/wpa_passphrase=".$_POST["hostapd_wpa_passphrase"]."/g' ../conf/hostapd-secure.conf";
-    exec("$bin_danger \"" . $exec . "\"" );
-
+    //exec("$bin_danger \"" . $exec . "\"" ); //DEPRECATED
+    exec_fruitywifi($exec);
+    
     $hostapd_wpa_passphrase = $_POST["hostapd_wpa_passphrase"];
 }
 
 // -------------- SUPPLICANT ------------------
 if(isset($_POST["supplicant_ssid"]) and isset($_POST["supplicant_psk"])) {
     $exec = "sed -i 's/supplicant_ssid=.*/supplicant_ssid=\\\"".$_POST["supplicant_ssid"]."\\\";/g' ./config/config.php";
-    exec("$bin_danger \"" . $exec . "\"" );
+    //exec("$bin_danger \"" . $exec . "\"" ); //DEPRECATED
+    exec_fruitywifi($exec);
+    
     $exec = "sed -i 's/supplicant_psk=.*/supplicant_psk=\\\"".$_POST["supplicant_psk"]."\\\";/g' ./config/config.php";
-    exec("$bin_danger \"" . $exec . "\"" );
+    //exec("$bin_danger \"" . $exec . "\"" ); //DEPRECATED
+    exec_fruitywifi($exec);
     
     $supplicant_ssid = $_POST["supplicant_ssid"];
     $supplicant_psk = $_POST["supplicant_psk"];
@@ -174,10 +184,12 @@ if(isset($_POST["pass_old"]) and isset($_POST["pass_new"])) {
 	$exec = "sed -i 's/\\\=\\\"".md5($_POST["pass_old"])."\\\"/\\\=\\\"".md5($_POST["pass_new"])."\\\"/g' ./users.php";
 	//echo $exec;
 	//exit;
-    exec("$bin_danger \"" . $exec . "\"" );
+    //exec("$bin_danger \"" . $exec . "\"" ); //DEPRECATED
+    exec_fruitywifi($exec);
+    
     $pass_msg = 1;
     } else {
-	    $pass_msg = 2;
+	$pass_msg = 2;
     }
 }
 

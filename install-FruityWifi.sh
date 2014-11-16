@@ -1,7 +1,13 @@
 #!/bin/bash
 
+# CONFIG
+fruitywifi_exec_mode="sudo" # sudo|danger
+fruitywifi_log_path="/usr/share/fruitywifi/logs" # default=/usr/share/fruitywifi/logs
+
 find FruityWifi -type d -exec chmod 755 {} \;
 find FruityWifi -type f -exec chmod 644 {} \;
+
+root_path=`pwd`
 
 mkdir tmp-install
 cd tmp-install
@@ -20,6 +26,8 @@ then
     apt-get -y install gcc-4.7
     apt-get -y install g++-4.7
     update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.7 40 --slave /usr/bin/g++ g++ /usr/bin/g++-4.7
+    
+    echo "[gcc setup completed]\n"
 
 else
     echo "--------------------------------"
@@ -39,6 +47,8 @@ then
 	
     # INSTALL DNSMASQ
     apt-get -y install dnsmasq
+    
+    echo "[dnsmasq setup completed]\n"
 
 else
     echo "--------------------------------"
@@ -58,6 +68,8 @@ then
 
     # INSTALL HOSTAPD
     apt-get -y install hostapd
+    
+    echo "[hostapd setup completed]\n"
 
 else
     echo "--------------------------------"
@@ -85,6 +97,8 @@ then
     ln -s /usr/local/sbin/airmon-ng /usr/sbin/airmon-ng
     ln -s /usr/local/sbin/airbase-ng /usr/sbin/airbase-ng
     cd ../
+    
+    echo "[aircrack-ng setup completed]\n"
 
 else
     echo "--------------------------------"
@@ -97,8 +111,15 @@ fi
 echo
 
 # BACK TO ROOT-INSTALL FOLDER
-cd ../
+cd $root_path
 
+echo "--------------------------------"
+echo "Setup Sudo"
+echo "--------------------------------"
+cd $root_path
+cp -a sudo-setup/fruitywifi /etc/sudoers.d/
+
+echo "[sudo setup completed]\n"
 
 echo "--------------------------------"
 echo "Installing Nginx"
@@ -111,6 +132,7 @@ apt-get -y install nginx php5-fpm
 echo "--------------------------------"
 echo "Create Nginx ssl certificate"
 echo "--------------------------------"
+cd $root_path
 mkdir /etc/nginx/ssl
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt
 
@@ -123,7 +145,7 @@ cp nginx-setup/fpm/*.conf /etc/php5/fpm/pool.d/
 /etc/init.d/nginx restart
 /etc/init.d/php5-fpm restart
 
-echo
+echo "[nginx setup completed]\n"
 
 echo "--------------------------------"
 echo "BACKUP"
@@ -133,20 +155,43 @@ mv /usr/share/FruityWifi FruityWifi.BAK.$cmd
 mv /usr/share/fruitywifi fruitywifi.BAK.$cmd
 
 echo "--------------------------------"
-echo "SETUP FruityWifi"
+echo "Setup FruityWifi"
 echo "--------------------------------"
-cp -a FruityWifi /usr/share/fruitywifi
-ln -s /usr/share/fruitywifi/logs /usr/share/fruitywifi/www/logs
-ln -s /usr/share/fruitywifi/ /usr/share/FruityWifi
-
-# BIN
-cd /usr/share/fruitywifi/bin/
-gcc danger.c -o danger
+cd $root_path
 
 adduser --disabled-password --quiet --system --home /var/run/fruitywifi --no-create-home --gecos "FruityWifi" --group fruitywifi
 
-chgrp fruitywifi /usr/share/fruitywifi/bin/danger
-chmod 4750 /usr/share/fruitywifi/bin/danger
+if [ $fruitywifi_log_path != "default" ]
+then
+    echo "--------------------------------"
+    echo "Config log path"
+    echo "--------------------------------"
+
+    mkdir $fruitywifi_log_path
+    EXEC="s,^\$log_path=*,\$log_path=\""$fruitywifi_log_path"\",g"
+    sed -i $EXEC FruityWifi/www/config/config.php
+    EXEC="s,^log-facility=*,log-facility="$fruitywifi_log_path"/dnsmasq.log,g"
+    sed -i $EXEC FruityWifi/conf/dnsmasq.conf
+    EXEC="s,^log-facility=*,log-facility="$fruitywifi_log_path"/dhcp.leases,g"
+    sed -i $EXEC FruityWifi/conf/dnsmasq.conf
+fi
+
+cp -a FruityWifi /usr/share/fruitywifi
+ln -s $fruitywifi_log_path /usr/share/fruitywifi/www/logs
+ln -s /usr/share/fruitywifi/ /usr/share/FruityWifi
+
+if [ $fruitywifi_exec_mode == "danger" ]
+then
+
+    echo "--------------------------------"
+    echo "Installing danger"
+    echo "--------------------------------"
+    
+    cd /usr/share/fruitywifi/bin/
+    gcc danger.c -o danger
+    chgrp fruitywifi /usr/share/fruitywifi/bin/danger
+    chmod 4750 /usr/share/fruitywifi/bin/danger
+fi
 
 echo
 

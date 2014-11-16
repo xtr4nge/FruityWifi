@@ -40,6 +40,28 @@ function regex_standard($var, $url, $regex_extra) {
 
 }
 
+function exec_fruitywifi($exec) {
+
+    $exec_mode = "sudo";
+
+    if ($exec_mode == "danger") {
+	
+	$bin_exec = "/usr/share/fruitywifi/bin/danger";
+	exec("$bin_exec \"" . $exec . "\"", $output);
+	return $output;
+    
+    } else if ($exec_mode == "sudo") {
+	
+	$bin_exec = "/usr/bin/sudo";
+	exec("$bin_exec $exec", $output);
+	return $output;
+	
+    } else {
+	return false;
+    }
+    
+}
+
 function start_monitor_mode($iface) {
 
     $bin_danger = "/usr/share/fruitywifi/bin/danger";
@@ -48,7 +70,8 @@ function start_monitor_mode($iface) {
     $iface_mon0 = exec("/sbin/ifconfig |grep mon0");
     if ($iface_mon0 == "") {
         $exec = "/usr/bin/sudo /usr/sbin/airmon-ng start $iface";
-        exec("$bin_danger \"" . $exec . "\"", $output);
+        //exec("$bin_danger \"" . $exec . "\"", $output); //DEPRECATED
+	exec_fruitywifi($exec);
      }
 
 }
@@ -61,7 +84,8 @@ function stop_monitor_mode($iface) {
     $iface_mon0 = exec("/sbin/ifconfig |grep mon0");
     if ($iface_mon0 != "") {
         $exec = "/usr/bin/sudo /usr/sbin/airmon-ng stop mon0";
-        exec("$bin_danger \"" . $exec . "\"", $output);
+        //exec("$bin_danger \"" . $exec . "\"", $output); //DEPRECATED
+	exec_fruitywifi($exec);
     }
 
 }
@@ -87,12 +111,14 @@ function start_iface($iface, $ip, $gw) {
     $iface_mon0 = exec("/sbin/ifconfig |grep mon0");
     //if ($iface_mon0 == "") {
         $exec = "/usr/bin/sudo /sbin/ifconfig $iface $ip";
-        exec("$bin_danger \"" . $exec . "\"", $output);
+        //exec("$bin_danger \"" . $exec . "\"", $output); //DEPRECATED
+	exec_fruitywifi($exec);
 	//}
 
 	if (trim($gw) != "") {
-		$exec = "/usr/bin/sudo /sbin/route add default gw $gw";
-        exec("$bin_danger \"" . $exec . "\"", $output);
+	    $exec = "/usr/bin/sudo /sbin/route add default gw $gw";
+	    //exec("$bin_danger \"" . $exec . "\"", $output); //DEPRECATED
+	    exec_fruitywifi($exec);
 	}
 
 }
@@ -105,7 +131,8 @@ function stop_iface($iface, $ip, $gw) {
     $iface_mon0 = exec("/sbin/ifconfig |grep mon0");
     //if ($iface_mon0 != "") {
         $exec = "/usr/bin/sudo /sbin/ifconfig $iface 0.0.0.0";
-        exec("$bin_danger \"" . $exec . "\"", $output);
+        //exec("$bin_danger \"" . $exec . "\"", $output); //DEPRECATED
+	exec_fruitywifi($exec);
     //}
 
 }

@@ -20,8 +20,9 @@
 <? include "login_check.php"; ?>
 
 <?
+include "functions.php";
 
-$bin_danger = "/usr/share/fruitywifi/bin/danger";
+//$bin_danger = "/usr/share/fruitywifi/bin/danger"; //DEPRECATED
 
 function showLog($filename, $path) {
 
