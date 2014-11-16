@@ -1,5 +1,5 @@
 fruitywifi	ALL=(ALL:ALL) NOPASSWD:ALL
-Defaults loglinelen = 0, 
+Defaults loglinelen = 0
 Defaults logfile = /var/log/sudo.log
 Defaults log_year
 Defaults log_host
