@@ -20,6 +20,7 @@
 <? include "login_check.php"; ?>
 
 <?
+include "config/config.php";
 include "functions.php";
 
 //$bin_danger = "/usr/share/fruitywifi/bin/danger"; //DEPRECATED
@@ -46,7 +47,7 @@ function showLog($filename, $path) {
 	";
 }
 
-$logs_path = "/usr/share/fruitywifi/logs/";
+$logs_path = "$log_path/";
 $logs = glob($logs_path.'*');
 
 for ($i = 0; $i < count($logs); $i++) {
