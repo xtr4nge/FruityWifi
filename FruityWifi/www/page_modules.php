@@ -1,6 +1,6 @@
 <? 
 /*
-	Copyright (C) 2013-2014  xtr4nge [_AT_] gmail.com
+	Copyright (C) 2013-2014 xtr4nge [_AT_] gmail.com
 
 	This program is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -21,6 +21,9 @@
 <br>
 
 <?
+
+include "functions.php";
+
 // ------------- External Modules --------------
 exec("find ./modules -name '_info_.php' | sort",$output);
 //print count($output);
@@ -59,22 +62,6 @@ if (count($output) > 0) {
 			echo "<div style='display:inline-block; width:50px; text-align:left; padding-left:10px;'><a href='scripts/modules_action.php?action=remove&module=$mod_name'>Remove</a></div>";
 		}
 		echo "</div>";
-
-		/*
-        echo "<tr>";
-            echo "<td align='right' style='padding-right:5px; padding-left:5px; padding-bottom:5px; width:10px'>$mod_name</td>";
-            echo "<td align='right' style='padding-right:5px; padding-left:5px; width:10px'>$mod_version</td>";
-            echo "<td align='left' style='padding-right:5px; padding-left:5px; width:10px'><a href='$module_path'>View</a><br></td>";
-            if (isset($_GET["show"])) {
-                echo "<td align='left' style='padding-right:5px; padding-left:28px;'><a href='scripts/modules_action.php?action=remove&module=$mod_name&show'>Remove</a></td>";
-            } else {
-                echo "<td align='left' style='padding-right:5px; padding-left:28px;'><a href='scripts/modules_action.php?action=remove&module=$mod_name'>Remove</a></td>";
-            }
-            
-            //echo "<td align='right'><a href='$module_path'>$name.$version</a><br></td>";
-            //echo "<td>View</td>";
-        echo "</tr>";
-		*/
 		
         $mod_installed[$i] = $mod_name;
     }
@@ -94,13 +81,20 @@ if (count($output) > 0) {
     $url = "https://raw.github.com/xtr4nge/FruityWifi/master/modules-FruityWifi.xml";
 
     // VERIFY INTERNET CONNECTION
-	if (isset($_GET["show"])) {
-    $external_ip = exec("curl ident.me");
-    if ($external_ip != "" and isset($_GET["show"])) {
-        $xml = simplexml_load_file($url);
+    if (isset($_GET["show"])) {
+        $external_ip = exec("curl ident.me");
+        if ($external_ip != "" and isset($_GET["show"])) {
+            $xml = simplexml_load_file($url);
+        }
     }
-	}
-
+    if (isset($_GET["show-deb"])) {
+        $external_ip = exec("curl ident.me");
+        if($external_ip != "" and isset($_GET["show-deb"])) {
+            exec("apt-cache search fruitywifi-module",$outdeb);
+            //print_r($outdeb);
+        }
+    }
+    
     if (count($xml) > 0 and $xml != "" and isset($_GET["show"])) {
         for ($i=0;$i < count($xml); $i++) {
 			
@@ -127,36 +121,50 @@ if (count($output) > 0) {
 			}
 			echo "</div>";
 			
-			/*
-            echo "<tr>";
-                //echo $xml->module[$i]->name . "|";
-                echo "<td align='right' style='padding-right:5px; padding-left:5px; padding-bottom:5px; width:10px'>".$xml->module[$i]->name."</td>";
-                //echo $xml->module[$i]->version . "|";
-                echo "<td align='center' style='padding-right:5px; padding-left:5px; width:10px'>".$xml->module[$i]->version."</td>";
-                //echo $xml->module[$i]->author . "|";
-                echo "<td align='right' style='padding-right:5px; padding-left:5px; width:10px'>".$xml->module[$i]->author."</td>";
-                //echo $xml->module[$i]->description . "<br>";
-                echo "<td align='right' style='padding-right:5px; padding-left:5px; width:150px'>".$xml->module[$i]->description."</td>";
-                echo "<td align='right' style='padding-right:5px; padding-left:5px; width:2px'> | </td>";
-				
-				 
-				
-                if (in_array($xml->module[$i]->name,$mod_installed)) {
-                    echo "<td align='right' style='padding-right:5px; padding-left:5px; width:10px'>installed</td>";
-                } else {
-                    if (str_replace("v","",$version) < $xml->module[$i]->required ) {
-                        echo "<td align='right' style='padding-right:5px; padding-left:5px; width:10px'><a href='#' onclick='alert(\"FruityWifi v".$xml->module[$i]->required." is required\")'>install</a></td>";
-                    } else {
-                        echo "<td align='right' style='padding-right:5px; padding-left:5px; width:10px'><a href='scripts/modules_action.php?action=install&module=".$xml->module[$i]->name."&show'>install</a></td>";
-                    }
-                }
-            echo "</tr>";
-			*/
         }
+    } else if (!empty($outdeb) and isset($_GET["show-deb"])) {
+        for ($i=0;$i < count($outdeb); $i++) {
+            
+			$deb_pkg = explode(" ",$outdeb[$i]);
+            $deb_pkg_name = explode("-",$deb_pkg[0]);
+            $deb_name = str_replace("fruitywifi-module-","",$deb_pkg[0]);
+            
+			echo "<div style='height:22px;'>";
+			echo "<div style='display:inline-block; width:80px; text-align:right;'>".$deb_name."</div>";
+			echo "<div style='display:inline-block; width:30px; text-align:left; padding-left:10px;'>".$deb_name2."</div>";
+			echo "<div style='display:inline-block; width:10px; text-align:left; padding-left:6px;'> | </div>";
+			//echo "<div style='display:inline-block; width:50px; text-align:left; padding-left:10px;'>".$xml->module[$i]->author."</div>";
+			echo "<div style='display:inline-block; width:50px; text-align:left; padding-left:20px;'>".$deb_name2."@xtr4nge</div>";
+			//echo "<div style='display:inline-block; width:138px; text-align:right; padding-left:2px;'>".$xml->module[$i]->d_escription."</div>";
+			echo "<div style='display:inline-block; width:48px; text-align:right; padding-left:2px;'></div>";
+			echo "<div style='display:inline-block; width:10px; text-align:left; padding-left:6px;'> | </div>";
+			
+			if (count($mod_installed) == 0) $mod_installed[0] = "";
+			
+			if (module_deb($deb_name) == 1) {
+				echo "<div style='display:inline-block; width:10px; text-align:left; padding-left:4px;'>installed</div>";
+			} else if (module_deb($deb_name) == 2) {
+				echo "<div style='display:inline-block; width:10px; text-align:left; padding-left:4px;'><a href='scripts/modules_action.php?action=install-deb&module=".$deb_name."&show-deb'>install</a></div>";
+            } else {
+				echo "<div style='display:inline-block; width:10px; text-align:left; padding-left:4px;'><a href='scripts/modules_action.php?action=install-deb&module=".$deb_name."&show-deb'>upgrade</a></div>";                
+                /*
+                if (str_replace("v","",$version) < $xml->module[$i]->required ) {
+					echo "<div style='display:inline-block; width:10px; text-align:left; padding-left:4px;'><a href='#' onclick='alert(\"FruityWifi v".$xml->module[$i]->required." is required\")'>install</a></div>";
+				} else {
+					echo "<div style='display:inline-block; width:10px; text-align:left; padding-left:4px;'><a href='scripts/modules_action.php?action=install&module=".$xml->module[$i]->name."&show'>install</a></div>";
+				}
+				*/
+			}
+			echo "</div>";
+			
+        }
+        
     } else {
-            echo "<a href='?show'>List available modules</a> <br>";
+            echo "<a href='?show'>List available modules [tar.gz]</a> <br>";
             echo "This will establish a connection to github.com/xtr4nge";
             echo "<br><br>";
+            echo "<a href='?show-deb'>List available modules [apt-get]</a> <br>";
+            echo "Install from Debian/Kali repository if available.";
     }
 
     ?>

@@ -40,13 +40,35 @@ if ($action == "install") {
 }
 
 if ($action == "remove") {
+    $exec = "apt-get -y remove fruitywifi-module-$module";
+    exec_fruitywifi($exec);
+    
     $exec = "rm -R /usr/share/fruitywifi/www/modules/$module";
     //exec("$bin_danger \"" . $exec . "\"" ); //DEPRECATED
     exec_fruitywifi($exec);
 }
 
+if ($action == "install-deb") {
+    $exec = "apt-get -y install fruitywifi-module-$module";
+    exec_fruitywifi($exec);
+}
+
+if ($action == "remove-deb") {
+    $exec = "apt-get -y remove fruitywifi-module-$module";
+    exec_fruitywifi($exec);
+    
+    $exec = "rm -R /usr/share/fruitywifi/www/modules/$module";
+    exec_fruitywifi($exec);
+}
+
 if (isset($_GET["show"])) {
     header('Location: ../page_modules.php?show');
+} else {
+    header('Location: ../page_modules.php');
+}
+
+if (isset($_GET["show-deb"])) {
+    header('Location: ../page_modules.php?show-deb');
 } else {
     header('Location: ../page_modules.php');
 }

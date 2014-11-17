@@ -62,6 +62,36 @@ function exec_fruitywifi($exec) {
     
 }
 
+function module_deb($mod_name) {
+    $module="fruitywifi-module-$mod_name";
+    
+    $exec = "apt-cache policy $module";
+    exec($exec, $output);
+    
+    //print_r($output);
+    
+    if(empty($output)) {
+	//echo "none...";
+	return 0;
+    } else {
+    
+	$installed = explode(" ", trim($output[1]));
+	$candidate = explode(" ", trim($output[2]));
+    
+	if( $installed[1] == $candidate[1] ) {
+	    //echo "installed...";
+	    return 1;
+	} else if( $installed[1] == "(none)" ) {
+	    //echo "install...";
+	    return 2;   
+	} else {
+	    //echo "upgrade...";
+	    return 3;
+	}
+    
+    }    
+}
+
 function start_monitor_mode($iface) {
 
     $bin_danger = "/usr/share/fruitywifi/bin/danger";
