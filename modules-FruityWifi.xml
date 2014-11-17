@@ -3,7 +3,7 @@
     <module>
         <name>nmap</name>
         <version>1.3</version>
-	<author>xtr4nge</author>
+	<author>@xtr4nge</author>
 	<description>nmap interface</description>
 	<url>module_nmap</url>
 	<required>2.0</required>
@@ -11,7 +11,7 @@
     <module>
         <name>sslstrip</name>
         <version>1.6</version>
-	<author>xtr4nge</author>
+	<author>@xtr4nge</author>
 	<description>sslstrip interface</description>
 	<url>module_sslstrip</url>
 	<required>2.0</required>
@@ -19,7 +19,7 @@
     <module>
         <name>dnsspoof</name>
         <version>1.6</version>
-	<author>xtr4nge</author>
+	<author>@xtr4nge</author>
 	<description>dnsspoof interface</description>
 	<url>module_dnsspoof</url>
 	<required>2.0</required>
@@ -27,7 +27,7 @@
     <module>
         <name>urlsnarf</name>
         <version>1.5</version>
-	<author>xtr4nge</author>
+	<author>@xtr4nge</author>
 	<description>urlsnarf interface</description>
 	<url>module_urlsnarf</url>
 	<required>2.0</required>
@@ -35,7 +35,7 @@
     <module>
         <name>mdk3</name>
         <version>1.6</version>
-	<author>xtr4nge</author>
+	<author>@xtr4nge</author>
 	<description>mdk3 interface</description>
 	<url>module_mdk3</url>
 	<required>2.0</required>
@@ -43,7 +43,7 @@
     <module>
         <name>ngrep</name>
         <version>1.3</version>
-	<author>xtr4nge</author>
+	<author>@xtr4nge</author>
 	<description>ngrep interface</description>
 	<url>module_ngrep</url>
 	<required>2.0</required>
@@ -51,7 +51,7 @@
     <module>
         <name>captive</name>
         <version>1.3</version>
-	<author>xtr4nge</author>
+	<author>@xtr4nge</author>
 	<description>captive portal</description>
 	<url>module_captive</url>
 	<required>2.0</required>
@@ -59,7 +59,7 @@
     <module>
         <name>squid3</name>
         <version>1.1</version>
-	<author>xtr4nge</author>
+	<author>@xtr4nge</author>
 	<description>squid3 interface</description>
 	<url>module_squid3</url>
 	<required>2.0</required>
@@ -67,7 +67,7 @@
     <module>
         <name>kismet</name>
         <version>1.1</version>
-	<author>xtr4nge</author>
+	<author>@xtr4nge</author>
 	<description>kismet interface</description>
 	<url>module_kismet</url>
 	<required>2.0</required>
@@ -75,7 +75,7 @@
     <module>
         <name>responder</name>
         <version>1.3</version>
-	<author>xtr4nge</author>
+	<author>@xtr4nge</author>
 	<description>Responder interface</description>
 	<url>module_responder</url>
 	<required>2.0</required>
@@ -83,7 +83,7 @@
     <module>
         <name>autostart</name>
         <version>1.1</version>
-	<author>xtr4nge</author>
+	<author>@xtr4nge</author>
 	<description>Autostart interface</description>
 	<url>module_autostart</url>
 	<required>2.0</required>
@@ -91,7 +91,7 @@
     <module>
         <name>rpitwit</name>
         <version>1.1</version>
-	<author>xtr4nge</author>
+	<author>@xtr4nge</author>
 	<description>RPItwit interface</description>
 	<url>module_rpitwit</url>
 	<required>2.0</required>
@@ -99,7 +99,7 @@
     <module>
         <name>whatsapp</name>
         <version>1.2</version>
-	<author>xtr4nge</author>
+	<author>@xtr4nge</author>
 	<description>Whatsapp interface</description>
 	<url>module_whatsapp</url>
 	<required>2.0</required>
@@ -107,7 +107,7 @@
     <module>
         <name>karma</name>
         <version>1.1</version>
-	<author>xtr4nge</author>
+	<author>@xtr4nge</author>
 	<description>Karma interface</description>
 	<url>module_karma</url>
 	<required>2.0</required>
@@ -115,7 +115,7 @@
     <module>
         <name>nmcli</name>
         <version>1.1</version>
-	<author>xtr4nge</author>
+	<author>@xtr4nge</author>
 	<description>nmcli interface</description>
 	<url>module_nmcli</url>
 	<required>2.0</required>
@@ -123,7 +123,7 @@
     <module>
         <name>3g_4g</name>
         <version>1.0</version>
-	<author>xtr4nge</author>
+	<author>@xtr4nge</author>
 	<description>3G/4G interface</description>
 	<url>module_3g_4g</url>
 	<required>2.0</required>
@@ -131,7 +131,7 @@
     <module>
         <name>supplicant</name>
         <version>1.0</version>
-	<author>xtr4nge</author>
+	<author>@xtr4nge</author>
 	<description>supplicant interface</description>
 	<url>module_supplicant</url>
 	<required>2.0</required>
@@ -139,7 +139,7 @@
     <module>
         <name>meterpreter</name>
         <version>1.0</version>
-	<author>xtr4nge</author>
+	<author>@xtr4nge</author>
 	<description>meterpreter interface</description>
 	<url>module_meterpreter</url>
 	<required>2.0</required>
@@ -147,7 +147,7 @@
     <module>
         <name>ettercap</name>
         <version>1.0</version>
-	<author>xtr4nge</author>
+	<author>@xtr4nge</author>
 	<description>ettercap interface</description>
 	<url>module_ettercap</url>
 	<required>2.0</required>
@@ -155,7 +155,7 @@
     <module>
         <name>tcpdump</name>
         <version>1.0</version>
-	<author>xtr4nge</author>
+	<author>@xtr4nge</author>
 	<description>tcpdump interface</description>
 	<url>module_tcpdump</url>
 	<required>2.0</required>
@@ -163,7 +163,7 @@
     <module>
         <name>autossh</name>
         <version>1.0</version>
-	<author>xtr4nge</author>
+	<author>@xtr4nge</author>
 	<description>autossh interface</description>
 	<url>module_autossh</url>
 	<required>2.0</required>
@@ -171,7 +171,7 @@
     <module>
         <name>vfeed</name>
         <version>1.0</version>
-	<author>xtr4nge</author>
+	<author>@xtr4nge</author>
 	<description>vfeed interface</description>
 	<url>module_vfeed</url>
 	<required>2.0</required>
@@ -179,7 +179,7 @@
     <module>
         <name>nessus</name>
         <version>1.0</version>
-	<author>xtr4nge</author>
+	<author>@xtr4nge</author>
 	<description>nessus interface</description>
 	<url>module_nessus</url>
 	<required>2.0</required>
@@ -187,7 +187,7 @@
     <module>
         <name>tor</name>
         <version>1.0</version>
-	<author>xtr4nge</author>
+	<author>@xtr4nge</author>
 	<description>tor interface</description>
 	<url>module_tor</url>
 	<required>2.0</required>
@@ -195,9 +195,17 @@
     <module>
         <name>phishing</name>
         <version>1.0</version>
-	<author>xtr4nge</author>
+	<author>@xtr4nge</author>
 	<description>phishing interface</description>
 	<url>module_phishing</url>
 	<required>2.0</required>
+    </module>
+    <module>
+        <name>mana</name>
+        <version>1.0</version>
+	<author>@xtr4nge</author>
+	<description>mana interface</description>
+	<url>module_mana</url>
+	<required>2.1</required>
     </module>
 </FruityWifi>

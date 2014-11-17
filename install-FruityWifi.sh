@@ -3,6 +3,7 @@
 # CONFIG
 fruitywifi_exec_mode="sudo" # sudo|danger
 fruitywifi_log_path="/usr/share/fruitywifi/logs" # default=/usr/share/fruitywifi/logs
+fruitywifi_danger="enabled"
 
 find FruityWifi -type d -exec chmod 755 {} \;
 find FruityWifi -type f -exec chmod 644 {} \;
@@ -110,15 +111,6 @@ echo
 cd $root_path
 
 echo "--------------------------------"
-echo "Setup Sudo"
-echo "--------------------------------"
-cd $root_path
-cp -a sudo-setup/fruitywifi /etc/sudoers.d/
-
-echo "[sudo setup completed]"
-echo
-
-echo "--------------------------------"
 echo "Installing Nginx"
 echo "--------------------------------"
 
@@ -158,30 +150,41 @@ echo "Setup FruityWifi"
 echo "--------------------------------"
 cd $root_path
 
+echo "--------------------------------"
+echo "Config log path"
+echo "--------------------------------"
+
+mkdir $fruitywifi_log_path
+EXEC="s,^\$log_path=.*,\$log_path=\""$fruitywifi_log_path"\";,g"
+sed -i $EXEC FruityWifi/www/config/config.php
+EXEC="s,^log-facility=.*,log-facility="$fruitywifi_log_path"/dnsmasq.log,g"
+sed -i $EXEC FruityWifi/conf/dnsmasq.conf
+EXEC="s,^dhcp-leasefile=.*,dhcp-leasefile="$fruitywifi_log_path"/dhcp.leases,g"
+sed -i $EXEC FruityWifi/conf/dnsmasq.conf
+EXEC="s,^Defaults logfile =.*,Defaults logfile = "$fruitywifi_log_path"/sudo.log,g"
+sed -i $EXEC sudo-setup/fruitywifi
+
+echo "[logs setup completed]"
+echo
+
+echo "--------------------------------"
+echo "Setup Sudo"
+echo "--------------------------------"
+cd $root_path
+
 adduser --disabled-password --quiet --system --home /var/run/fruitywifi --no-create-home --gecos "FruityWifi" --group fruitywifi
+cp -a sudo-setup/fruitywifi /etc/sudoers.d/
 
-if [ $fruitywifi_log_path != "default" ]
-then
-    echo "--------------------------------"
-    echo "Config log path"
-    echo "--------------------------------"
-
-    mkdir $fruitywifi_log_path
-    EXEC="s,^\$log_path=.*,\$log_path=\""$fruitywifi_log_path"\";,g"
-    sed -i $EXEC FruityWifi/www/config/config.php
-    EXEC="s,^log-facility=.*,log-facility="$fruitywifi_log_path"/dnsmasq.log,g"
-    sed -i $EXEC FruityWifi/conf/dnsmasq.conf
-    EXEC="s,^dhcp-leasefile=.*,dhcp-leasefile="$fruitywifi_log_path"/dhcp.leases,g"
-    sed -i $EXEC FruityWifi/conf/dnsmasq.conf
-fi
+echo "[sudo setup completed]"
+echo
 
 cp -a FruityWifi /usr/share/fruitywifi
 ln -s $fruitywifi_log_path /usr/share/fruitywifi/www/logs
 ln -s /usr/share/fruitywifi/ /usr/share/FruityWifi
 
-if [ $fruitywifi_exec_mode == "danger" ]
+#if [ $fruitywifi_exec_mode == "danger" ]
+if [ $fruitywifi_danger == "enabled" ]
 then
-
     echo "--------------------------------"
     echo "Installing danger"
     echo "--------------------------------"

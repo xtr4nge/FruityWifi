@@ -53,7 +53,7 @@ function exec_fruitywifi($exec) {
     } else if ($exec_mode == "sudo") {
 	
 	$bin_exec = "/usr/bin/sudo";
-	exec("$bin_exec $exec", $output);
+	exec("$bin_exec sh -c \"$exec\"", $output);
 	return $output;
 	
     } else {

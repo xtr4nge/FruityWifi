@@ -99,7 +99,12 @@ if ($ap_mode == "1") {
 	$iswlanup = exec("ps auxww | grep hostapd | grep -v -e grep");
 } else if ($ap_mode == "2") {
 	$iswlanup = exec("ps auxww | grep airbase | grep -v -e grep");
+} else if ($ap_mode == "3") {
+	$iswlanup = exec("ps auxww | grep hostapd | grep -v -e grep");
+} else if ($ap_mode == "4") {
+	$iswlanup = exec("ps auxww | grep hostapd | grep -v -e grep");
 }
+
 //if ($iswlanup == "UP") {
 
 echo "<div style='text-align:left;'>";
