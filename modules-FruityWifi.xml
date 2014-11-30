@@ -200,4 +200,12 @@
 	<url>module_phishing</url>
 	<required>2.0</required>
     </module>
+    <module>
+        <name>mana</name>
+        <version>1.0</version>
+	<author>@xtr4nge</author>
+	<description>mana interface</description>
+	<url>module_mana</url>
+	<required>2.1</required>
+    </module>
 </FruityWifi>
