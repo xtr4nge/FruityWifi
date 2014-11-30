@@ -4,6 +4,7 @@
 fruitywifi_exec_mode="sudo" # sudo|danger
 fruitywifi_log_path="/usr/share/fruitywifi/logs" # default=/usr/share/fruitywifi/logs
 fruitywifi_danger="enabled"
+fruitywifi_webserver="all" # 'all' option adds default webserver on ports 80 and 443 
 
 find FruityWifi -type d -exec chmod 755 {} \;
 find FruityWifi -type f -exec chmod 644 {} \;
@@ -14,6 +15,14 @@ mkdir tmp-install
 cd tmp-install
 
 apt-get update
+
+echo "--------------------------------"
+echo "Creates user fruitywifi"
+echo "--------------------------------"
+adduser --disabled-password --quiet --system --home /var/run/fruitywifi --no-create-home --gecos "FruityWifi" --group fruitywifi
+
+echo "[fruitywifi user has been created]"
+echo
 
 apt-get -y install gettext make intltool build-essential automake autoconf uuid uuid-dev php5-curl php5-cli dos2unix curl sudo
 
@@ -127,9 +136,21 @@ mkdir /etc/nginx/ssl
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt
 
 rm /etc/nginx/sites-enabled/default
+
 cp nginx-setup/nginx.conf /etc/nginx/
 cp nginx-setup/FruityWifi /etc/nginx/sites-enabled/
-cp nginx-setup/fpm/*.conf /etc/php5/fpm/pool.d/
+cp nginx-setup/fpm/8000.conf /etc/php5/fpm/pool.d/
+cp nginx-setup/fpm/8443.conf /etc/php5/fpm/pool.d/
+
+if [ $fruitywifi_webserver == "all" ]
+then
+    mkdir /var/www/
+    echo "." >> /var/www/index.php 
+    chown -R fruitywifi /var/www/
+    cp nginx-setup/default /etc/nginx/sites-enabled/
+    cp nginx-setup/fpm/80.conf /etc/php5/fpm/pool.d/
+    cp nginx-setup/fpm/443.conf /etc/php5/fpm/pool.d/
+fi
 
 # RESTAR NGINX + PHP5-FPM
 /etc/init.d/nginx restart
@@ -171,8 +192,6 @@ echo "--------------------------------"
 echo "Setup Sudo"
 echo "--------------------------------"
 cd $root_path
-
-adduser --disabled-password --quiet --system --home /var/run/fruitywifi --no-create-home --gecos "FruityWifi" --group fruitywifi
 cp -a sudo-setup/fruitywifi /etc/sudoers.d/
 
 echo "[sudo setup completed]"
