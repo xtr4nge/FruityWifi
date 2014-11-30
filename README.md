@@ -5,6 +5,19 @@ FruityWifi is a wireless network auditing tool. The application can be installed
 
 [![githalytics.com alpha](https://cruel-carlota.pagodabox.com/080d09d574c44ef246b87e11ed2468fc "githalytics.com")](http://githalytics.com/xtr4nge/FruityWifi)
 
+
+v2.1
+----------------
+- Hostapd Mana support has been added
+- Phishing service has been replaced by phishing module
+- Karma service has been replaced by karma module
+- Sudo has been implemented (replacement for danger)
+- Logs path can be changed
+- Squid dependecies have been removed from FruityWifi installer
+- Phishing dependecied have been removed from FruityWifi installer
+- New AP options available: hostapd, hostapd-mana, hostapd-karma, airmon-ng
+
+
 v2.0 (alpha)
 ----------------
 - Web-Interface has been changed (new look and feel, new options).
