@@ -106,7 +106,7 @@
     </module>
     <module>
         <name>karma</name>
-        <version>1.1</version>
+        <version>1.2</version>
 	<author>xtr4nge</author>
 	<description>Karma interface</description>
 	<url>module_karma</url>
