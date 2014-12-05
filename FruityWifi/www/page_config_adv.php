@@ -463,7 +463,7 @@ $ifaces = explode("|", $ifaces);
 
 <br>
 
-<!-- WIRELESS -->
+<!-- WIRELESS SETUP -->
 
 <div class="rounded-top" align="center"> Wireless Setup </div>
 <div class="rounded-bottom">
@@ -483,6 +483,20 @@ $ifaces = explode("|", $ifaces);
 </div>
 
 <br>
+
+<!-- DOMAIN SETUP -->
+
+<div class="rounded-top" align="center"> Domain Setup </div>
+<div class="rounded-bottom">
+    <form action="scripts/config_iface.php" method="POST" autocomplete="off" style="margin:1px">
+	<input class="input" name="domain" value="<?=$dnsmasq_domain?>">    
+	<input class="input" type="submit" value="change Domain">
+    </form>
+</div>
+
+<br>
+
+<!-- PASSWORD -->
 
 <div class="rounded-top" align="center"> Password </div>
 <div class="rounded-bottom">

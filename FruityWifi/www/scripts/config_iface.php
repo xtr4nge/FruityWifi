@@ -245,6 +245,13 @@ if(isset($_POST["iface"]) and $_POST["iface"] == "wifi_supplicant"){
     exec_fruitywifi($exec);
 }
 
+if(isset($_POST["domain"])) {
+    $exec = "/bin/sed -i 's/dnsmasq_domain=.*/dnsmasq_domain=\\\"".$_POST["domain"]."\\\";/g' ../config/config.php";
+    exec_fruitywifi($exec);
+    $exec = "/bin/sed -i 's/domain=.*/domain=".$_POST["domain"]."/g' /usr/share/fruitywifi/conf/dnsmasq.conf";
+    exec_fruitywifi($exec);
+}
+
 header('Location: ../page_config_adv.php');
 
 ?>
