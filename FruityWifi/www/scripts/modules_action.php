@@ -28,14 +28,25 @@ include "../functions.php";
 if ($regex == 1) {
     regex_standard($_GET["action"], "../msg.php", $regex_extra);
     regex_standard($_GET["module"], "../msg.php", $regex_extra);
+    regex_standard($_GET["version"], "../msg.php", $regex_extra);
 }
 
 $action = $_GET["action"];
 $module = $_GET["module"];
+$version = $_GET["version"];
 
 if ($action == "install") {
     $exec = "git clone https://github.com/xtr4nge/module_$module.git /usr/share/fruitywifi/www/modules/$module";
     //exec("$bin_danger \"" . $exec . "\"" ); //DEPRECATED
+    //exec_fruitywifi($exec);
+
+    $exec = "wget https://github.com/xtr4nge/module_$module/archive/v$version.zip -O /usr/share/fruitywifi/www/modules/module_$module-$version.zip";
+    exec_fruitywifi($exec);
+    $exec = "unzip /usr/share/fruitywifi/www/modules/module_$module-$version.zip -d /usr/share/fruitywifi/www/modules/";
+    exec_fruitywifi($exec);
+    $exec = "rm /usr/share/fruitywifi/www/modules/module_$module-$version.zip";
+    exec_fruitywifi($exec);
+    $exec = "mv /usr/share/fruitywifi/www/modules/module_$module-$version /usr/share/fruitywifi/www/modules/$module";
     exec_fruitywifi($exec);
 }
 
@@ -63,6 +74,7 @@ if ($action == "remove-deb") {
 
 if (isset($_GET["show"])) {
     header('Location: ../page_modules.php?show');
+    exit;
 } else {
     header('Location: ../page_modules.php');
 }

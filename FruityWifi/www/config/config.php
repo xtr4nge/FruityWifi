@@ -11,6 +11,7 @@ $hostapd_ssid="FruityWifi";
 $hostapd_secure="0";
 $hostapd_wpa_passphrase="FruityWifi";
 $url_rewrite_program="pasarela_xss.js";
+$dnsmasq_domain="WIFI";
 //------
 $io_mode="1";
 $io_in_iface="wlan0";

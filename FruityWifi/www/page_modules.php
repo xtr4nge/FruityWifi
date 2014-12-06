@@ -57,7 +57,7 @@ if (count($output) > 0) {
 		echo "<div style='display:inline-block; width:30px; text-align:left; padding-left:10px;'><a href='$module_path'>View</a></div>";
 		echo "<div style='display:inline-block; width:10px; text-align:left; padding-left:10px;'> | </div>";
 		if (isset($_GET["show"])) {
-			echo "<div style='display:inline-block; width:50px; text-align:left; padding-left:10px;'><a href='scripts/modules_action.php?action=remove&module=$mod_name&show'>Remove</a></div>";
+			echo "<div style='display:inline-block; width:50px; text-align:left; padding-left:10px;'><a href='scripts/modules_action.php?action=remove&module=$mod_name&version=$mod_version&show'>Remove</a></div>";
 		} else {
 			echo "<div style='display:inline-block; width:50px; text-align:left; padding-left:10px;'><a href='scripts/modules_action.php?action=remove&module=$mod_name'>Remove</a></div>";
 		}
@@ -116,7 +116,7 @@ if (count($output) > 0) {
 				if (str_replace("v","",$version) < $xml->module[$i]->required ) {
 					echo "<div style='display:inline-block; width:10px; text-align:left; padding-left:4px;'><a href='#' onclick='alert(\"FruityWifi v".$xml->module[$i]->required." is required\")'>install</a></div>";
 				} else {
-					echo "<div style='display:inline-block; width:10px; text-align:left; padding-left:4px;'><a href='scripts/modules_action.php?action=install&module=".$xml->module[$i]->name."&show'>install</a></div>";
+					echo "<div style='display:inline-block; width:10px; text-align:left; padding-left:4px;'><a href='scripts/modules_action.php?action=install&module=".$xml->module[$i]->name."&version=".$xml->module[$i]->version."&show'>install</a></div>";
 				}
 			}
 			echo "</div>";
