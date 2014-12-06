@@ -24,7 +24,7 @@ adduser --disabled-password --quiet --system --home /var/run/fruitywifi --no-cre
 echo "[fruitywifi user has been created]"
 echo
 
-apt-get -y install gettext make intltool build-essential automake autoconf uuid uuid-dev php5-curl php5-cli dos2unix curl sudo
+apt-get -y install gettext make intltool build-essential automake autoconf uuid uuid-dev php5-curl php5-cli dos2unix curl sudo unzip
 
 cmd=`gcc --version|grep "4.7"`
 if [[ $cmd == "" ]]
