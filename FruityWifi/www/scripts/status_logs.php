@@ -1,6 +1,6 @@
 <? 
 /*
-    Copyright (C) 2013-2014  xtr4nge [_AT_] gmail.com
+    Copyright (C) 2013-2014 xtr4nge [_AT_] gmail.com
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -17,11 +17,16 @@
 */ 
 ?>
 <?
+include "../login_check.php";
+include "../config/config.php";
+include "../functions.php";
+
 $service = $_POST["service"];
 $path = $_POST["path"];
 
 $exec = "tail -n 5 $path";
-exec("/usr/share/fruitywifi/bin/danger \"" . $exec . "\"", $output);
+//exec("/usr/share/fruitywifi/bin/danger \"" . $exec . "\"", $output); //DEPRECATED
+$output = exec_fruitywifi($exec);
 
 for ($i=0; $i < count($output); $i++)
 {
