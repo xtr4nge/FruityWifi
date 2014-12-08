@@ -16,6 +16,8 @@ v2.1
 - Squid dependecies have been removed from FruityWifi installer
 - Phishing dependecied have been removed from FruityWifi installer
 - New AP options available: hostapd, hostapd-mana, hostapd-karma, airmon-ng
+- Domain name can be changed from config panel
+- New install options have been added to install-FruityWifi.sh
 
 
 v2.0 (alpha)
