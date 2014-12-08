@@ -1,10 +1,25 @@
 #!/bin/bash
 
 # CONFIG
-fruitywifi_exec_mode="sudo" # sudo|danger
-fruitywifi_log_path="/usr/share/fruitywifi/logs" # default=/usr/share/fruitywifi/logs
+# --------------------------------------------------------
+# Setup 'sudo' or 'danger' (root exec).
+# --------------------------------------------------------
+fruitywifi_exec_mode="sudo"
+# --------------------------------------------------------
+# Setup log path. default=/usr/share/fruitywifi/logs
+# --------------------------------------------------------
+fruitywifi_log_path="/usr/share/fruitywifi/logs"
+# --------------------------------------------------------
+# danger: 'enable' or 'disabled' (Backward compatibility)
+# --------------------------------------------------------
 fruitywifi_danger="enabled"
-fruitywifi_webserver="all" # 'all' option adds default webserver on ports 80 and 443 
+# --------------------------------------------------------
+# 'all' option installs nginx webserver on ports 80 | 443,
+# and it also installs FruityWifi on ports 8000 | 8443.
+# If 'all' is not specified then only installs 8000 | 8443
+# --------------------------------------------------------
+fruitywifi_webserver="all" 
+# --------------------------------------------------------
 
 find FruityWifi -type d -exec chmod 755 {} \;
 find FruityWifi -type f -exec chmod 644 {} \;
