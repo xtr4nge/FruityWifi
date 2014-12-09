@@ -16,7 +16,57 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */ 
 ?>
+<!doctype html>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script>
+function openDialog(action, module) {
+  $(function() {
+    if (action == "install-deb") {
+        msg = "Installing";
+    } else if (action == "install") {
+        msg = "Downloading";
+    } else {
+        msg = "Removing";
+    }
+    dialog.style.visibility = "visible";
+    $('#dialog').html("<br>" + msg + " " + module + " module <br>" + "<img src='img/loader-wide.gif'>");
+    
+    $( "#dialog" ).dialog({
+        modal: true
+        });
+    getData(action, module);
+  });
+}
+</script>
+
 <? include "menu.php" ?>
+
+<div id="dialog" title="Wait" style="vertical-align: middle; text-align: center; visibility: hidden"></div>
+<div id="data" title="Basic dialog" style="visibility: hidden"></div>
+<script>
+function getData(action, module) {
+    //var refInterval = setInterval(function() {
+        $.ajax({
+            type: 'GET',
+            url: 'scripts/modules_action.php',
+            data: 'action='+action+'&module='+module,
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                $('#data').html('');
+                $.each(data, function (index, value) {
+                    //$("#data").append( value ).append("<br>");
+                    //location.reload();
+                    location.href = location.href;
+                });
+            }
+        });
+    //},4000);
+}
+</script>
 
 <br>
 
@@ -57,9 +107,11 @@ if (count($output) > 0) {
 		echo "<div style='display:inline-block; width:30px; text-align:left; padding-left:10px;'><a href='$module_path'>View</a></div>";
 		echo "<div style='display:inline-block; width:10px; text-align:left; padding-left:10px;'> | </div>";
 		if (isset($_GET["show"])) {
-			echo "<div style='display:inline-block; width:50px; text-align:left; padding-left:10px;'><a href='scripts/modules_action.php?action=remove&module=$mod_name&version=$mod_version&show'>Remove</a></div>";
+			//echo "<div style='display:inline-block; width:50px; text-align:left; padding-left:10px;'><a href='scripts/modules_action.php?action=remove&module=$mod_name&version=$mod_version&show'>Remove</a></div>";
+			echo "<div style='display:inline-block; width:50px; text-align:left; padding-left:10px;'><a href='javascript:void(0)' onclick=\"openDialog('remove','".$mod_name."');\">Remove</a></div>";
 		} else {
-			echo "<div style='display:inline-block; width:50px; text-align:left; padding-left:10px;'><a href='scripts/modules_action.php?action=remove&module=$mod_name'>Remove</a></div>";
+			//echo "<div style='display:inline-block; width:50px; text-align:left; padding-left:10px;'><a href='scripts/modules_action.php?action=remove&module=$mod_name'>Remove</a></div>";
+			echo "<div style='display:inline-block; width:50px; text-align:left; padding-left:10px;'><a href='javascript:void(0)' onclick=\"openDialog('remove','".$mod_name."');\">Remove</a></div>";
 		}
 		echo "</div>";
 		
@@ -144,7 +196,8 @@ if (count($output) > 0) {
 			if (module_deb($deb_name) == 1) {
 				echo "<div style='display:inline-block; width:10px; text-align:left; padding-left:4px;'>installed</div>";
 			} else if (module_deb($deb_name) == 2) {
-				echo "<div style='display:inline-block; width:10px; text-align:left; padding-left:4px;'><a href='scripts/modules_action.php?action=install-deb&module=".$deb_name."&show-deb'>install</a></div>";
+				//echo "<div style='display:inline-block; width:10px; text-align:left; padding-left:4px;'><a href='scripts/modules_action.php?action=install-deb&module=".$deb_name."&show-deb'>install</a></div>";
+                echo "<div style='display:inline-block; width:10px; text-align:left; padding-left:4px;'><a href='javascript:void(0)' onclick=\"openDialog('install-deb','".$deb_name."');\">install</a></div>";
             } else {
 				echo "<div style='display:inline-block; width:10px; text-align:left; padding-left:4px;'><a href='scripts/modules_action.php?action=install-deb&module=".$deb_name."&show-deb'>upgrade</a></div>";                
                 /*

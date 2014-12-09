@@ -35,6 +35,16 @@ $action = $_GET["action"];
 $module = $_GET["module"];
 $version = $_GET["version"];
 
+if (!isset($action) or $action == "") {
+    header('Location: ../page_modules.php');
+    exit;
+}
+
+if (!isset($module) or $module == "") {
+    header('Location: ../page_modules.php');
+    exit;
+}
+
 if ($action == "install") {
     $exec = "git clone https://github.com/xtr4nge/module_$module.git /usr/share/fruitywifi/www/modules/$module";
     //exec("$bin_danger \"" . $exec . "\"" ); //DEPRECATED
@@ -48,6 +58,9 @@ if ($action == "install") {
     exec_fruitywifi($exec);
     $exec = "mv /usr/share/fruitywifi/www/modules/module_$module-$version /usr/share/fruitywifi/www/modules/$module";
     exec_fruitywifi($exec);
+    
+    $output[0] = "mod-installed";
+    echo json_encode($output);
 }
 
 if ($action == "remove") {
@@ -57,11 +70,19 @@ if ($action == "remove") {
     $exec = "rm -R /usr/share/fruitywifi/www/modules/$module";
     //exec("$bin_danger \"" . $exec . "\"" ); //DEPRECATED
     exec_fruitywifi($exec);
+    
+    $output[0] = "removed";
+    echo json_encode($output);
+    exit;
 }
 
 if ($action == "install-deb") {
     $exec = "apt-get -y install fruitywifi-module-$module";
     exec_fruitywifi($exec);
+    
+    $output[0] = "deb-mod-installed";
+    echo json_encode($output);
+    exit;
 }
 
 if ($action == "remove-deb") {
