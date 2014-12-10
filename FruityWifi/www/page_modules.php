@@ -18,11 +18,14 @@
 ?>
 <!doctype html>
 
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<l-ink rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+<s-cript src="//code.jquery.com/jquery-1.10.2.js"></script>
+<s-cript src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<link rel="stylesheet" href="css/jquery-ui.css">
+<script src="js/jquery.js"></script>
+<script src="js/jquery-ui.js"></script>
 <script>
-function openDialog(action, module) {
+function openDialog(action, module, version) {
   $(function() {
     if (action == "install-deb") {
         msg = "Installing";
@@ -37,7 +40,7 @@ function openDialog(action, module) {
     $( "#dialog" ).dialog({
         modal: true
         });
-    getData(action, module);
+    getData(action, module, version);
   });
 }
 </script>
@@ -47,12 +50,12 @@ function openDialog(action, module) {
 <div id="dialog" title="Wait" style="vertical-align: middle; text-align: center; visibility: hidden"></div>
 <div id="data" title="Basic dialog" style="visibility: hidden"></div>
 <script>
-function getData(action, module) {
+function getData(action, module, version) {
     //var refInterval = setInterval(function() {
         $.ajax({
             type: 'GET',
             url: 'scripts/modules_action.php',
-            data: 'action='+action+'&module='+module,
+            data: 'action='+action+'&module='+module+'&version='+version,
             dataType: 'json',
             success: function (data) {
                 console.log(data);
@@ -108,10 +111,10 @@ if (count($output) > 0) {
 		echo "<div style='display:inline-block; width:10px; text-align:left; padding-left:10px;'> | </div>";
 		if (isset($_GET["show"])) {
 			//echo "<div style='display:inline-block; width:50px; text-align:left; padding-left:10px;'><a href='scripts/modules_action.php?action=remove&module=$mod_name&version=$mod_version&show'>Remove</a></div>";
-			echo "<div style='display:inline-block; width:50px; text-align:left; padding-left:10px;'><a href='javascript:void(0)' onclick=\"openDialog('remove','".$mod_name."');\">Remove</a></div>";
+			echo "<div style='display:inline-block; width:50px; text-align:left; padding-left:10px;'><a href='javascript:void(0)' onclick=\"openDialog('remove','".$mod_name."','".$mod_version."');\">Remove</a></div>";
 		} else {
 			//echo "<div style='display:inline-block; width:50px; text-align:left; padding-left:10px;'><a href='scripts/modules_action.php?action=remove&module=$mod_name'>Remove</a></div>";
-			echo "<div style='display:inline-block; width:50px; text-align:left; padding-left:10px;'><a href='javascript:void(0)' onclick=\"openDialog('remove','".$mod_name."');\">Remove</a></div>";
+			echo "<div style='display:inline-block; width:50px; text-align:left; padding-left:10px;'><a href='javascript:void(0)' onclick=\"openDialog('remove','".$mod_name."','".$mod_version."');\">Remove</a></div>";
 		}
 		echo "</div>";
 		
@@ -168,7 +171,8 @@ if (count($output) > 0) {
 				if (str_replace("v","",$version) < $xml->module[$i]->required ) {
 					echo "<div style='display:inline-block; width:10px; text-align:left; padding-left:4px;'><a href='#' onclick='alert(\"FruityWifi v".$xml->module[$i]->required." is required\")'>install</a></div>";
 				} else {
-					echo "<div style='display:inline-block; width:10px; text-align:left; padding-left:4px;'><a href='scripts/modules_action.php?action=install&module=".$xml->module[$i]->name."&version=".$xml->module[$i]->version."&show'>install</a></div>";
+					//echo "<div style='display:inline-block; width:10px; text-align:left; padding-left:4px;'><a href='scripts/modules_action.php?action=install&module=".$xml->module[$i]->name."&version=".$xml->module[$i]->version."&show'>install</a></div>";
+                    echo "<div style='display:inline-block; width:10px; text-align:left; padding-left:4px;'><a href='javascript:void(0)' onclick=\"openDialog('install','".$xml->module[$i]->name."','".$xml->module[$i]->version."');\">install</a></div>";
 				}
 			}
 			echo "</div>";
@@ -197,9 +201,10 @@ if (count($output) > 0) {
 				echo "<div style='display:inline-block; width:10px; text-align:left; padding-left:4px;'>installed</div>";
 			} else if (module_deb($deb_name) == 2) {
 				//echo "<div style='display:inline-block; width:10px; text-align:left; padding-left:4px;'><a href='scripts/modules_action.php?action=install-deb&module=".$deb_name."&show-deb'>install</a></div>";
-                echo "<div style='display:inline-block; width:10px; text-align:left; padding-left:4px;'><a href='javascript:void(0)' onclick=\"openDialog('install-deb','".$deb_name."');\">install</a></div>";
+                echo "<div style='display:inline-block; width:10px; text-align:left; padding-left:4px;'><a href='javascript:void(0)' onclick=\"openDialog('install-deb','".$deb_name."','');\">install</a></div>";
             } else {
-				echo "<div style='display:inline-block; width:10px; text-align:left; padding-left:4px;'><a href='scripts/modules_action.php?action=install-deb&module=".$deb_name."&show-deb'>upgrade</a></div>";                
+				//echo "<div style='display:inline-block; width:10px; text-align:left; padding-left:4px;'><a href='scripts/modules_action.php?action=install-deb&module=".$deb_name."&show-deb'>upgrade</a></div>";
+                echo "<div style='display:inline-block; width:10px; text-align:left; padding-left:4px;'><a href='javascript:void(0)' onclick=\"openDialog('install-deb','".$deb_name."','');\">upgrade</a></div>";
                 /*
                 if (str_replace("v","",$version) < $xml->module[$i]->required ) {
 					echo "<div style='display:inline-block; width:10px; text-align:left; padding-left:4px;'><a href='#' onclick='alert(\"FruityWifi v".$xml->module[$i]->required." is required\")'>install</a></div>";

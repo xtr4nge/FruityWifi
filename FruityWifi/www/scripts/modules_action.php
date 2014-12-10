@@ -61,6 +61,7 @@ if ($action == "install") {
     
     $output[0] = "mod-installed";
     echo json_encode($output);
+    exit;
 }
 
 if ($action == "remove") {
@@ -91,6 +92,10 @@ if ($action == "remove-deb") {
     
     $exec = "rm -R /usr/share/fruitywifi/www/modules/$module";
     exec_fruitywifi($exec);
+    
+    $output[0] = "remove-deb";
+    echo json_encode($output);
+    exit;
 }
 
 if (isset($_GET["show"])) {
