@@ -2,59 +2,59 @@
 <FruityWifi>
     <module>
         <name>nmap</name>
-        <version>1.3</version>
+        <version>1.4</version>
 	<author>@xtr4nge</author>
 	<description>nmap interface</description>
 	<url>module_nmap</url>
-	<required>2.0</required>
+	<required>2.1</required>
     </module>
     <module>
         <name>sslstrip</name>
-        <version>1.6</version>
+        <version>1.7</version>
 	<author>@xtr4nge</author>
 	<description>sslstrip interface</description>
 	<url>module_sslstrip</url>
-	<required>2.0</required>
+	<required>2.1</required>
     </module>
     <module>
         <name>dnsspoof</name>
-        <version>1.6</version>
+        <version>1.7</version>
 	<author>@xtr4nge</author>
 	<description>dnsspoof interface</description>
 	<url>module_dnsspoof</url>
-	<required>2.0</required>
+	<required>2.1</required>
     </module>
     <module>
         <name>urlsnarf</name>
-        <version>1.5</version>
+        <version>1.6</version>
 	<author>@xtr4nge</author>
 	<description>urlsnarf interface</description>
 	<url>module_urlsnarf</url>
-	<required>2.0</required>
+	<required>2.1</required>
     </module>
     <module>
         <name>mdk3</name>
-        <version>1.6</version>
+        <version>1.7</version>
 	<author>@xtr4nge</author>
 	<description>mdk3 interface</description>
 	<url>module_mdk3</url>
-	<required>2.0</required>
+	<required>2.1</required>
     </module>
     <module>
         <name>ngrep</name>
-        <version>1.3</version>
+        <version>1.4</version>
 	<author>@xtr4nge</author>
 	<description>ngrep interface</description>
 	<url>module_ngrep</url>
-	<required>2.0</required>
+	<required>2.1</required>
     </module>
     <module>
         <name>captive</name>
-        <version>1.3</version>
+        <version>1.4</version>
 	<author>@xtr4nge</author>
 	<description>captive portal</description>
 	<url>module_captive</url>
-	<required>2.0</required>
+	<required>2.1</required>
     </module>
     <module>
         <name>squid3</name>
