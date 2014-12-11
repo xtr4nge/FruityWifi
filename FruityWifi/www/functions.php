@@ -1,29 +1,28 @@
 <? 
 /*
-	Copyright (C) 2013  xtr4nge [_AT_] gmail.com
+    Copyright (C) 2013-2014 xtr4nge [_AT_] gmail.com
 
-	This program is free software: you can redistribute it and/or modify
-	it under the terms of the GNU General Public License as published by
-	the Free Software Foundation, either version 3 of the License, or
-	(at your option) any later version.
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
 
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
 
-	You should have received a copy of the GNU General Public License
-	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */ 
 ?>
 <?
-# [Verifica characteres -> [a-z0-9-_. ] ]
 
+# [Verifica characteres -> [a-z0-9-_. ] ]
 function regex_standard($var, $url, $regex_extra) {
     
     $regex_extra = implode("\\", str_split($regex_extra));
     
-
     $regex = "/(?i)(^[a-z0-9 $regex_extra]{1,20})|(^$)/";
     //$regex = "/(?i)(^[a-z0-9]{1,20}$)|(^$)/";
 
@@ -41,25 +40,82 @@ function regex_standard($var, $url, $regex_extra) {
 
 }
 
+function exec_fruitywifi($exec) {
+
+    $exec_mode = "sudo";
+
+    if ($exec_mode == "danger") {
+	
+	$bin_exec = "/usr/share/fruitywifi/bin/danger";
+	exec("$bin_exec \"" . $exec . "\"", $output);
+	return $output;
+    
+    } else if ($exec_mode == "sudo") {
+	
+	$bin_exec = "/usr/bin/sudo";
+	exec("$bin_exec sh -c \"$exec\"", $output);
+	return $output;
+	
+    } else {
+	return false;
+    }
+    
+}
+
+function module_deb($mod_name) {
+    $module="fruitywifi-module-$mod_name";
+    
+    $exec = "apt-cache policy $module";
+    exec($exec, $output);
+    
+    //print_r($output);
+    
+    if(empty($output)) {
+	//echo "none...";
+	return 0;
+    } else {
+    
+	$installed = explode(" ", trim($output[1]));
+	$candidate = explode(" ", trim($output[2]));
+    
+	if( $installed[1] == $candidate[1] ) {
+	    //echo "installed...";
+	    return 1;
+	} else if( $installed[1] == "(none)" ) {
+	    //echo "install...";
+	    return 2;   
+	} else {
+	    //echo "upgrade...";
+	    return 3;
+	}
+    
+    }    
+}
 
 function start_monitor_mode($iface) {
+
+    $bin_danger = "/usr/share/fruitywifi/bin/danger";
 
     // START MONITOR MODE (mon0)
     $iface_mon0 = exec("/sbin/ifconfig |grep mon0");
     if ($iface_mon0 == "") {
         $exec = "/usr/bin/sudo /usr/sbin/airmon-ng start $iface";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"", $output);
+        //exec("$bin_danger \"" . $exec . "\"", $output); //DEPRECATED
+	exec_fruitywifi($exec);
      }
 
 }
 
 function stop_monitor_mode($iface) {
 
+    $bin_danger = "/usr/share/fruitywifi/bin/danger";
+
     // START MONITOR MODE (mon0)
     $iface_mon0 = exec("/sbin/ifconfig |grep mon0");
     if ($iface_mon0 != "") {
         $exec = "/usr/bin/sudo /usr/sbin/airmon-ng stop mon0";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"", $output);
+        //exec("$bin_danger \"" . $exec . "\"", $output); //DEPRECATED
+	exec_fruitywifi($exec);
     }
 
 }
@@ -79,27 +135,34 @@ function open_file($filename) {
 
 function start_iface($iface, $ip, $gw) {
 
+    $bin_danger = "/usr/share/fruitywifi/bin/danger";
+
     // START MONITOR MODE (mon0)
     $iface_mon0 = exec("/sbin/ifconfig |grep mon0");
     //if ($iface_mon0 == "") {
         $exec = "/usr/bin/sudo /sbin/ifconfig $iface $ip";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"", $output);
+        //exec("$bin_danger \"" . $exec . "\"", $output); //DEPRECATED
+	exec_fruitywifi($exec);
 	//}
 
 	if (trim($gw) != "") {
-		$exec = "/usr/bin/sudo /sbin/route add default gw $gw";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"", $output);
+	    $exec = "/usr/bin/sudo /sbin/route add default gw $gw";
+	    //exec("$bin_danger \"" . $exec . "\"", $output); //DEPRECATED
+	    exec_fruitywifi($exec);
 	}
 
 }
 
 function stop_iface($iface, $ip, $gw) {
 
+    $bin_danger = "/usr/share/fruitywifi/bin/danger";
+
     // START MONITOR MODE (mon0)
     $iface_mon0 = exec("/sbin/ifconfig |grep mon0");
     //if ($iface_mon0 != "") {
         $exec = "/usr/bin/sudo /sbin/ifconfig $iface 0.0.0.0";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"", $output);
+        //exec("$bin_danger \"" . $exec . "\"", $output); //DEPRECATED
+	exec_fruitywifi($exec);
     //}
 
 }

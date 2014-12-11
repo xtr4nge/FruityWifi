@@ -1,5 +1,7 @@
 <?
-$filename = "/usr/share/FruityWifi/logs/dhcp.leases";
+include "../config/config.php";
+
+$filename = "$log_path/dhcp.leases";
 $fh = fopen($filename, "r"); //or die("Could not open file.");
 if ( 0 < filesize( $filename ) ) {
 	$data = fread($fh, filesize($filename)); //or die("Could not read file.");

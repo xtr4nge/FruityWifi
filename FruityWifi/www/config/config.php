@@ -1,7 +1,8 @@
 <?
-$version="v2.0";
+$version="v2.1";
 $regex=1; // 1 (on) | 0 (off) >> web interface input validation.
 $regex_extra=" _-.[]*"; // extra characters allowed (input validation).
+$log_path="/usr/share/fruitywifi/logs";
 $io_in_iface_extra="-";
 $iface_supplicant="wlan0";
 $supplicant_ssid="";
@@ -10,6 +11,7 @@ $hostapd_ssid="FruityWifi";
 $hostapd_secure="0";
 $hostapd_wpa_passphrase="FruityWifi";
 $url_rewrite_program="pasarela_xss.js";
+$dnsmasq_domain="WIFI";
 //------
 $io_mode="1";
 $io_in_iface="wlan0";

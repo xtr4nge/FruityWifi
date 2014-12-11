@@ -1,6 +1,6 @@
 <? 
 /*
-	Copyright (C) 2013-2014  xtr4nge [_AT_] gmail.com
+	Copyright (C) 2013-2014 xtr4nge [_AT_] gmail.com
 
 	This program is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -22,6 +22,8 @@
 include "../config/config.php";
 include "../functions.php";
 
+//$bin_danger = "/usr/share/fruitywifi/bin/danger"; //DEPRECATED
+
 // Checking POST & GET variables...
 if ($regex == 1) {
 	regex_standard($_POST['type'], "../msg.php", $regex_extra);
@@ -41,14 +43,12 @@ if ($type == "save_show" and $mod_name != "") {
 	
 	if ($action != "checked") {
 		$exec = "/bin/sed -i 's/^\\\$mod_panel=.*/\\\$mod_panel=\\\"show\\\";/g' $mod_name/_info_.php";
-		exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"", $output);
-		//echo $exec."<br>";
-		//exit;
+		//exec("$bin_danger \"" . $exec . "\"", $output); //DEPRECATED
+		exec_fruitywifi($exec);
 	} else {
 		$exec = "/bin/sed -i 's/^\\\$mod_panel=.*/\\\$mod_panel=\\\"\\\";/g' $mod_name/_info_.php";
-		exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"", $output);
-		//echo $exec."<br>";
-		//exit;
+		//exec("$bin_danger \"" . $exec . "\"", $output); //DEPRECATED
+		exec_fruitywifi($exec);
 	}
 }
 

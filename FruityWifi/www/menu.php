@@ -1,6 +1,6 @@
 <? 
 /*
-    Copyright (C) 2013  xtr4nge [_AT_] gmail.com
+    Copyright (C) 2013-2014 xtr4nge [_AT_] gmail.com
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@
 ?>
 <?
 include "login_check.php";
-include_once "/usr/share/FruityWifi/www/config/config.php";
+include_once "/usr/share/fruitywifi/www/config/config.php";
 
 //Set no caching
 header("Expires: Mon, 1 Jan 1900 00:00:00 GMT");

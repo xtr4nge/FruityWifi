@@ -340,9 +340,6 @@ function addDivs($service, $alias, $edit, $path, $mod_logs_panel)
 
 <? 
 addDivs("s_wireless", "Wireless", "page_config.php", "../logs/dnsmasq.log", "show");
-//addDivs("s_supplicant", "Supplicant", "page_config.php", "");
-//addDivs("s_karma", "Karma", "page_config.php", "");
-addDivs("s_phishing", "Phishing", "page_config.php", "/var/www/site/data.txt", "show");
 ?>
 
 <?
@@ -478,10 +475,10 @@ if ($_GET['reveal_public_ip'] == 1) {
 <br>
 
 <div class="rounded-top" align="center"> Stations </div>
-<div class="rounded-bottom">
+<div class="rounded-bottom" id="stations-log">
     <?
-    exec("/sbin/iw dev $io_in_iface station dump |grep Stat", $stations);
-    for ($i=0; $i < count($stations); $i++) echo str_replace("Station", "", $stations[$i]) . "<br>";
+    //exec("/sbin/iw dev $io_in_iface station dump |grep Stat", $stations);
+    //for ($i=0; $i < count($stations); $i++) echo str_replace("Station", "", $stations[$i]) . "<br>";
     ?>
 </div>
 
@@ -559,7 +556,27 @@ function getLogsDHCP() {
     $('#i_dhcp').html(refInterval);
 }
 
+function getLogsStations() {
+    var refInterval = setInterval(function() {
+        $.ajax({
+            type: 'POST',
+            url: 'scripts/status_logs_stations.php',
+            data: 'service=&path=',
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                $('#stations-log').html('');
+                $.each(data, function (index, value) {
+                    $("#stations-log").append( value ).append("<br>");
+                });
+            }
+        });
+    },8000);
+
+}
+
 getLogsDHCP();
+getLogsStations();
 
 </script>
 

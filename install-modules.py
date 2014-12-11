@@ -71,7 +71,7 @@ for modules in dom.getElementsByTagName('module'):
 		cmd_install = "git clone https://github.com/xtr4nge/module_"+info['name']+".git /usr/share/FruityWifi/www/modules/"+info['name']
 		print cmd_install
 		os.system(cmd_install)
-		cmd_install = "cd /usr/share/FruityWifi/www/modules/"+info['name']+"/includes/; ./install.sh"
+		cmd_install = "cd /usr/share/FruityWifi/www/modules/"+info['name']+"/includes/; chmod 755 install.sh; ./install.sh;"
 		os.system(cmd_install)
 		print
 	else: 

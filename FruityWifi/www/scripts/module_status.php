@@ -31,6 +31,10 @@ if ($service == "s_wireless") {
         $ismoduleup = exec("ps auxww | grep hostapd | grep -v -e grep");
     } else if ($ap_mode == "2") {
         $ismoduleup = exec("ps auxww | grep airbase | grep -v -e grep");
+    } else if ($ap_mode == "3") {
+        $ismoduleup = exec("ps auxww | grep hostapd | grep -v -e grep");
+    } else if ($ap_mode == "4") {
+        $ismoduleup = exec("ps auxww | grep hostapd | grep -v -e grep");
     }
     
 } else if ($service == "s_phishing") {

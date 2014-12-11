@@ -53,8 +53,7 @@ $action = $_POST["action"];
 $page = $_POST["page"];
 
 
-$global_webserver = "http://localhost/FruityWifi";
-
+$global_webserver = "http://localhost:".$_SERVER["SERVER_PORT"];
 
 if ($service == "s_wireless") {
     $url = "$global_webserver/scripts/status_wireless.php?service=wireless&action=$action";

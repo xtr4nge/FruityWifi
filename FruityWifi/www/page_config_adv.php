@@ -31,6 +31,8 @@ include "config/config.php";
 <?
 include "functions.php";
 
+//$bin_danger = "/usr/share/fruitywifi/bin/danger"; //DEPRECATED
+
 // Checking POST & GET variables...
 if ($regex == 1) {
     regex_standard($_POST["filename"], "msg.php", $regex_extra);
@@ -49,7 +51,7 @@ if ($regex == 1) {
     regex_standard($_POST["pass_new_repeat"], "msg.php", $regex_extra);
     regex_standard($_GET["service"], "msg.php", $regex_extra);
     regex_standard($_GET["action"], "msg.php", $regex_extra);
-	//regex_standard($_POST["in_out_mode"], "msg.php", $regex_extra);
+    //regex_standard($_POST["in_out_mode"], "msg.php", $regex_extra);
 }
 ?>
 <?
@@ -96,23 +98,14 @@ if(isset($_POST["iface"]) and $_POST["iface"] == "internet"){
 
 if(isset($_POST["iface"]) and $_POST["iface"] == "wifi"){
     echo "wifi:" . $_POST["io_in_iface"];
-    //$exec = "sed -i 's/io_in_iface=.*/io_in_iface=\\\"".$_POST["io_in_iface"]."\\\";/g' ./config/config.php";
-    //echo $exec;    
-    //exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
 }
 
 if(isset($_POST["iface"]) and $_POST["iface"] == "wifi_extra"){
     echo "wifi extra:" . $_POST["io_in_iface_extra"];
-    //$exec = "sed -i 's/io_in_iface_extra=.*/io_in_iface_extra=\\\"".$_POST["io_in_iface_extra"]."\\\";/g' ./config/config.php";
-    //echo $exec;    
-    //exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
 }
 
 if(isset($_POST["iface"]) and $_POST["iface"] == "wifi_supplicant"){
     echo "wifi supplicant:" . $_POST["iface_supplicant"];
-    //$exec = "sed -i 's/io_in_iface_extra=.*/io_in_iface_extra=\\\"".$_POST["io_in_iface_extra"]."\\\";/g' ./config/config.php";
-    //echo $exec;    
-    //exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
 }
 
 if ($_GET["service"] == "mon0") {
@@ -132,49 +125,52 @@ if(isset($_POST[newSSID])){
     $hostapd_ssid=$_POST[newSSID];
     
     $exec = "sed -i 's/hostapd_ssid=.*/hostapd_ssid=\\\"".$_POST[newSSID]."\\\";/g' ./config/config.php";
-    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+    //exec("$bin_danger \"" . $exec . "\"" ); //DEPRECATED
+    exec_fruitywifi($exec);
 
     $exec = "/usr/sbin/karma-hostapd_cli -p /var/run/hostapd-phy0 karma_change_ssid $_POST[newSSID]";
-    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
-    //system("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+    //exec("$bin_danger \"" . $exec . "\"" ); //DEPRECATED
+    exec_fruitywifi($exec);
     
     // replace interface in hostapd.conf and hostapd-secure.conf
-    $exec = "/bin/sed -i 's/^ssid=.*/ssid=".$_POST["newSSID"]."/g' /usr/share/FruityWifi/conf/hostapd.conf";
-    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
-    $exec = "/bin/sed -i 's/^ssid=.*/ssid=".$_POST["newSSID"]."/g' /usr/share/FruityWifi/conf/hostapd-secure.conf";
-    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
-
+    $exec = "/bin/sed -i 's/^ssid=.*/ssid=".$_POST["newSSID"]."/g' /usr/share/fruitywifi/conf/hostapd.conf";
+    //exec("$bin_danger \"" . $exec . "\"" ); //DEPRECATED
+    exec_fruitywifi($exec);
+    $exec = "/bin/sed -i 's/^ssid=.*/ssid=".$_POST["newSSID"]."/g' /usr/share/fruitywifi/conf/hostapd-secure.conf";
+    //exec("$bin_danger \"" . $exec . "\"" ); //DEPRECATED
+    exec_fruitywifi($exec);
 }
 
 
 if (isset($_POST['hostapd_secure'])) {
     $exec = "sed -i 's/hostapd_secure=.*/hostapd_secure=\\\"".$_POST["hostapd_secure"]."\\\";/g' ./config/config.php";
-    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+    //exec("$bin_danger \"" . $exec . "\"" ); //DEPRECATED
+    exec_fruitywifi($exec);
 
     $hostapd_secure = $_POST["hostapd_secure"];
 }
 
 if (isset($_POST['hostapd_wpa_passphrase'])) {
     $exec = "sed -i 's/hostapd_wpa_passphrase=.*/hostapd_wpa_passphrase=\\\"".$_POST["hostapd_wpa_passphrase"]."\\\";/g' ./config/config.php";
-    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+    //exec("$bin_danger \"" . $exec . "\"" ); //DEPRECATED
+    exec_fruitywifi($exec);
+    
     $exec = "sed -i 's/wpa_passphrase=.*/wpa_passphrase=".$_POST["hostapd_wpa_passphrase"]."/g' ../conf/hostapd-secure.conf";
-    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
-
+    //exec("$bin_danger \"" . $exec . "\"" ); //DEPRECATED
+    exec_fruitywifi($exec);
+    
     $hostapd_wpa_passphrase = $_POST["hostapd_wpa_passphrase"];
 }
 
 // -------------- SUPPLICANT ------------------
 if(isset($_POST["supplicant_ssid"]) and isset($_POST["supplicant_psk"])) {
-    //echo "supplicant_ssid:" . $_POST["supplicant_ssid"];
-    //echo "<br>";
-    //echo "supplicant_psk:" . $_POST["supplicant_psk"];
     $exec = "sed -i 's/supplicant_ssid=.*/supplicant_ssid=\\\"".$_POST["supplicant_ssid"]."\\\";/g' ./config/config.php";
-    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+    //exec("$bin_danger \"" . $exec . "\"" ); //DEPRECATED
+    exec_fruitywifi($exec);
+    
     $exec = "sed -i 's/supplicant_psk=.*/supplicant_psk=\\\"".$_POST["supplicant_psk"]."\\\";/g' ./config/config.php";
-    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
-    //$exec = "sed -i 's/io_in_iface_extra=.*/io_in_iface_extra=\\\"".$_POST["io_in_iface_extra"]."\\\";/g' ./config/config.php";
-    //echo $exec;    
-    //exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+    //exec("$bin_danger \"" . $exec . "\"" ); //DEPRECATED
+    exec_fruitywifi($exec);
     
     $supplicant_ssid = $_POST["supplicant_ssid"];
     $supplicant_psk = $_POST["supplicant_psk"];
@@ -188,10 +184,12 @@ if(isset($_POST["pass_old"]) and isset($_POST["pass_new"])) {
 	$exec = "sed -i 's/\\\=\\\"".md5($_POST["pass_old"])."\\\"/\\\=\\\"".md5($_POST["pass_new"])."\\\"/g' ./users.php";
 	//echo $exec;
 	//exit;
-    exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"" );
+    //exec("$bin_danger \"" . $exec . "\"" ); //DEPRECATED
+    exec_fruitywifi($exec);
+    
     $pass_msg = 1;
     } else {
-	    $pass_msg = 2;
+	$pass_msg = 2;
     }
 }
 
@@ -234,6 +232,12 @@ $ifaces = explode("|", $ifaces);
 	    &nbsp;[AP]
 	    <select class="input" onchange="this.form.submit()" name="ap_mode">
 		<option value="1" <? if ($ap_mode == 1) echo "selected"?> >Hostapd</option>
+		<? if (file_exists("/usr/share/FruityWifi/www/modules/mana/includes/hostapd")) { ?>
+		<option value="3" <? if ($ap_mode == 3) echo "selected"?> >Hostapd-Mana</option>
+		<? } ?>
+		<? if (file_exists("/usr/share/FruityWifi/www/modules/karma/includes/hostapd")) { ?>
+		<option value="4" <? if ($ap_mode == 4) echo "selected"?> >Hostapd-Karma</option>
+		<? } ?>
 		<option value="2" <? if ($ap_mode == 2) echo "selected"?> >Airmon-ng</option>
 	    </select>
 	    </form>
@@ -459,7 +463,7 @@ $ifaces = explode("|", $ifaces);
 
 <br>
 
-<!-- WIRELESS -->
+<!-- WIRELESS SETUP -->
 
 <div class="rounded-top" align="center"> Wireless Setup </div>
 <div class="rounded-bottom">
@@ -479,6 +483,20 @@ $ifaces = explode("|", $ifaces);
 </div>
 
 <br>
+
+<!-- DOMAIN SETUP -->
+
+<div class="rounded-top" align="center"> Domain Setup </div>
+<div class="rounded-bottom">
+    <form action="scripts/config_iface.php" method="POST" autocomplete="off" style="margin:1px">
+	<input class="input" name="domain" value="<?=$dnsmasq_domain?>">    
+	<input class="input" type="submit" value="change Domain">
+    </form>
+</div>
+
+<br>
+
+<!-- PASSWORD -->
 
 <div class="rounded-top" align="center"> Password </div>
 <div class="rounded-bottom">
