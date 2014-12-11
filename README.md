@@ -18,6 +18,7 @@ v2.1
 - New AP options available: hostapd, hostapd-mana, hostapd-karma, airmon-ng
 - Domain name can be changed from config panel
 - New install options have been added to install-FruityWifi.sh
+- Install/Remove have been updated
 
 
 v2.0 (alpha)
