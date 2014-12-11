@@ -13,8 +13,8 @@ v2.1
 - Karma service has been replaced by karma module
 - Sudo has been implemented (replacement for danger)
 - Logs path can be changed
-- Squid dependecies have been removed from FruityWifi installer
-- Phishing dependecied have been removed from FruityWifi installer
+- Squid dependencies have been removed from FruityWifi installer
+- Phishing dependencies have been removed from FruityWifi installer
 - New AP options available: hostapd, hostapd-mana, hostapd-karma, airmon-ng
 - Domain name can be changed from config panel
 - New install options have been added to install-FruityWifi.sh
