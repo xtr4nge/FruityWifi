@@ -355,7 +355,7 @@ if($service == "wireless"  and $ap_mode == "3") {
         //unmanaged-devices=mac:<realmac>;interface-name:wlan2
         //macchanger --show wlan0 |grep "Permanent"
         
-        $exec = "macchanger --show eth0 |grep 'Permanent'";
+        $exec = "macchanger --show $io_in_iface |grep 'Permanent'";
         //$output = exec_fruitywifi($exec);
         exec($exec, $output);
         $mac = explode(" ", $output[0]);
@@ -365,7 +365,7 @@ if($service == "wireless"  and $ap_mode == "3") {
         
         $exec = "sed -i '/unmanaged/d' /etc/NetworkManager/NetworkManager.conf";
         exec_fruitywifi($exec);
-        $exec = "sed -i '/[keyfile]/d' /etc/NetworkManager/NetworkManager.conf";
+        $exec = "sed -i '/\[keyfile\]/d' /etc/NetworkManager/NetworkManager.conf";
         exec_fruitywifi($exec);
         
         if ($ispresent == "") {
@@ -427,7 +427,7 @@ if($service == "wireless"  and $ap_mode == "3") {
                 
                 $exec = "$bin_hostapd $mod_path/includes/conf/hostapd-secure.conf >> $mod_logs &";
             } else {
-                $exec = "/usr/sbin/hostapd -P /var/run/hostapd-phy0 -B /usr/share/FruityWifi/conf/hostapd-secure.conf";
+                $exec = "/usr/sbin/hostapd -P /var/run/hostapd-phy0 -B /usr/share/fruitywifi/conf/hostapd-secure.conf";
             }
             
         } else {
@@ -456,7 +456,7 @@ if($service == "wireless"  and $ap_mode == "3") {
                 
                 $exec = "$bin_hostapd $mod_path/includes/conf/hostapd.conf >> $mod_logs &";
             } else {
-                $exec = "/usr/sbin/hostapd -P /var/run/hostapd-phy0 -B /usr/share/FruityWifi/conf/hostapd.conf";
+                $exec = "/usr/sbin/hostapd -P /var/run/hostapd-phy0 -B /usr/share/fruitywifi/conf/hostapd.conf";
             }
             
         }
@@ -489,7 +489,7 @@ if($service == "wireless"  and $ap_mode == "3") {
         // REMOVE lines from NetworkManager
         $exec = "sed -i '/unmanaged/d' /etc/NetworkManager/NetworkManager.conf";
         exec_fruitywifi($exec);
-        $exec = "sed -i '/[keyfile]/d' /etc/NetworkMxanager/NetworkManager.conf";
+        $exec = "sed -i '/\[keyfile\]/d' /etc/NetworkManager/NetworkManager.conf";
         exec_fruitywifi($exec);
     
         $exec = "$bin_killall hostapd";	
@@ -602,7 +602,7 @@ if($service == "wireless"  and $ap_mode == "4") {
                 
                 $exec = "$bin_hostapd $mod_path/includes/conf/hostapd-secure.conf >> $mod_logs &";
             } else {
-                $exec = "/usr/sbin/hostapd -P /var/run/hostapd-phy0 -B /usr/share/FruityWifi/conf/hostapd-secure.conf";
+                $exec = "/usr/sbin/hostapd -P /var/run/hostapd-phy0 -B /usr/share/fruitywifi/conf/hostapd-secure.conf";
             }
             
         } else {
@@ -631,7 +631,7 @@ if($service == "wireless"  and $ap_mode == "4") {
                 
                 $exec = "$bin_hostapd $mod_path/includes/conf/hostapd.conf >> $mod_logs &";
             } else {
-                $exec = "/usr/sbin/hostapd -P /var/run/hostapd-phy0 -B /usr/share/FruityWifi/conf/hostapd.conf";
+                $exec = "/usr/sbin/hostapd -P /var/run/hostapd-phy0 -B /usr/share/fruitywifi/conf/hostapd.conf";
             }
             
         }
