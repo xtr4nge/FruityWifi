@@ -1,6 +1,6 @@
 fruitywifi	ALL=(ALL:ALL) NOPASSWD:ALL
-Defaults loglinelen = 0
-Defaults logfile = /usr/share/fruitywifi/logs/sudo.log
-Defaults log_year
-Defaults log_host
-Defaults syslog=auth
+Defaults:fruitywifi loglinelen = 0
+Defaults:fruitywifi logfile = /usr/share/fruitywifi/logs/sudo.log
+Defaults:fruitywifi log_year
+Defaults:fruitywifi log_host
+Defaults:fruitywifi syslog=auth
