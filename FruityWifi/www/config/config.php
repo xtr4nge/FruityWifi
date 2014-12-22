@@ -1,5 +1,5 @@
 <?
-$version="v2.1.1";
+$version="v2.1.2";
 $regex=1; // 1 (on) | 0 (off) >> web interface input validation.
 $regex_extra=" _-.[]*"; // extra characters allowed (input validation).
 $log_path="/usr/share/fruitywifi/logs";

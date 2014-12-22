@@ -14,17 +14,22 @@
     
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/ 
+*/
 ?>
 <?
+include "../login_check.php";
+include "../config/config.php";
+include "../functions.php";
+
 $service = $_POST["service"];
 $path = $_POST["path"];
 
-$path = "/usr/share/fruitywifi/logs/install.txt";
+$path = "$log_path/install.txt";
 
 $exec = "tail -n 5 $path";
 $exec = "cat $path";
-exec("/usr/share/fruitywifi/bin/danger \"" . $exec . "\"", $output);
+//exec("/usr/share/fruitywifi/bin/danger \"" . $exec . "\"", $output); //DEPRECATED
+$output = exec_fruitywifi($exec);
 
 for ($i=0; $i < count($output); $i++)
 {
