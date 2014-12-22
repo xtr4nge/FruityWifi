@@ -571,7 +571,7 @@ if($service == "wireless"  and $ap_mode == "4") {
         $exec = "/usr/sbin/dnsmasq -C /usr/share/fruitywifi/conf/dnsmasq.conf";
         exec_fruitywifi($exec);
 	
-        //Verifies if mana-hostapd is installed
+        //Verifies if karma-hostapd is installed
         if ($hostapd_secure == 1) {
             
             if (file_exists("/usr/share/fruitywifi/www/modules/karma/includes/hostapd")) {
