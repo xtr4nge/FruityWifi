@@ -90,7 +90,7 @@
     </module>
     <module>
         <name>rpitwit</name>
-        <version>1.2</version>
+        <version>1.3</version>
 	<author>@xtr4nge</author>
 	<description>RPItwit interface</description>
 	<url>module_rpitwit</url>
@@ -106,7 +106,7 @@
     </module>
     <module>
         <name>karma</name>
-        <version>1.3</version>
+        <version>1.4</version>
 	<author>@xtr4nge</author>
 	<description>Karma interface</description>
 	<url>module_karma</url>
@@ -114,7 +114,7 @@
     </module>
     <module>
         <name>nmcli</name>
-        <version>1.2</version>
+        <version>1.3</version>
 	<author>@xtr4nge</author>
 	<description>nmcli interface</description>
 	<url>module_nmcli</url>
@@ -122,7 +122,7 @@
     </module>
     <module>
         <name>3g_4g</name>
-        <version>1.1</version>
+        <version>1.2</version>
 	<author>@xtr4nge</author>
 	<description>3G/4G interface</description>
 	<url>module_3g_4g</url>
@@ -130,7 +130,7 @@
     </module>
     <module>
         <name>supplicant</name>
-        <version>1.1</version>
+        <version>1.2</version>
 	<author>@xtr4nge</author>
 	<description>supplicant interface</description>
 	<url>module_supplicant</url>
@@ -138,7 +138,7 @@
     </module>
     <module>
         <name>meterpreter</name>
-        <version>1.1</version>
+        <version>1.2</version>
 	<author>@xtr4nge</author>
 	<description>meterpreter interface</description>
 	<url>module_meterpreter</url>
@@ -146,7 +146,7 @@
     </module>
     <module>
         <name>ettercap</name>
-        <version>1.1</version>
+        <version>1.2</version>
 	<author>@xtr4nge</author>
 	<description>ettercap interface</description>
 	<url>module_ettercap</url>
@@ -202,7 +202,7 @@
     </module>
     <module>
         <name>mana</name>
-        <version>1.0</version>
+        <version>1.1</version>
 	<author>@xtr4nge</author>
 	<description>mana interface</description>
 	<url>module_mana</url>
