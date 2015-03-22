@@ -208,4 +208,12 @@
 	<url>module_mana</url>
 	<required>2.1</required>
     </module>
+    <module>
+        <name>recon</name>
+        <version>1.0</version>
+	<author>@xtr4nge</author>
+	<description>recon interface</description>
+	<url>module_recon</url>
+	<required>2.1</required>
+    </module>
 </FruityWifi>
