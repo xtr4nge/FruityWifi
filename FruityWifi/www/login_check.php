@@ -1,6 +1,6 @@
 <? 
 /*
-	Copyright (C) 2013-2014 xtr4nge [_AT_] gmail.com
+	Copyright (C) 2013-2015 xtr4nge [_AT_] gmail.com
 
 	This program is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -18,9 +18,9 @@
 ?>
 <?
 session_start();
-//echo $_SESSION["user_id"];
+
 if (!isset($_SESSION["user_id"])) {
     header('Location: /logout.php');
-    exit;
+    //exit; // It will be added on the next release
 }
 ?>
