@@ -216,4 +216,12 @@
 	<url>module_recon</url>
 	<required>2.1</required>
     </module>
+    <module>
+        <name>bdfproxy</name>
+        <version>1.0</version>
+	<author>@xtr4nge</author>
+	<description>bdfproxy interface</description>
+	<url>module_bdfproxy</url>
+	<required>2.1</required>
+    </module>
 </FruityWifi>
