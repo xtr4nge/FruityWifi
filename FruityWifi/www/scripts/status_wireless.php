@@ -86,15 +86,15 @@ if($service == "wireless"  and $ap_mode == "1") {
             */
             
             //REPLACE SSID
-            $exec = "/bin/sed -i 's/^ssid=.*/ssid=".$hostapd_ssid."/g' /usr/share/fruitywificonf/hostapd-secure.conf";
+            $exec = "/bin/sed -i 's/^ssid=.*/ssid=".$hostapd_ssid."/g' /usr/share/fruitywifi/conf/hostapd-secure.conf";
             exec_fruitywifi($exec);
             
             //REPLACE IFACE                
-            $exec = "/bin/sed -i 's/^interface=.*/interface=".$io_in_iface."/g' /usr/share/fruitywificonf/hostapd-secure.conf";
+            $exec = "/bin/sed -i 's/^interface=.*/interface=".$io_in_iface."/g' /usr/share/fruitywifi/conf/hostapd-secure.conf";
             exec_fruitywifi($exec);
             
             //REPLACE WPA_PASSPHRASE
-            $exec = "sed -i 's/wpa_passphrase=.*/wpa_passphrase=".$hostapd_wpa_passphrase."/g' /usr/share/fruitywificonf/hostapd-secure.conf";
+            $exec = "sed -i 's/wpa_passphrase=.*/wpa_passphrase=".$hostapd_wpa_passphrase."/g' /usr/share/fruitywifi/conf/hostapd-secure.conf";
             exec_fruitywifi($exec);
             
             //EXTRACT MACADDRESS
@@ -119,15 +119,15 @@ if($service == "wireless"  and $ap_mode == "1") {
             */
             
             //REPLACE SSID
-            $exec = "/bin/sed -i 's/^ssid=.*/ssid=".$hostapd_ssid."/g' /usr/share/fruitywificonf/hostapd.conf";
+            $exec = "/bin/sed -i 's/^ssid=.*/ssid=".$hostapd_ssid."/g' /usr/share/fruitywifi/conf/hostapd.conf";
             exec_fruitywifi($exec);
             
             //REPLACE IFACE                
-            $exec = "/bin/sed -i 's/^interface=.*/interface=".$io_in_iface."/g' /usr/share/fruitywificonf/hostapd.conf";
+            $exec = "/bin/sed -i 's/^interface=.*/interface=".$io_in_iface."/g' /usr/share/fruitywifi/conf/hostapd.conf";
             exec_fruitywifi($exec);
             
             //REPLACE WPA_PASSPHRASE
-            $exec = "sed -i 's/wpa_passphrase=.*/wpa_passphrase=".$hostapd_wpa_passphrase."/g' /usr/share/fruitywificonf/hostapd.conf";
+            $exec = "sed -i 's/wpa_passphrase=.*/wpa_passphrase=".$hostapd_wpa_passphrase."/g' /usr/share/fruitywifi/conf/hostapd.conf";
             exec_fruitywifi($exec);
             
             //EXTRACT MACADDRESS
