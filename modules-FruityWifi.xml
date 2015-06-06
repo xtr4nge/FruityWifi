@@ -202,7 +202,7 @@
     </module>
     <module>
         <name>mana</name>
-        <version>1.1</version>
+        <version>1.2</version>
 	<author>@xtr4nge</author>
 	<description>mana interface</description>
 	<url>module_mana</url>
