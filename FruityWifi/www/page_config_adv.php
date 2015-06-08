@@ -232,10 +232,10 @@ $ifaces = explode("|", $ifaces);
 	    &nbsp;[AP]
 	    <select class="input" onchange="this.form.submit()" name="ap_mode">
 		<option value="1" <? if ($ap_mode == 1) echo "selected"?> >Hostapd</option>
-		<? if (file_exists("/usr/share/FruityWifi/www/modules/mana/includes/hostapd")) { ?>
+		<? if (file_exists("/usr/share/fruitywifi/www/modules/mana/includes/hostapd")) { ?>
 		<option value="3" <? if ($ap_mode == 3) echo "selected"?> >Hostapd-Mana</option>
 		<? } ?>
-		<? if (file_exists("/usr/share/FruityWifi/www/modules/karma/includes/hostapd")) { ?>
+		<? if (file_exists("/usr/share/fruitywifi/www/modules/karma/includes/hostapd")) { ?>
 		<option value="4" <? if ($ap_mode == 4) echo "selected"?> >Hostapd-Karma</option>
 		<? } ?>
 		<option value="2" <? if ($ap_mode == 2) echo "selected"?> >Airmon-ng</option>
