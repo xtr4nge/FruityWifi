@@ -351,11 +351,32 @@ if (count($output) > 0) {
     }
     fclose($fh);
     $data = explode("\n",$data);
-    
+	unset($data[count($data)-1]);	//remove last empty line
+    ?>
+	<table border="1" width="100%">
+	<tr>
+	<th>IP</th>
+	<th>MAC</th>
+	<th>Hostname</th>
+	</tr>
+	<?
     for ($i=0; $i < count($data); $i++) {
         $tmp = explode(" ", $data[$i]);
-        echo $tmp[2] . " " . $tmp[1] . " " . $tmp[3] . "<br>";
+		echo "<tr>";
+		echo "<td>", $tmp[2], "</td>";
+		$if_online = false;
+		foreach ($stations as $station) {
+			if (strpos($station, $tmp[1])!==false)
+				$if_online = true;
+		}
+		if ($if_online)
+			echo "<td><font color=\"lime\"><b>", $tmp[1], "</b></font></td>";
+		else
+			echo "<td>", $tmp[1], "</td>";
+		echo "<td>", $tmp[3], "</td>";
+		echo "</tr>";
     }
     ?>
+	</table>
 </div>
 

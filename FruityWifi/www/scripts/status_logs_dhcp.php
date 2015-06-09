@@ -8,6 +8,7 @@ if ( 0 < filesize( $filename ) ) {
 }
 fclose($fh);
 $data = explode("\n",$data);
+unset($data[count($data)-1]);   //remove last empty line
 
 for ($i=0; $i < count($data); $i++) {
 	$tmp = explode(" ", $data[$i]);
