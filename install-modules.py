@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-#	Copyright (C) 2013-2014  xtr4nge [_AT_] gmail.com
+#	Copyright (C) 2013-2015 xtr4nge [_AT_] gmail.com
 #
 #	This program is free software: you can redistribute it and/or modify
 #	it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@ from pprint import pprint
 import subprocess, os
 
 # get FruityWifi version
-cmd = "cat /usr/share/FruityWifi/www/config/config.php |grep version"
+cmd = "cat /usr/share/fruitywifi/www/config/config.php |grep version"
 f = os.popen(cmd)
 output = f.read()
 version = str(output).replace('\n','').replace('$version="v','').replace('";','')
@@ -66,12 +66,12 @@ for modules in dom.getElementsByTagName('module'):
 			info['required'] = item.childNodes[0].nodeValue
 	
 	# Install module
-	if (float(version)) >= float(info['required']):
+	if (float(version.replace(".",""))) >= float(info['required'].replace(".","")):
 		print info['name'] + " v" + info['version']
-		cmd_install = "git clone https://github.com/xtr4nge/module_"+info['name']+".git /usr/share/FruityWifi/www/modules/"+info['name']
+		cmd_install = "git clone https://github.com/xtr4nge/module_"+info['name']+".git /usr/share/fruitywifi/www/modules/"+info['name']
 		print cmd_install
 		os.system(cmd_install)
-		cmd_install = "cd /usr/share/FruityWifi/www/modules/"+info['name']+"/includes/; chmod 755 install.sh; ./install.sh;"
+		cmd_install = "cd /usr/share/fruitywifi/www/modules/"+info['name']+"/includes/; chmod 755 install.sh; ./install.sh;"
 		os.system(cmd_install)
 		print
 	else: 
