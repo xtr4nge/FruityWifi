@@ -233,7 +233,7 @@
 	<required>2.1</required>
     </module>
     <module>
-        <name>nginx</name>
+        <name>mitmf</name>
         <version>1.0</version>
 	<author>@xtr4nge</author>
 	<description>MITMf interface</description>
