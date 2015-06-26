@@ -240,4 +240,12 @@
 	<url>module_mitmf</url>
 	<required>2.1</required>
     </module>
+    <module>
+        <name>sslstrip2</name>
+        <version>1.0</version>
+	<author>@xtr4nge</author>
+	<description>sslstrip2 interface</description>
+	<url>module_sslstrip2</url>
+	<required>2.1</required>
+    </module>
 </FruityWifi>
