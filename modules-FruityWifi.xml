@@ -249,11 +249,11 @@
 	<required>2.1</required>
     </module>
     <module>
-        <name>frtuiyproxy</name>
+        <name>fruityproxy</name>
         <version>1.0</version>
 	<author>@xtr4nge</author>
-	<description>frtuiyproxy interface</description>
-	<url>module_frtuiyproxy</url>
+	<description>fruityproxy interface</description>
+	<url>module_fruityproxy</url>
 	<required>2.1</required>
     </module>
 </FruityWifi>
