@@ -248,4 +248,12 @@
 	<url>module_sslstrip2</url>
 	<required>2.1</required>
     </module>
+    <module>
+        <name>frtuiyproxy</name>
+        <version>1.0</version>
+	<author>@xtr4nge</author>
+	<description>frtuiyproxy interface</description>
+	<url>module_frtuiyproxy</url>
+	<required>2.1</required>
+    </module>
 </FruityWifi>
