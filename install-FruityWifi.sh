@@ -212,6 +212,20 @@ cp -a sudo-setup/fruitywifi /etc/sudoers.d/
 echo "[sudo setup completed]"
 echo
 
+cmd=`lsb_release -c |grep "jessie"`
+if [[ ! -z $cmd ]]
+then
+    echo "--------------------------------"
+    echo "Setup DNSMASQ"
+    echo "--------------------------------"
+	
+	EXEC="s,^server=,#server=,g"
+	sed -i $EXEC FruityWifi/conf/dnsmasq.conf
+    
+    echo "[setup completed]"
+
+fi
+
 cp -a FruityWifi /usr/share/fruitywifi
 ln -s $fruitywifi_log_path /usr/share/fruitywifi/www/logs
 ln -s /usr/share/fruitywifi/ /usr/share/FruityWifi
