@@ -73,3 +73,12 @@ include_once "/usr/share/fruitywifi/www/config/config.php";
     //$('.bootstrap-switch').bootstrapSwitch('destroy');
     });
 </script>
+<style>
+    input {
+        color: #000000;
+    }
+    
+    input[type="submit"] {
+        color: #000000;
+    }
+</style>
