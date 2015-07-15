@@ -19,6 +19,15 @@
 <?
 
 $service = $_POST["service"];
+
+/*
+if (isset($_GET["service"])) {
+    $service = $_GET["service"];
+} else {
+    $service = $_POST["service"];
+}
+*/
+
 $service = str_replace("mod_", "", $service);
 
 //$service = "nessus";

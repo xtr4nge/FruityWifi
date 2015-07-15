@@ -33,7 +33,6 @@ if ($regex == 1) {
     regex_standard($_POST["ap_mode"], "../msg.php", $regex_extra);
 }
 
-
 // ------------ IN | OUT (START) -------------
 if(isset($_POST["io_mode"])){
     $exec = "/bin/sed -i 's/io_mode=.*/io_mode=\\\"".$_POST["io_mode"]."\\\";/g' ../config/config.php";

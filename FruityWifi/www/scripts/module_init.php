@@ -1,6 +1,6 @@
 <? 
 /*
-    Copyright (C) 2013-2014 xtr4nge [_AT_] gmail.com
+    Copyright (C) 2013-2015 xtr4nge [_AT_] gmail.com
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -18,12 +18,30 @@
 ?>
 <?
 
+include "../login_check.php";
+include "../config/config.php";
+include "../functions.php";
+
+// Checking POST & GET variables...
+if ($regex == 1) {
+    regex_standard($_POST["service"], "../msg.php", $regex_extra);
+    regex_standard($_POST["action"], "../msg.php", $regex_extra);
+    regex_standard($_POST["page"], "../msg.php", $regex_extra);
+}
+
+$service = $_POST["service"];
+$service = str_replace("mod_", "", $service);
+$action = $_POST["action"];
+$page = $_POST["page"];
+
+/*
 function execCurl($url) {
-    //$post_data = 'user=admin&pass=admin';
+    $post_data = 'user=admin&pass=admin';
     $post_data = "";
     $agent = "Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.1.7) Gecko/20100105 Shiretoko/3.5.7";
-    $login_url = "$protocol://localhost$web_path/login.php";
-
+    //$login_url = "$protocol://localhost$web_path/login.php";
+    $login_url = "$protocol://localhost:8000/login.php";
+    
     $ch = curl_init();
 
     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
@@ -47,29 +65,37 @@ function execCurl($url) {
 }
 
 
-$service = $_POST["service"];
-$service = str_replace("mod_", "", $service);
-$action = $_POST["action"];
-$page = $_POST["page"];
-
-
 $global_webserver = "http://localhost:".$_SERVER["SERVER_PORT"];
+*/
+
+
+require("ws.php");
+
+$ws = new WebService("admin", "admin");
 
 if ($service == "s_wireless") {
-    $url = "$global_webserver/scripts/status_wireless.php?service=wireless&action=$action";
-    execCurl($url);
-    //return join(",", array("WIRELESS:$action"));
+    //$url = "$global_webserver/scripts/status_wireless.php?service=wireless&action=$action";
+    //execCurl($url);
+    
+    $url = "scripts/status_wireless.php?service=wireless&action=$action";
+    $ws->setGetRequest($url);
+    
               
 } else if ($service == "s_phishing") {
-    $url = "$global_webserver/scripts/status_phishing.php?service=phishing&action=$action";
-    execCurl($url);
-    //return join(",", array("PHISHING:$action"));
+    //$url = "$global_webserver/scripts/status_phishing.php?service=phishing&action=$action";
+    //execCurl($url);
+    
+    $url = "scripts/status_phishing.php?service=phishing&action=$action";
+    $ws->setGetRequest($url);
             
 } else {
-    $url = "$global_webserver/modules/$service/includes/module_action.php?service=$service&action=$action&page=$page";
-    execCurl($url);
+    //$url = "$global_webserver/modules/$service/includes/module_action.php?service=$service&action=$action&page=$page";
+    //execCurl($url);
+    
+    $url = "modules/$service/includes/module_action.php?service=$service&action=$action&page=$page";
+    $ws->setGetRequest($url);
+    
 }
-
 
 
 if ($action == "start") {
@@ -78,12 +104,5 @@ if ($action == "start") {
     $output[0] = "false";    
 }
 echo json_encode($output);
-
-//header("Location: ../modules/$service/includes/module_action.php?service=$service&action=$action&page=$page");
-
-
-//return "true";
-//return json_encode($output);
-//return join(",", array(strtoupper($mod_name).":$action"));
 
 ?>
