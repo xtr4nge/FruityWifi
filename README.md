@@ -4,6 +4,13 @@ FruityWifi
 FruityWifi is a wireless network auditing tool. The application can be installed in any Debian based system adding the extra packages. Tested in Debian, Kali Linux, Kali Linux ARM (Raspberry Pi), Raspbian (Raspberry Pi), Pwnpi (Raspberry Pi), Bugtraq.
 
 
+v2.2
+----------------
+- Wireless service has been replaced by AP module
+- Mobile support has been added
+- Bootstrap support has been added
+- minor fix
+
 
 v2.1
 ----------------
