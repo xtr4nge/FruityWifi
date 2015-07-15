@@ -256,4 +256,12 @@
 	<url>module_fruityproxy</url>
 	<required>2.1</required>
     </module>
+    <module>
+        <name>ap</name>
+        <version>1.0</version>
+	<author>@xtr4nge</author>
+	<description>AP interface</description>
+	<url>module_ap</url>
+	<required>2.2</required>
+    </module>
 </FruityWifi>
