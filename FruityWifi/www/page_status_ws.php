@@ -16,37 +16,100 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */ 
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<? include "header.php"; ?>
+<!DOCTYPE HTML>
+<html lang="en">
 <head>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="apple-mobile-web-app-capable" content="yes">
 	<title>FruityWifi</title>
 </head>
 <? include "login_check.php"; ?>
 <? include "config/config.php" ?>
-<? include "menu.php" ?>
 
 <script src="js/jquery.js"></script>
 <script src="js/jquery-ui.js"></script>
 
+<? include "menu.php" ?>
+
+<style>
+	/* Block Title*/
+	.log-rounded-top {
+		font-weight: bold;
+		color: #111; /*#323C40*/
+		border:0px solid;
+		border-color: #576971; /* 576971 */
+		w--idth:310px; /* 400 */
+		
+		min-width: 300px;
+		width: 96%;
+		max-width:580px;
+		
+		-moz-border-radius-topright: 2px; /* 10 */
+		border-top-right-radius: 2px; /* 10 */
+		-moz-border-radius-topleft: 2px; /* 10 */
+		border-top-left-radius: 2px; /* 10 */
+		
+		text-align: left;
+		padding: 0px;
+		padding-top:2px;
+		padding-bottom:2px;
+		margin-left: 10px; /*10px*/
+	}
+	/* Block Body*/
+	.log-rounded-bottom {
+		text-align: left;
+		background-color: 	#F8F8F8; /* #E01B46 */
+		color: #111; /*#445257*/
+		f--ont-size: 12px;
+		border-top:1px solid;
+		border-color: #BAC1C4; /* E01B46 */
+		p--adding:5px;
+		w--idth:300px; /* 390px */
+		
+		padding:0px;
+		margin-bottom:10px;
+		font-size:10px;
+		
+		min-width: 300px;
+		width: 96%;
+		max-width:576px;
+		
+		
+		-moz-border-radius-bottomright: 5px; /* 10 */
+		border-bottom-right-radius: 5px; /* 10 */
+		-moz-border-radius-bottomleft: 5px; /* 10 */
+		border-bottom-left-radius: 5px; /* 10 */
+		margin-left: 10px; /*10px*/
+	}
+</style>
+
 <script>
+
+function stopInterval(id){
+	clearInterval(id);
+}
 
 //setEnableDisabled("wireless");
 //setEnableDisabled("supplicant");
+
+function output(data){
+	alert(data);
+}
 
 function setEnableDisable(operation, service, action) 
 {
     //setInterval(function() {
     
         // Start loading....
-        $("#"+service).html( "" );
-        $("#"+service).css( "color","lime" );
-        $("#"+service).css( "font-weight","bold" );
+        //$("#"+service).html( "" );
+        //$("#"+service).css( "color","lime" );
+        //$("#"+service).css( "font-weight","bold" );
         
-        $("#"+service).css( "text-align","center" );
-        $("#"+service).html( "<img src='img/loading.gif'>" )
+        //$("#"+service).css( "text-align","center" );
+        //$("#"+service).html( "<img src='img/loading.gif'>" )
         
         $.ajax({
             type: 'POST',
@@ -62,34 +125,35 @@ function setEnableDisable(operation, service, action)
                 $.each(data, function (index, value) {
                     if (value == "true") 
                     {
+						/*
                         $("#"+service).html( "" );
                         $("#"+service).css( "color","lime" );
                         $("#"+service).css( "font-weight","bold" );
                         
-                        //$("#"+service+"-start").hide();
                         $("#"+service+"-stop").hide();
                         $("#"+service+"-start").css("visibility","hidden");
                         $("#"+service+"-stop").css("visibility","hidden");
                         
-                        //$("#"+service+"-loading").show();
                         
                         $("#"+service).css( "text-align","center" );
                         $("#"+service).html( "<img src='img/loading.gif'>" );
-                        
-                        //$("#"+service+"-stop").html("<img src='img/loading.gif'>");
+                        */
                         setTimeout(function() {
-                                $("#"+service).css( "text-align","left" );
-                                //$("#"+service+"-loading").hide();
+                                //$("#"+service).css( "text-align","left" );
                                 
-                                $("#"+service+"-stop").show();
-                                $("#"+service+"-stop").css("visibility","visible");
-                                $("#"+service+"-start").hide();
+                                //$("#"+service+"-stop").show();
+                                //$("#"+service+"-stop").css("visibility","visible");
+                                //$("#"+service+"-start").hide();
                                 
-                                $("#"+service).html( "enabled" );
-                        }, 2000); // Changed from 2000 to 500
+                                //$("#"+service).html( "enabled" ); //removed
+								
+								//$('input[id="s-'+service+'"]').bootstrapSwitch('state', true, false);
+								
+                        }, 500); // Changed from 2000 to 500
                     }
                     else
                     {
+						/*
                         $("#"+service).html( "" );
                         $("#"+service).css( "color","red" );
                         $("#"+service).css( "font-weight","bold" );
@@ -99,23 +163,20 @@ function setEnableDisable(operation, service, action)
                         $("#"+service+"-start").css("visibility","hidden");
                         $("#"+service+"-stop").css("visibility","hidden");
                         
-                        //$("#"+service+"-dummy").show();
-                        //$("#"+service+"-loading").show();
-                        
                         $("#"+service).css( "text-align","center" );
                         $("#"+service).html( "<img src='img/loading.gif'>" );
-                        
-                        //$("#"+service+"-stop").html("<img src='img/loading.gif'>");
-                        //setTimeout(function() {$("#"+service+"-start").html("start");}, 2000);
+						*/
                         setTimeout(function() {
-                                $("#"+service).css( "text-align","left" );
-                                //$("#"+service+"-loading").hide();
-                                $("#"+service+"-start").show();
-                                $("#"+service+"-start").css("visibility","visible");
-                                $("#"+service+"-stop").hide();
+                                //$("#"+service).css( "text-align","left" );
+                                //$("#"+service+"-start").show();
+                                //$("#"+service+"-start").css("visibility","visible");
+                                //$("#"+service+"-stop").hide();
                                 
-                                $("#"+service).html( "disabled" );
-                        }, 2000); // Changed from 2000 to 500
+                                //$("#"+service).html( "disabled" ); //removed
+								
+								//$('input[id="s-'+service+'"]').bootstrapSwitch('state', false, false);
+								
+                        }, 500); // Changed from 2000 to 500
                     }
                 });
             }
@@ -123,9 +184,69 @@ function setEnableDisable(operation, service, action)
     //},5000);
 }
 
+function setStatusSwitch(service, state) {
+	
+	if ($('#status_'+service).html() != "") {
+		
+		// Stop setInterval
+		id = $('#i_status_'+service).html();
+		clearInterval(id);
+		
+		if (state == true) {
+			setEnableDisable("", service, "start")
+			$('#status_'+service).html("+"); 
+		} else {
+			setEnableDisable("", service, "stop")
+			$('#status_'+service).html("-");
+		}
+		
+		// Restart setInterval
+		getStatus("", service);
+		
+	}
+	
+}
+
+function getStatusSwitch(service, state) 
+{
+	service = service.replace("mod_","");
+    
+	setTimeout(function() {
+		$.getJSON( "scripts/switch_status.php", { service: service } )
+		.done(function( data ) {
+			//console.log( "JSON Data: " + json.users[ 0 ].service );
+			//console.log( data );
+			if (data[0] === true) {
+				$('#status_'+service).html("+");
+			} else {
+				$('#status_'+service).html("-");
+			}
+		})
+		.fail(function( jqxhr, textStatus, error ) {
+			var err = textStatus + ", " + error;
+			console.log( "Request Failed: " + err );
+		});
+	},1000);
+
+}
+
+function switchAction(service){
+	//alert(service);
+	var status = "";
+	status = getStatusSwitch(service);
+	//alert(status)
+	console.log("::" + JSON.stringify(status));
+	if (status == "true") {
+		//alert(true)
+		setEnableDisable("", service, "stop") 
+	} else {
+		//setEnableDisable(operation, service, "start") 
+	}
+}
 
 function getStatus(operation, service) 
 {
+	service = service.replace("mod_","");
     var refInterval = setInterval(function() {
         $.ajax({
             type: 'POST',
@@ -136,7 +257,7 @@ function getStatus(operation, service)
             //data: 'operation=serviceAction&service=s_wireless&action=start',
             dataType: 'json',
             success: function (data) {
-                console.log(data);
+                //console.log(data);
                 $('#output').html('');
                 $.each(data, function (index, value) {
                     if (value == "true") 
@@ -144,6 +265,7 @@ function getStatus(operation, service)
                         //if ( $("#"+service).html() == "disabled" ) {
 						if ( $("#"+service).html() != "enabled" ) {
                           
+							/*
                             $("#"+service).html( "" );
                             $("#"+service).css( "color","lime" );
                             $("#"+service).css( "font-weight","bold" );
@@ -154,23 +276,27 @@ function getStatus(operation, service)
                             $("#"+service+"-stop").css("visibility","hidden");
                             
                             $("#"+service).css( "text-align","center" );
-                            ////$("#"+service).html( "<img src='img/loading.gif'>" );
-                            
+                            */
+							
                             setTimeout(function() {
-                                    $("#"+service).css( "text-align","left" );
-                                    //$("#"+service+"-loading").hide();
+                                    //$("#"+service).css( "text-align","left" );
 
-                                    $("#"+service+"-stop").show();
-                                    $("#"+service+"-stop").css("visibility","visible");
+                                    //$("#"+service+"-stop").show();
+                                    //$("#"+service+"-stop").css("visibility","visible");
                     
-                                    $("#"+service).html( "enabled" );
+                                    //$("#"+service).html( "enabled" ); //removed
+									
                             }, 1000); // Changed from 0 to 500
-                        } 
+                        }
+						
+						$('input[id="s-'+service+'"]').bootstrapSwitch('state', true, true);
+						//$('#status_'+service).html("true");
+
                     }
                     else 
                     {
-                        //if ( $("#"+service).html() == "enabled" ) {
 						if ( $("#"+service).html() != "disabled" ) {
+							/*
                             $("#"+service).html( "" );
                             $("#"+service).css( "color","red" );
                             $("#"+service).css( "font-weight","bold" );
@@ -179,32 +305,39 @@ function getStatus(operation, service)
                             $("#"+service+"-start").hide();
                             $("#"+service+"-stop").css("visibility","hidden");
 							$("#"+service+"-start").css("visibility","hidden");
-                            //$("#"+service+"-dummy").css("visibility","visible");
                             
                             $("#"+service).css( "text-align","center" );
-                            ////$("#"+service).html( "<img src='img/loading.gif'>" );
+							*/
                             
                             setTimeout(function() {
-                                    $("#"+service).css( "text-align","left" );
-                                    //$("#"+service+"-loading").hide();
+                                    //$("#"+service).css( "text-align","left" );
                                     
-                                    $("#"+service+"-start").show();
-                                    $("#"+service+"-start").css("visibility","visible");
+                                    //$("#"+service+"-start").show();
+                                    //$("#"+service+"-start").css("visibility","visible");
                                     
-                                    $("#"+service).html( "disabled" );
+                                    //$("#"+service).html( "disabled" ); //removed
+									
+									
                             }, 0);
                         }
+						$('input[id="s-'+service+'"]').bootstrapSwitch('state', false, false);
+						//$('#status_'+service).html("false");
+
                     }
                 });
             }
         });
-    },8000);
+		//$('#i_status_'+service).html(refInterval);
+		//console.log(service);
+		//console.log(refInterval);
+	},8000);
     $('#i_status_'+service).html(refInterval);
 }
 
 
 function getStatusInit(operation, service) 
-{	
+{
+	service = service.replace("mod_","");
     //setInterval(function() {
         $.ajax({
             type: 'POST',
@@ -220,6 +353,7 @@ function getStatusInit(operation, service)
                 $.each(data, function (index, value) {
                     if (value == "true") 
                     {
+						/*
                         $("#"+service).html( "" );
                         $("#"+service).css( "color","lime" );
                         $("#"+service).css( "font-weight","bold" );
@@ -230,21 +364,25 @@ function getStatusInit(operation, service)
                         $("#"+service+"-stop").css("visibility","hidden");
                         
                         $("#"+service).css( "text-align","center" );
-                        ////$("#"+service).html( "<img src='img/loading.gif'>" );
+						*/
                         
                         setTimeout(function() {
-                                $("#"+service).css( "text-align","left" );
-                                //$("#"+service+"-loading").hide();
+                                //$("#"+service).css( "text-align","left" );
 
-                                $("#"+service+"-stop").show();
-                                $("#"+service+"-stop").css("visibility","visible");
+                                //$("#"+service+"-stop").show();
+                                //$("#"+service+"-stop").css("visibility","visible");
                 
-                                $("#"+service).html( "enabled" );
+                                //$("#"+service).html( "enabled" ); //removed
+								
+								$('input[id="s-'+service+'"]').bootstrapSwitch('state', true, false);
+								//$('#status_'+service).html("true");
                                 
                         }, 500); // FIXED [delay loading START]
+						//return true;
                     }
                     else
                     {
+						/*
                         $("#"+service).html( "" );
                         $("#"+service).css( "color","red" );
                         $("#"+service).css( "font-weight","bold" );
@@ -256,17 +394,20 @@ function getStatusInit(operation, service)
                         //$("#"+service+"-dummy").css("visibility","visible");
                         
                         $("#"+service).css( "text-align","center" );
-                        ////$("#"+service).html( "<img src='img/loading.gif'>" );
+						*/
                         
                         setTimeout(function() {
-                                $("#"+service).css( "text-align","left" );
-                                //$("#"+service+"-loading").hide();
+                                //$("#"+service).css( "text-align","left" );
                                 
-                                $("#"+service+"-start").show();
-                                $("#"+service+"-start").css("visibility","visible");
+                                //$("#"+service+"-start").show();
+                                //$("#"+service+"-start").css("visibility","visible");
                                 
-                                $("#"+service).html( "disabled" );
+                                //$("#"+service).html( "disabled" ); //removed
+								
+								$('input[id="s-'+service+'"]').bootstrapSwitch('state', false, false);
+								//$('#status_'+service).html("false");
                         }, 0);
+						//return false;
                     }
                 });
             }
@@ -278,7 +419,7 @@ function getStatusInit(operation, service)
 
 <br>
 
-<div style="b-order:1px solid; width: 410px; display:inline-block; vertical-align: top;">
+<div style="b-order:1px dotted; w-idth: 410px; display:inline-block; vertical-align: top;">
 
 <?
 include "functions.php";
@@ -303,35 +444,37 @@ function addDivs($service, $alias, $edit, $path, $mod_logs_panel)
         $visibility = "";
     }
     
+	$name = str_replace("mod_","",$service);
+	
     echo "
             <div style='text-align:left;'>
-                <div style='border:0px solid red; display:inline-block; width:116px; text-align:right;'>$alias</div>
-        
-                <div name='$service' id='$service' style='border:0px solid red; display:inline-block; width:63px; font-weight:bold; color:red;'>disabled.</div>
-                <div style='border:0px solid red; display:inline-block;'>|</div>
+                <div style='border:0px solid red; display:inline-block; width:140px; text-align:left;'>$alias</div>
                 
-                <div id='$service-start' style='display:inline-block;font-weight:bold; width:36px; visibility:visible;'>
-                    <a href='#' onclick=\"setEnableDisable('serviceAction','$service','start')\">start</a>
+                <div id='$service-start' style='display:inline-block;font-weight:bold; width:0px; visibility:visible;'>
+                    <a href='#' onclick=\"setEnableDisable('serviceAction','$service','start')\"></a>
                 </div>
-                <div id='$service-stop' style='display:inline-block;font-weight:bold; width:36px; visibility:visible;'>
-                    <a href='#' onclick=\"setEnableDisable('serviceAction','$service','stop')\">stop</a>
+                <div id='$service-stop' style='display:inline-block;font-weight:bold; width:0px; visibility:visible;'>
+                    <a href='#' onclick=\"setEnableDisable('serviceAction','$service','stop')\"></a>
                 </div>
                 
-                <div id='$service-loading' style='display:inline-block;'>
-                    <img src='img/loading.gif'>
-                </div>
-                
-                <div style='border:0px solid red; display:inline-block;'>|</div>
-                <div id='$service-stop' style='display:inline-block;font-weight:bold; width:36px;'>
-                    <a href='$edit'>edit</a>
-                </div>
-                
-                <div style='border:0px solid red; display:inline-block;'>|</div>
-                <div id='$service-logOn' style='display:inline-block;$visibility'><a href='#' onclick=\"getLogs('$service', '$path')\">log</a></div>
-                <div id='$service-logOff' style='display:inline-block;visibility:hidden;'><a href='#' onclick=\"removeLogs('$service')\">off</a></div>
-                <div style='display:inline-block;' id='i_$service'></div>
-                <div style='display:inline-block;visibility:hidden;' id='i_status_$service'></div>
-                
+				<div style='display:inline-block;font-weight:bold; width:40px; visibility:visible; margin-top:2px'>
+					<a href='$edit' class='btn btn-default btn-xs' role='button'>edit</a>
+				</div>
+				
+				<div style='display:inline-block;font-weight:bold; width:36px; visibility:visible; margin-top:2px'>
+					<input id='s-$name' type='checkbox' checked data-size='mini' data-on-color='success' data-on-text='&nbsp;' data-off-text='&nbsp;'>
+				</div>
+				
+                <div id='$service-logOn' style='display:inline-block;$visibility; '>
+					<button type='button' class='btn btn-default btn-xs' onclick=\"getLogs('$service', '$path')\" >log</button>
+				</div>
+                <div id='$service-logOff' style='display:none;visibility:hidden;'>
+					<button type='button' class='btn btn-default btn-xs' onclick=\"removeLogs('$service')\" >off</button>
+				</div>
+				
+				<div style='display:inline-block;visibility:hidden;display:none;' id='i_$service'></div>
+                <div style='display:inline-block;visibility:hidden;display:none;' id='i_status_$name'></div>
+				
                 <script>
                     //getEnableDisabled('$service')
                     getStatusInit('getStatus','$service');
@@ -340,12 +483,37 @@ function addDivs($service, $alias, $edit, $path, $mod_logs_panel)
 
                 <script>
                 $(function(){
-                    $('#$service-stop').hide();
-                    $('#$service-loading').hide();
-                    $('#i_$service').hide();
-                    $('#i_status_$service').hide();
+                    //$('#$service-stop').hide();
+                    //$('#$service-loading').hide();
+                    //$('#i_$service').hide();
+                    //$('#i_status_$service').hide();
+					$('#$service-logOff').hide();
                 });
                 </script>
+				
+				<script>
+						//$('#s-$name').bootstrapSwitch('state', false, false);
+						
+						
+						$('input[id=\"s-$name\"]').on('switchChange.bootstrapSwitch', function(event, state) {
+						//$('input[id=\"s-$name\"]').on('switchChange.bootstrapSwitch', function(event, state) {
+							//console.log(this); // DOM element
+							//console.log(event); // jQuery event
+							//console.log('$name' + ':' + state); // true | false
+							//console.log(getStatusSwitch('$service'));
+							//setEnableDisable('', '$name', 'start');
+							//status = $('#s-$name').bootstrapSwitch('state');
+							setStatusSwitch('$name', state);
+						});
+						
+						getStatusSwitch('$name');
+						
+						//$('input[id=\"s-$service\"]').on('switchChange.bootstrapSwitch', switchAction(\"$service\"));
+						
+				</script>
+				
+				<div style='display:inline-block;visibility:hidden;display:none;' id='status_$name'></div>
+				
             </div>
         
         ";	
@@ -465,59 +633,71 @@ echo "<div>No modules have been installed.<br>Install them from the <a href='pag
 
 <br>
 
-<div class="rounded-top" align="center"> Interfaces/IP </div>
-<div class="rounded-bottom">
-<?
-
-$ifaces = exec("/sbin/ifconfig -a | cut -c 1-8 | sort | uniq -u |grep -v lo|sed ':a;N;$!ba;s/\\n/|/g'");
-$ifaces = str_replace(" ","",$ifaces);
-$ifaces = explode("|", $ifaces);
-
-    for ($i = 0; $i < count($ifaces); $i++) {
-        if (strpos($ifaces[$i], "mon") === false) {
-            echo $ifaces[$i] . ": ";
-            $ip = exec("/sbin/ifconfig $ifaces[$i] | grep 'inet addr:' | cut -d: -f2 |awk '{print $1}'");
-            echo $ip . "<br>";
-        }
-    }
-
-if ($_GET['reveal_public_ip'] == 1) {
-	echo "public: " . exec("curl ident.me");
-} else {
-	echo "public: <a href='page_status.php?reveal_public_ip=1'>reveal ip</a>";
-}
-
-?>
 </div>
 
-<br>
+<!-- SERVICE | MODULES END -->
 
-<div class="rounded-top" align="center"> Stations </div>
-<div class="rounded-bottom" id="stations-log">
-    <?
-    //exec("/sbin/iw dev $io_in_iface station dump |grep Stat", $stations);
-    //for ($i=0; $i < count($stations); $i++) echo str_replace("Station", "", $stations[$i]) . "<br>";
-    ?>
+<!-- IP DETAILS START -->
+
+<div style="display:inline-block; vertical-align: top;">
+
+	<div class="rounded-top" align="center"> Interfaces/IP </div>
+	<div class="rounded-bottom">
+	<?
+	
+	$ifaces = exec("/sbin/ifconfig -a | cut -c 1-8 | sort | uniq -u |grep -v lo|sed ':a;N;$!ba;s/\\n/|/g'");
+	$ifaces = str_replace(" ","",$ifaces);
+	$ifaces = explode("|", $ifaces);
+	
+		for ($i = 0; $i < count($ifaces); $i++) {
+			if (strpos($ifaces[$i], "mon") === false) {
+				echo $ifaces[$i] . ": ";
+				$ip = exec("/sbin/ifconfig $ifaces[$i] | grep 'inet addr:' | cut -d: -f2 |awk '{print $1}'");
+				echo $ip . "<br>";
+			}
+		}
+	
+	if ($_GET['reveal_public_ip'] == 1) {
+		echo "public: " . exec("curl ident.me");
+	} else {
+		echo "public: <a href='page_status.php?reveal_public_ip=1'>reveal ip</a>";
+	}
+	
+	?>
+	</div>
+	
+	<br>
+	
+	<div class="rounded-top" align="center"> Stations </div>
+	<div class="rounded-bottom" id="stations-log">
+		<?
+		//exec("/sbin/iw dev $io_in_iface station dump |grep Stat", $stations);
+		//for ($i=0; $i < count($stations); $i++) echo str_replace("Station", "", $stations[$i]) . "<br>";
+		?>
+	</div>
+	
+	<br>
+	
+	<div class="rounded-top" align="center"> DHCP </div>
+	<div class="rounded-bottom" id="dhcp-log">
+	
+	</div>
+
 </div>
 
-<br>
+<!-- IP DETAILS END -->
 
-<div class="rounded-top" align="center"> DHCP </div>
-<div class="rounded-bottom" id="dhcp-log">
-
-</div>
-
-</div>
-
-<!-- ################################# -->
+<!-- LOGS START -->
 
 <script>
 
 function getLogs(service, path) {
     //$( "#output" ).appendTo( "#content" );
-    $("#content").append("<div align='center' id='"+service+"-log-title' class='rounded-top' style='b-order:1px solid; b-ackground-color:#222222; width:580px; p-adding:2px; '>Logs: "+service+"</div><div class='rounded-bottom' id='"+service+"-log' style='b-order:1px solid; width:576px; padding:2px; margin-bottom:10px; font-size:11px'>").append("<\div>");
+    //$("#content").append("<div align='center' id='"+service+"-log-title' class='rounded-top' style='b-order:1px solid; b-ackground-color:#222222; width:580px; p-adding:2px; '>Logs: "+service+"</div><div class='rounded-bottom' id='"+service+"-log' style='b-order:1px solid; width:576px; padding:2px; margin-bottom:10px; font-size:11px'>").append("<\div>");
+	$("#content").append("<div align='center' id='"+service+"-log-title' class='log-rounded-top'>Logs: "+service+"</div><div class='log-rounded-bottom' id='"+service+"-log'>").append("<\div>");
     $("#"+service+"-logOn").hide();
     $("#"+service+"-logOff").show();
+	$("#"+service+"-logOff").css('display','inline-block');
     $("#"+service+"-logOn").css("visibility","hidden");
     $("#"+service+"-logOff").css("visibility","visible");
     $("#"+service+"-log").html(" <img src='img/loading.gif'>");
@@ -530,7 +710,7 @@ function getLogs(service, path) {
             data: 'service='+service+'&path='+path,
             dataType: 'json',
             success: function (data) {
-                console.log(data);
+                //console.log(data);
                 $('#'+service+'-log').html('');
                 $.each(data, function (index, value) {
                     //$("#output").append("<div>").append( value ).append("\div");
@@ -563,7 +743,7 @@ function getLogsDHCP() {
             data: 'service=&path=',
             dataType: 'json',
             success: function (data) {
-                console.log(data);
+                //console.log(data);
                 $('#dhcp-log').html('');
                 $.each(data, function (index, value) {
                     $("#dhcp-log").append( value ).append("<br>");
@@ -582,7 +762,7 @@ function getLogsStations() {
             data: 'service=&path=',
             dataType: 'json',
             success: function (data) {
-                console.log(data);
+                //console.log(data);
                 $('#stations-log').html('');
                 $.each(data, function (index, value) {
                     $("#stations-log").append( value ).append("<br>");
@@ -598,8 +778,10 @@ getLogsStations();
 
 </script>
 
-<div id="content" style="b-order:1px solid; width:580px; padding:0px; display:inline-block; font-size: 12px"></div>
+<div id="content" class="content"></div>
 
 </div>
+
+<!-- LOGS END -->
 
 </html>

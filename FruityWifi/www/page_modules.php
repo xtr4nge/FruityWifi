@@ -1,6 +1,6 @@
 <? 
 /*
-	Copyright (C) 2013-2014 xtr4nge [_AT_] gmail.com
+	Copyright (C) 2013-2015 xtr4nge [_AT_] gmail.com
 
 	This program is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -16,11 +16,16 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */ 
 ?>
-<!doctype html>
-
-<l-ink rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-<s-cript src="//code.jquery.com/jquery-1.10.2.js"></script>
-<s-cript src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<? include "header.php"; ?>
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<title>FruityWifi</title>
+</head>
 <link rel="stylesheet" href="css/jquery-ui.css">
 <script src="js/jquery.js"></script>
 <script src="js/jquery-ui.js"></script>
@@ -100,7 +105,7 @@ if (count($output) > 0) {
 		if ($mod_panel == "show") $checked = "checked"; else $checked = "";
 		echo "	<div style='display:inline-block; width:30px; text-align:left; padding-left:10px;'>
 					<form action='modules/save.php' style='margin:0px;' method='POST'>
-						<input type='checkbox' onchange='this.form.submit()' $checked>
+						<input type='checkbox' data-switch-no-init onchange='this.form.submit()' $checked>
 						<input type='hidden' name='type' value='save_show'>
 						<input type='hidden' name='mod_name' value='$mod_name'>
 						<input type='hidden' name='action' value='$checked'>

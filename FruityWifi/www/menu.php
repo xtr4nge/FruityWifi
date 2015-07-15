@@ -19,17 +19,51 @@
 <?
 include "login_check.php";
 include_once "/usr/share/fruitywifi/www/config/config.php";
-
-//Set no caching
-header("Expires: Mon, 1 Jan 1900 00:00:00 GMT");
-header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
-header("Cache-Control: no-store, no-cache, must-revalidate");
-header("Cache-Control: post-check=0, pre-check=0", false);
-header("Pragma: no-cache");
 ?>
+<link rel="stylesheet" href="css/bootstrap.css" />
+<link rel="stylesheet" href="css/bootstrap-menu.css" />
+<link rel="stylesheet" href="css/bootstrap-switch.css" />
+      
+<script src="js/bootstrap.js"></script>
+<script src="js/bootstrap-switch.js"></script>
+<script src="js/highlight.js"></script>
+<script src="js/main.js"></script>
+
 <link href="style.css" rel="stylesheet" type="text/css">
 <link rel="icon" type="image/x-icon" href="img/favicon.ico"/>
 
+<style>
+.btn {
+    p-adding: 4px 10px;
+    b-order: 1px solid;
+    b-order-color: #555555;
+    f-ont-weight: 200;
+    l-etter-spacing: 1px;
+}
+ 
+.b-tn:focus, .btn:active:focus, .btn.active:focus {
+    outline: 0 none;
+}
+ 
+.btn-primary {
+    border: 1px solid;
+    border-color: #CCCCCC;
+    background: #FFFFFF;
+    color: #000000;
+}
+ 
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    background: #555555;
+    color: #FFFFFF
+}
+ 
+.btn-primary:active, .btn-primary.active {
+    background: #007299;
+    box-shadow: none;
+}  
+</style>
+
+<!--
 <div class="menu-bc" s-tyle="background-color: #111/*#576971*/;">
 
 <table width="560px">
@@ -44,11 +78,6 @@ header("Pragma: no-cache");
                 <a href="page_status.php" class="menu">status</a> | 
                 <a href="page_status_wsdl.php" class="menu">wsdl</a> | 
                 <a href="page_config_adv.php">config</a> | 
-                <!--
-                <a href="page_kismet.php">kismet</a> | 
-                <a href="page_squid.php">squid</a> | 
-                <a href="page_sslstrip.php">sslstrip</a> | 
-                -->
                 <a href="page_modules.php">modules</a> | 
                 <a href="page_logs.php">logs</a> | 
                 <a href="logout.php">logout</a> | <?=$version?>
@@ -57,3 +86,33 @@ header("Pragma: no-cache");
     </tr>
 </table>
 </div>
+-->
+<div id="custom-bootstrap-menu" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">FruityWiFi</a>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse navbar-menubuilder">
+            <ul class="nav navbar-nav navbar-left">
+                <li><a href="page_status.php">status</a>
+                </li>
+                <li><a href="page_status_ws.php">status-ws</a>
+                </li>
+                <li><a href="page_config_adv.php">config</a>
+                </li>
+                <li><a href="page_modules.php">modules</a>
+                </li>
+                <li><a href="page_logs.php">logs</a>
+                </li>
+                <li><a href="logout.php">logout</a>
+                </li>
+                 <li><a>| <?=$version?></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<br><br><br>
