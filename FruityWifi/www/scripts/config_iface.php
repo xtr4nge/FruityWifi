@@ -17,6 +17,9 @@
 */ 
 ?>
 <?
+
+error_reporting(E_ALL ^ E_NOTICE);
+
 include "../login_check.php";
 include "../config/config.php";
 include "../functions.php";
@@ -251,6 +254,7 @@ if(isset($_POST["domain"])) {
     exec_fruitywifi($exec);
 }
 
-header('Location: ../page_config_adv.php');
+#header('Location: ../page_config_adv.php');
+header('Location: ../modules/action.php?page=../page_config_adv.php&wait=2');
 
 ?>

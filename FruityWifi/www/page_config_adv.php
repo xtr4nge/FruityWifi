@@ -20,19 +20,20 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<title>FruityWifi</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>FruityWifi</title>
 </head>
+<body>
 <link href="style.css" rel="stylesheet" type="text/css">
 <script src="js/jquery.js"></script>
 <script src="js/jquery-ui.js"></script>
 
 <? include "menu.php"; ?>
 
-<? 
+<?
 include "login_check.php";
 include "config/config.php";
 ?>
@@ -203,6 +204,7 @@ if(isset($_POST["pass_old"]) and isset($_POST["pass_new"])) {
 $ifaces = exec("/sbin/ifconfig -a | cut -c 1-8 | sort | uniq -u |grep -v lo|sed ':a;N;$!ba;s/\\n/|/g'");
 $ifaces = str_replace(" ","",$ifaces);
 $ifaces = explode("|", $ifaces);
+
 ?>
 
 <br>
@@ -502,7 +504,7 @@ $ifaces = explode("|", $ifaces);
 
 <div class="rounded-top" align="center"> Password </div>
 <div class="rounded-bottom">
-    <form action="<?=$_SERVER[php_self]?> " method="POST" autocomplete="off">
+    <form action="<?=$_SERVER['PHP_SELF']?> " method="POST" autocomplete="off">
 	<input type="password" class="form-control input-sm" placeholder="old pass" name="pass_old" value="">
 	<input type="password" class="form-control input-sm" placeholder="new pass" name="pass_new" value="">
 	<input type="password" class="form-control input-sm" placeholder="repeat new pass" name="pass_new_repeat" value="">
@@ -516,3 +518,5 @@ $ifaces = explode("|", $ifaces);
 	?>
     </form>
 </div>
+</body>
+</html>

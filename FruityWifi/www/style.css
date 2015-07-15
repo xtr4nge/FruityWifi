@@ -101,6 +101,7 @@ a {color: #000;} /* white */
 .input {
     font-family:courier;
     font-size:12px;
+	color: #000000;
 }
 
 .box-title {
@@ -196,3 +197,4 @@ a {color: #000;} /* white */
 	display:inline-block;
 	font-size: 12px;
 }
+
