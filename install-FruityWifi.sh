@@ -219,10 +219,11 @@ then
     echo "Setup DNSMASQ"
     echo "--------------------------------"
 	
-	EXEC="s,^server=,#server=,g"
-	sed -i $EXEC FruityWifi/conf/dnsmasq.conf
+    EXEC="s,^server=,#server=,g"
+    sed -i $EXEC FruityWifi/conf/dnsmasq.conf
     
-    echo "[setup completed]"
+    echo "[dnsmasq setup completed]"
+    echo
 
 fi
 
