@@ -9,6 +9,7 @@ v2.2
 - Wireless service has been replaced by AP module
 - Mobile support has been added
 - Bootstrap support has been added
+- Token auth has been added
 - minor fix
 
 
