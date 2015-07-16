@@ -192,9 +192,6 @@ if($service == "wireless" and $ap_mode == "1") {
 if($service == "wireless" and $ap_mode == "2") { // AIRCRACK (airbase-ng)
 	if ($action == "start") {
 		
-		// SETUP NetworkManager
-		setNetworkManager();
-
 		$exec = "/usr/bin/sudo /usr/sbin/airmon-ng stop mon0";
 		exec_fruitywifi($exec);
 	
@@ -206,6 +203,9 @@ if($service == "wireless" and $ap_mode == "2") { // AIRCRACK (airbase-ng)
 			
 		$exec = "$bin_echo 'nameserver $io_in_ip\nnameserver 8.8.8.8' > /etc/resolv.conf ";
 		exec_fruitywifi($exec);
+		
+		// SETUP NetworkManager
+		setNetworkManager();
 			
 		$exec = "/usr/bin/sudo /usr/sbin/airmon-ng start $io_in_iface";
 		exec_fruitywifi($exec);
