@@ -6,8 +6,10 @@ class WebService {
 	private $s;
 	private $username;
 	private $password;
+	private $token;
 	
-	public function __construct($username, $password)
+	//public function __construct($username, $password)
+	public function __construct($token)
 	{
 		
 		//echo 'The class "', __CLASS__, '" was initiated!<br />';
@@ -23,11 +25,12 @@ class WebService {
 		// Set up session
 		$this->s = new Requests_Session($this->global_webserver);
 		$this->s->headers['Accept'] = 'application/json';
-		$this->s->useragent = 'Awesomesauce';
+		$this->s->useragent = 'RESTful API [FruityWifi]';
 		
 		// Set up login user/pass
 		$this->username = $username;
 		$this->password = $password;
+		$this->token = $token;
 		
 	}
 	
@@ -41,9 +44,17 @@ class WebService {
 		$this->prop1 = $newval;
 	}
  
+	/*
 	private function login()
 	{
 		$options = array('user' => $this->username, 'pass' => $this->password);
+
+		$this->s->post($this->global_webserver."/login.php", array(), $options);
+	}
+	*/
+	private function login()
+	{
+		$options = array('token' => $this->token);
 
 		$this->s->post($this->global_webserver."/login.php", array(), $options);
 	}

@@ -17,6 +17,8 @@
 */ 
 ?>
 <?
+error_reporting(E_ALL ^ E_NOTICE);
+
 include "login_check.php";
 include_once "/usr/share/fruitywifi/www/config/config.php";
 ?>

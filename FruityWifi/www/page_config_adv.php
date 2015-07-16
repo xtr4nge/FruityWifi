@@ -61,6 +61,7 @@ if ($regex == 1) {
     regex_standard($_GET["service"], "msg.php", $regex_extra);
     regex_standard($_GET["action"], "msg.php", $regex_extra);
     //regex_standard($_POST["in_out_mode"], "msg.php", $regex_extra);
+    regex_standard($_POST["api_token"], "msg.php", $regex_extra);
 }
 ?>
 <?
@@ -193,6 +194,16 @@ if(isset($_POST["pass_old"]) and isset($_POST["pass_new"])) {
     } else {
 	$pass_msg = 2;
     }
+}
+
+
+// -------------- TOKEN ------------------
+
+if(isset($_POST["api_token"])) {
+    $token = setToken();
+    $exec = "sed -i 's/api_token=.*/api_token=\\\"".$token."\\\";/g' ./config/config.php";
+    exec_fruitywifi($exec);
+    $api_token = $token;
 }
 
 ?>
@@ -518,5 +529,18 @@ $ifaces = explode("|", $ifaces);
 	?>
     </form>
 </div>
+
+<br>
+
+<!-- TOKEN -->
+
+<div class="rounded-top" align="center"> Token </div>
+<div class="rounded-bottom">
+    <form action="<?=$_SERVER['PHP_SELF']?> " method="POST" autocomplete="off">
+	<input type="text" class="form-control input-sm" placeholder="token" name="api_token" value="<?=$api_token?>">
+	<input class="btn btn-primary btn-sm" type="submit" value="Generate">
+    </form>
+</div>
+
 </body>
 </html>

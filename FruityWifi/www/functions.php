@@ -89,6 +89,11 @@ function exec_fruitywifi_env($exec) {
     
 }
 
+function setToken() {
+	$token = sha1(microtime(true).mt_rand(10000,90000));
+	return $token;
+}
+
 function module_deb($mod_name) {
     $module="fruitywifi-module-$mod_name";
     
