@@ -27,4 +27,6 @@ $io_out_gw="192.168.0.1";
 
 $ap_mode="1";
 $io_action="wlan0";
+//------
+$api_token="e5dab9a69988dd65e578041416773149ea57a054";
 ?>
