@@ -72,6 +72,7 @@ $global_webserver = "http://localhost:".$_SERVER["SERVER_PORT"];
 require("ws.php");
 
 //$ws = new WebService("admin", "admin");
+
 $ws = new WebService($api_token);
 
 if ($service == "s_wireless") {
