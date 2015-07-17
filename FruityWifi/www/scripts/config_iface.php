@@ -254,7 +254,7 @@ if(isset($_POST["domain"])) {
     exec_fruitywifi($exec);
 }
 
-#header('Location: ../page_config_adv.php');
-header('Location: ../modules/action.php?page=../page_config_adv.php&wait=2');
+header('Location: ../page_config_adv.php');
+#header('Location: ../modules/action.php?page=../page_config_adv.php&wait=2');
 
 ?>
