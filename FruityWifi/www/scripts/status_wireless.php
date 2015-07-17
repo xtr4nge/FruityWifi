@@ -89,6 +89,9 @@ if($service == "wireless" and $ap_mode == "1") {
 		$exec = "$bin_echo 'nameserver $io_in_ip\nnameserver 8.8.8.8' > /etc/resolv.conf ";
 		exec_fruitywifi($exec);
 		
+		$exec = "chattr +i /etc/resolv.conf";
+                exec_fruitywifi($exec);
+		
 		//$exec = "/etc/init.d/dnsmasq restart";
 		$exec = "$bin_dnsmasq -C /usr/share/fruitywifi/conf/dnsmasq.conf";
 		exec_fruitywifi($exec);
@@ -173,6 +176,9 @@ if($service == "wireless" and $ap_mode == "1") {
 		$exec = "$bin_rm /var/run/hostapd-phy0/$io_in_iface";
 		exec_fruitywifi($exec);
 
+		$exec = "chattr -i /etc/resolv.conf";
+                exec_fruitywifi($exec);
+
 		$exec = "$bin_killall dnsmasq";
 		exec_fruitywifi($exec);
 
@@ -204,6 +210,9 @@ if($service == "wireless" and $ap_mode == "2") { // AIRCRACK (airbase-ng)
 		$exec = "$bin_echo 'nameserver $io_in_ip\nnameserver 8.8.8.8' > /etc/resolv.conf ";
 		exec_fruitywifi($exec);
 		
+		$exec = "chattr +i /etc/resolv.conf";
+                exec_fruitywifi($exec);
+			
 		// SETUP NetworkManager
 		setNetworkManager();
 			
@@ -247,6 +256,9 @@ if($service == "wireless" and $ap_mode == "2") { // AIRCRACK (airbase-ng)
 
 		$exec = "$bin_killall airbase-ng";
 		exec_fruitywifi($exec);
+
+		$exec = "chattr -i /etc/resolv.conf";
+                exec_fruitywifi($exec);
 
 		$exec = "$bin_killall dnsmasq";
 		exec_fruitywifi($exec);
@@ -309,6 +321,9 @@ if($service == "wireless"  and $ap_mode == "3") {
 		
 		$exec = "$bin_echo 'nameserver $io_in_ip\nnameserver 8.8.8.8' > /etc/resolv.conf ";
 		exec_fruitywifi($exec);
+		
+		$exec = "chattr +i /etc/resolv.conf";
+                exec_fruitywifi($exec);
 		
 		$exec = "$bin_dnsmasq -C /usr/share/fruitywifi/conf/dnsmasq.conf";
 		exec_fruitywifi($exec);
@@ -405,6 +420,9 @@ if($service == "wireless"  and $ap_mode == "3") {
 		$exec = "$bin_rm /var/run/hostapd-phy0/$io_in_iface";
 		exec_fruitywifi($exec);
 
+		$exec = "chattr -i /etc/resolv.conf";
+                exec_fruitywifi($exec);
+
 		$exec = "$bin_killall dnsmasq";
 		exec_fruitywifi($exec);
 
@@ -464,6 +482,9 @@ if($service == "wireless"  and $ap_mode == "4") {
 		
 		$exec = "$bin_echo 'nameserver $io_in_ip\nnameserver 8.8.8.8' > /etc/resolv.conf ";
 		exec_fruitywifi($exec);
+		
+		$exec = "chattr +i /etc/resolv.conf";
+                exec_fruitywifi($exec);
 		
 		$exec = "$bin_dnsmasq -C /usr/share/fruitywifi/conf/dnsmasq.conf";
 		exec_fruitywifi($exec);
@@ -559,6 +580,9 @@ if($service == "wireless"  and $ap_mode == "4") {
 
 		$exec = "$bin_rm /var/run/hostapd-phy0/$io_in_iface";
 		exec_fruitywifi($exec);
+
+		$exec = "chattr -i /etc/resolv.conf";
+                exec_fruitywifi($exec);
 
 		$exec = "$bin_killall dnsmasq";
 		exec_fruitywifi($exec);
