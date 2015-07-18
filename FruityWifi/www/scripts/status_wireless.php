@@ -62,10 +62,61 @@ function flushIptables() {
 	echo $exec;
 }
 
-		
+function setNetworkManager() {
+	
+	global $io_in_iface;
+	global $bin_sed;
+	global $bin_echo;
+	
+	$exec = "macchanger --show $io_in_iface |grep 'Permanent'";
+	exec($exec, $output);
+	$mac = explode(" ", $output[0]);
+	
+	$exec = "grep '^unmanaged-devices' /etc/NetworkManager/NetworkManager.conf";
+	$ispresent = exec($exec);
+	
+	$exec = "$bin_sed -i '/unmanaged/d' /etc/NetworkManager/NetworkManager.conf";
+	exec_fruitywifi($exec);
+	$exec = "$bin_sed -i '/\[keyfile\]/d' /etc/NetworkManager/NetworkManager.conf";
+	exec_fruitywifi($exec);
+	
+	if ($ispresent == "") {
+		$exec = "$bin_echo '[keyfile]' >> /etc/NetworkManager/NetworkManager.conf";
+		exec_fruitywifi($exec);
+
+		$exec = "$bin_echo 'unmanaged-devices=mac:".$mac[2].";interface-name:".$io_in_iface."' >> /etc/NetworkManager/NetworkManager.conf";
+		exec_fruitywifi($exec);
+	}
+	
+}
+
+function cleanNetworkManager() {
+	
+	global $bin_sed;
+	
+	// REMOVE lines from NetworkManager
+	$exec = "$bin_sed -i '/unmanaged/d' /etc/NetworkManager/NetworkManager.conf";
+	exec_fruitywifi($exec);
+	$exec = "$bin_sed -i '/\[keyfile\]/d' /etc/NetworkManager/NetworkManager.conf";
+	exec_fruitywifi($exec);
+}
+
+function killRegex($regex){
+	
+	$exec = "ps aux|grep -E '$regex' | grep -v grep | awk '{print $2}'";
+	exec($exec,$output);
+	
+	$exec = "kill " . $output[0];
+	exec_fruitywifi($exec);
+	
+}
+	
 // HOSTAPD
 if($service == "wireless" and $ap_mode == "1") {
 	if ($action == "start") {
+		
+		// SETUP NetworkManager
+		setNetworkManager();
 		
 		$exec = "$bin_ifconfig $io_in_iface down";
 		exec_fruitywifi($exec);
@@ -75,12 +126,16 @@ if($service == "wireless" and $ap_mode == "1") {
 		$exec = "$bin_killall hostapd";	
 		exec_fruitywifi($exec);
 
+		killRegex("hostapd");
+		
 		$exec = "$bin_rm /var/run/hostapd-phy0/$io_in_iface";
 		exec_fruitywifi($exec);
-
+		
 		$exec = "$bin_killall dnsmasq";
 		exec_fruitywifi($exec);
 
+		killRegex("dnsmasq");
+		
 		$exec = "$bin_ifconfig $io_in_iface up";
 		exec_fruitywifi($exec);
 		$exec = "$bin_ifconfig $io_in_iface up $io_in_ip netmask 255.255.255.0";
@@ -90,7 +145,7 @@ if($service == "wireless" and $ap_mode == "1") {
 		exec_fruitywifi($exec);
 		
 		$exec = "chattr +i /etc/resolv.conf";
-                exec_fruitywifi($exec);
+        exec_fruitywifi($exec);
 		
 		//$exec = "/etc/init.d/dnsmasq restart";
 		$exec = "$bin_dnsmasq -C /usr/share/fruitywifi/conf/dnsmasq.conf";
@@ -166,21 +221,32 @@ if($service == "wireless" and $ap_mode == "1") {
 
 	} else if($action == "stop") {
 
+		// REMOVE lines from NetworkManager
+		cleanNetworkManager();
+	
+		/*
 		if (file_exists("/usr/share/fruitywifi/www/modules/karma/includes/hostapd")) {
 			$exec = "$bin_killall hostapd";
 		} else {
 			$exec = "$bin_killall hostapd";			
-		}	
+		}
+		*/
+		
+		$exec = "$bin_killall hostapd";	
 		exec_fruitywifi($exec);
 
+		killRegex("hostapd");
+		
 		$exec = "$bin_rm /var/run/hostapd-phy0/$io_in_iface";
 		exec_fruitywifi($exec);
 
 		$exec = "chattr -i /etc/resolv.conf";
-                exec_fruitywifi($exec);
+        exec_fruitywifi($exec);
 
 		$exec = "$bin_killall dnsmasq";
 		exec_fruitywifi($exec);
+		
+		killRegex("dnsmasq");
 
 		$exec = "ip addr flush dev $io_in_iface";
 		exec_fruitywifi($exec);
@@ -198,20 +264,27 @@ if($service == "wireless" and $ap_mode == "1") {
 if($service == "wireless" and $ap_mode == "2") { // AIRCRACK (airbase-ng)
 	if ($action == "start") {
 		
+		// SETUP NetworkManager
+		setNetworkManager();
+		
 		$exec = "/usr/bin/sudo /usr/sbin/airmon-ng stop mon0";
 		exec_fruitywifi($exec);
 	
 		$exec = "$bin_killall airbase-ng";
 		exec_fruitywifi($exec);
+		
+		killRegex("airbase-ng");
 	
 		$exec = "$bin_killall dnsmasq";
 		exec_fruitywifi($exec);
+		
+		killRegex("dnsmasq");
 			
 		$exec = "$bin_echo 'nameserver $io_in_ip\nnameserver 8.8.8.8' > /etc/resolv.conf ";
 		exec_fruitywifi($exec);
 		
 		$exec = "chattr +i /etc/resolv.conf";
-                exec_fruitywifi($exec);
+        exec_fruitywifi($exec);
 			
 		// SETUP NetworkManager
 		setNetworkManager();
@@ -256,12 +329,16 @@ if($service == "wireless" and $ap_mode == "2") { // AIRCRACK (airbase-ng)
 
 		$exec = "$bin_killall airbase-ng";
 		exec_fruitywifi($exec);
+		
+		killRegex("airbase-ng");
 
 		$exec = "chattr -i /etc/resolv.conf";
-                exec_fruitywifi($exec);
+        exec_fruitywifi($exec);
 
 		$exec = "$bin_killall dnsmasq";
 		exec_fruitywifi($exec);
+		
+		killRegex("dnsmasq");
 
 		$exec = "/usr/bin/sudo /usr/sbin/airmon-ng stop mon0";
 		exec_fruitywifi($exec);
@@ -282,9 +359,7 @@ if($service == "wireless" and $ap_mode == "2") { // AIRCRACK (airbase-ng)
 if($service == "wireless"  and $ap_mode == "3") {
 	if ($action == "start") {
 		
-		//unmanaged-devices=mac:<realmac>;interface-name:wlan2
-		//macchanger --show wlan0 |grep "Permanent"
-		
+		/*
 		$exec = "macchanger --show $io_in_iface |grep 'Permanent'";
 		exec($exec, $output);
 		$mac = explode(" ", $output[0]);
@@ -304,15 +379,28 @@ if($service == "wireless"  and $ap_mode == "3") {
 			$exec = "$bin_echo 'unmanaged-devices=mac:".$mac[2].";interface-name:".$io_in_iface."' >> /etc/NetworkManager/NetworkManager.conf";
 			exec_fruitywifi($exec);
 		}
+		*/
+		
+		// SETUP NetworkManager
+		setNetworkManager();
+		
+		$exec = "$bin_ifconfig $io_in_iface down";
+		exec_fruitywifi($exec);
+		$exec = "$bin_ifconfig $io_in_iface 0.0.0.0";
+		exec_fruitywifi($exec);
 		
 		$exec = "$bin_killall hostapd";
 		exec_fruitywifi($exec);
 
+		killRegex("hostapd");
+		
 		$exec = "$bin_rm /var/run/hostapd-phy0/$io_in_iface";
 		exec_fruitywifi($exec);
 
 		$exec = "$bin_killall dnsmasq";
 		exec_fruitywifi($exec);
+		
+		killRegex("dnsmasq");
 
 		$exec = "$bin_ifconfig $io_in_iface up";
 		exec_fruitywifi($exec);
@@ -323,7 +411,7 @@ if($service == "wireless"  and $ap_mode == "3") {
 		exec_fruitywifi($exec);
 		
 		$exec = "chattr +i /etc/resolv.conf";
-                exec_fruitywifi($exec);
+        exec_fruitywifi($exec);
 		
 		$exec = "$bin_dnsmasq -C /usr/share/fruitywifi/conf/dnsmasq.conf";
 		exec_fruitywifi($exec);
@@ -408,24 +496,33 @@ if($service == "wireless"  and $ap_mode == "3") {
 
 	} else if($action == "stop") {
 
+		/*
 		// REMOVE lines from NetworkManager
 		$exec = "$bin_sed -i '/unmanaged/d' /etc/NetworkManager/NetworkManager.conf";
 		exec_fruitywifi($exec);
 		$exec = "$bin_sed -i '/\[keyfile\]/d' /etc/NetworkManager/NetworkManager.conf";
 		exec_fruitywifi($exec);
+		*/
+		
+		// REMOVE lines from NetworkManager
+		cleanNetworkManager();
 	
 		$exec = "$bin_killall hostapd";	
 		exec_fruitywifi($exec);
 
+		killRegex("hostapd");
+		
 		$exec = "$bin_rm /var/run/hostapd-phy0/$io_in_iface";
 		exec_fruitywifi($exec);
 
 		$exec = "chattr -i /etc/resolv.conf";
-                exec_fruitywifi($exec);
+        exec_fruitywifi($exec);
 
 		$exec = "$bin_killall dnsmasq";
 		exec_fruitywifi($exec);
 
+		killRegex("dnsmasq");
+		
 		$exec = "ip addr flush dev $io_in_iface";
 		exec_fruitywifi($exec);
 		
@@ -442,10 +539,12 @@ if($service == "wireless"  and $ap_mode == "3") {
 if($service == "wireless"  and $ap_mode == "4") {
 	if ($action == "start") {
 		
+		/*
 		//unmanaged-devices=mac:<realmac>;interface-name:wlan2
 		//macchanger --show wlan0 |grep "Permanent"
 		
 		$exec = "macchanger --show eth0 |grep 'Permanent'";
+		//$exec = "macchanger --show $io_in_iface |grep 'Permanent'";
 		//$output = exec_fruitywifi($exec);
 		exec($exec, $output);
 		$mac = explode(" ", $output[0]);
@@ -465,6 +564,15 @@ if($service == "wireless"  and $ap_mode == "4") {
 			$exec = "$bin_echo 'unmanaged-devices=mac:".$mac[2].";interface-name:".$io_in_iface."' >> /etc/NetworkManager/NetworkManager.conf";
 			exec_fruitywifi($exec);
 		}
+		*/
+		
+		// SETUP NetworkManager
+		setNetworkManager();
+		
+		$exec = "$bin_ifconfig $io_in_iface down";
+		exec_fruitywifi($exec);
+		$exec = "$bin_ifconfig $io_in_iface 0.0.0.0";
+		exec_fruitywifi($exec);
 		
 		$exec = "$bin_killall hostapd";
 		exec_fruitywifi($exec);
@@ -484,7 +592,7 @@ if($service == "wireless"  and $ap_mode == "4") {
 		exec_fruitywifi($exec);
 		
 		$exec = "chattr +i /etc/resolv.conf";
-                exec_fruitywifi($exec);
+        exec_fruitywifi($exec);
 		
 		$exec = "$bin_dnsmasq -C /usr/share/fruitywifi/conf/dnsmasq.conf";
 		exec_fruitywifi($exec);
@@ -582,7 +690,7 @@ if($service == "wireless"  and $ap_mode == "4") {
 		exec_fruitywifi($exec);
 
 		$exec = "chattr -i /etc/resolv.conf";
-                exec_fruitywifi($exec);
+        exec_fruitywifi($exec);
 
 		$exec = "$bin_killall dnsmasq";
 		exec_fruitywifi($exec);
