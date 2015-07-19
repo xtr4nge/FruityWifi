@@ -268,8 +268,24 @@
         <name>bluepand</name>
         <version>1.0</version>
         <author>@AnguisCaptor</author>
-        <description>AP interface</description>
+        <description>BluePand interface</description>
         <url>module_bluepand</url>
+        <required>2.1</required>
+    </module>
+    <module>
+        <name>stalker</name>
+        <version>1.0</version>
+        <author>@xtr4nge</author>
+        <description>Stalker interface</description>
+        <url>module_stalker</url>
+        <required>2.1</required>
+    </module>
+    <module>
+        <name>devicefinder</name>
+        <version>1.0</version>
+        <author>@xtr4nge</author>
+        <description>DeviceFinder interface</description>
+        <url>module_devicefinder</url>
         <required>2.1</required>
     </module>
 </FruityWifi>
