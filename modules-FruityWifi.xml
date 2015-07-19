@@ -258,11 +258,11 @@
     </module>
     <module>
         <name>fruityproxy</name>
-        <version>1.1</version>
+        <version>1.2</version>
 	<author>@xtr4nge</author>
 	<description>fruityproxy interface</description>
 	<url>module_fruityproxy</url>
-	<required>2.1</required>
+	<required>2.2</required>
     </module>
     <module>
         <name>bluepand</name>
