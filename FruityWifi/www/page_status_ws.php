@@ -32,6 +32,49 @@
 <script src="js/jquery.js"></script>
 <script src="js/jquery-ui.js"></script>
 
+	<style>
+			.div0 {
+					width: 350px;
+					margin-top: 2px;
+			 }
+			.div1 {
+					width: 120px;
+					display: inline-block;
+					text-align: left;
+					margin-right: 10px;
+			}
+			.divName {
+					width: 200px;
+					display: inline-block;
+					text-align: left;
+					margin-right: 10px;
+			}
+			.divEnabled {
+					width: 63px;
+					color: lime;
+					display: inline-block;
+					font-weight: bold;
+			}
+			.divDisabled {
+					width: 63px;
+					color: red;
+					display: inline-block;
+					font-weight: bold;
+			}
+			.divAction {
+					width: 80px;
+					display: inline-block;
+					font-weight: bold;
+			}
+			.divDivision {
+					width: 16px;
+					display: inline-block;
+			}
+			.divStartStopB {
+					width: 34px;
+			}
+	</style>
+
 <? include "menu.php" ?>
 
 <style>
@@ -561,6 +604,20 @@ if (count($output) > 0) {
 
 <br>
 
+<div class="rounded-top" align="center"> FruityProxy (mitmproxy) </div>
+<div class="rounded-bottom" id="mitmproxy_plugins">
+
+</div>
+
+<br>
+
+<div class="rounded-top" align="center"> MITMf Plugins </div>
+<div class="rounded-bottom" id="mitmf_plugins">
+	
+</div>
+
+<br>
+
 <?
 // ------------- External Modules --------------
 //exec("find ./modules -name '_info_.php' | sort", $output); // replaced with previous output array
@@ -775,6 +832,92 @@ function getLogsStations() {
 
 getLogsDHCP();
 getLogsStations();
+
+</script>
+
+<script type='text/javascript'>
+function sortObject(object) {
+    return Object.keys(object).sort().reduce(function (result, key) {
+        result[key] = object[key];
+        return result;
+    }, {});
+}
+function loadPlugins()
+{
+    $(document).ready(function() { 
+        $.getJSON('modules/fruityproxy/includes/ws_action.php?method=getModulesStatusAll', function(data) {
+            var div = document.getElementById('mitmproxy_plugins');
+            div.innerHTML = ""
+            console.log(data);
+            data = sortObject(data)
+            $.each(data, function(key, val) {
+                if (val == "enabled") {
+                    //div.innerHTML = div.innerHTML + "<div class='div0'><div class='div1'>" + key + "</div><div class='divEnabled'>enabled</div><div class='divDivision'> | </div><div class='divAction'><a href='#' onclick=\"setModulesStatus('" + key + "',0)\">stop</a></div><a href='#' onclick=\"setModulesStatus('" + key + "',0)\" class='btn btn-success btn-xs divStartStopB' role='button'>On</a></div>";
+					div.innerHTML = div.innerHTML + "<div class='div0'><div class='divName'>" + key + "</div><a href='#' onclick=\"setModulesStatus('" + key + "',0)\" class='btn btn-success btn-xs divStartStopB' role='button'>On</a></div>";
+                } else {
+                    //div.innerHTML = div.innerHTML + "<div class='div0'><div class='div1'>" + key + "</div><div class='divDisabled'>disabled</div><div class='divDivision'> | </div><div class='divAction'><a href='#' onclick=\"setModulesStatus('" + key + "',1)\">start</a></div><a href='#' onclick=\"setModulesStatus('" + key + "',1)\" class='btn btn-default btn-xs divStartStopB' role='button'>Off</a></div>";
+					div.innerHTML = div.innerHTML + "<div class='div0'><div class='divName'>" + key + "</div><a href='#' onclick=\"setModulesStatus('" + key + "',1)\" class='btn btn-default btn-xs divStartStopB' role='button'>Off</a></div>";
+                }
+                    
+            });
+        });    
+    
+    });
+}
+loadPlugins()
+
+function setModulesStatus(module, action) {
+    $(document).ready(function() { 
+        $.getJSON('modules/fruityproxy/includes/ws_action.php?method=setModulesStatus&module=' + module + '&action=' + action, function(data) {
+        });
+        /*
+        $.postJSON = function(url, data, func)
+        {
+            $.post(url, data, func, 'json');
+        }
+        */
+    });
+    setTimeout(loadPlugins, 500);
+}
+</script>
+<script type='text/javascript'>
+function loadMITMfPlugins()
+{
+    $(document).ready(function() { 
+        $.getJSON('modules/mitmf/includes/ws_action.php?method=getPlugins', function(data) {
+            var div = document.getElementById('mitmf_plugins');
+            div.innerHTML = ""
+            console.log(data);
+            data = sortObject(data)
+            $.each(data, function(key, val) {
+                if (val == true) {
+                    //div.innerHTML = div.innerHTML + "<div class='div0'><div class='div1'>" + key + "</div><div class='divEnabled'>enabled</div><div class='divDivision'> | </div><div class='divAction'><a href='#' onclick=\"setPluginStatus('" + key + "',0)\">stop</a></div></div>";
+					div.innerHTML = div.innerHTML + "<div class='div0'><div class='divName'>" + key + "</div><a href='#' onclick=\"setPluginStatus('" + key + "',0)\" class='btn btn-success btn-xs divStartStopB' role='button'>On</a></div>";
+                } else {
+                    //div.innerHTML = div.innerHTML + "<div class='div0'><div class='div1'>" + key + "</div><div class='divDisabled'>disabled</div><div class='divDivision'> | </div><div class='divAction'><a href='#' onclick=\"setPluginStatus('" + key + "',1)\">start</a></div></div>";
+					div.innerHTML = div.innerHTML + "<div class='div0'><div class='divName'>" + key + "</div><a href='#' onclick=\"setPluginStatus('" + key + "',1)\" class='btn btn-default btn-xs divStartStopB' role='button'>Off</a></div>";
+                }
+                    
+            });
+        });    
+    
+    });
+}
+loadMITMfPlugins()
+
+function setPluginStatus(plugin, action) {
+    $(document).ready(function() { 
+        $.getJSON('modules/mitmf/includes/ws_action.php?method=setPluginStatus&plugin=' + plugin + '&action=' + action, function(data) {
+        });
+        /*
+        $.postJSON = function(url, data, func)
+        {
+            $.post(url, data, func, 'json');
+        }
+        */
+    });
+    setTimeout(loadMITMfPlugins, 500);
+}
 
 </script>
 

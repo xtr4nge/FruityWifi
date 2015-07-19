@@ -106,8 +106,10 @@ function killRegex($regex){
 	$exec = "ps aux|grep -E '$regex' | grep -v grep | awk '{print $2}'";
 	exec($exec,$output);
 	
-	$exec = "kill " . $output[0];
-	exec_fruitywifi($exec);
+	if (count($output) > 0) {
+		$exec = "kill " . $output[0];
+		exec_fruitywifi($exec);
+	}
 	
 }
 	
