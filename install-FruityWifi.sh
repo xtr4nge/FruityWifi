@@ -162,7 +162,7 @@ then
     mkdir /var/www/
     echo "." >> /var/www/index.php 
     chown -R fruitywifi:fruitywifi /var/www/
-    cp nginx-setup/default /etc/nginx/sites-enabled/
+    #cp nginx-setup/default /etc/nginx/sites-enabled/
     cp nginx-setup/fpm/80.conf /etc/php5/fpm/pool.d/
     cp nginx-setup/fpm/443.conf /etc/php5/fpm/pool.d/
 fi
