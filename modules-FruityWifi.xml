@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <FruityWifi>
     <module>
+        <name>ap</name>
+        <version>1.0</version>
+        <author>@xtr4nge</author>
+        <description>AP interface</description>
+        <url>module_ap</url>
+        <required>2.2</required>
+    </module>
+    <module>
         <name>nmap</name>
         <version>1.4</version>
 	<author>@xtr4nge</author>
@@ -257,11 +265,11 @@
 	<required>2.1</required>
     </module>
     <module>
-        <name>ap</name>
+        <name>bluepand</name>
         <version>1.0</version>
-	<author>@xtr4nge</author>
-	<description>AP interface</description>
-	<url>module_ap</url>
-	<required>2.2</required>
+        <author>@AnguisCaptor</author>
+        <description>AP interface</description>
+        <url>module_bluepand</url>
+        <required>2.1</required>
     </module>
 </FruityWifi>
