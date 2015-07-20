@@ -604,19 +604,29 @@ if (count($output) > 0) {
 ?>
 </div>
 
+<?
+// IF MODULE FRUITYPROXY EXISTS
+if (file_exists("/usr/share/fruitywifi/www/modules/fruityproxy/")) {
+?>
 <br>
 
 <div class="rounded-top" align="center"> FruityProxy (mitmproxy) </div>
 <div class="rounded-bottom" id="mitmproxy_plugins">
 
 </div>
+<? } ?>
 
+<?
+// IF MODULE MITMF EXISTS
+if (file_exists("/usr/share/fruitywifi/www/modules/mitmf/")) {
+?>
 <br>
 
 <div class="rounded-top" align="center"> MITMf Plugins </div>
 <div class="rounded-bottom" id="mitmf_plugins">
 	
 </div>
+<? } ?>
 
 <br>
 
@@ -844,6 +854,13 @@ function sortObject(object) {
         return result;
     }, {});
 }
+</script>
+
+<?
+// IF MODULE FRUITYPROXY EXISTS
+if (file_exists("/usr/share/fruitywifi/www/modules/fruityproxy/")) {
+?>
+<script type='text/javascript'>
 function loadPlugins()
 {
     $(document).ready(function() { 
@@ -882,6 +899,12 @@ function setModulesStatus(module, action) {
     setTimeout(loadPlugins, 500);
 }
 </script>
+<? } ?>
+
+<?
+// IF MODULE MITMF EXISTS
+if (file_exists("/usr/share/fruitywifi/www/modules/mitmf/")) {
+?>
 <script type='text/javascript'>
 function loadMITMfPlugins()
 {
@@ -922,6 +945,7 @@ function setPluginStatus(plugin, action) {
 }
 
 </script>
+<? } ?>
 
 <div id="content" class="content"></div>
 
