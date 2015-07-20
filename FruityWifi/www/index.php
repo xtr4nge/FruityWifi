@@ -44,7 +44,7 @@
 <div id="custom-bootstrap-menu" class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="http://www.fruitywifi.com">FruityWiFi</a>
+            <a class="navbar-brand" href="http://www.fruitywifi.com" target="blank">FruityWiFi</a>
         </div>
     </div>
 </div>

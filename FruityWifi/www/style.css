@@ -142,6 +142,7 @@ a {color: #000;} /* white */
     border-radius: 0px;
     color: #000; /* #FFF */
     width:100%;
+    padding: 4px;
 }
 
 .module-options input {
@@ -197,4 +198,3 @@ a {color: #000;} /* white */
 	display:inline-block;
 	font-size: 12px;
 }
-

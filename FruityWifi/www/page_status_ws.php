@@ -567,8 +567,10 @@ function addDivs($service, $alias, $edit, $path, $mod_logs_panel)
 <div class="rounded-top" align="center"> Services </div>
 <div class="rounded-bottom">
 
-<? 
-addDivs("s_wireless", "Wireless", "page_config_adv.php", "../logs/dnsmasq.log", "show");
+<?
+if (!file_exists("/usr/share/fruitywifi/www/modules/ap/")) {
+    addDivs("s_wireless", "Wireless", "page_config_adv.php", "../logs/dnsmasq.log", "show");
+}
 ?>
 
 <?

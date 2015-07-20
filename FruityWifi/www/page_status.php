@@ -155,33 +155,28 @@ function addDivs($service, $alias, $edit, $path)
 		$iswlanup = exec("ps auxww | grep hostapd|airbase | grep -v -e grep");
 	}
 	
-	//if ($iswlanup == "UP") {
-	
-	echo "<div style='text-align:left;'>";
-	if ($iswlanup != "") {
-		//echo "&nbsp;&nbsp;&nbsp;&nbsp;Wireless  <font color='lime'><b>enabled</b></font>.&nbsp; | <a href='scripts/status_wireless.php?service=wireless&action=stop' class='div-a'><b>stop</b></a><br />";
-	
-		echo "<div style='border:0px solid red; display:inline-block; width:116px; text-align:left;'>Wireless</div> ";
-		echo "<div style='border:0px solid red; display:inline-block; width:63px; font-weight:bold; color:lime;'>enabled</div> ";
-		echo "<div style='border:0px solid red; display:inline-block;'>|</div> ";
+	// IF MODULE [AP] DOES NOT EXISTS
+	if (!file_exists("/usr/share/fruitywifi/www/modules/ap/")) {
+		echo "<div style='text-align:left;'>";
+		if ($iswlanup != "") {	
+			echo "<div style='border:0px solid red; display:inline-block; width:116px; text-align:left;'>Wireless</div> ";
+			echo "<div style='border:0px solid red; display:inline-block; width:63px; font-weight:bold; color:lime;'>enabled</div> ";
+			echo "<div style='border:0px solid red; display:inline-block;'>|</div> ";
+			
+			echo "<div style='display:inline-block;font-weight:bold; width:36px; visibility:visible;'>
+						<a href='scripts/status_wireless.php?service=wireless&action=stop' class='div-a'>stop</a>
+					</div>";	
+		} else { 
+			echo "<div style='border:0px solid red; display:inline-block; width:116px; text-align:left;'>Wireless</div> ";
+			echo "<div style='border:0px solid red; display:inline-block; width:63px; font-weight:bold; color:red;'>disabled</div> ";
+			echo "<div style='border:0px solid red; display:inline-block;'>|</div> ";
 		
-		echo "<div style='display:inline-block;font-weight:bold; width:36px; visibility:visible;'>
-					<a href='scripts/status_wireless.php?service=wireless&action=stop' class='div-a'>stop</a>
-				</div>";
-	
-	} else { 
-		//echo "&nbsp;&nbsp;&nbsp;&nbsp;Wireless  <font color='red'><b>disabled</b></font>. | <a href='scripts/status_wireless.php?service=wireless&action=start' class='div-a'><b>start</b></a><br />"; 
-		
-		echo "<div style='border:0px solid red; display:inline-block; width:116px; text-align:left;'>Wireless</div> ";
-		echo "<div style='border:0px solid red; display:inline-block; width:63px; font-weight:bold; color:red;'>disabled</div> ";
-		echo "<div style='border:0px solid red; display:inline-block;'>|</div> ";
-	
-		echo "<div style='display:inline-block;font-weight:bold; width:36px; visibility:visible;'>
-					<a href='scripts/status_wireless.php?service=wireless&action=start' class='div-a'>start</a>
-				</div>";
-	
+			echo "<div style='display:inline-block;font-weight:bold; width:36px; visibility:visible;'>
+						<a href='scripts/status_wireless.php?service=wireless&action=start' class='div-a'>start</a>
+					</div>";
+		}
+		echo "</div>";
 	}
-	echo "</div>";
 	?>
 	
 	<?
