@@ -17,10 +17,13 @@
 */
 ?>
 <?
-session_start();
+
+if(!isset($_SESSION)) { 
+	session_start(); 
+}
 
 if (!isset($_SESSION["user_id"])) {
     header('Location: /logout.php');
-    //exit; // It will be added on the next release
+	exit;
 }
 ?>
