@@ -1,6 +1,6 @@
 <? 
 /*
-    Copyright (C) 2013-2014 xtr4nge [_AT_] gmail.com
+    Copyright (C) 2013-2015 xtr4nge [_AT_] gmail.com
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -16,11 +16,17 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */ 
 ?>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>FruityWifi</title>
+</head>
 <? include "login_check.php"; ?>
 <? include "config/config.php" ?>
 <? include "menu.php" ?>
-<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 
 <script src="js/jquery.js"></script>
 <script src="js/jquery-ui.js"></script>
@@ -33,6 +39,15 @@
 function setEnableDisable(operation, service, action) 
 {
     //setInterval(function() {
+    
+        // Start loading....
+        $("#"+service).html( "" );
+        $("#"+service).css( "color","lime" );
+        $("#"+service).css( "font-weight","bold" );
+        
+        $("#"+service).css( "text-align","center" );
+        $("#"+service).html( "<img src='img/loading.gif'>" )
+        
         $.ajax({
             type: 'POST',
             //url: 'wsdl/FruityWifi_client.php',
@@ -71,7 +86,7 @@ function setEnableDisable(operation, service, action)
                                 $("#"+service+"-start").hide();
                                 
                                 $("#"+service).html( "enabled" );
-                        }, 2000);
+                        }, 2000); // Changed from 2000 to 500
                     }
                     else
                     {
@@ -100,7 +115,7 @@ function setEnableDisable(operation, service, action)
                                 $("#"+service+"-stop").hide();
                                 
                                 $("#"+service).html( "disabled" );
-                        }, 2000);
+                        }, 2000); // Changed from 2000 to 500
                     }
                 });
             }
@@ -126,7 +141,8 @@ function getStatus(operation, service)
                 $.each(data, function (index, value) {
                     if (value == "true") 
                     {
-                        if ( $("#"+service).html() == "disabled" ) {
+                        //if ( $("#"+service).html() == "disabled" ) {
+						if ( $("#"+service).html() != "enabled" ) {
                           
                             $("#"+service).html( "" );
                             $("#"+service).css( "color","lime" );
@@ -148,20 +164,21 @@ function getStatus(operation, service)
                                     $("#"+service+"-stop").css("visibility","visible");
                     
                                     $("#"+service).html( "enabled" );
-                            }, 0);
-                        }
+                            }, 1000); // Changed from 0 to 500
+                        } 
                     }
                     else 
                     {
-                        if ( $("#"+service).html() == "enabled" ) {
+                        //if ( $("#"+service).html() == "enabled" ) {
+						if ( $("#"+service).html() != "disabled" ) {
                             $("#"+service).html( "" );
                             $("#"+service).css( "color","red" );
                             $("#"+service).css( "font-weight","bold" );
                             
                             $("#"+service+"-stop").hide();
                             $("#"+service+"-start").hide();
-                            $("#"+service+"-start").css("visibility","hidden");
                             $("#"+service+"-stop").css("visibility","hidden");
+							$("#"+service+"-start").css("visibility","hidden");
                             //$("#"+service+"-dummy").css("visibility","visible");
                             
                             $("#"+service).css( "text-align","center" );
@@ -223,7 +240,8 @@ function getStatusInit(operation, service)
                                 $("#"+service+"-stop").css("visibility","visible");
                 
                                 $("#"+service).html( "enabled" );
-                        }, 0);
+                                
+                        }, 500); // FIXED [delay loading START]
                     }
                     else
                     {
@@ -287,7 +305,7 @@ function addDivs($service, $alias, $edit, $path, $mod_logs_panel)
     
     echo "
             <div style='text-align:left;'>
-                <div style='border:0px solid red; display:inline-block; width:80px; text-align:right;'>$alias</div>
+                <div style='border:0px solid red; display:inline-block; width:116px; text-align:right;'>$alias</div>
         
                 <div name='$service' id='$service' style='border:0px solid red; display:inline-block; width:63px; font-weight:bold; color:red;'>disabled.</div>
                 <div style='border:0px solid red; display:inline-block;'>|</div>
@@ -339,7 +357,7 @@ function addDivs($service, $alias, $edit, $path, $mod_logs_panel)
 <div class="rounded-bottom">
 
 <? 
-addDivs("s_wireless", "Wireless", "page_config.php", "../logs/dnsmasq.log", "show");
+addDivs("s_wireless", "Wireless", "page_config_adv.php", "../logs/dnsmasq.log", "show");
 ?>
 
 <?
@@ -584,4 +602,4 @@ getLogsStations();
 
 </div>
 
-
+</html>

@@ -1,6 +1,6 @@
 <? 
 /*
-	Copyright (C) 2013  xtr4nge [_AT_] gmail.com
+	Copyright (C) 2013-2015  xtr4nge [_AT_] gmail.com
 
 	This program is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -16,34 +16,43 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */ 
 ?>
-<?
-//header('Location: page_status.php');
+<? include "header.php"; ?>
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<title>FruityWifi</title>
+	
+	<link rel="stylesheet" href="css/bootstrap.css" />
+	<link rel="stylesheet" href="css/bootstrap-menu.css" />
+	<link rel="stylesheet" href="css/bootstrap-switch.css" />
+		  
+	<script src="js/bootstrap.js"></script>
+	<script src="js/bootstrap-switch.js"></script>
+	<script src="js/highlight.js"></script>
+	<script src="js/main.js"></script>	
 
+	<link href="style.css" rel="stylesheet" type="text/css"/>
+	<link rel="icon" type="image/x-icon" href="img/favicon.ico"/>
 
-?>
+</head>
+<body>
 
-<link href="style.css" rel="stylesheet" type="text/css">
-<link rel="icon" type="image/x-icon" href="img/favicon.ico"/>
-
-<div class="menu-bc" s-tyle="background-color: #576971;">
-
-	<table>
-		<tr>
-			<td>
-				<div class="m-enu">
-				<img src="img/logo.png" width=32><img style="padding-left:2px; padding-top:0px;" src="img/logo-fw.png">
-				</div>
-			</td>
-			<td>
-
-			</td>
-		</tr>
-	</table>
+<div id="custom-bootstrap-menu" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="http://www.fruitywifi.com" target="blank">FruityWiFi</a>
+        </div>
+    </div>
 </div>
 
-<i-mg src="img/logo.png">
-
-<br><br>
+<br/>
+<br/>
+<br/>
+<br/>
 
 <div align="center">
 
@@ -51,34 +60,27 @@
 <div class="rounded-bottom" align="center">
 
     <form action="login.php" method="post" autocomplete="off">
-        <? 
-        /*
-        &nbsp;&nbsp;&nbsp;&nbsp;user: <input name="user" class="input"><br>
-        &nbsp;&nbsp;&nbsp;&nbsp;pass: <input name="pass" type="password" class="input"><br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="login" class="input"><br>
-        */
-        ?>
-        <br>
+        <br/>
         <table class="general">
             <tr>
                 <td>
                     user: 
                 </td>
                 <td>
-                    <input name="user" class="input" <? if ($_GET["error"] == 1) echo "value='Who are you?...'"?>><br>
+                    <input name="user" class="form-control input-sm" <? if (isset($_GET["error"]) and $_GET["error"] == 1) echo "value='Who are you?...'"?>/>
                 </td>
             <tr>
                 <td>
                     pass:
                 </td>
                 <td>    
-                    <input name="pass" type="password" class="input"><br>
+                    <input name="pass" class="form-control input-sm" type="password" />
                 </td>
             </tr>
                 <td>
                 </td>
-                <td>
-                    <input type="submit" value="login" class="input"><br>
+                <td align="left">
+                    <input type="submit" value="login" class="btn btn-default btn-sm"/><br/>
                 </td>
             </tr>
         </table>
@@ -88,3 +90,6 @@
 </div>
 
 </div>
+
+</body>
+</html>

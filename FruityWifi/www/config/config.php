@@ -1,5 +1,5 @@
 <?
-$version="v2.1.2";
+$version="v2.2";
 $regex=1; // 1 (on) | 0 (off) >> web interface input validation.
 $regex_extra=" _-.[]*"; // extra characters allowed (input validation).
 $log_path="/usr/share/fruitywifi/logs";
@@ -27,4 +27,6 @@ $io_out_gw="192.168.0.1";
 
 $ap_mode="1";
 $io_action="wlan0";
+//------
+$api_token="e5dab9a69988dd65e578041416773149ea57a054";
 ?>

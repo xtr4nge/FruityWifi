@@ -17,6 +17,9 @@
 */ 
 ?>
 <?
+
+error_reporting(E_ALL ^ E_NOTICE);
+
 include "../login_check.php";
 include "../config/config.php";
 include "../functions.php";
@@ -32,7 +35,6 @@ if ($regex == 1) {
     regex_standard($_POST["wifi_supplicant"], "../msg.php", $regex_extra);
     regex_standard($_POST["ap_mode"], "../msg.php", $regex_extra);
 }
-
 
 // ------------ IN | OUT (START) -------------
 if(isset($_POST["io_mode"])){
@@ -253,5 +255,6 @@ if(isset($_POST["domain"])) {
 }
 
 header('Location: ../page_config_adv.php');
+#header('Location: ../modules/action.php?page=../page_config_adv.php&wait=2');
 
 ?>

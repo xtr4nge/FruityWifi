@@ -39,7 +39,7 @@ adduser --disabled-password --quiet --system --home /var/run/fruitywifi --no-cre
 echo "[fruitywifi user has been created]"
 echo
 
-apt-get -y install gettext make intltool build-essential automake autoconf uuid uuid-dev php5-curl php5-cli dos2unix curl sudo unzip
+apt-get -y install gettext make intltool build-essential automake autoconf uuid uuid-dev php5-curl php5-cli dos2unix curl sudo unzip lsb-release
 
 cmd=`gcc --version|grep "4.7"`
 if [[ $cmd == "" ]]
@@ -162,7 +162,7 @@ then
     mkdir /var/www/
     echo "." >> /var/www/index.php 
     chown -R fruitywifi:fruitywifi /var/www/
-    cp nginx-setup/default /etc/nginx/sites-enabled/
+    #cp nginx-setup/default /etc/nginx/sites-enabled/
     cp nginx-setup/fpm/80.conf /etc/php5/fpm/pool.d/
     cp nginx-setup/fpm/443.conf /etc/php5/fpm/pool.d/
 fi
@@ -211,6 +211,21 @@ cp -a sudo-setup/fruitywifi /etc/sudoers.d/
 
 echo "[sudo setup completed]"
 echo
+
+cmd=`lsb_release -c |grep "jessie"`
+if [[ ! -z $cmd ]]
+then
+    echo "--------------------------------"
+    echo "Setup DNSMASQ"
+    echo "--------------------------------"
+	
+    EXEC="s,^server=,#server=,g"
+    sed -i $EXEC FruityWifi/conf/dnsmasq.conf
+    
+    echo "[dnsmasq setup completed]"
+    echo
+
+fi
 
 cp -a FruityWifi /usr/share/fruitywifi
 ln -s $fruitywifi_log_path /usr/share/fruitywifi/www/logs

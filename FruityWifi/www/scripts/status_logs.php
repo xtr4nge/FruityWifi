@@ -27,6 +27,7 @@ $path = $_POST["path"];
 $exec = "tail -n 5 $path";
 //exec("/usr/share/fruitywifi/bin/danger \"" . $exec . "\"", $output); //DEPRECATED
 $output = exec_fruitywifi($exec);
+//exec($exec, $output);
 
 for ($i=0; $i < count($output); $i++)
 {

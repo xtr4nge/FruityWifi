@@ -1,6 +1,6 @@
 <? 
 /*
-    Copyright (C) 2013-2014 xtr4nge [_AT_] gmail.com
+    Copyright (C) 2013-2015 xtr4nge [_AT_] gmail.com
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -46,20 +46,52 @@ function exec_fruitywifi($exec) {
 
     if ($exec_mode == "danger") {
 	
-	$bin_exec = "/usr/share/fruitywifi/bin/danger";
-	exec("$bin_exec \"" . $exec . "\"", $output);
-	return $output;
+		$bin_exec = "/usr/share/fruitywifi/bin/danger";
+		exec("$bin_exec \"" . $exec . "\"", $output);
+		return $output;
+		
+    } else if ($exec_mode == "sudo") {
+	
+		$bin_exec = "/usr/bin/sudo";
+		exec("$bin_exec sh -c \"$exec\"", $output);
+		return $output;
+	
+    } else {
+		return false;
+    }
+    
+}
+
+function exec_fruitywifi_env($exec) {
+
+	# Construct our new PATH.
+	$RBENV_ROOT="/root/.rbenv";
+	$ROOT_PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin";
+	$ROOT_PATH="$RBENV_ROOT/shims:$RBENV_ROOT/bin:$ROOT_PATH";
+
+    $exec_mode = "sudo";
+
+    if ($exec_mode == "danger") {
+	
+		$bin_exec = "/usr/share/fruitywifi/bin/danger";
+		exec("$bin_exec \"" . $exec . "\"", $output);
+		return $output;
     
     } else if ($exec_mode == "sudo") {
 	
-	$bin_exec = "/usr/bin/sudo";
-	exec("$bin_exec sh -c \"$exec\"", $output);
-	return $output;
+		$bin_exec = "/usr/bin/sudo";
+		exec("$bin_exec env PATH=\"$ROOT_PATH\" sh -c \"$exec\"", $output);
+		return $output;
 	
     } else {
-	return false;
+		return false;
     }
     
+}
+
+function setToken() {
+	$token = sha1(microtime(true).mt_rand(10000,90000));
+	return $token;
 }
 
 function module_deb($mod_name) {

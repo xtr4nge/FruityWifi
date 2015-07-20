@@ -1,6 +1,6 @@
 <? 
 /*
-	Copyright (C) 2013  xtr4nge [_AT_] gmail.com
+	Copyright (C) 2013-2015 xtr4nge [_AT_] gmail.com
 
 	This program is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -22,23 +22,31 @@ session_start();
 session_regenerate_id(true);
 
 include "users.php";
-
-//$user = "admin";
-//$pass = "test.123456";
+include "config/config.php";
 
 $user = $_POST["user"];
 $pass = $_POST["pass"];
+//$token = $_POST["token"];
 
-//echo $users["admin"] . " : " . crypt($pass,$key);
-//echo $users["admin"] . " : " . md5($pass);
-//echo "<br>";
+switch($_SERVER['REQUEST_METHOD'])
+{
+	case 'GET': $token = $_GET["token"]; break;
+	case 'POST': $token = $_POST["token"]; break;
+	default: $token = "";
+}
 
-if ($users[$user] == md5($pass)) {
-    $_SESSION["user_id"] = $user;
-    //echo "welcome";
+if ($users[$user] == md5($pass) or $token == $api_token) {
+	
+	if ($users[$user] != "") {
+		$_SESSION["user_id"] = $user;
+	} else if ($token != "") {
+		$_SESSION["user_id"] = $token;
+	}
+	
     header('Location: page_status.php');
+
 } else {
-    //echo "get out of here...";
     header('Location: index.php?error=1');
 }
+
 ?>

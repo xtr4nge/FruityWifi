@@ -1,6 +1,6 @@
 <? 
 /*
-    Copyright (C) 2013-2014 xtr4nge [_AT_] gmail.com
+    Copyright (C) 2013-2015 xtr4nge [_AT_] gmail.com
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -17,43 +17,70 @@
 */ 
 ?>
 <?
-//include "login_check.php";
-include_once "/usr/share/fruitywifi/www/config/config.php";
+error_reporting(E_ALL ^ E_NOTICE);
 
-//Set no caching
-header("Expires: Mon, 1 Jan 1900 00:00:00 GMT");
-header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
-header("Cache-Control: no-store, no-cache, must-revalidate");
-header("Cache-Control: post-check=0, pre-check=0", false);
-header("Pragma: no-cache");
+//include "../../login_check.php";
+include_once "/usr/share/fruitywifi/www/config/config.php";
 ?>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="../../css/bootstrap.css" />
+<link rel="stylesheet" href="../../css/bootstrap-menu.css" />
+<link rel="stylesheet" href="../../css/bootstrap-switch.css" />
+
+<s-cript src="../../js/jquery.js"></script>
+
+<script src="../../js/bootstrap.js"></script>
+<script src="../../js/bootstrap-switch.js"></script>
+<script src="../../js/highlight.js"></script>
+<script src="../../js/main.js"></script>
+
 <link href="../../style.css" rel="stylesheet" type="text/css">
 <link rel="icon" type="image/x-icon" href="../../img/favicon.ico"/>
 
-<div class="menu-bc" s-tyle="background-color: #576971; /*#576971*/">
-
-<table width="560px">
-    <tr>
-        <td width="160px" nowrap>
-            <div class="m-enu">
-                <img src="../../img/logo.png" width=32><img style="padding-left:2px; padding-top:0px;" src="../../img/logo-fw.png">
-            </div>
-        </td>
-        <td nowrap>
-            <div class="menu" style="padding-left:4px; padding-bottom:0px;" >
-                <a href="../../page_status.php" class="menu">status</a> | 
-                <a href="../../page_status_wsdl.php" class="menu">wsdl</a> | 
-                <a href="../../page_config_adv.php">config</a> | 
-                <!--
-                <a href="../../page_kismet.php">kismet</a> | 
-                <a href="../../page_squid.php">squid</a> | 
-                <a href="../../page_sslstrip.php">sslstrip</a> | 
-                -->
-                <a href="../../page_modules.php">modules</a> | 
-                <a href="../../page_logs.php">logs</a> | 
-                <a href="../../logout.php">logout</a> | <?=$version?>
-            </div>
-        </td>
-    </tr>
-</table>
+<div id="custom-bootstrap-menu" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="http://www.fruitywifi.com" target="blank">FruityWiFi</a>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse navbar-menubuilder">
+            <ul class="nav navbar-nav navbar-left">
+                <li><a href="../../page_status.php">status</a>
+                </li>
+                <li><a href="../../page_status_ws.php">status-ws</a>
+                </li>
+                <li><a href="../../page_config_adv.php">config</a>
+                </li>
+                <li><a href="../../page_modules.php">modules</a>
+                </li>
+                <li><a href="../../page_logs.php">logs</a>
+                </li>
+                <li><a href="../../logout.php">logout</a>
+                </li>
+                 <li><a>| <?=$version?></a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
+
+<br><br><br>
+<script>
+    $( document ).ready( function() {
+    $('input[type="checkbox"]').bootstrapSwitch('destroy');
+    $('input[type="radio"]').bootstrapSwitch('destroy');
+    //$('input').bootstrapSwitch('destroy');
+    //$('.bootstrap-switch').bootstrapSwitch('destroy');
+    });
+</script>
+<style>
+    input {
+        color: #000000;
+    }
+    
+    input[type="submit"] {
+        color: #000000;
+    }
+</style>
