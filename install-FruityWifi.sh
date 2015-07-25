@@ -177,7 +177,7 @@ echo
 echo "--------------------------------"
 echo "BACKUP"
 echo "--------------------------------"
-cmd=`date +"%Y-%m-%d-%k-%M-%S"`
+cmd=`date +"%Y-%m-%d-%H-%M-%S"`
 mv /usr/share/fruitywifi fruitywifi.BAK.$cmd
 echo
 
