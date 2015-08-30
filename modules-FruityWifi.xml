@@ -288,4 +288,20 @@
         <url>module_devicefinder</url>
         <required>2.1</required>
     </module>
+    <module>
+        <name>mgmt</name>
+        <version>1.0</version>
+        <author>@xtr4nge</author>
+        <description>mgmt interface</description>
+        <url>module_mgmt</url>
+        <required>2.2</required>
+    </module>
+    <module>
+        <name>tapper</name>
+        <version>1.0</version>
+        <author>@xtr4nge</author>
+        <description>tapper interface</description>
+        <url>module_tapper</url>
+        <required>2.2</required>
+    </module>
 </FruityWifi>
