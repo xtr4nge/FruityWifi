@@ -304,4 +304,12 @@
         <url>module_tapper</url>
         <required>2.2</required>
     </module>
+    <module>
+        <name>openvpn</name>
+        <version>1.0</version>
+        <author>@xtr4nge</author>
+        <description>openvpn interface</description>
+        <url>module_openvpn</url>
+        <required>2.2</required>
+    </module>
 </FruityWifi>
