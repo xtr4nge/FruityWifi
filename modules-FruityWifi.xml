@@ -298,7 +298,7 @@
     </module>
     <module>
         <name>tapper</name>
-        <version>1.0</version>
+        <version>1.1</version>
         <author>@xtr4nge</author>
         <description>tapper interface</description>
         <url>module_tapper</url>
