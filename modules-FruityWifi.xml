@@ -312,4 +312,12 @@
         <url>module_openvpn</url>
         <required>2.2</required>
     </module>
+    <module>
+        <name>api</name>
+        <version>1.0</version>
+        <author>@xtr4nge</author>
+        <description>API interface</description>
+        <url>module_api</url>
+        <required>2.2</required>
+    </module>
 </FruityWifi>
