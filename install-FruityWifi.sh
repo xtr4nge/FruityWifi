@@ -208,6 +208,7 @@ echo "Setup Sudo"
 echo "--------------------------------"
 cd $root_path
 cp -a sudo-setup/fruitywifi /etc/sudoers.d/
+chown root:root /etc/sudoers.d/fruitywifi
 
 echo "[sudo setup completed]"
 echo
