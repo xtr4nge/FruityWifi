@@ -58,11 +58,11 @@
     </module>
     <module>
         <name>captive</name>
-        <version>1.4</version>
+        <version>1.5</version>
 	<author>@xtr4nge</author>
 	<description>captive portal</description>
 	<url>module_captive</url>
-	<required>2.1</required>
+	<required>2.2</required>
     </module>
     <module>
         <name>squid3</name>
@@ -82,7 +82,7 @@
     </module>
     <module>
         <name>responder</name>
-        <version>1.4</version>
+        <version>1.5</version>
 	<author>@xtr4nge</author>
 	<description>Responder interface</description>
 	<url>module_responder</url>
@@ -170,7 +170,7 @@
     </module>
     <module>
         <name>autossh</name>
-        <version>1.1</version>
+        <version>1.2</version>
 	<author>@xtr4nge</author>
 	<description>autossh interface</description>
 	<url>module_autossh</url>
@@ -287,5 +287,37 @@
         <description>DeviceFinder interface</description>
         <url>module_devicefinder</url>
         <required>2.1</required>
+    </module>
+    <module>
+        <name>mgmt</name>
+        <version>1.0</version>
+        <author>@xtr4nge</author>
+        <description>mgmt interface</description>
+        <url>module_mgmt</url>
+        <required>2.2</required>
+    </module>
+    <module>
+        <name>tapper</name>
+        <version>1.1</version>
+        <author>@xtr4nge</author>
+        <description>tapper interface</description>
+        <url>module_tapper</url>
+        <required>2.2</required>
+    </module>
+    <module>
+        <name>openvpn</name>
+        <version>1.0</version>
+        <author>@xtr4nge</author>
+        <description>openvpn interface</description>
+        <url>module_openvpn</url>
+        <required>2.2</required>
+    </module>
+    <module>
+        <name>api</name>
+        <version>1.0</version>
+        <author>@xtr4nge</author>
+        <description>API interface</description>
+        <url>module_api</url>
+        <required>2.2</required>
     </module>
 </FruityWifi>
