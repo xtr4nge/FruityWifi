@@ -126,21 +126,35 @@ function module_deb($mod_name) {
 
 function start_monitor_mode($iface) {
     // START MONITOR MODE (mon0)
-    $iface_mon0 = exec("/sbin/ifconfig |grep mon0");
-    if ($iface_mon0 == "") {
+    //$iface_mon0 = exec("/sbin/ifconfig |grep mon0");
+    
+    stop_monitor_mode($iface);
+    
+    //if ($iface_mon0 == "") {
         //$exec = "/usr/sbin/airmon-ng start $iface";
         
         $exec = "rfkill unblock wifi; sudo rfkill unblock all";
+        exec_fruitywifi($exec);
+        
+        $exec = "ifconfig $iface down";
         exec_fruitywifi($exec);
         
         $phy = getPHY($iface);
         $exec = "iw phy $phy interface add mon0 type monitor";
         exec_fruitywifi($exec);
         
+        sleep(1);
+        
+        $exec = "ifconfig mon0 down";
+        exec_fruitywifi($exec);
+        
+        $exec = "iwconfig mon0 mode monitor";
+        exec_fruitywifi($exec);
+        
         $exec = "ifconfig mon0 up";
         exec_fruitywifi($exec);
         
-     }
+     //}
 }
 
 function stop_monitor_mode($iface) {
