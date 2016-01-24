@@ -1,6 +1,6 @@
 <? 
 /*
-    Copyright (C) 2013-2015 xtr4nge [_AT_] gmail.com
+    Copyright (C) 2013-2016 xtr4nge [_AT_] gmail.com
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -45,53 +45,53 @@ function exec_fruitywifi($exec) {
     $exec_mode = "sudo";
 
     if ($exec_mode == "danger") {
-	
-		$bin_exec = "/usr/share/fruitywifi/bin/danger";
-		exec("$bin_exec \"" . $exec . "\"", $output);
-		return $output;
-		
+    
+        $bin_exec = "/usr/share/fruitywifi/bin/danger";
+        exec("$bin_exec \"" . $exec . "\"", $output);
+        return $output;
+        
     } else if ($exec_mode == "sudo") {
-	
-		$bin_exec = "/usr/bin/sudo";
-		exec("$bin_exec sh -c \"$exec\"", $output);
-		return $output;
-	
+    
+        $bin_exec = "/usr/bin/sudo";
+        exec("$bin_exec sh -c \"$exec\"", $output);
+        return $output;
+    
     } else {
-		return false;
+        return false;
     }
     
 }
 
 function exec_fruitywifi_env($exec) {
 
-	# Construct our new PATH.
-	$RBENV_ROOT="/root/.rbenv";
-	$ROOT_PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin";
-	$ROOT_PATH="$RBENV_ROOT/shims:$RBENV_ROOT/bin:$ROOT_PATH";
+    # Construct our new PATH.
+    $RBENV_ROOT="/root/.rbenv";
+    $ROOT_PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin";
+    $ROOT_PATH="$RBENV_ROOT/shims:$RBENV_ROOT/bin:$ROOT_PATH";
 
     $exec_mode = "sudo";
 
     if ($exec_mode == "danger") {
-	
-		$bin_exec = "/usr/share/fruitywifi/bin/danger";
-		exec("$bin_exec \"" . $exec . "\"", $output);
-		return $output;
+    
+        $bin_exec = "/usr/share/fruitywifi/bin/danger";
+        exec("$bin_exec \"" . $exec . "\"", $output);
+        return $output;
     
     } else if ($exec_mode == "sudo") {
-	
-		$bin_exec = "/usr/bin/sudo";
-		exec("$bin_exec env PATH=\"$ROOT_PATH\" sh -c \"$exec\"", $output);
-		return $output;
-	
+    
+        $bin_exec = "/usr/bin/sudo";
+        exec("$bin_exec env PATH=\"$ROOT_PATH\" sh -c \"$exec\"", $output);
+        return $output;
+    
     } else {
-		return false;
+        return false;
     }
     
 }
 
 function setToken() {
-	$token = sha1(microtime(true).mt_rand(10000,90000));
-	return $token;
+    $token = sha1(microtime(true).mt_rand(10000,90000));
+    return $token;
 }
 
 function module_deb($mod_name) {
@@ -103,53 +103,64 @@ function module_deb($mod_name) {
     //print_r($output);
     
     if(empty($output)) {
-	//echo "none...";
-	return 0;
+    //echo "none...";
+    return 0;
     } else {
     
-	$installed = explode(" ", trim($output[1]));
-	$candidate = explode(" ", trim($output[2]));
+    $installed = explode(" ", trim($output[1]));
+    $candidate = explode(" ", trim($output[2]));
     
-	if( $installed[1] == $candidate[1] ) {
-	    //echo "installed...";
-	    return 1;
-	} else if( $installed[1] == "(none)" ) {
-	    //echo "install...";
-	    return 2;   
-	} else {
-	    //echo "upgrade...";
-	    return 3;
-	}
+    if( $installed[1] == $candidate[1] ) {
+        //echo "installed...";
+        return 1;
+    } else if( $installed[1] == "(none)" ) {
+        //echo "install...";
+        return 2;   
+    } else {
+        //echo "upgrade...";
+        return 3;
+    }
     
     }    
 }
 
 function start_monitor_mode($iface) {
-
-    $bin_danger = "/usr/share/fruitywifi/bin/danger";
-
     // START MONITOR MODE (mon0)
     $iface_mon0 = exec("/sbin/ifconfig |grep mon0");
     if ($iface_mon0 == "") {
-        $exec = "/usr/bin/sudo /usr/sbin/airmon-ng start $iface";
-        //exec("$bin_danger \"" . $exec . "\"", $output); //DEPRECATED
-	exec_fruitywifi($exec);
+        //$exec = "/usr/sbin/airmon-ng start $iface";
+        
+        $exec = "rfkill unblock wifi; sudo rfkill unblock all";
+        exec_fruitywifi($exec);
+        
+        $phy = getPHY($iface);
+        $exec = "iw phy $phy interface add mon0 type monitor";
+        exec_fruitywifi($exec);
+        
+        $exec = "ifconfig mon0 up";
+        exec_fruitywifi($exec);
+        
      }
-
 }
 
 function stop_monitor_mode($iface) {
-
-    $bin_danger = "/usr/share/fruitywifi/bin/danger";
-
-    // START MONITOR MODE (mon0)
+    // STOP MONITOR MODE (mon0)
     $iface_mon0 = exec("/sbin/ifconfig |grep mon0");
     if ($iface_mon0 != "") {
-        $exec = "/usr/bin/sudo /usr/sbin/airmon-ng stop mon0";
-        //exec("$bin_danger \"" . $exec . "\"", $output); //DEPRECATED
-	exec_fruitywifi($exec);
+        $exec = "/usr/sbin/airmon-ng stop mon0";
+        exec_fruitywifi($exec);
     }
+}
 
+function getPHY($iface) {
+    $exec = "iw dev | egrep 'phy|Interface' | tr '\\\n' '|' | tr '\\\t' ' ' | sed 's/| Interface//g'";
+    exec($exec, $output);
+    $temp = explode("|", $output[0]);
+    for ($i=0; $i < count($temp); $i++) {
+        $sub = explode(" ", $temp[$i]);
+        if ($sub[1] == $iface) return trim(str_replace("#","",$sub[0]));
+    }
+    return "-";
 }
 
 function open_file($filename) {
@@ -174,14 +185,14 @@ function start_iface($iface, $ip, $gw) {
     //if ($iface_mon0 == "") {
         $exec = "/usr/bin/sudo /sbin/ifconfig $iface $ip";
         //exec("$bin_danger \"" . $exec . "\"", $output); //DEPRECATED
-	exec_fruitywifi($exec);
-	//}
+        exec_fruitywifi($exec);
+    //}
 
-	if (trim($gw) != "") {
-	    $exec = "/usr/bin/sudo /sbin/route add default gw $gw";
-	    //exec("$bin_danger \"" . $exec . "\"", $output); //DEPRECATED
-	    exec_fruitywifi($exec);
-	}
+    if (trim($gw) != "") {
+        $exec = "/usr/bin/sudo /sbin/route add default gw $gw";
+        //exec("$bin_danger \"" . $exec . "\"", $output); //DEPRECATED
+        exec_fruitywifi($exec);
+    }
 
 }
 
@@ -194,7 +205,7 @@ function stop_iface($iface, $ip, $gw) {
     //if ($iface_mon0 != "") {
         $exec = "/usr/bin/sudo /sbin/ifconfig $iface 0.0.0.0";
         //exec("$bin_danger \"" . $exec . "\"", $output); //DEPRECATED
-	exec_fruitywifi($exec);
+        exec_fruitywifi($exec);
     //}
 
 }
