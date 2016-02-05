@@ -320,4 +320,12 @@
         <url>module_api</url>
         <required>2.2</required>
     </module>
+    <module>
+        <name>wifirecon</name>
+        <version>1.0</version>
+        <author>@xtr4nge</author>
+        <description>WiFiRecon interface</description>
+        <url>module_api</url>
+        <required>2.3</required>
+    </module>
 </FruityWifi>
