@@ -2,10 +2,18 @@
 <FruityWifi>
     <module>
         <name>ap</name>
-        <version>1.1</version>
+        <version>1.2</version>
         <author>@xtr4nge</author>
         <description>AP interface</description>
         <url>module_ap</url>
+        <required>2.2</required>
+    </module>
+    <module>
+        <name>api</name>
+        <version>1.1</version>
+        <author>@xtr4nge</author>
+        <description>API interface</description>
+        <url>module_api</url>
         <required>2.2</required>
     </module>
     <module>
@@ -310,14 +318,6 @@
         <author>@xtr4nge</author>
         <description>openvpn interface</description>
         <url>module_openvpn</url>
-        <required>2.2</required>
-    </module>
-    <module>
-        <name>api</name>
-        <version>1.1</version>
-        <author>@xtr4nge</author>
-        <description>API interface</description>
-        <url>module_api</url>
         <required>2.2</required>
     </module>
     <module>
