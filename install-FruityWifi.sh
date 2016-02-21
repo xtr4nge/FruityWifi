@@ -215,7 +215,7 @@ chown root:root /etc/sudoers.d/fruitywifi
 echo "[sudo setup completed]"
 echo
 
-cmd=`lsb_release -c |grep "jessie"`
+cmd=`lsb_release -c |grep -iEe "jessie|kali-rolling"`
 if [[ ! -z $cmd ]]
 then
     echo "--------------------------------"
