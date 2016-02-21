@@ -192,9 +192,8 @@ if(isset($_POST["api_token"])) {
 ?>
 
 <?
-$ifaces = exec("/sbin/ifconfig -a | cut -c 1-8 | sort | uniq -u |grep -v lo|sed ':a;N;$!ba;s/\\n/|/g'");
-$ifaces = str_replace(" ","",$ifaces);
-$ifaces = explode("|", $ifaces);
+// Get all interfaces name
+$ifaces = getIfaceNAME();
 ?>
 
 <br>
@@ -274,9 +273,10 @@ $ifaces = explode("|", $ifaces);
                     </select>
                 </form>
                 <?
-                    if($io_in_set == "0") {
-                    $tmp_ip = exec("/sbin/ifconfig $io_in_iface | grep 'inet addr:' | cut -d: -f2 |awk '{print $1}'");
-                    echo "<input class='input' style='width:120' value='$tmp_ip' disabled>";
+                    if($io_in_set == "0") {                        
+                        // Get interface IP
+                        $tmp_ip = getIfaceIP($io_in_iface);
+                        echo "<input class='form-control input-sm' placeholder='IP' style='width:140px' value='$tmp_ip' disabled>";
                     }
                 ?>
             </td>
@@ -299,8 +299,8 @@ $ifaces = explode("|", $ifaces);
             <td style="padding-right:10px">
                 <input class="btn btn-primary btn-sm" type="submit" value="Save">
                 <?
-                $tmp_ip = exec("/sbin/ifconfig $io_in_iface | grep 'inet addr:' | cut -d: -f2 |awk '{print $1}'");
-                
+                // Get interface IP
+                $tmp_ip = getIfaceIP($io_in_iface);
                 if (trim($tmp_ip) == trim($io_in_ip)) {
                 echo "<a href='page_config_adv.php?service=io_in&action=stop'><b>stop</b></a> [<font color='lime'>on</font>]";
                 } else {
@@ -351,8 +351,9 @@ $ifaces = explode("|", $ifaces);
             </form>
             <?
                 if($io_out_set == "0") {
-                $tmp_ip = exec("/sbin/ifconfig $io_out_iface | grep 'inet addr:' | cut -d: -f2 |awk '{print $1}'");
-                echo "<input class='form-control input-sm' placeholder='IP' style='width:140px' value='$tmp_ip' disabled>";
+                    // Get interface IP
+                    $tmp_ip = getIfaceIP($io_out_iface);
+                    echo "<input class='form-control input-sm' placeholder='IP' style='width:140px' value='$tmp_ip' disabled>";
                 }
             ?>
             </td>
@@ -375,8 +376,8 @@ $ifaces = explode("|", $ifaces);
             <td style="padding-right:10px">
                 <input class="btn btn-primary btn-sm" type="submit" value="Save">
                 <?
-                $tmp_ip = exec("/sbin/ifconfig $io_out_iface | grep 'inet addr:' | cut -d: -f2 |awk '{print $1}'");
-                
+                // Get interface IP
+                $tmp_ip = getIfaceIP($io_out_iface);
                 if (trim($tmp_ip) == trim($io_out_ip)) {
                     echo "<a href='page_config_adv.php?service=io_out&action=stop'><b>stop</b></a> [<font color='lime'>on</font>]";
                 } else {

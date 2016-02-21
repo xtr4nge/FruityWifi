@@ -224,4 +224,33 @@ function stop_iface($iface, $ip, $gw) {
 
 }
 
+function getIfaceNAME() {
+    /*    
+    $ifaces = exec("/sbin/ifconfig -a | cut -c 1-8 | sort | uniq -u |grep -v lo|sed ':a;N;$!ba;s/\\n/|/g'");
+    $ifaces = str_replace(" ","",$ifaces);
+    $ifaces = explode("|", $ifaces);
+    */
+    
+    $exec = "/usr/bin/python /usr/share/fruitywifi/utils/network.py -t getifacename | grep -v lo";
+    unset($output);
+    exec($exec, $output);
+    return $output;
+}
+
+function getIfaceIP($iface) {
+    //$tmp_ip = exec("/sbin/ifconfig $io_in_iface | grep 'inet addr:' | cut -d: -f2 |awk '{print $1}'");
+    //$ip = exec("/sbin/ifconfig $ifaces[$i] | grep 'inet addr:' | cut -d: -f2 |awk '{print $1}'");
+    $exec = "/usr/bin/python /usr/share/fruitywifi/utils/network.py -t getifaceip -i $iface";
+    unset($output);
+    exec($exec, $output);
+    return $output[0];
+}
+
+function getIfaceMAC($iface) {
+    $exec = "/usr/bin/python /usr/share/fruitywifi/utils/network.py -t getifacemac -i $iface";
+    unset($output);
+    exec($exec, $output);
+    return $output[0];
+}
+
 ?>
