@@ -6,7 +6,7 @@
         <author>@xtr4nge</author>
         <description>AP interface</description>
         <url>module_ap</url>
-        <required>2.2</required>
+        <required>2.4</required>
     </module>
     <module>
         <name>api</name>
