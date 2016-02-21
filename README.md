@@ -6,7 +6,7 @@ FruityWifi is a wireless network auditing tool. The application can be installed
 
 v2.4
 ----------------
-- Utils have been added to replace "ifconfig -a"
+- Utils have been added (replaces "ifconfig -a")
 - Kali Linux Rolling compatibility issue has been fixed
 
 
