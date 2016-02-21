@@ -10,6 +10,11 @@ v2.4
 - Kali Linux Rolling compatibility issue has been fixed
 
 
+v2.3
+----------------
+- monitor mode (mon0) has been fixed (new airmon-ng compatibility issue)
+
+
 v2.2
 ----------------
 - Wireless service has been replaced by AP module
