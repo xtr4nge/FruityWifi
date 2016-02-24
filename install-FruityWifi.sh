@@ -179,7 +179,7 @@ echo
 echo "--------------------------------"
 echo "BACKUP"
 echo "--------------------------------"
-cmd=`date +"%Y-%m-%d-%k-%M-%S"`
+cmd=`date +"%Y-%m-%d-%H-%M-%S"`
 mv /usr/share/fruitywifi fruitywifi.BAK.$cmd
 echo
 
@@ -199,7 +199,7 @@ EXEC="s,^log-facility=.*,log-facility="$fruitywifi_log_path"/dnsmasq.log,g"
 sed -i $EXEC FruityWifi/conf/dnsmasq.conf
 EXEC="s,^dhcp-leasefile=.*,dhcp-leasefile="$fruitywifi_log_path"/dhcp.leases,g"
 sed -i $EXEC FruityWifi/conf/dnsmasq.conf
-EXEC="s,^Defaults logfile =.*,Defaults logfile = "$fruitywifi_log_path"/sudo.log,g"
+EXEC="s,^Defaults:fruitywifi logfile =.*,Defaults:fruitywifi logfile = "$fruitywifi_log_path"/sudo.log,g"
 sed -i $EXEC sudo-setup/fruitywifi
 
 echo "[logs setup completed]"
