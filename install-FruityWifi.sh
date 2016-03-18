@@ -112,10 +112,18 @@ then
     echo "--------------------------------"
 
     # INSTALL AIRCRACK-NG
-    apt-get -y install libssl-dev wireless-tools iw
-    wget http://download.aircrack-ng.org/aircrack-ng-1.2-beta1.tar.gz
-    tar -zxvf aircrack-ng-1.2-beta1.tar.gz
-    cd aircrack-ng-1.2-beta1
+    apt-get -y install libnl-dev libnl1 libssl-dev wireless-tools iw
+
+    #Aircrack-ng 1.2-beta1
+    #wget http://download.aircrack-ng.org/aircrack-ng-1.2-beta1.tar.gz
+    #tar -zxvf aircrack-ng-1.2-beta1.tar.gz
+    #cd aircrack-ng-1.2-beta1
+
+    #Aircrack-ng 1.2-rc4
+    wget http://download.aircrack-ng.org/aircrack-ng-1.2-rc4.tar.gz
+    tar -zxvf aircrack-ng-1.2-rc4.tar.gz
+    cd aircrack-ng-1.2-rc4
+
     make
     make install
     ln -s /usr/local/sbin/airmon-ng /usr/sbin/airmon-ng
