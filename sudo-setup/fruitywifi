@@ -4,3 +4,5 @@ Defaults:fruitywifi logfile = /usr/share/fruitywifi/logs/sudo.log
 Defaults:fruitywifi log_year
 Defaults:fruitywifi log_host
 Defaults:fruitywifi syslog=auth
+Defaults:fruitywifi umask=022
+Defaults:fruitywifi umask_override
