@@ -2,7 +2,7 @@
 <FruityWifi>
     <module>
         <name>ap</name>
-        <version>1.2</version>
+        <version>1.3</version>
         <author>@xtr4nge</author>
         <description>AP interface</description>
         <url>module_ap</url>
@@ -15,6 +15,22 @@
         <description>API interface</description>
         <url>module_api</url>
         <required>2.2</required>
+    </module>
+    <module>
+        <name>karma</name>
+        <version>1.6</version>
+	<author>@xtr4nge</author>
+	<description>Karma interface</description>
+	<url>module_karma</url>
+	<required>2.1</required>
+    </module>
+    <module>
+        <name>mana</name>
+        <version>1.4</version>
+	<author>@xtr4nge</author>
+	<description>mana interface</description>
+	<url>module_mana</url>
+	<required>2.1</required>
     </module>
     <module>
         <name>nmap</name>
@@ -121,14 +137,6 @@
 	<required>2.1</required>
     </module>
     <module>
-        <name>karma</name>
-        <version>1.6</version>
-	<author>@xtr4nge</author>
-	<description>Karma interface</description>
-	<url>module_karma</url>
-	<required>2.1</required>
-    </module>
-    <module>
         <name>nmcli</name>
         <version>1.3</version>
 	<author>@xtr4nge</author>
@@ -214,14 +222,6 @@
 	<author>@xtr4nge</author>
 	<description>phishing interface</description>
 	<url>module_phishing</url>
-	<required>2.1</required>
-    </module>
-    <module>
-        <name>mana</name>
-        <version>1.4</version>
-	<author>@xtr4nge</author>
-	<description>mana interface</description>
-	<url>module_mana</url>
 	<required>2.1</required>
     </module>
     <module>
