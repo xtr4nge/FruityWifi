@@ -35,7 +35,7 @@ echo "--------------------------------"
 echo "Creates user fruitywifi"
 echo "--------------------------------"
 adduser --disabled-password --quiet --system --home /var/run/fruitywifi --no-create-home --gecos "FruityWifi" --group fruitywifi
-usermod -a -G fruitywifi inet
+usermod -a -G inet fruitywifi
 
 echo "[fruitywifi user has been created]"
 echo
