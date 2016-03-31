@@ -10,10 +10,6 @@ fruitywifi_exec_mode="sudo"
 # --------------------------------------------------------
 fruitywifi_log_path="/usr/share/fruitywifi/logs"
 # --------------------------------------------------------
-# danger: 'enable' or 'disabled' (Backward compatibility)
-# --------------------------------------------------------
-fruitywifi_danger="enabled"
-# --------------------------------------------------------
 # 'all' option installs nginx webserver on ports 80 | 443,
 # and it also installs FruityWifi on ports 8000 | 8443.
 # If 'all' is not specified then only installs 8000 | 8443
@@ -35,6 +31,7 @@ echo "--------------------------------"
 echo "Creates user fruitywifi"
 echo "--------------------------------"
 adduser --disabled-password --quiet --system --home /var/run/fruitywifi --no-create-home --gecos "FruityWifi" --group fruitywifi
+usermod -a -G inet fruitywifi
 
 echo "[fruitywifi user has been created]"
 echo
@@ -187,7 +184,7 @@ echo
 echo "--------------------------------"
 echo "BACKUP"
 echo "--------------------------------"
-cmd=`date +"%Y-%m-%d-%k-%M-%S"`
+cmd=`date +"%Y-%m-%d-%H-%M-%S"`
 mv /usr/share/fruitywifi fruitywifi.BAK.$cmd
 echo
 
@@ -202,13 +199,13 @@ echo "--------------------------------"
 
 mkdir $fruitywifi_log_path
 EXEC="s,^\$log_path=.*,\$log_path=\""$fruitywifi_log_path"\";,g"
-sed -i $EXEC FruityWifi/www/config/config.php
+sed -i "$EXEC" FruityWifi/www/config/config.php
 EXEC="s,^log-facility=.*,log-facility="$fruitywifi_log_path"/dnsmasq.log,g"
-sed -i $EXEC FruityWifi/conf/dnsmasq.conf
+sed -i "$EXEC" FruityWifi/conf/dnsmasq.conf
 EXEC="s,^dhcp-leasefile=.*,dhcp-leasefile="$fruitywifi_log_path"/dhcp.leases,g"
-sed -i $EXEC FruityWifi/conf/dnsmasq.conf
-EXEC="s,^Defaults logfile =.*,Defaults logfile = "$fruitywifi_log_path"/sudo.log,g"
-sed -i $EXEC sudo-setup/fruitywifi
+sed -i "$EXEC" FruityWifi/conf/dnsmasq.conf
+EXEC="s,^Defaults:fruitywifi logfile =.*,Defaults:fruitywifi logfile = "$fruitywifi_log_path"/sudo.log,g"
+sed -i "$EXEC" sudo-setup/fruitywifi
 
 echo "[logs setup completed]"
 echo
@@ -223,7 +220,7 @@ chown root:root /etc/sudoers.d/fruitywifi
 echo "[sudo setup completed]"
 echo
 
-cmd=`lsb_release -c |grep -iEe "jessie|kali-rolling"`
+cmd=`lsb_release -c |grep -iEe "jessie|kali|sana"`
 if [[ ! -z $cmd ]]
 then
     echo "--------------------------------"
@@ -241,19 +238,6 @@ fi
 cp -a FruityWifi /usr/share/fruitywifi
 ln -s $fruitywifi_log_path /usr/share/fruitywifi/www/logs
 ln -s /usr/share/fruitywifi/ /usr/share/FruityWifi
-
-#if [ $fruitywifi_exec_mode == "danger" ]
-if [ $fruitywifi_danger == "enabled" ]
-then
-    echo "--------------------------------"
-    echo "Installing danger"
-    echo "--------------------------------"
-    
-    cd /usr/share/fruitywifi/bin/
-    gcc danger.c -o danger
-    chgrp fruitywifi /usr/share/fruitywifi/bin/danger
-    chmod 4750 /usr/share/fruitywifi/bin/danger
-fi
 
 echo
 
