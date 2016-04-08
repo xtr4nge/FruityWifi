@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <FruityWifi>
     <module>
+        <name>api</name>
+        <version>1.1</version>
+        <author>@xtr4nge</author>
+        <description>API interface</description>
+        <url>module_api</url>
+        <required>2.2</required>
+    </module>
+    <module>
         <name>ap</name>
         <version>1.3</version>
         <author>@xtr4nge</author>
@@ -9,12 +17,12 @@
         <required>2.4</required>
     </module>
     <module>
-        <name>api</name>
-        <version>1.1</version>
+        <name>fruitydns</name>
+        <version>1.0</version>
         <author>@xtr4nge</author>
-        <description>API interface</description>
-        <url>module_api</url>
-        <required>2.2</required>
+        <description>FruityDNS interface</description>
+        <url>module_fruitydns</url>
+        <required>2.4</required>
     </module>
     <module>
         <name>karma</name>
