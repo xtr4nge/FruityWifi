@@ -6,11 +6,11 @@
         <author>@xtr4nge</author>
         <description>API interface</description>
         <url>module_api</url>
-        <required>2.2</required>
+        <required>2.4</required>
     </module>
     <module>
         <name>ap</name>
-        <version>1.3</version>
+        <version>1.4</version>
         <author>@xtr4nge</author>
         <description>AP interface</description>
         <url>module_ap</url>
