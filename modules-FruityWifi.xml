@@ -41,6 +41,14 @@
 	<required>2.1</required>
     </module>
     <module>
+        <name>bettercap</name>
+        <version>1.0</version>
+	<author>@xtr4nge</author>
+	<description>bettercap interface</description>
+	<url>module_bettercap</url>
+	<required>2.4</required>
+    </module>
+    <module>
         <name>nmap</name>
         <version>1.5</version>
 	<author>@xtr4nge</author>
