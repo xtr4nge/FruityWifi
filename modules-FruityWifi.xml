@@ -49,6 +49,14 @@
 	<required>2.4</required>
     </module>
     <module>
+        <name>beef</name>
+        <version>1.0</version>
+	<author>@xtr4nge</author>
+	<description>beef interface</description>
+	<url>module_beef</url>
+	<required>2.4</required>
+    </module>
+    <module>
         <name>nmap</name>
         <version>1.5</version>
 	<author>@xtr4nge</author>
