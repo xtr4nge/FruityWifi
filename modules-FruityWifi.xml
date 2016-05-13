@@ -106,11 +106,11 @@
     </module>
     <module>
         <name>captive</name>
-        <version>1.5</version>
+        <version>1.6</version>
 	<author>@xtr4nge</author>
 	<description>captive portal</description>
 	<url>module_captive</url>
-	<required>2.2</required>
+	<required>2.4</required>
     </module>
     <module>
         <name>squid3</name>
