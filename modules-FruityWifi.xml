@@ -57,6 +57,14 @@
 	<required>2.4</required>
     </module>
     <module>
+        <name>metasploit</name>
+        <version>1.0</version>
+	<author>@xtr4nge</author>
+	<description>metasploit interface</description>
+	<url>module_metasploit</url>
+	<required>2.4</required>
+    </module>
+    <module>
         <name>nmap</name>
         <version>1.5</version>
 	<author>@xtr4nge</author>
