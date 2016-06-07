@@ -65,6 +65,14 @@
 	<required>2.4</required>
     </module>
     <module>
+        <name>sshuttle</name>
+        <version>1.0</version>
+	<author>@xtr4nge</author>
+	<description>sshuttle interface</description>
+	<url>module_sshuttle</url>
+	<required>2.4</required>
+    </module>
+    <module>
         <name>nmap</name>
         <version>1.5</version>
 	<author>@xtr4nge</author>
