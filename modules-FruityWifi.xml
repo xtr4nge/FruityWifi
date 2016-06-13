@@ -266,7 +266,7 @@
     </module>
     <module>
         <name>recon</name>
-        <version>1.1</version>
+        <version>1.2</version>
 	<author>@xtr4nge</author>
 	<description>recon interface</description>
 	<url>module_recon</url>
