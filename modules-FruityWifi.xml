@@ -122,7 +122,7 @@
     </module>
     <module>
         <name>captive</name>
-        <version>1.6</version>
+        <version>1.7</version>
 	<author>@xtr4nge</author>
 	<description>captive portal</description>
 	<url>module_captive</url>
