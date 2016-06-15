@@ -41,6 +41,14 @@
 	<required>2.1</required>
     </module>
     <module>
+        <name>detectrogue</name>
+        <version>1.0</version>
+	<author>@xtr4nge</author>
+	<description>detectrogue interface</description>
+	<url>module_detectrogue</url>
+	<required>2.4</required>
+    </module>
+    <module>
         <name>bettercap</name>
         <version>1.0</version>
 	<author>@xtr4nge</author>
