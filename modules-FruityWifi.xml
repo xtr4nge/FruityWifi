@@ -42,7 +42,7 @@
     </module>
     <module>
         <name>detectrogue</name>
-        <version>1.0</version>
+        <version>1.1</version>
 	<author>@xtr4nge</author>
 	<description>detectrogue interface</description>
 	<url>module_detectrogue</url>
