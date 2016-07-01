@@ -57,6 +57,14 @@
 	<required>2.4</required>
     </module>
     <module>
+        <name>hopper</name>
+        <version>1.0</version>
+	<author>@xtr4nge</author>
+	<description>hopper interface</description>
+	<url>module_hopper</url>
+	<required>2.4</required>
+    </module>
+    <module>
         <name>bettercap</name>
         <version>1.0</version>
 	<author>@xtr4nge</author>
