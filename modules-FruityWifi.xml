@@ -41,14 +41,6 @@
 	<required>2.1</required>
     </module>
     <module>
-        <name>automaton</name>
-        <version>1.0</version>
-	<author>@xtr4nge</author>
-	<description>automaton interface</description>
-	<url>module_automaton</url>
-	<required>2.4</required>
-    </module>
-    <module>
         <name>detectrogue</name>
         <version>1.2</version>
 	<author>@xtr4nge</author>
