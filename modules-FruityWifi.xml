@@ -2,7 +2,7 @@
 <FruityWifi>
     <module>
         <name>api</name>
-        <version>1.1</version>
+        <version>1.2</version>
         <author>@xtr4nge</author>
         <description>API interface</description>
         <url>module_api</url>
