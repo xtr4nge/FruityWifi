@@ -49,6 +49,14 @@
 	<required>2.4</required>
     </module>
     <module>
+        <name>geolocation</name>
+        <version>1.0</version>
+	<author>@xtr4nge</author>
+	<description>geolocation interface</description>
+	<url>module_geolocation</url>
+	<required>2.4</required>
+    </module>
+    <module>
         <name>detectrogue</name>
         <version>1.2</version>
 	<author>@xtr4nge</author>
