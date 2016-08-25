@@ -21,7 +21,9 @@ find FruityWifi -type d -exec chmod 755 {} \;
 find FruityWifi -type f -exec chmod 644 {} \;
 
 root_path=`pwd`
-
+if [ -d tmp-install ]; then
+    rm -rf tmp-install
+fi
 mkdir tmp-install
 cd tmp-install
 
