@@ -26,11 +26,11 @@
     </module>
     <module>
         <name>karma</name>
-        <version>1.6</version>
+        <version>1.7</version>
 	<author>@xtr4nge</author>
 	<description>Karma interface</description>
 	<url>module_karma</url>
-	<required>2.1</required>
+	<required>2.4</required>
     </module>
     <module>
         <name>mana</name>
