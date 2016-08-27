@@ -195,18 +195,18 @@ if [ -d "$DIR" ]; then
 	cmd=`date +"%Y-%m-%d-%H-%M-%S"`
 	mv $DIR fruitywifi.BAK.$cmd	
 	echo
-if
+fi
 
 echo "--------------------------------"
 echo "Setup FruityWiFi"
 echo "--------------------------------"
 cd $root_path
+echo
 
 echo "--------------------------------"
 echo "Config log path"
 echo "--------------------------------"
 
-mkdir $fruitywifi_log_path
 EXEC="s,^\$log_path=.*,\$log_path=\""$fruitywifi_log_path"\";,g"
 sed -i "$EXEC" FruityWifi/www/config/config.php
 EXEC="s,^log-facility=.*,log-facility="$fruitywifi_log_path"/dnsmasq.log,g"
@@ -245,6 +245,7 @@ then
 fi
 
 cp -a FruityWifi /usr/share/fruitywifi
+mkdir $fruitywifi_log_path
 ln -s $fruitywifi_log_path /usr/share/fruitywifi/www/logs
 
 echo
