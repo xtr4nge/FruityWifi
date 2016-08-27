@@ -245,7 +245,7 @@ then
 fi
 
 cp -a FruityWifi /usr/share/fruitywifi
-mkdir $fruitywifi_log_path
+#mkdir $fruitywifi_log_path
 ln -s $fruitywifi_log_path /usr/share/fruitywifi/www/logs
 
 echo
