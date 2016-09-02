@@ -1,39 +1,27 @@
 # FruityWiFi
 ###### Wireless network auditing tool http://www.fruitywifi.com/
 
-FruityWifi is a wireless network auditing tool. The application can be installed in any Debian based system adding the extra packages. Tested in Debian, Kali Linux, Kali Linux ARM (Raspberry Pi), Raspbian (Raspberry Pi), Pwnpi (Raspberry Pi), Bugtraq.
+FruityWifi is an open source tool to audit wireless networks. It allows the user to deploy advanced attacks by directly using the web interface or by sending messages to it. 
 
-![Status](http://farm3.staticflickr.com/2848/10913567126_e9375a8979_z.jpg)
+Initialy the application was created to be used with the Raspberry-Pi, but it can be installed on any Debian based system. 
 
-With the new version, it is possible to install external modules. This functionality gives the user more flexibility and the FruityWifi can be customized. The modules can be added or removed anytime using the on-line repository.
+![Status](http://www.fruitywifi.com/img/001.png)
 
-Available modules:
-- Hostapd Karma
-- URLsnarf
-- DNSspoof
-- Kismet
-- Squid (code injection capabilities)
-- SSLstrip (code injection capabilities)
-- nmap
-- mdk3
-- ngrep
-- Captive Portal
-- Nessus
-- Ettercap
-- Tcpdump
-- AutoSSH
-- Supplicant
-- 3G/4G
+A more flexible control panel. Now it is possible to use FruityWifi combining multiple networks and setups: 
 
-![Modules](http://farm6.staticflickr.com/5477/10913832783_aed9b21755_z.jpg)
+Within the new options on the control panel we can change the AP mode between Hostapd or Airmon-ng allowing to use more chipsets like Realtek. 
+
+It is possible customize each one of the network interfaces which allows the user to keep the current setup or change it completely.
+
+![Config](http://www.fruitywifi.com/img/002.png)
+
+FruityWifi is based on modules making it more flexible. These modules can be installed from the control panel to provide FruityWifi with new functionalities. 
+
+Within the available modules you can find URLsnarf, DNSspoof, Kismet, mdk3, ngrep, nmap, Squid3 y SSLstrip (code injection functionality), Captive Portal, AutoSSH, Meterpreter, Tcpdump and more. AutoSSH allows the user to create a reverse ssh connection, restarting it in case that the connection has been closed or dropped. It is useful to keep a permanent connection with FruityWifi.
 
 **Note**: New modules are being developed continuously and can be installed from the modules page.
 
-Using the installation script all the required dependencies, scripts and setup can be installed, or if you prefer you can download a SD image of Pwnpi 3.0 with FruityWifi v1.6 from the wiki page: https://github.com/xtr4nge/FruityWifi/wiki/Install
-
-![SSLstrip](http://farm6.staticflickr.com/5507/10913527725_7b48c043e9_z.jpg)
-
-![Captive](http://farm6.staticflickr.com/5494/10913832583_217319c11f_z.jpg)
+Using the installation script all the required dependencies, scripts and setup can be installed.
 
 ### More information
 [Wiki](https://github.com/xtr4nge/FruityWifi/wiki)
