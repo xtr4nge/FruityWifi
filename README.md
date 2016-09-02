@@ -17,7 +17,7 @@ It is possible customize each one of the network interfaces which allows the use
 
 FruityWifi is based on modules making it more flexible. These modules can be installed from the control panel to provide FruityWifi with new functionalities. 
 
-Within the available modules you can find URLsnarf, DNSspoof, Kismet, mdk3, ngrep, nmap, Squid3 y SSLstrip (code injection functionality), Captive Portal, AutoSSH, Meterpreter, Tcpdump and more. AutoSSH allows the user to create a reverse ssh connection, restarting it in case that the connection has been closed or dropped. It is useful to keep a permanent connection with FruityWifi.
+Within the available modules you can find URLsnarf, DNSspoof, Kismet, mdk3, ngrep, nmap, Squid3 y SSLstrip (code injection functionality), Captive Portal, AutoSSH, Meterpreter, Tcpdump and more. 
 
 **Note**: New modules are being developed continuously and can be installed from the modules page.
 
