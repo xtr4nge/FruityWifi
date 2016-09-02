@@ -21,7 +21,53 @@ Within the available modules you can find URLsnarf, DNSspoof, Kismet, mdk3, ngre
 
 **Note**: New modules are being developed continuously and can be installed from the modules page.
 
+## Install
+
 Using the installation script all the required dependencies, scripts and setup can be installed.
+
+### x86/x64 Version
+
+- You need Debian (or based) installed (or a Live CD version) to use this script.
+- Download the zip file from https://github.com/xtr4nge/FruityWifi/archive/master.zip
+- Unzip the file and run **install-FruityWifi.sh** (This script will install all the dependencies and setups)
+- Done. 
+
+Go to **http://localhost:8000** (for http) <br>
+Go to **https://localhost:8443** (for https) 
+
+user: admin<br>
+pass: admin
+<br><br>
+
+### Kali Linux Version
+FruityWifi is now part of Kali Linux repositories.
+- `apt-get install fruitywifi`
+- `/etc/init.d/fruitywifi start`
+- `/etc/init.d/php5-fpm start`
+
+Go to **http://localhost:8000** (for http) <br>
+Go to **https://localhost:8443** (for https) 
+
+user: admin<br>
+pass: admin
+<br>
+
+Note: installing `fruitywifi` will install all modules. If you want to install only some modules, you can install  `fruitywifi-core` first and then each module, for example `fruitywifi-module-dnsspoof`. 
+<br><br>
+
+### ARM version (Raspberry Pi)
+
+- You need a Raspbian, Pwnpi or Kali Linux version to use this script.
+- Download the zip file from https://github.com/xtr4nge/FruityWifi/archive/master.zip
+- Unzip the file and run **install-FruityWifi.sh** (This script will install all the dependencies and setups)
+- Done. 
+
+Go to **http://localhost:8000** (for http) <br>
+Go to **https://localhost:8443** (for https) 
+
+user: admin<br>
+pass: admin
+<br><br>
 
 ### More information
 [Wiki](https://github.com/xtr4nge/FruityWifi/wiki)
