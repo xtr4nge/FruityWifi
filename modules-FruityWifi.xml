@@ -10,7 +10,7 @@
     </module>
     <module>
         <name>ap</name>
-        <version>1.4</version>
+        <version>1.5</version>
         <author>@xtr4nge</author>
         <description>AP interface</description>
         <url>module_ap</url>
