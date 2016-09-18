@@ -49,6 +49,14 @@
 	<required>2.4</required>
     </module>
     <module>
+        <name>faraday</name>
+        <version>1.0</version>
+	<author>@xtr4nge</author>
+	<description>faraday interface</description>
+	<url>module_faraday</url>
+	<required>2.4</required>
+    </module>
+    <module>
         <name>geolocation</name>
         <version>1.0</version>
 	<author>@xtr4nge</author>
