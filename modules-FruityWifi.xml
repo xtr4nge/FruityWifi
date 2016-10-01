@@ -330,11 +330,11 @@
     </module>
     <module>
         <name>nginx</name>
-        <version>1.0</version>
+        <version>1.1</version>
 	<author>@xtr4nge</author>
 	<description>nginx interface</description>
 	<url>module_nginx</url>
-	<required>2.1</required>
+	<required>2.4</required>
     </module>
     <module>
         <name>mitmf</name>
