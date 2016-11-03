@@ -382,15 +382,13 @@ function addDivs($service, $alias, $edit, $path)
 	<div class="rounded-top" align="center"> Interfaces/IP </div>
 	<div class="rounded-bottom">
 		<?
-	
-		$ifaces = exec("/sbin/ifconfig -a | cut -c 1-8 | sort | uniq -u |grep -v lo|sed ':a;N;$!ba;s/\\n/|/g'");
-		$ifaces = str_replace(" ","",$ifaces);
-		$ifaces = explode("|", $ifaces);
+		// Get interfaces name
+		$ifaces = getIfaceNAME();
 	
 		for ($i = 0; $i < count($ifaces); $i++) {
 			if (strpos($ifaces[$i], "mon") === false) {
 				echo $ifaces[$i] . ": ";
-				$ip = exec("/sbin/ifconfig $ifaces[$i] | grep 'inet addr:' | cut -d: -f2 |awk '{print $1}'");
+				$ip = getIfaceIP($ifaces[$i]);
 				echo $ip . "<br>";
 			}
 		}
