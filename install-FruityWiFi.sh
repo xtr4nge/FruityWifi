@@ -60,6 +60,24 @@ else
     echo
 fi
 
+if [ ! -f "/usr/sbin/git" ]
+then
+    echo "--------------------------------"
+    echo "Installing git"
+    echo "--------------------------------"
+	
+    # INSTALL GIT
+    apt-get -y install git
+    
+    echo "[git setup completed]"
+
+else
+    echo "--------------------------------"
+    echo "git already installed"
+    echo "--------------------------------"
+    echo
+fi
+
 echo
 
 if [ ! -f "/usr/sbin/dnsmasq" ]
