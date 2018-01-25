@@ -37,7 +37,7 @@ usermod -a -G inet fruitywifi
 echo "[fruitywifi user has been created]"
 echo
 
-apt-get -y install gettext make intltool build-essential automake autoconf uuid uuid-dev dos2unix curl sudo unzip lsb-release python-scapy tcpdump python-netifaces python-pip git
+apt-get -y install gettext make intltool build-essential automake autoconf uuid uuid-dev dos2unix curl sudo unzip lsb-release python-scapy tcpdump python-netifaces python-pip git aircrack-ng net-tools pkg-config
 
 pip install netifaces
 
