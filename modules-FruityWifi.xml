@@ -34,7 +34,7 @@
     </module>
     <module>
         <name>mana</name>
-        <version>1.5</version>
+        <version>1.6</version>
 	<author>@xtr4nge</author>
 	<description>mana interface</description>
 	<url>module_mana</url>
