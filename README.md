@@ -25,11 +25,14 @@ Within the available modules you can find URLsnarf, DNSspoof, Kismet, mdk3, ngre
 
 Using the installation script all the required dependencies, scripts and setup can be installed.
 
+On **Jessie** based systems use: install-FruityWifi-**PHP5**.sh
+On **Stretch** based systems use: install-FruityWifi-**PHP7**.sh
+
 ### x86/x64 Version
 
 - You need Debian (or based) installed (or a Live CD version) to use this script.
 - Download the zip file from https://github.com/xtr4nge/FruityWifi/archive/master.zip
-- Unzip the file and run **install-FruityWifi.sh** (This script will install all the dependencies and setups)
+- Unzip the file and run **install-FruityWifi-{PHPVersion}.sh** (This script will install all the dependencies and setups)
 - Done. 
 
 Go to **http://localhost:8000** (for http) <br>
@@ -59,7 +62,7 @@ Note: installing `fruitywifi` will install all modules. If you want to install o
 
 - You need a Raspbian, Pwnpi or Kali Linux version to use this script.
 - Download the zip file from https://github.com/xtr4nge/FruityWifi/archive/master.zip
-- Unzip the file and run **install-FruityWifi.sh** (This script will install all the dependencies and setups)
+- Unzip the file and run **install-FruityWifi-{PHPVersion}.sh** (This script will install all the dependencies and setups)
 - Done. 
 
 Go to **http://localhost:8000** (for http) <br>
