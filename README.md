@@ -26,7 +26,9 @@ Within the available modules you can find URLsnarf, DNSspoof, Kismet, mdk3, ngre
 Using the installation script all the required dependencies, scripts and setup can be installed.
 
 On **Jessie** based systems use: install-FruityWifi-**PHP5**.sh
+
 On **Stretch** based systems use: install-FruityWifi-**PHP7**.sh
+
 
 ### x86/x64 Version
 
