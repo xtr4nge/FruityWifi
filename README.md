@@ -1,6 +1,10 @@
 # FruityWiFi
 ###### Wireless network auditing tool http://www.fruitywifi.com/
 
+## Important Note (Debian Stretch): 
+Use **Debian Jessie** based systems until I can update dependencies for Debian Stretch.
+<br><br>
+
 FruityWifi is an open source tool to audit wireless networks. It allows the user to deploy advanced attacks by directly using the web interface or by sending messages to it. 
 
 Initialy the application was created to be used with the Raspberry-Pi, but it can be installed on any Debian based system. 
