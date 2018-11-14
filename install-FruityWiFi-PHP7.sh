@@ -162,15 +162,15 @@ cp nginx-setup/nginx.conf /etc/nginx/
 if [[ $fruitywifi_php_version == "PHP7" ]]
 then
 	# INSTALL PHP7
-	apt-get -y install php7.0-fpm php7.0-curl php7.0-cli php7.0-xml
+	apt-get -y install php7.?-fpm php7.?-curl php7.?-cli php7.?-xml
 	
 	cp nginx-setup/FruityWiFi-PHP7 /etc/nginx/sites-enabled/
-	cp nginx-setup/fpm-PHP7/8000.conf /etc/php/7.0/fpm/pool.d/
-	cp nginx-setup/fpm-PHP7/8443.conf /etc/php/7.0/fpm/pool.d/
+	cp nginx-setup/fpm-PHP7/8000.conf /etc/php/7.?/fpm/pool.d/
+	cp nginx-setup/fpm-PHP7/8443.conf /etc/php/7.?/fpm/pool.d/
 	
 	# RESTART NGINX + PHP7-FPM
 	/etc/init.d/nginx restart
-	/etc/init.d/php7.0-fpm restart
+	/etc/init.d/php7.?-fpm restart
 else
 	# INSTALL PHP5
 	apt-get -y install php5-fpm php5-curl php5-cli
@@ -264,8 +264,8 @@ then
 	/etc/init.d/nginx restart
 	if [[ $fruitywifi_php_version == "PHP7" ]]
 	then
-		update-rc.d php7.0-fpm defaults
-		/etc/init.d/php7.0-fpm restart
+		update-rc.d php7.?-fpm defaults
+		/etc/init.d/php7.?-fpm restart
 	else
 		update-rc.d php5-fpm defaults
 		/etc/init.d/php5-fpm restart
