@@ -18,6 +18,11 @@ fruitywifi_log_path="/usr/share/fruitywifi/logs"
 fruitywifi_init_defaults="onboot"
 # --------------------------------------------------------
 
+if [ "$EUID" -ne ]
+  then echo "Please run as root"
+  exit
+fi
+
 find FruityWifi -type d -exec chmod 755 {} \;
 find FruityWifi -type f -exec chmod 644 {} \;
 
