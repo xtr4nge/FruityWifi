@@ -354,7 +354,7 @@
     </module>
     <module>
         <name>fruityproxy</name>
-        <version>1.4</version>
+        <version>1.5</version>
 	<author>@xtr4nge</author>
 	<description>fruityproxy interface</description>
 	<url>module_fruityproxy</url>
