@@ -18,7 +18,7 @@ fruitywifi_log_path="/usr/share/fruitywifi/logs"
 fruitywifi_init_defaults="onboot"
 # --------------------------------------------------------
 
-if [ "$EUID" -ne ]
+if [[ $EUID -ne 0 ]]
   then echo "Please run as root"
   exit
 fi
