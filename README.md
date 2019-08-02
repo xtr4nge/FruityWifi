@@ -5,7 +5,7 @@
 Please use Use **Debian Buster** based systems. The Installer has been updated for resolving issues with old version. 
 <br><br>
 
-FruityWifi is an open source tool to audit wireless networks. It allows the user to deploy advanced attacks by directly using the web interface or by sending messages to it. 
+FruityWiFi is an open source tool to audit wireless networks. It allows the user to deploy advanced attacks by directly using the web interface or by sending messages to it. 
 
 Initialy the application was created to be used with the Raspberry-Pi, but it can be installed on any Debian based system. 
 
