@@ -194,7 +194,7 @@
     </module>
     <module>
         <name>responder</name>
-        <version>1.5</version>
+        <version>1.6</version>
 	<author>@xtr4nge</author>
 	<description>Responder interface</description>
 	<url>module_responder</url>
