@@ -1,8 +1,10 @@
 # FruityWiFi
 ###### Wireless network auditing tool http://www.fruitywifi.com/
 
-## Important Note (Debian Buster): 
-Please use Use **Debian Buster** based systems. The Installer has been updated for resolving issues with old version. 
+## Important Note (Debian 11 Bullseye): 
+Please use Use **Debian 11 Bullseye** based systems. The Installer has been updated for resolving issues with old version.
+<br>
+**Note**: Some modules will not work until they are upgraded to Python3
 <br><br>
 
 FruityWiFi is an open source tool to audit wireless networks. It allows the user to deploy advanced attacks by directly using the web interface or by sending messages to it. 
