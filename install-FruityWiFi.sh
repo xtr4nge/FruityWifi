@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # CONFIG
-version="2.4.2"
+version="2.4.3"
 # --------------------------------------------------------
 # Setup PHP version -> options: PHP5 | PHP7
 # The chosen version needs to be in the repository
 # --------------------------------------------------------
 #fruitywifi_php_version="PHP7"
-php_version="7.3"
+php_version="7.4"
 # --------------------------------------------------------
 # Setup log path. default=/usr/share/fruitywifi/logs
 # --------------------------------------------------------
@@ -33,34 +33,16 @@ echo "--------------------------------"
 echo "Creates user fruitywifi"
 echo "--------------------------------"
 adduser --disabled-password --quiet --system --home /var/run/fruitywifi --no-create-home --gecos "FruityWiFi" --group fruitywifi
-usermod -a -G inet fruitywifi # *****ERROR?!*****
+#usermod -a -G inet fruitywifi # *****ERROR?!***** REPLACED? REMOVED? COMMENT?
 
 echo "[fruitywifi user has been created]"
 echo
 
-apt-get -y install gettext make intltool build-essential automake autoconf uuid uuid-dev dos2unix curl sudo unzip lsb-release python-scapy tcpdump python-netifaces python-pip git ntp
+apt-get -y install gettext make intltool build-essential automake autoconf uuid uuid-dev dos2unix curl sudo unzip lsb-release tcpdump 
+apt-get -y install python3-netifaces python3-pip python3-scapy
+apt-get -y install git ntp
 
 pip install netifaces
-
-#cmd=`gcc --version|grep "4.7"`
-#if [[ $cmd == "" ]]
-#then
-#    echo "--------------------------------"
-#    echo "Installing gcc 4.7" 
-#    echo "--------------------------------"
-	
-#    apt-get -y install gcc-4.7
-#    apt-get -y install g++-4.7
-#    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.7 40 --slave /usr/bin/g++ g++ /usr/bin/g++-4.7
-    
-#    echo "[gcc setup completed]"
-
-#else
-#    echo "--------------------------------"
-#    echo "gcc 4.7 already installed"
-#    echo "--------------------------------"
-#    echo
-#fi
 
 echo
 
@@ -114,19 +96,19 @@ then
     apt-get -y install libssl-dev wireless-tools iw
     # DEPENDENCIES FROM AIRCRACK INSTALLER
     apt-get -y install build-essential autoconf automake libtool pkg-config libnl-3-dev libnl-genl-3-dev libssl-dev ethtool shtool rfkill zlib1g-dev libpcap-dev libsqlite3-dev libpcre3-dev libhwloc-dev libcmocka-dev
-	#VERSION="aircrack-ng-1.2-beta1" # [OLD_VERSION]
-	#VERSION="aircrack-ng-1.2-rc4"
-    VERSION="aircrack-ng-1.5.2"
-    wget http://download.aircrack-ng.org/$VERSION.tar.gz
-    tar -zxvf $VERSION.tar.gz
-    cd $VERSION
-    autoreconf -i
-    ./configure
-    make
-    make install
-    ldconfig
-    #ln -s /usr/local/sbin/airmon-ng /usr/sbin/airmon-ng
-    #ln -s /usr/local/sbin/airbase-ng /usr/sbin/airbase-ng
+    apt-get -y install aircrack-ng
+    
+    #VERSION="aircrack-ng-1.6"
+    #wget http://download.aircrack-ng.org/$VERSION.tar.gz
+    #tar -zxvf $VERSION.tar.gz
+    #cd $VERSION
+    #autoreconf -i
+    #./configure
+    #make
+    #make install
+    #ldconfig
+    ##ln -s /usr/local/sbin/airmon-ng /usr/sbin/airmon-ng
+    ##ln -s /usr/local/sbin/airbase-ng /usr/sbin/airbase-ng
     cd ../
     
     echo "[aircrack-ng setup completed]"
@@ -149,7 +131,6 @@ echo "--------------------------------"
 
 # NGINX INSTALL
 apt-get -y install nginx
-#apt-get -y install nginx php5-fpm
 echo
 
 # SSL
@@ -223,20 +204,6 @@ chown root:root /etc/sudoers.d/fruitywifi
 echo "[sudo setup completed]"
 echo
 
-#cmd=`lsb_release -c |grep -iEe "jessie|kali|sana"`
-#if [[ ! -z $cmd ]]
-#then
-#    echo "--------------------------------"
-#    echo "Setup DNSMASQ"
-#    echo "--------------------------------"
-	
-#    EXEC="s,^server=,#server=,g"
-#    sed -i $EXEC FruityWiFi/conf/dnsmasq.conf
-    
-#    echo "[dnsmasq setup completed]"
-#    echo
-
-#fi
 
 cp -a FruityWiFi /usr/share/fruitywifi
 #mkdir $fruitywifi_log_path
@@ -260,6 +227,18 @@ then
     /etc/init.d/php$php_version-fpm restart
 
 fi
+
+# WORKAROUNDs
+ln -s /usr/sbin/ifconfig /usr/bin/ifconfig
+#ln -s /usr/bin/python3 /usr/bin/python
+
+# REPLACE IFACE TO ETHx WLANx
+#sed -i 's/GRUB_CMDLINE_LINUX=""/GRUB_CMDLINE_LINUX="net.ifnames=0 biosdevname=0"/g' /etc/default/grub
+#grub-mkconfig -o /boot/grub/grub.cfg
+
+# Monitor Mode [rt2800usb]
+# https://wiki.debian.org/rt2800usb
+
 
 #apt-get -y remove ifplugd # *****RPI CONFLICT IF NOT REMOVED/UNINSTALLED?*****
 
