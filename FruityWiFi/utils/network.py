@@ -5,15 +5,15 @@ import getopt
 import netifaces
 
 def usage():
-    print "\nFruityWiFi utils v1.0 (@xtr4nge)"
+    print ("\nFruityWiFi utils v1.1 (@xtr4nge)")
 
-    print "Usage: network.py <options>\n"
-    print "Options:"
-    print "-t <type>, --type=<type>                 TYPE"
-    print "-i <iface>, --iface=<iface>              INTERFACE"
-    print ""
-    print "Author: @xtr4nge"
-    print ""
+    print ("Usage: network.py <options>\n")
+    print ("Options:")
+    print ("-t <type>, --type=<type>                 TYPE")
+    print ("-i <iface>, --iface=<iface>              INTERFACE")
+    print ("")
+    print ("Author: @xtr4nge")
+    print ("")
 
 def parseOptions(argv):
     TYPE = ""
@@ -35,7 +35,7 @@ def parseOptions(argv):
         if TYPE == "":
             usage()
             print
-            print "[Required] \n        -t (TYPE: getiface) \n"
+            print ("[Required] \n        -t (TYPE: getiface) \n")
             print
 
             sys.exit(1)
@@ -52,21 +52,21 @@ def getIface():
         except: MAC = ""
         try: IP = netifaces.ifaddresses(i)[netifaces.AF_INET][0]["addr"]
         except: IP = ""
-        print str(i)+"|"+str(IP)+"|"+str(MAC)
+        print (str(i)+"|"+str(IP)+"|"+str(MAC))
 
 def getIfaceNAME():
     for i in netifaces.interfaces():
-        print i
+        print (i)
 
 def getIfaceIP(iface):
     try: IP = netifaces.ifaddresses(iface)[netifaces.AF_INET][0]["addr"]
     except: IP = ""
-    print IP
+    print (IP)
 
 def getIfaceMAC(iface):
     try: MAC = netifaces.ifaddresses(iface)[netifaces.AF_LINK][0]["addr"]
     except: MAC = ""
-    print MAC
+    print (MAC)
 
 def main(argv):
     (TYPE, IFACE) = parseOptions(argv)
