@@ -1,6 +1,6 @@
 <? 
 /*
-    Copyright (C) 2013-2016 xtr4nge [_AT_] gmail.com
+    Copyright (C) 2013-2021 xtr4nge [_AT_] gmail.com
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -231,7 +231,7 @@ function getIfaceNAME() {
     $ifaces = explode("|", $ifaces);
     */
     
-    $exec = "/usr/bin/python /usr/share/fruitywifi/utils/network.py -t getifacename | grep -v lo";
+    $exec = "/usr/bin/python3 /usr/share/fruitywifi/utils/network.py -t getifacename | grep -v lo";
     unset($output);
     exec($exec, $output);
     return $output;
@@ -240,14 +240,14 @@ function getIfaceNAME() {
 function getIfaceIP($iface) {
     //$tmp_ip = exec("/sbin/ifconfig $io_in_iface | grep 'inet addr:' | cut -d: -f2 |awk '{print $1}'");
     //$ip = exec("/sbin/ifconfig $ifaces[$i] | grep 'inet addr:' | cut -d: -f2 |awk '{print $1}'");
-    $exec = "/usr/bin/python /usr/share/fruitywifi/utils/network.py -t getifaceip -i $iface";
+    $exec = "/usr/bin/python3 /usr/share/fruitywifi/utils/network.py -t getifaceip -i $iface";
     unset($output);
     exec($exec, $output);
     return $output[0];
 }
 
 function getIfaceMAC($iface) {
-    $exec = "/usr/bin/python /usr/share/fruitywifi/utils/network.py -t getifacemac -i $iface";
+    $exec = "/usr/bin/python3 /usr/share/fruitywifi/utils/network.py -t getifacemac -i $iface";
     unset($output);
     exec($exec, $output);
     return $output[0];
