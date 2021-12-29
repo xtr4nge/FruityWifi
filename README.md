@@ -1,4 +1,12 @@
 # FruityWiFi
+
+[![Rawsec's CyberSecurity Inventory](https://inventory.rawsec.ml/img/badges/Rawsec-inventoried-FF5050_flat.svg)](https://inventory.rawsec.ml/tools.html#FruityWiFi)
+[![GitHub version](https://badge.fury.io/gh/xtr4nge%2FFruityWifi.svg)](https://badge.fury.io/gh/xtr4nge%2FFruityWifi)
+[![GitHub issues](https://img.shields.io/github/issues/xtr4nge/FruityWifi.svg)](https://github.com/xtr4nge/FruityWifi/issues)
+[![GitHub forks](https://img.shields.io/github/forks/xtr4nge/FruityWifi.svg)](https://github.com/xtr4nge/FruityWifi/network)
+[![GitHub stars](https://img.shields.io/github/stars/xtr4nge/FruityWifi.svg)](https://github.com/xtr4nge/FruityWifi/stargazers)
+[![GitHub license](https://img.shields.io/github/license/xtr4nge/FruityWifi.svg)](https://github.com/xtr4nge/FruityWifi/blob/master/LICENSE)
+
 ###### Wireless network auditing tool http://www.fruitywifi.com/
 
 ## Important Note (Debian 11 Bullseye): 
