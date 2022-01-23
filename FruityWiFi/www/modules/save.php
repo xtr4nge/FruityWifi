@@ -18,6 +18,7 @@
 ?>
 <?
 
+include "../login_check.php";
 //include "../_info_.php";
 include "../config/config.php";
 include "../functions.php";

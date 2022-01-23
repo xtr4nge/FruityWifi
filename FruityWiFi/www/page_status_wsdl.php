@@ -1,6 +1,6 @@
 <? 
 /*
-    Copyright (C) 2013-2015 xtr4nge [_AT_] gmail.com
+    Copyright (C) 2013-2016 xtr4nge [_AT_] gmail.com
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -468,10 +468,8 @@ echo "<div>No modules have been installed.<br>Install them from the <a href='pag
 <div class="rounded-top" align="center"> Interfaces/IP </div>
 <div class="rounded-bottom">
 <?
-
-$ifaces = exec("/sbin/ifconfig -a | cut -c 1-8 | sort | uniq -u |grep -v lo|sed ':a;N;$!ba;s/\\n/|/g'");
-$ifaces = str_replace(" ","",$ifaces);
-$ifaces = explode("|", $ifaces);
+	// Get interfaces name
+	$ifaces = getIfaceNAME();
 
     for ($i = 0; $i < count($ifaces); $i++) {
         if (strpos($ifaces[$i], "mon") === false) {

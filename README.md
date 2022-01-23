@@ -1,107 +1,87 @@
-FruityWifi
-==============
+# FruityWiFi
+###### Wireless network auditing tool http://www.fruitywifi.com/
 
-FruityWifi is a wireless network auditing tool. The application can be installed in any Debian based system adding the extra packages. Tested in Debian, Kali Linux, Kali Linux ARM (Raspberry Pi), Raspbian (Raspberry Pi), Pwnpi (Raspberry Pi), Bugtraq.
+## Important Note (Debian 11 Bullseye): 
+Please use Use **Debian 11 Bullseye** based systems. The Installer has been updated for resolving issues with old version.
+<br>
+**Note**: Some modules will not work until they are upgraded to Python3
+<br><br>
 
+FruityWiFi is an open source tool to audit wireless networks. It allows the user to deploy advanced attacks by directly using the web interface or by sending messages to it. 
 
-v2.2
-----------------
-- Wireless service has been replaced by AP module
-- Mobile support has been added
-- Bootstrap support has been added
-- Token auth has been added
-- minor fix
+Initialy the application was created to be used with the Raspberry-Pi, but it can be installed on any Debian based system. 
 
+![Status](http://www.fruitywifi.com/img/001.png)
 
-v2.1
-----------------
-- Hostapd Mana support has been added
-- Phishing service has been replaced by phishing module
-- Karma service has been replaced by karma module
-- Sudo has been implemented (replacement for danger)
-- Logs path can be changed
-- Squid dependencies have been removed from FruityWifi installer
-- Phishing dependencies have been removed from FruityWifi installer
-- New AP options available: hostapd, hostapd-mana, hostapd-karma, airmon-ng
-- Domain name can be changed from config panel
-- New install options have been added to install-FruityWifi.sh
-- Install/Remove have been updated
+A more flexible control panel. Now it is possible to use FruityWifi combining multiple networks and setups: 
 
+Within the new options on the control panel we can change the AP mode between Hostapd or Airmon-ng allowing to use more chipsets like Realtek. 
 
-v2.0 (alpha)
-----------------
-- Web-Interface has been changed (new look and feel, new options).
-- Nginx has replaced Apache2 as default webserver.
-- Installation script has been updated.
-- Config panel has been changed.
-- Network interfaces structure has been changed and renamed.
-- It is possible to use FruityWifi combining multiple networks and setups.
-- Supplicant mode has been added as a module.
-- 3G/4G Broadband Mobile has been added as a module.
-- FruityWifi HTTP webinterface on port 8000
-- FruityWifi HTTPS webinterface on port 8443
+It is possible customize each one of the network interfaces which allows the user to keep the current setup or change it completely.
 
+![Config](http://www.fruitywifi.com/img/002.png)
 
-v1.9
-----------------
-- Service Karma has been replaced by Karma module
-- Service Supplicant has been replaced by nmcli module
-- Config page has been updated
-- Supplicant config has been changed (nmcli module is required)
-- dnspoof host file has been removed from config page (dnsspoof module is required)
-- Logs page has been updated
-- WSDL has been updated
-- Hostapd/Karma has been removed from installer (replaced by Karma module)
-- NetworkManager has been removed from installer (replaced by nmcli module)
-- install-modules.py has been added (install all modules from console)
+FruityWifi is based on modules making it more flexible. These modules can be installed from the control panel to provide FruityWifi with new functionalities. 
 
+Within the available modules you can find URLsnarf, DNSspoof, Kismet, mdk3, ngrep, nmap, Squid3 y SSLstrip (code injection functionality), Captive Portal, AutoSSH, Meterpreter, Tcpdump and more. 
 
-v1.8
-----------------
-- WSDL has been added
-- new status page has been added
-- logs can follow in realtime using the new status page (wsdl)
+**Note**: New modules are being developed continuously and can be installed from the modules page.
 
+## Install
 
-v1.6
-----------------
-- Dependencies can be installed from module windows
-- minor fix
+Using the installation script all the required dependencies, scripts and setup can be installed.
 
+On **Buster** based systems use: install-FruityWiFi.sh
+<br><br>
 
-v1.5
-----------------
-- New functions has been added
-- Source code has been changed (open file function)
-- minor fix
+### x86/x64 Version
 
+- You need Debian (or based) installed (or a Live CD version) to use this script.
+- Download the zip file from https://github.com/xtr4nge/FruityWifi/archive/master.zip
+- Unzip the file and run **install-FruityWiFi.sh** (This script will install all the dependencies and setups)
+- Done. 
 
-v1.4
-----------------
-- New functions has been added (monitor mode)
-- config page has been changed
-- minor fix
+Go to **http://localhost:8000** (for http) <br>
+Go to **https://localhost:8443** (for https) 
 
+user: admin<br>
+pass: admin
+<br><br>
 
-v1.3
-----------------
-- Directory structure has been changed
-- minor fix
+### Kali Linux Version
 
+**Note**: The Kali Linux version has not been updated in long time. I will try to work on this as soon as I can. For the moment use the GitHub installer for avoiding issues.
 
-v1.2
-----------------
-- Installation script has been updated
-- SSLstrip fork (@xtr4nge) has been added (Inject + Tamperer options)
-- minor fix
+FruityWiFi is now part of Kali Linux repositories.
+- `apt-get install fruitywifi`
+- `/etc/init.d/fruitywifi start`
+- `/etc/init.d/php5-fpm start`
 
+Go to **http://localhost:8000** (for http) <br>
+Go to **https://localhost:8443** (for https) 
 
-v1.1
-----------------
-- External modules can be installed from modules page
-- minor fix
+user: admin<br>
+pass: admin
+<br>
 
+Note: installing `fruitywifi` will install all modules. If you want to install only some modules, you can install  `fruitywifi-core` first and then each module, for example `fruitywifi-module-dnsspoof`. 
+<br><br>
 
-v1.0
-----------------
-- init
+### ARM version (Raspberry Pi)
+
+**Note**: The new installer has not been tested on Raspberry yet. I will try to work on this as soon as I can.
+
+- You need a Raspbian, Pwnpi or Kali Linux version to use this script.
+- Download the zip file from https://github.com/xtr4nge/FruityWifi/archive/master.zip
+- Unzip the file and run **install-FruityWiFi.sh** (This script will install all the dependencies and setups)
+- Done. 
+
+Go to **http://localhost:8000** (for http) <br>
+Go to **https://localhost:8443** (for https) 
+
+user: admin<br>
+pass: admin
+<br><br>
+
+### More information
+[Wiki](https://github.com/xtr4nge/FruityWifi/wiki)

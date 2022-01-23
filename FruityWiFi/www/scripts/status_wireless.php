@@ -1,6 +1,6 @@
 <? 
 /*
-    Copyright (C) 2013-2015 xtr4nge [_AT_] gmail.com
+    Copyright (C) 2013-2016 xtr4nge [_AT_] gmail.com
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -170,13 +170,10 @@ if($service == "wireless" and $ap_mode == "1") {
 			
 			//EXTRACT MACADDRESS
 			unset($output);
-			$exec = "$bin_ifconfig -a $io_in_iface |grep HWaddr";
-			$output = exec_fruitywifi($exec);
-			$output = preg_replace('/\s+/', ' ',$output[0]);
-			$output = explode(" ",$output);
+			$output = getIfaceMAC($io_in_iface);
 			
 			//REPLACE MAC
-			$exec = "$bin_sed -i 's/^bssid=.*/bssid=".$output[4]."/g' /usr/share/fruitywifi/conf/hostapd-secure.conf";
+			$exec = "$bin_sed -i 's/^bssid=.*/bssid=".$output."/g' /usr/share/fruitywifi/conf/hostapd-secure.conf";
 			exec_fruitywifi($exec);
 			
 			$exec = "/usr/sbin/hostapd -P /var/run/hostapd-phy0 -B /usr/share/fruitywifi/conf/hostapd-secure.conf";
@@ -196,13 +193,10 @@ if($service == "wireless" and $ap_mode == "1") {
 			
 			//EXTRACT MACADDRESS
 			unset($output);
-			$exec = "$bin_ifconfig -a $io_in_iface |grep HWaddr";
-			$output = exec_fruitywifi($exec);
-			$output = preg_replace('/\s+/', ' ',$output[0]);
-			$output = explode(" ",$output);
+			$output = getIfaceMAC($io_in_iface);
 			
 			//REPLACE BSSID
-			$exec = "$bin_sed -i 's/^bssid=.*/bssid=".$output[4]."/g' /usr/share/fruitywifi/conf/hostapd.conf";
+			$exec = "$bin_sed -i 's/^bssid=.*/bssid=".$output."/g' /usr/share/fruitywifi/conf/hostapd.conf";
 			exec_fruitywifi($exec);
 			
 			$exec = "/usr/sbin/hostapd -P /var/run/hostapd-phy0 -B /usr/share/fruitywifi/conf/hostapd.conf";
@@ -438,13 +432,10 @@ if($service == "wireless"  and $ap_mode == "3") {
 				
 				//EXTRACT MACADDRESS
 				unset($output);
-				$exec = "$bin_ifconfig -a $io_in_iface |grep HWaddr";
-				$output = exec_fruitywifi($exec);
-				$output = preg_replace('/\s+/', ' ',$output[0]);
-				$output = explode(" ",$output);
+				$output = getIfaceMAC($io_in_iface);
 				
 				//REPLACE MAC
-				$exec = "$bin_sed -i 's/^bssid=.*/bssid=".$output[4]."/g' $mod_path/includes/conf/hostapd-secure.conf";
+				$exec = "$bin_sed -i 's/^bssid=.*/bssid=".$output."/g' $mod_path/includes/conf/hostapd-secure.conf";
 				exec_fruitywifi($exec);
 				
 				$exec = "$bin_hostapd $mod_path/includes/conf/hostapd-secure.conf >> $mod_logs &";
@@ -467,13 +458,10 @@ if($service == "wireless"  and $ap_mode == "3") {
 				
 				//EXTRACT MACADDRESS
 				unset($output);
-				$exec = "$bin_ifconfig -a $io_in_iface |grep HWaddr";
-				$output = exec_fruitywifi($exec);
-				$output = preg_replace('/\s+/', ' ',$output[0]);
-				$output = explode(" ",$output);
+				$output = getIfaceMAC($io_in_iface);
 				
 				//REPLACE MAC
-				$exec = "$bin_sed -i 's/^bssid=.*/bssid=".$output[4]."/g' $mod_path/includes/conf/hostapd.conf";
+				$exec = "$bin_sed -i 's/^bssid=.*/bssid=".$output."/g' $mod_path/includes/conf/hostapd.conf";
 				exec_fruitywifi($exec);
 				
 				$exec = "$bin_hostapd $mod_path/includes/conf/hostapd.conf >> $mod_logs &";
@@ -619,13 +607,10 @@ if($service == "wireless"  and $ap_mode == "4") {
 				
 				//EXTRACT MACADDRESS
 				unset($output);
-				$exec = "$bin_ifconfig -a $io_in_iface |grep HWaddr";
-				$output = exec_fruitywifi($exec);
-				$output = preg_replace('/\s+/', ' ',$output[0]);
-				$output = explode(" ",$output);
+				$output = getIfaceMAC($io_in_iface);
 				
 				//REPLACE MAC
-				$exec = "$bin_sed -i 's/^bssid=.*/bssid=".$output[4]."/g' $mod_path/includes/conf/hostapd-secure.conf";
+				$exec = "$bin_sed -i 's/^bssid=.*/bssid=".$output."/g' $mod_path/includes/conf/hostapd-secure.conf";
 				exec_fruitywifi($exec);
 				
 				$exec = "$bin_hostapd $mod_path/includes/conf/hostapd-secure.conf >> $mod_logs &";
@@ -648,13 +633,10 @@ if($service == "wireless"  and $ap_mode == "4") {
 				
 				//EXTRACT MACADDRESS
 				unset($output);
-				$exec = "$bin_ifconfig -a $io_in_iface |grep HWaddr";
-				$output = exec_fruitywifi($exec);
-				$output = preg_replace('/\s+/', ' ',$output[0]);
-				$output = explode(" ",$output);
+				$output = getIfaceMAC($io_in_iface);
 				
 				//REPLACE MAC
-				$exec = "$bin_sed -i 's/^bssid=.*/bssid=".$output[4]."/g' $mod_path/includes/conf/hostapd.conf";
+				$exec = "$bin_sed -i 's/^bssid=.*/bssid=".$output."/g' $mod_path/includes/conf/hostapd.conf";
 				exec_fruitywifi($exec);
 				
 				$exec = "$bin_hostapd $mod_path/includes/conf/hostapd.conf >> $mod_logs &";
